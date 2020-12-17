@@ -102,6 +102,9 @@ jobs:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v1.0.1
+    - name: Restore binary perms
+      run: find ${{ github.workspace }} -name "pulumi-*-${{ env.PROVIDER }}" -print
+        -exec chmod +x {} \;      
     - name: Build tfgen & provider binaries
       run: make provider
     - name: Tar provider binaries
@@ -141,13 +144,6 @@ jobs:
       uses: pulumi/action-install-pulumi-cli@v1.0.1
     - name: Run golangci
       run: make lint_provider
-    - if: failure() && github.event_name == 'push'
-      name: Notify Slack
-      uses: 8398a7/action-slack@v3
-      with:
-        author_name: Failure in linting provider
-        fields: repo,commit,author,action
-        status: ${{ job.status }}
     strategy:
       fail-fast: true
   lint_sdk:
@@ -177,13 +173,6 @@ jobs:
       uses: pulumi/action-install-pulumi-cli@v1.0.1
     - name: Run golangci
       run: cd sdk/go/digitalocean && golangci-lint run -c ../../../.golangci.yml
-    - if: failure() && github.event_name == 'push'
-      name: Notify Slack
-      uses: 8398a7/action-slack@v3
-      with:
-        author_name: Failure in linting go sdk
-        fields: repo,commit,author,action
-        status: ${{ job.status }}
     strategy:
       fail-fast: true
 
