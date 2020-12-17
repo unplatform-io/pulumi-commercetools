@@ -102,11 +102,8 @@ jobs:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v1.0.1
-    - name: Restore binary perms
-      run: find ${{ github.workspace }} -name "pulumi-*-${{ env.PROVIDER }}" -print
-        -exec chmod +x {} \;      
     - name: Build tfgen & provider binaries
-      run: make provider
+      run: sudo make provider
     - name: Tar provider binaries
       run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace
         }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER
