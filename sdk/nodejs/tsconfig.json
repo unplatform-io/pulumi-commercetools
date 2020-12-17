@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "outDir": "bin",
+        "target": "es2016",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": true,
+        "stripInternal": true,
+        "experimentalDecorators": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true
+    },
+    "files": [
+        "apiClient.ts",
+        "apiExtension.ts",
+        "cartDiscount.ts",
+        "channel.ts",
+        "config/index.ts",
+        "config/vars.ts",
+        "customObject.ts",
+        "discountCode.ts",
+        "index.ts",
+        "productType.ts",
+        "projectSettings.ts",
+        "provider.ts",
+        "shippingMethod.ts",
+        "shippingZone.ts",
+        "shippingZoneRate.ts",
+        "state.ts",
+        "store.ts",
+        "subscription.ts",
+        "taxCategory.ts",
+        "taxCategoryRate.ts",
+        "type.ts",
+        "types/index.ts",
+        "types/input.ts",
+        "types/output.ts",
+        "utilities.ts"
+    ]
+}

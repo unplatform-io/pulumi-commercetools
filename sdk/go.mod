@@ -1,3 +1,3 @@
-module github.com/pulumi/pulumi-xyz/sdk
+module github.com/unplatform-io/pulumi-commercetools/sdk
 
 go 1.15

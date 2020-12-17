@@ -1,0 +1,2505 @@
+{
+    "name": "commercetools",
+    "description": "A Pulumi package for creating and managing commercetools cloud resources.",
+    "keywords": [
+        "pulumi",
+        "commercetools"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`commercetools` Terraform Provider](https://github.com/terraform-providers/terraform-provider-commercetools).",
+    "repository": "https://github.com/unplatform-io/pulumi-commercetools",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "apiUrl": {
+                "type": "string",
+                "description": "The API URL of the commercetools platform. https://docs.commercetools.com/http-api\n"
+            },
+            "clientId": {
+                "type": "string",
+                "description": "The OAuth Client ID for a commercetools platform project. https://docs.commercetools.com/http-api-authorization\n"
+            },
+            "clientSecret": {
+                "type": "string",
+                "description": "The OAuth Client Secret for a commercetools platform project. https://docs.commercetools.com/http-api-authorization\n"
+            },
+            "projectKey": {
+                "type": "string",
+                "description": "The project key of commercetools platform project. https://docs.commercetools.com/getting-started\n"
+            },
+            "scopes": {
+                "type": "string",
+                "description": "A list as string of OAuth scopes assigned to a project key, to access resources in a commercetools platform project.\nhttps://docs.commercetools.com/http-api-authorization\n"
+            },
+            "tokenUrl": {
+                "type": "string",
+                "description": "The authentication URL of the commercetools platform. https://docs.commercetools.com/http-api-authorization\n"
+            }
+        },
+        "defaults": [
+            "apiUrl",
+            "clientId",
+            "clientSecret",
+            "projectKey",
+            "scopes",
+            "tokenUrl"
+        ]
+    },
+    "types": {
+        "commercetools:index/ApiExtensionDestination:ApiExtensionDestination": {
+            "properties": {
+                "accessKey": {
+                    "type": "string"
+                },
+                "accessSecret": {
+                    "type": "string"
+                },
+                "arn": {
+                    "type": "string"
+                },
+                "authorizationHeader": {
+                    "type": "string"
+                },
+                "azureAuthentication": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "type"
+            ]
+        },
+        "commercetools:index/ApiExtensionTrigger:ApiExtensionTrigger": {
+            "properties": {
+                "actions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourceTypeId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "actions",
+                "resourceTypeId"
+            ]
+        },
+        "commercetools:index/CartDiscountTarget:CartDiscountTarget": {
+            "properties": {
+                "predicate": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "type"
+            ]
+        },
+        "commercetools:index/CartDiscountValue:CartDiscountValue": {
+            "properties": {
+                "distributionChannelId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "monies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/CartDiscountValueMoney:CartDiscountValueMoney"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "permyriad": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "productId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "supplyChannelId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "variant": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "type"
+            ]
+        },
+        "commercetools:index/CartDiscountValueMoney:CartDiscountValueMoney": {
+            "properties": {
+                "centAmount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "currencyCode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "centAmount",
+                "currencyCode"
+            ]
+        },
+        "commercetools:index/ProductTypeAttribute:ProductTypeAttribute": {
+            "properties": {
+                "constraint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "inputHint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "inputTip": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "required": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "searchable": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "$ref": "#/types/commercetools:index/ProductTypeAttributeType:ProductTypeAttributeType",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "label",
+                "name",
+                "type"
+            ]
+        },
+        "commercetools:index/ProductTypeAttributeType:ProductTypeAttributeType": {
+            "properties": {
+                "elementType": {
+                    "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeElementType:ProductTypeAttributeTypeElementType",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "localizedValues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeLocalizedValue:ProductTypeAttributeTypeLocalizedValue"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "referenceTypeId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "typeReference": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "commercetools:index/ProductTypeAttributeTypeElementType:ProductTypeAttributeTypeElementType": {
+            "properties": {
+                "localizedValues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeElementTypeLocalizedValue:ProductTypeAttributeTypeElementTypeLocalizedValue"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "referenceTypeId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "typeReference": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "commercetools:index/ProductTypeAttributeTypeElementTypeLocalizedValue:ProductTypeAttributeTypeElementTypeLocalizedValue": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "label"
+            ]
+        },
+        "commercetools:index/ProductTypeAttributeTypeLocalizedValue:ProductTypeAttributeTypeLocalizedValue": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "label"
+            ]
+        },
+        "commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth": {
+            "properties": {
+                "authorizationHeader": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "authorizationHeader",
+                "url"
+            ]
+        },
+        "commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled"
+            ]
+        },
+        "commercetools:index/ShippingZoneLocation:ShippingZoneLocation": {
+            "properties": {
+                "country": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "state": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "country"
+            ]
+        },
+        "commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove": {
+            "properties": {
+                "centAmount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "currencyCode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "centAmount",
+                "currencyCode"
+            ]
+        },
+        "commercetools:index/ShippingZoneRatePrice:ShippingZoneRatePrice": {
+            "properties": {
+                "centAmount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "currencyCode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "centAmount",
+                "currencyCode"
+            ]
+        },
+        "commercetools:index/SubscriptionChange:SubscriptionChange": {
+            "properties": {
+                "resourceTypeIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "commercetools:index/SubscriptionDestination:SubscriptionDestination": {
+            "properties": {
+                "accessKey": {
+                    "type": "string"
+                },
+                "accessSecret": {
+                    "type": "string"
+                },
+                "connectionString": {
+                    "type": "string"
+                },
+                "projectId": {
+                    "type": "string"
+                },
+                "queueUrl": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "topic": {
+                    "type": "string"
+                },
+                "topicArn": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "uri": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "region",
+                "type",
+                "uri"
+            ]
+        },
+        "commercetools:index/SubscriptionFormat:SubscriptionFormat": {
+            "properties": {
+                "cloudEventsVersion": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "type"
+            ]
+        },
+        "commercetools:index/SubscriptionMessage:SubscriptionMessage": {
+            "properties": {
+                "resourceTypeId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "types": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "commercetools:index/TaxCategoryRateSubRate:TaxCategoryRateSubRate": {
+            "properties": {
+                "amount": {
+                    "type": "number",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "amount",
+                "name"
+            ]
+        },
+        "commercetools:index/TypeField:TypeField": {
+            "properties": {
+                "inputHint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "required": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "$ref": "#/types/commercetools:index/TypeFieldType:TypeFieldType",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "label",
+                "name",
+                "type"
+            ]
+        },
+        "commercetools:index/TypeFieldType:TypeFieldType": {
+            "properties": {
+                "elementType": {
+                    "$ref": "#/types/commercetools:index/TypeFieldTypeElementType:TypeFieldTypeElementType",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "localizedValues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/TypeFieldTypeLocalizedValue:TypeFieldTypeLocalizedValue"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "referenceTypeId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "commercetools:index/TypeFieldTypeElementType:TypeFieldTypeElementType": {
+            "properties": {
+                "localizedValues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/TypeFieldTypeElementTypeLocalizedValue:TypeFieldTypeElementTypeLocalizedValue"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "referenceTypeId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "commercetools:index/TypeFieldTypeElementTypeLocalizedValue:TypeFieldTypeElementTypeLocalizedValue": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "label"
+            ]
+        },
+        "commercetools:index/TypeFieldTypeLocalizedValue:TypeFieldTypeLocalizedValue": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "label"
+            ]
+        }
+    },
+    "provider": {
+        "description": "The provider type for the commercetools package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "inputProperties": {
+            "apiUrl": {
+                "type": "string",
+                "description": "The API URL of the commercetools platform. https://docs.commercetools.com/http-api\n"
+            },
+            "clientId": {
+                "type": "string",
+                "description": "The OAuth Client ID for a commercetools platform project. https://docs.commercetools.com/http-api-authorization\n"
+            },
+            "clientSecret": {
+                "type": "string",
+                "description": "The OAuth Client Secret for a commercetools platform project. https://docs.commercetools.com/http-api-authorization\n"
+            },
+            "projectKey": {
+                "type": "string",
+                "description": "The project key of commercetools platform project. https://docs.commercetools.com/getting-started\n"
+            },
+            "scopes": {
+                "type": "string",
+                "description": "A list as string of OAuth scopes assigned to a project key, to access resources in a commercetools platform project.\nhttps://docs.commercetools.com/http-api-authorization\n"
+            },
+            "tokenUrl": {
+                "type": "string",
+                "description": "The authentication URL of the commercetools platform. https://docs.commercetools.com/http-api-authorization\n"
+            }
+        },
+        "requiredInputs": [
+            "apiUrl",
+            "clientId",
+            "clientSecret",
+            "projectKey",
+            "scopes",
+            "tokenUrl"
+        ]
+    },
+    "resources": {
+        "commercetools:index/apiClient:ApiClient": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "secret": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "scopes",
+                "secret"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "requiredInputs": [
+                "scopes"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ApiClient resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "secret": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/apiExtension:ApiExtension": {
+            "properties": {
+                "destination": {
+                    "$ref": "#/types/commercetools:index/ApiExtensionDestination:ApiExtensionDestination"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "timeoutInMs": {
+                    "type": "integer"
+                },
+                "triggers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ApiExtensionTrigger:ApiExtensionTrigger"
+                    }
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "destination",
+                "triggers",
+                "version"
+            ],
+            "inputProperties": {
+                "destination": {
+                    "$ref": "#/types/commercetools:index/ApiExtensionDestination:ApiExtensionDestination"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "timeoutInMs": {
+                    "type": "integer"
+                },
+                "triggers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ApiExtensionTrigger:ApiExtensionTrigger"
+                    }
+                }
+            },
+            "requiredInputs": [
+                "destination",
+                "triggers"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ApiExtension resources.\n",
+                "properties": {
+                    "destination": {
+                        "$ref": "#/types/commercetools:index/ApiExtensionDestination:ApiExtensionDestination"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "timeoutInMs": {
+                        "type": "integer"
+                    },
+                    "triggers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/ApiExtensionTrigger:ApiExtensionTrigger"
+                        }
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/cartDiscount:CartDiscount": {
+            "properties": {
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "predicate": {
+                    "type": "string"
+                },
+                "requiresDiscountCode": {
+                    "type": "boolean"
+                },
+                "sortOrder": {
+                    "type": "string"
+                },
+                "stackingMode": {
+                    "type": "string"
+                },
+                "target": {
+                    "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget"
+                },
+                "validFrom": {
+                    "type": "string"
+                },
+                "validUntil": {
+                    "type": "string"
+                },
+                "value": {
+                    "$ref": "#/types/commercetools:index/CartDiscountValue:CartDiscountValue"
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "name",
+                "predicate",
+                "sortOrder",
+                "value",
+                "version"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "predicate": {
+                    "type": "string"
+                },
+                "requiresDiscountCode": {
+                    "type": "boolean"
+                },
+                "sortOrder": {
+                    "type": "string"
+                },
+                "stackingMode": {
+                    "type": "string"
+                },
+                "target": {
+                    "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget"
+                },
+                "validFrom": {
+                    "type": "string"
+                },
+                "validUntil": {
+                    "type": "string"
+                },
+                "value": {
+                    "$ref": "#/types/commercetools:index/CartDiscountValue:CartDiscountValue"
+                }
+            },
+            "requiredInputs": [
+                "predicate",
+                "sortOrder",
+                "value"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering CartDiscount resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "predicate": {
+                        "type": "string"
+                    },
+                    "requiresDiscountCode": {
+                        "type": "boolean"
+                    },
+                    "sortOrder": {
+                        "type": "string"
+                    },
+                    "stackingMode": {
+                        "type": "string"
+                    },
+                    "target": {
+                        "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget"
+                    },
+                    "validFrom": {
+                        "type": "string"
+                    },
+                    "validUntil": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "$ref": "#/types/commercetools:index/CartDiscountValue:CartDiscountValue"
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/channel:Channel": {
+            "properties": {
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "key",
+                "name",
+                "roles",
+                "version"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "requiredInputs": [
+                "key",
+                "roles"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Channel resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/customObject:CustomObject": {
+            "properties": {
+                "container": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "container",
+                "key",
+                "value",
+                "version"
+            ],
+            "inputProperties": {
+                "container": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "container",
+                "key",
+                "value"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering CustomObject resources.\n",
+                "properties": {
+                    "container": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/discountCode:DiscountCode": {
+            "properties": {
+                "cartDiscounts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "groups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "maxApplications": {
+                    "type": "integer"
+                },
+                "maxApplicationsPerCustomer": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "predicate": {
+                    "type": "string"
+                },
+                "validFrom": {
+                    "type": "string"
+                },
+                "validUntil": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "cartDiscounts",
+                "code",
+                "name",
+                "version"
+            ],
+            "inputProperties": {
+                "cartDiscounts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "groups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "maxApplications": {
+                    "type": "integer"
+                },
+                "maxApplicationsPerCustomer": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "predicate": {
+                    "type": "string"
+                },
+                "validFrom": {
+                    "type": "string"
+                },
+                "validUntil": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "cartDiscounts",
+                "code"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DiscountCode resources.\n",
+                "properties": {
+                    "cartDiscounts": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "groups": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "maxApplications": {
+                        "type": "integer"
+                    },
+                    "maxApplicationsPerCustomer": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "predicate": {
+                        "type": "string"
+                    },
+                    "validFrom": {
+                        "type": "string"
+                    },
+                    "validUntil": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/productType:ProductType": {
+            "properties": {
+                "attributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ProductTypeAttribute:ProductTypeAttribute"
+                    }
+                },
+                "description": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "name",
+                "version"
+            ],
+            "inputProperties": {
+                "attributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ProductTypeAttribute:ProductTypeAttribute"
+                    }
+                },
+                "description": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ProductType resources.\n",
+                "properties": {
+                    "attributes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/ProductTypeAttribute:ProductTypeAttribute"
+                        }
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/projectSettings:ProjectSettings": {
+            "properties": {
+                "countries": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "currencies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "externalOauth": {
+                    "$ref": "#/types/commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "languages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "messages": {
+                    "$ref": "#/types/commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "key",
+                "name",
+                "version"
+            ],
+            "inputProperties": {
+                "countries": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "currencies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "externalOauth": {
+                    "$ref": "#/types/commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth"
+                },
+                "languages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "messages": {
+                    "$ref": "#/types/commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ProjectSettings resources.\n",
+                "properties": {
+                    "countries": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "currencies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "externalOauth": {
+                        "$ref": "#/types/commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "languages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "messages": {
+                        "$ref": "#/types/commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/shippingMethod:ShippingMethod": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "predicate": {
+                    "type": "string"
+                },
+                "taxCategoryId": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "name",
+                "version"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "predicate": {
+                    "type": "string"
+                },
+                "taxCategoryId": {
+                    "type": "string"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ShippingMethod resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "isDefault": {
+                        "type": "boolean"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "predicate": {
+                        "type": "string"
+                    },
+                    "taxCategoryId": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/shippingZone:ShippingZone": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "locations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ShippingZoneLocation:ShippingZoneLocation"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "name",
+                "version"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "locations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ShippingZoneLocation:ShippingZoneLocation"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ShippingZone resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "locations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/ShippingZoneLocation:ShippingZoneLocation"
+                        }
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/shippingZoneRate:ShippingZoneRate": {
+            "properties": {
+                "freeAbove": {
+                    "$ref": "#/types/commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove"
+                },
+                "price": {
+                    "$ref": "#/types/commercetools:index/ShippingZoneRatePrice:ShippingZoneRatePrice"
+                },
+                "shippingMethodId": {
+                    "type": "string"
+                },
+                "shippingZoneId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "price",
+                "shippingMethodId",
+                "shippingZoneId"
+            ],
+            "inputProperties": {
+                "freeAbove": {
+                    "$ref": "#/types/commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove"
+                },
+                "price": {
+                    "$ref": "#/types/commercetools:index/ShippingZoneRatePrice:ShippingZoneRatePrice"
+                },
+                "shippingMethodId": {
+                    "type": "string"
+                },
+                "shippingZoneId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "price",
+                "shippingMethodId",
+                "shippingZoneId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ShippingZoneRate resources.\n",
+                "properties": {
+                    "freeAbove": {
+                        "$ref": "#/types/commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove"
+                    },
+                    "price": {
+                        "$ref": "#/types/commercetools:index/ShippingZoneRatePrice:ShippingZoneRatePrice"
+                    },
+                    "shippingMethodId": {
+                        "type": "string"
+                    },
+                    "shippingZoneId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/state:State": {
+            "properties": {
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "initial": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "transitions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "key",
+                "name",
+                "type",
+                "version"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "initial": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "transitions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "key",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering State resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "initial": {
+                        "type": "boolean"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "transitions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/store:Store": {
+            "properties": {
+                "distributionChannels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "key": {
+                    "type": "string"
+                },
+                "languages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "supplyChannels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "key",
+                "name",
+                "version"
+            ],
+            "inputProperties": {
+                "distributionChannels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "key": {
+                    "type": "string"
+                },
+                "languages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "supplyChannels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "requiredInputs": [
+                "key"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Store resources.\n",
+                "properties": {
+                    "distributionChannels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "languages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "name": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "supplyChannels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/subscription:Subscription": {
+            "properties": {
+                "changes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/SubscriptionChange:SubscriptionChange"
+                    }
+                },
+                "destination": {
+                    "$ref": "#/types/commercetools:index/SubscriptionDestination:SubscriptionDestination"
+                },
+                "format": {
+                    "$ref": "#/types/commercetools:index/SubscriptionFormat:SubscriptionFormat"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "messages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/SubscriptionMessage:SubscriptionMessage"
+                    }
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "version"
+            ],
+            "inputProperties": {
+                "changes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/SubscriptionChange:SubscriptionChange"
+                    }
+                },
+                "destination": {
+                    "$ref": "#/types/commercetools:index/SubscriptionDestination:SubscriptionDestination"
+                },
+                "format": {
+                    "$ref": "#/types/commercetools:index/SubscriptionFormat:SubscriptionFormat"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "messages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/SubscriptionMessage:SubscriptionMessage"
+                    }
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Subscription resources.\n",
+                "properties": {
+                    "changes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/SubscriptionChange:SubscriptionChange"
+                        }
+                    },
+                    "destination": {
+                        "$ref": "#/types/commercetools:index/SubscriptionDestination:SubscriptionDestination"
+                    },
+                    "format": {
+                        "$ref": "#/types/commercetools:index/SubscriptionFormat:SubscriptionFormat"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "messages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/SubscriptionMessage:SubscriptionMessage"
+                        }
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/taxCategory:TaxCategory": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "name",
+                "version"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TaxCategory resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/taxCategoryRate:TaxCategoryRate": {
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "includedInPrice": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "subRates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/TaxCategoryRateSubRate:TaxCategoryRateSubRate"
+                    }
+                },
+                "taxCategoryId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "country",
+                "includedInPrice",
+                "name",
+                "taxCategoryId"
+            ],
+            "inputProperties": {
+                "amount": {
+                    "type": "number"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "includedInPrice": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "subRates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/TaxCategoryRateSubRate:TaxCategoryRateSubRate"
+                    }
+                },
+                "taxCategoryId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "country",
+                "includedInPrice",
+                "taxCategoryId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TaxCategoryRate resources.\n",
+                "properties": {
+                    "amount": {
+                        "type": "number"
+                    },
+                    "country": {
+                        "type": "string"
+                    },
+                    "includedInPrice": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "subRates": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/TaxCategoryRateSubRate:TaxCategoryRateSubRate"
+                        }
+                    },
+                    "taxCategoryId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/type:Type": {
+            "properties": {
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "fields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/TypeField:TypeField"
+                    }
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "resourceTypeIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "version": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "key",
+                "name",
+                "resourceTypeIds",
+                "version"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "fields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/TypeField:TypeField"
+                    }
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "resourceTypeIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "requiredInputs": [
+                "key",
+                "resourceTypeIds"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Type resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "fields": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/TypeField:TypeField"
+                        }
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "resourceTypeIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "2.*",
+                "System.Collections.Immutable": "1.6.0"
+            }
+        },
+        "nodejs": {
+            "dependencies": {
+                "@pulumi/pulumi": "^2.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^8.0.25"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing commercetools cloud resources.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-commercetools)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-commercetools` repo](https://github.com/pulumi/pulumi-commercetools/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-commercetools` repo](https://github.com/terraform-providers/terraform-provider-commercetools/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-commercetools)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-commercetools` repo](https://github.com/pulumi/pulumi-commercetools/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-commercetools` repo](https://github.com/terraform-providers/terraform-provider-commercetools/issues).",
+            "requires": {
+                "pulumi": "\u003e=2.9.0,\u003c3.0.0"
+            },
+            "usesIOClasses": false
+        }
+    }
+}

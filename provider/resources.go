@@ -12,24 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package xyz
+package commercetools
 
 import (
 	"unicode"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/labd/terraform-provider-commercetools/commercetools"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-xyz/xyz"
 )
 
 // all of the token components used below.
 const (
 	// packages:
-	mainPkg = "xyz"
+	mainPkg = "commercetools"
 	// modules:
 	mainMod = "index" // the y module
 )
@@ -88,17 +88,17 @@ var managedByPulumi = &tfbridge.DefaultInfo{Value: "Managed by Pulumi"}
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(xyz.Provider().(*schema.Provider))
+	p := shimv1.NewProvider(commercetools.Provider().(*schema.Provider))
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:           p,
-		Name:        "xyz",
-		Description: "A Pulumi package for creating and managing xyz cloud resources.",
-		Keywords:    []string{"pulumi", "xyz"},
+		Name:        "commercetools",
+		Description: "A Pulumi package for creating and managing commercetools cloud resources.",
+		Keywords:    []string{"pulumi", "commercetools"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-xyz",
+		Repository:  "https://github.com/unplatform-io/pulumi-commercetools",
 		Config:      map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
@@ -110,7 +110,24 @@ func Provider() tfbridge.ProviderInfo {
 			// },
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"commercetools_subscription":       {Tok: makeResource(mainMod, "Subscription")},
+			"commercetools_api_client":         {Tok: makeResource(mainMod, "ApiClient")},
+			"commercetools_api_extension":      {Tok: makeResource(mainMod, "ApiExtension")},
+			"commercetools_cart_discount":      {Tok: makeResource(mainMod, "CartDiscount")},
+			"commercetools_channel":            {Tok: makeResource(mainMod, "Channel")},
+			"commercetools_custom_object":      {Tok: makeResource(mainMod, "CustomObject")},
+			"commercetools_discount_code":      {Tok: makeResource(mainMod, "DiscountCode")},
+			"commercetools_product_type":       {Tok: makeResource(mainMod, "ProductType")},
+			"commercetools_project_settings":   {Tok: makeResource(mainMod, "ProjectSettings")},
+			"commercetools_shipping_method":    {Tok: makeResource(mainMod, "ShippingMethod")},
+			"commercetools_shipping_zone":      {Tok: makeResource(mainMod, "ShippingZone")},
+			"commercetools_shipping_zone_rate": {Tok: makeResource(mainMod, "ShippingZoneRate")},
+			"commercetools_state":              {Tok: makeResource(mainMod, "State")},
+			"commercetools_store":              {Tok: makeResource(mainMod, "Store")},
+			"commercetools_tax_category":       {Tok: makeResource(mainMod, "TaxCategory")},
+			"commercetools_tax_category_rate":  {Tok: makeResource(mainMod, "TaxCategoryRate")},
+			"commercetools_type":               {Tok: makeResource(mainMod, "Type")},
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
