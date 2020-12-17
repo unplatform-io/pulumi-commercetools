@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class TypeFieldTypeElementTypeLocalizedValueArgs : Pulumi.ResourceArgs
+    public sealed class ProductTypeAttributeTypeElementType2LocalizedValueGetArgs : Pulumi.ResourceArgs
     {
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
@@ -23,7 +23,7 @@ namespace Pulumi.Commercetools.Inputs
             set => _label = value;
         }
 
-        public TypeFieldTypeElementTypeLocalizedValueArgs()
+        public ProductTypeAttributeTypeElementType2LocalizedValueGetArgs()
         {
         }
     }

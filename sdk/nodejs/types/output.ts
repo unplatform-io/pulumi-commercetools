@@ -52,7 +52,7 @@ export interface ProductTypeAttribute {
 }
 
 export interface ProductTypeAttributeType {
-    elementType?: outputs.ProductTypeAttributeTypeElementType;
+    ElementType2?: outputs.ProductTypeAttributeTypeElementType2;
     localizedValues?: outputs.ProductTypeAttributeTypeLocalizedValue[];
     name: string;
     referenceTypeId?: string;
@@ -60,15 +60,15 @@ export interface ProductTypeAttributeType {
     values?: {[key: string]: any};
 }
 
-export interface ProductTypeAttributeTypeElementType {
-    localizedValues?: outputs.ProductTypeAttributeTypeElementTypeLocalizedValue[];
+export interface ProductTypeAttributeTypeElementType2 {
+    localizedValues?: outputs.ProductTypeAttributeTypeElementType2LocalizedValue[];
     name: string;
     referenceTypeId?: string;
     typeReference?: string;
     values?: {[key: string]: any};
 }
 
-export interface ProductTypeAttributeTypeElementTypeLocalizedValue {
+export interface ProductTypeAttributeTypeElementType2LocalizedValue {
     key: string;
     label: {[key: string]: any};
 }
@@ -143,21 +143,21 @@ export interface TypeField {
 }
 
 export interface TypeFieldType {
-    elementType?: outputs.TypeFieldTypeElementType;
+    ElementType2?: outputs.TypeFieldTypeElementType2;
     localizedValues?: outputs.TypeFieldTypeLocalizedValue[];
     name: string;
     referenceTypeId?: string;
     values?: {[key: string]: any};
 }
 
-export interface TypeFieldTypeElementType {
-    localizedValues?: outputs.TypeFieldTypeElementTypeLocalizedValue[];
+export interface TypeFieldTypeElementType2 {
+    localizedValues?: outputs.TypeFieldTypeElementType2LocalizedValue[];
     name: string;
     referenceTypeId?: string;
     values?: {[key: string]: any};
 }
 
-export interface TypeFieldTypeElementTypeLocalizedValue {
+export interface TypeFieldTypeElementType2LocalizedValue {
     key: string;
     label: {[key: string]: any};
 }

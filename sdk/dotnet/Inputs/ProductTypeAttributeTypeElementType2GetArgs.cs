@@ -10,13 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class TypeFieldTypeElementTypeArgs : Pulumi.ResourceArgs
+    public sealed class ProductTypeAttributeTypeElementType2GetArgs : Pulumi.ResourceArgs
     {
         [Input("localizedValues")]
-        private InputList<Inputs.TypeFieldTypeElementTypeLocalizedValueArgs>? _localizedValues;
-        public InputList<Inputs.TypeFieldTypeElementTypeLocalizedValueArgs> LocalizedValues
+        private InputList<Inputs.ProductTypeAttributeTypeElementType2LocalizedValueGetArgs>? _localizedValues;
+        public InputList<Inputs.ProductTypeAttributeTypeElementType2LocalizedValueGetArgs> LocalizedValues
         {
-            get => _localizedValues ?? (_localizedValues = new InputList<Inputs.TypeFieldTypeElementTypeLocalizedValueArgs>());
+            get => _localizedValues ?? (_localizedValues = new InputList<Inputs.ProductTypeAttributeTypeElementType2LocalizedValueGetArgs>());
             set => _localizedValues = value;
         }
 
@@ -26,6 +26,9 @@ namespace Pulumi.Commercetools.Inputs
         [Input("referenceTypeId")]
         public Input<string>? ReferenceTypeId { get; set; }
 
+        [Input("typeReference")]
+        public Input<string>? TypeReference { get; set; }
+
         [Input("values")]
         private InputMap<object>? _values;
         public InputMap<object> Values
@@ -34,7 +37,7 @@ namespace Pulumi.Commercetools.Inputs
             set => _values = value;
         }
 
-        public TypeFieldTypeElementTypeArgs()
+        public ProductTypeAttributeTypeElementType2GetArgs()
         {
         }
     }

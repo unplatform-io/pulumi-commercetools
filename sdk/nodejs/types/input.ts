@@ -52,7 +52,7 @@ export interface ProductTypeAttribute {
 }
 
 export interface ProductTypeAttributeType {
-    elementType?: pulumi.Input<inputs.ProductTypeAttributeTypeElementType>;
+    ElementType2?: pulumi.Input<inputs.ProductTypeAttributeTypeElementType2>;
     localizedValues?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttributeTypeLocalizedValue>[]>;
     name: pulumi.Input<string>;
     referenceTypeId?: pulumi.Input<string>;
@@ -60,15 +60,15 @@ export interface ProductTypeAttributeType {
     values?: pulumi.Input<{[key: string]: any}>;
 }
 
-export interface ProductTypeAttributeTypeElementType {
-    localizedValues?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttributeTypeElementTypeLocalizedValue>[]>;
+export interface ProductTypeAttributeTypeElementType2 {
+    localizedValues?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttributeTypeElementType2LocalizedValue>[]>;
     name: pulumi.Input<string>;
     referenceTypeId?: pulumi.Input<string>;
     typeReference?: pulumi.Input<string>;
     values?: pulumi.Input<{[key: string]: any}>;
 }
 
-export interface ProductTypeAttributeTypeElementTypeLocalizedValue {
+export interface ProductTypeAttributeTypeElementType2LocalizedValue {
     key: pulumi.Input<string>;
     label: pulumi.Input<{[key: string]: any}>;
 }
@@ -143,21 +143,21 @@ export interface TypeField {
 }
 
 export interface TypeFieldType {
-    elementType?: pulumi.Input<inputs.TypeFieldTypeElementType>;
+    ElementType2?: pulumi.Input<inputs.TypeFieldTypeElementType2>;
     localizedValues?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeLocalizedValue>[]>;
     name: pulumi.Input<string>;
     referenceTypeId?: pulumi.Input<string>;
     values?: pulumi.Input<{[key: string]: any}>;
 }
 
-export interface TypeFieldTypeElementType {
-    localizedValues?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeElementTypeLocalizedValue>[]>;
+export interface TypeFieldTypeElementType2 {
+    localizedValues?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeElementType2LocalizedValue>[]>;
     name: pulumi.Input<string>;
     referenceTypeId?: pulumi.Input<string>;
     values?: pulumi.Input<{[key: string]: any}>;
 }
 
-export interface TypeFieldTypeElementTypeLocalizedValue {
+export interface TypeFieldTypeElementType2LocalizedValue {
     key: pulumi.Input<string>;
     label: pulumi.Input<{[key: string]: any}>;
 }

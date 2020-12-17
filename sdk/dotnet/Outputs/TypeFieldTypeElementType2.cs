@@ -11,16 +11,16 @@ namespace Pulumi.Commercetools.Outputs
 {
 
     [OutputType]
-    public sealed class TypeFieldTypeElementType
+    public sealed class TypeFieldTypeElementType2
     {
-        public readonly ImmutableArray<Outputs.TypeFieldTypeElementTypeLocalizedValue> LocalizedValues;
+        public readonly ImmutableArray<Outputs.TypeFieldTypeElementType2LocalizedValue> LocalizedValues;
         public readonly string Name;
         public readonly string? ReferenceTypeId;
         public readonly ImmutableDictionary<string, object>? Values;
 
         [OutputConstructor]
-        private TypeFieldTypeElementType(
-            ImmutableArray<Outputs.TypeFieldTypeElementTypeLocalizedValue> localizedValues,
+        private TypeFieldTypeElementType2(
+            ImmutableArray<Outputs.TypeFieldTypeElementType2LocalizedValue> localizedValues,
 
             string name,
 

@@ -920,7 +920,7 @@ func (o ProductTypeAttributeArrayOutput) Index(i pulumi.IntInput) ProductTypeAtt
 }
 
 type ProductTypeAttributeType struct {
-	ElementType     *ProductTypeAttributeTypeElementType     `pulumi:"elementType"`
+	ElementType2    *ProductTypeAttributeTypeElementType2    `pulumi:"ElementType2"`
 	LocalizedValues []ProductTypeAttributeTypeLocalizedValue `pulumi:"localizedValues"`
 	Name            string                                   `pulumi:"name"`
 	ReferenceTypeId *string                                  `pulumi:"referenceTypeId"`
@@ -940,7 +940,7 @@ type ProductTypeAttributeTypeInput interface {
 }
 
 type ProductTypeAttributeTypeArgs struct {
-	ElementType     ProductTypeAttributeTypeElementTypePtrInput      `pulumi:"elementType"`
+	ElementType2    ProductTypeAttributeTypeElementType2PtrInput     `pulumi:"ElementType2"`
 	LocalizedValues ProductTypeAttributeTypeLocalizedValueArrayInput `pulumi:"localizedValues"`
 	Name            pulumi.StringInput                               `pulumi:"name"`
 	ReferenceTypeId pulumi.StringPtrInput                            `pulumi:"referenceTypeId"`
@@ -974,8 +974,8 @@ func (o ProductTypeAttributeTypeOutput) ToProductTypeAttributeTypeOutputWithCont
 	return o
 }
 
-func (o ProductTypeAttributeTypeOutput) ElementType() ProductTypeAttributeTypeElementTypePtrOutput {
-	return o.ApplyT(func(v ProductTypeAttributeType) *ProductTypeAttributeTypeElementType { return v.ElementType }).(ProductTypeAttributeTypeElementTypePtrOutput)
+func (o ProductTypeAttributeTypeOutput) ElementType2() ProductTypeAttributeTypeElementType2PtrOutput {
+	return o.ApplyT(func(v ProductTypeAttributeType) *ProductTypeAttributeTypeElementType2 { return v.ElementType2 }).(ProductTypeAttributeTypeElementType2PtrOutput)
 }
 
 func (o ProductTypeAttributeTypeOutput) LocalizedValues() ProductTypeAttributeTypeLocalizedValueArrayOutput {
@@ -998,160 +998,160 @@ func (o ProductTypeAttributeTypeOutput) Values() pulumi.MapOutput {
 	return o.ApplyT(func(v ProductTypeAttributeType) map[string]interface{} { return v.Values }).(pulumi.MapOutput)
 }
 
-type ProductTypeAttributeTypeElementType struct {
-	LocalizedValues []ProductTypeAttributeTypeElementTypeLocalizedValue `pulumi:"localizedValues"`
-	Name            string                                              `pulumi:"name"`
-	ReferenceTypeId *string                                             `pulumi:"referenceTypeId"`
-	TypeReference   *string                                             `pulumi:"typeReference"`
-	Values          map[string]interface{}                              `pulumi:"values"`
+type ProductTypeAttributeTypeElementType2 struct {
+	LocalizedValues []ProductTypeAttributeTypeElementType2LocalizedValue `pulumi:"localizedValues"`
+	Name            string                                               `pulumi:"name"`
+	ReferenceTypeId *string                                              `pulumi:"referenceTypeId"`
+	TypeReference   *string                                              `pulumi:"typeReference"`
+	Values          map[string]interface{}                               `pulumi:"values"`
 }
 
-// ProductTypeAttributeTypeElementTypeInput is an input type that accepts ProductTypeAttributeTypeElementTypeArgs and ProductTypeAttributeTypeElementTypeOutput values.
-// You can construct a concrete instance of `ProductTypeAttributeTypeElementTypeInput` via:
+// ProductTypeAttributeTypeElementType2Input is an input type that accepts ProductTypeAttributeTypeElementType2Args and ProductTypeAttributeTypeElementType2Output values.
+// You can construct a concrete instance of `ProductTypeAttributeTypeElementType2Input` via:
 //
-//          ProductTypeAttributeTypeElementTypeArgs{...}
-type ProductTypeAttributeTypeElementTypeInput interface {
+//          ProductTypeAttributeTypeElementType2Args{...}
+type ProductTypeAttributeTypeElementType2Input interface {
 	pulumi.Input
 
-	ToProductTypeAttributeTypeElementTypeOutput() ProductTypeAttributeTypeElementTypeOutput
-	ToProductTypeAttributeTypeElementTypeOutputWithContext(context.Context) ProductTypeAttributeTypeElementTypeOutput
+	ToProductTypeAttributeTypeElementType2Output() ProductTypeAttributeTypeElementType2Output
+	ToProductTypeAttributeTypeElementType2OutputWithContext(context.Context) ProductTypeAttributeTypeElementType2Output
 }
 
-type ProductTypeAttributeTypeElementTypeArgs struct {
-	LocalizedValues ProductTypeAttributeTypeElementTypeLocalizedValueArrayInput `pulumi:"localizedValues"`
-	Name            pulumi.StringInput                                          `pulumi:"name"`
-	ReferenceTypeId pulumi.StringPtrInput                                       `pulumi:"referenceTypeId"`
-	TypeReference   pulumi.StringPtrInput                                       `pulumi:"typeReference"`
-	Values          pulumi.MapInput                                             `pulumi:"values"`
+type ProductTypeAttributeTypeElementType2Args struct {
+	LocalizedValues ProductTypeAttributeTypeElementType2LocalizedValueArrayInput `pulumi:"localizedValues"`
+	Name            pulumi.StringInput                                           `pulumi:"name"`
+	ReferenceTypeId pulumi.StringPtrInput                                        `pulumi:"referenceTypeId"`
+	TypeReference   pulumi.StringPtrInput                                        `pulumi:"typeReference"`
+	Values          pulumi.MapInput                                              `pulumi:"values"`
 }
 
-func (ProductTypeAttributeTypeElementTypeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProductTypeAttributeTypeElementType)(nil)).Elem()
+func (ProductTypeAttributeTypeElementType2Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductTypeAttributeTypeElementType2)(nil)).Elem()
 }
 
-func (i ProductTypeAttributeTypeElementTypeArgs) ToProductTypeAttributeTypeElementTypeOutput() ProductTypeAttributeTypeElementTypeOutput {
-	return i.ToProductTypeAttributeTypeElementTypeOutputWithContext(context.Background())
+func (i ProductTypeAttributeTypeElementType2Args) ToProductTypeAttributeTypeElementType2Output() ProductTypeAttributeTypeElementType2Output {
+	return i.ToProductTypeAttributeTypeElementType2OutputWithContext(context.Background())
 }
 
-func (i ProductTypeAttributeTypeElementTypeArgs) ToProductTypeAttributeTypeElementTypeOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementTypeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProductTypeAttributeTypeElementTypeOutput)
+func (i ProductTypeAttributeTypeElementType2Args) ToProductTypeAttributeTypeElementType2OutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementType2Output {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductTypeAttributeTypeElementType2Output)
 }
 
-func (i ProductTypeAttributeTypeElementTypeArgs) ToProductTypeAttributeTypeElementTypePtrOutput() ProductTypeAttributeTypeElementTypePtrOutput {
-	return i.ToProductTypeAttributeTypeElementTypePtrOutputWithContext(context.Background())
+func (i ProductTypeAttributeTypeElementType2Args) ToProductTypeAttributeTypeElementType2PtrOutput() ProductTypeAttributeTypeElementType2PtrOutput {
+	return i.ToProductTypeAttributeTypeElementType2PtrOutputWithContext(context.Background())
 }
 
-func (i ProductTypeAttributeTypeElementTypeArgs) ToProductTypeAttributeTypeElementTypePtrOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProductTypeAttributeTypeElementTypeOutput).ToProductTypeAttributeTypeElementTypePtrOutputWithContext(ctx)
+func (i ProductTypeAttributeTypeElementType2Args) ToProductTypeAttributeTypeElementType2PtrOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementType2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductTypeAttributeTypeElementType2Output).ToProductTypeAttributeTypeElementType2PtrOutputWithContext(ctx)
 }
 
-// ProductTypeAttributeTypeElementTypePtrInput is an input type that accepts ProductTypeAttributeTypeElementTypeArgs, ProductTypeAttributeTypeElementTypePtr and ProductTypeAttributeTypeElementTypePtrOutput values.
-// You can construct a concrete instance of `ProductTypeAttributeTypeElementTypePtrInput` via:
+// ProductTypeAttributeTypeElementType2PtrInput is an input type that accepts ProductTypeAttributeTypeElementType2Args, ProductTypeAttributeTypeElementType2Ptr and ProductTypeAttributeTypeElementType2PtrOutput values.
+// You can construct a concrete instance of `ProductTypeAttributeTypeElementType2PtrInput` via:
 //
-//          ProductTypeAttributeTypeElementTypeArgs{...}
+//          ProductTypeAttributeTypeElementType2Args{...}
 //
 //  or:
 //
 //          nil
-type ProductTypeAttributeTypeElementTypePtrInput interface {
+type ProductTypeAttributeTypeElementType2PtrInput interface {
 	pulumi.Input
 
-	ToProductTypeAttributeTypeElementTypePtrOutput() ProductTypeAttributeTypeElementTypePtrOutput
-	ToProductTypeAttributeTypeElementTypePtrOutputWithContext(context.Context) ProductTypeAttributeTypeElementTypePtrOutput
+	ToProductTypeAttributeTypeElementType2PtrOutput() ProductTypeAttributeTypeElementType2PtrOutput
+	ToProductTypeAttributeTypeElementType2PtrOutputWithContext(context.Context) ProductTypeAttributeTypeElementType2PtrOutput
 }
 
-type productTypeAttributeTypeElementTypePtrType ProductTypeAttributeTypeElementTypeArgs
+type productTypeAttributeTypeElementType2PtrType ProductTypeAttributeTypeElementType2Args
 
-func ProductTypeAttributeTypeElementTypePtr(v *ProductTypeAttributeTypeElementTypeArgs) ProductTypeAttributeTypeElementTypePtrInput {
-	return (*productTypeAttributeTypeElementTypePtrType)(v)
+func ProductTypeAttributeTypeElementType2Ptr(v *ProductTypeAttributeTypeElementType2Args) ProductTypeAttributeTypeElementType2PtrInput {
+	return (*productTypeAttributeTypeElementType2PtrType)(v)
 }
 
-func (*productTypeAttributeTypeElementTypePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ProductTypeAttributeTypeElementType)(nil)).Elem()
+func (*productTypeAttributeTypeElementType2PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductTypeAttributeTypeElementType2)(nil)).Elem()
 }
 
-func (i *productTypeAttributeTypeElementTypePtrType) ToProductTypeAttributeTypeElementTypePtrOutput() ProductTypeAttributeTypeElementTypePtrOutput {
-	return i.ToProductTypeAttributeTypeElementTypePtrOutputWithContext(context.Background())
+func (i *productTypeAttributeTypeElementType2PtrType) ToProductTypeAttributeTypeElementType2PtrOutput() ProductTypeAttributeTypeElementType2PtrOutput {
+	return i.ToProductTypeAttributeTypeElementType2PtrOutputWithContext(context.Background())
 }
 
-func (i *productTypeAttributeTypeElementTypePtrType) ToProductTypeAttributeTypeElementTypePtrOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProductTypeAttributeTypeElementTypePtrOutput)
+func (i *productTypeAttributeTypeElementType2PtrType) ToProductTypeAttributeTypeElementType2PtrOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementType2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductTypeAttributeTypeElementType2PtrOutput)
 }
 
-type ProductTypeAttributeTypeElementTypeOutput struct{ *pulumi.OutputState }
+type ProductTypeAttributeTypeElementType2Output struct{ *pulumi.OutputState }
 
-func (ProductTypeAttributeTypeElementTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProductTypeAttributeTypeElementType)(nil)).Elem()
+func (ProductTypeAttributeTypeElementType2Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductTypeAttributeTypeElementType2)(nil)).Elem()
 }
 
-func (o ProductTypeAttributeTypeElementTypeOutput) ToProductTypeAttributeTypeElementTypeOutput() ProductTypeAttributeTypeElementTypeOutput {
+func (o ProductTypeAttributeTypeElementType2Output) ToProductTypeAttributeTypeElementType2Output() ProductTypeAttributeTypeElementType2Output {
 	return o
 }
 
-func (o ProductTypeAttributeTypeElementTypeOutput) ToProductTypeAttributeTypeElementTypeOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementTypeOutput {
+func (o ProductTypeAttributeTypeElementType2Output) ToProductTypeAttributeTypeElementType2OutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementType2Output {
 	return o
 }
 
-func (o ProductTypeAttributeTypeElementTypeOutput) ToProductTypeAttributeTypeElementTypePtrOutput() ProductTypeAttributeTypeElementTypePtrOutput {
-	return o.ToProductTypeAttributeTypeElementTypePtrOutputWithContext(context.Background())
+func (o ProductTypeAttributeTypeElementType2Output) ToProductTypeAttributeTypeElementType2PtrOutput() ProductTypeAttributeTypeElementType2PtrOutput {
+	return o.ToProductTypeAttributeTypeElementType2PtrOutputWithContext(context.Background())
 }
 
-func (o ProductTypeAttributeTypeElementTypeOutput) ToProductTypeAttributeTypeElementTypePtrOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementTypePtrOutput {
-	return o.ApplyT(func(v ProductTypeAttributeTypeElementType) *ProductTypeAttributeTypeElementType {
+func (o ProductTypeAttributeTypeElementType2Output) ToProductTypeAttributeTypeElementType2PtrOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementType2PtrOutput {
+	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) *ProductTypeAttributeTypeElementType2 {
 		return &v
-	}).(ProductTypeAttributeTypeElementTypePtrOutput)
+	}).(ProductTypeAttributeTypeElementType2PtrOutput)
 }
-func (o ProductTypeAttributeTypeElementTypeOutput) LocalizedValues() ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput {
-	return o.ApplyT(func(v ProductTypeAttributeTypeElementType) []ProductTypeAttributeTypeElementTypeLocalizedValue {
+func (o ProductTypeAttributeTypeElementType2Output) LocalizedValues() ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput {
+	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) []ProductTypeAttributeTypeElementType2LocalizedValue {
 		return v.LocalizedValues
-	}).(ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput)
+	}).(ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput)
 }
 
-func (o ProductTypeAttributeTypeElementTypeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v ProductTypeAttributeTypeElementType) string { return v.Name }).(pulumi.StringOutput)
+func (o ProductTypeAttributeTypeElementType2Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o ProductTypeAttributeTypeElementTypeOutput) ReferenceTypeId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ProductTypeAttributeTypeElementType) *string { return v.ReferenceTypeId }).(pulumi.StringPtrOutput)
+func (o ProductTypeAttributeTypeElementType2Output) ReferenceTypeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) *string { return v.ReferenceTypeId }).(pulumi.StringPtrOutput)
 }
 
-func (o ProductTypeAttributeTypeElementTypeOutput) TypeReference() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ProductTypeAttributeTypeElementType) *string { return v.TypeReference }).(pulumi.StringPtrOutput)
+func (o ProductTypeAttributeTypeElementType2Output) TypeReference() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) *string { return v.TypeReference }).(pulumi.StringPtrOutput)
 }
 
-func (o ProductTypeAttributeTypeElementTypeOutput) Values() pulumi.MapOutput {
-	return o.ApplyT(func(v ProductTypeAttributeTypeElementType) map[string]interface{} { return v.Values }).(pulumi.MapOutput)
+func (o ProductTypeAttributeTypeElementType2Output) Values() pulumi.MapOutput {
+	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) map[string]interface{} { return v.Values }).(pulumi.MapOutput)
 }
 
-type ProductTypeAttributeTypeElementTypePtrOutput struct{ *pulumi.OutputState }
+type ProductTypeAttributeTypeElementType2PtrOutput struct{ *pulumi.OutputState }
 
-func (ProductTypeAttributeTypeElementTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ProductTypeAttributeTypeElementType)(nil)).Elem()
+func (ProductTypeAttributeTypeElementType2PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProductTypeAttributeTypeElementType2)(nil)).Elem()
 }
 
-func (o ProductTypeAttributeTypeElementTypePtrOutput) ToProductTypeAttributeTypeElementTypePtrOutput() ProductTypeAttributeTypeElementTypePtrOutput {
+func (o ProductTypeAttributeTypeElementType2PtrOutput) ToProductTypeAttributeTypeElementType2PtrOutput() ProductTypeAttributeTypeElementType2PtrOutput {
 	return o
 }
 
-func (o ProductTypeAttributeTypeElementTypePtrOutput) ToProductTypeAttributeTypeElementTypePtrOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementTypePtrOutput {
+func (o ProductTypeAttributeTypeElementType2PtrOutput) ToProductTypeAttributeTypeElementType2PtrOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementType2PtrOutput {
 	return o
 }
 
-func (o ProductTypeAttributeTypeElementTypePtrOutput) Elem() ProductTypeAttributeTypeElementTypeOutput {
-	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType) ProductTypeAttributeTypeElementType { return *v }).(ProductTypeAttributeTypeElementTypeOutput)
+func (o ProductTypeAttributeTypeElementType2PtrOutput) Elem() ProductTypeAttributeTypeElementType2Output {
+	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) ProductTypeAttributeTypeElementType2 { return *v }).(ProductTypeAttributeTypeElementType2Output)
 }
 
-func (o ProductTypeAttributeTypeElementTypePtrOutput) LocalizedValues() ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput {
-	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType) []ProductTypeAttributeTypeElementTypeLocalizedValue {
+func (o ProductTypeAttributeTypeElementType2PtrOutput) LocalizedValues() ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput {
+	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) []ProductTypeAttributeTypeElementType2LocalizedValue {
 		if v == nil {
 			return nil
 		}
 		return v.LocalizedValues
-	}).(ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput)
+	}).(ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput)
 }
 
-func (o ProductTypeAttributeTypeElementTypePtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType) *string {
+func (o ProductTypeAttributeTypeElementType2PtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) *string {
 		if v == nil {
 			return nil
 		}
@@ -1159,8 +1159,8 @@ func (o ProductTypeAttributeTypeElementTypePtrOutput) Name() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o ProductTypeAttributeTypeElementTypePtrOutput) ReferenceTypeId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType) *string {
+func (o ProductTypeAttributeTypeElementType2PtrOutput) ReferenceTypeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) *string {
 		if v == nil {
 			return nil
 		}
@@ -1168,8 +1168,8 @@ func (o ProductTypeAttributeTypeElementTypePtrOutput) ReferenceTypeId() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o ProductTypeAttributeTypeElementTypePtrOutput) TypeReference() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType) *string {
+func (o ProductTypeAttributeTypeElementType2PtrOutput) TypeReference() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) *string {
 		if v == nil {
 			return nil
 		}
@@ -1177,8 +1177,8 @@ func (o ProductTypeAttributeTypeElementTypePtrOutput) TypeReference() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o ProductTypeAttributeTypeElementTypePtrOutput) Values() pulumi.MapOutput {
-	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType) map[string]interface{} {
+func (o ProductTypeAttributeTypeElementType2PtrOutput) Values() pulumi.MapOutput {
+	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) map[string]interface{} {
 		if v == nil {
 			return nil
 		}
@@ -1186,104 +1186,104 @@ func (o ProductTypeAttributeTypeElementTypePtrOutput) Values() pulumi.MapOutput 
 	}).(pulumi.MapOutput)
 }
 
-type ProductTypeAttributeTypeElementTypeLocalizedValue struct {
+type ProductTypeAttributeTypeElementType2LocalizedValue struct {
 	Key   string                 `pulumi:"key"`
 	Label map[string]interface{} `pulumi:"label"`
 }
 
-// ProductTypeAttributeTypeElementTypeLocalizedValueInput is an input type that accepts ProductTypeAttributeTypeElementTypeLocalizedValueArgs and ProductTypeAttributeTypeElementTypeLocalizedValueOutput values.
-// You can construct a concrete instance of `ProductTypeAttributeTypeElementTypeLocalizedValueInput` via:
+// ProductTypeAttributeTypeElementType2LocalizedValueInput is an input type that accepts ProductTypeAttributeTypeElementType2LocalizedValueArgs and ProductTypeAttributeTypeElementType2LocalizedValueOutput values.
+// You can construct a concrete instance of `ProductTypeAttributeTypeElementType2LocalizedValueInput` via:
 //
-//          ProductTypeAttributeTypeElementTypeLocalizedValueArgs{...}
-type ProductTypeAttributeTypeElementTypeLocalizedValueInput interface {
+//          ProductTypeAttributeTypeElementType2LocalizedValueArgs{...}
+type ProductTypeAttributeTypeElementType2LocalizedValueInput interface {
 	pulumi.Input
 
-	ToProductTypeAttributeTypeElementTypeLocalizedValueOutput() ProductTypeAttributeTypeElementTypeLocalizedValueOutput
-	ToProductTypeAttributeTypeElementTypeLocalizedValueOutputWithContext(context.Context) ProductTypeAttributeTypeElementTypeLocalizedValueOutput
+	ToProductTypeAttributeTypeElementType2LocalizedValueOutput() ProductTypeAttributeTypeElementType2LocalizedValueOutput
+	ToProductTypeAttributeTypeElementType2LocalizedValueOutputWithContext(context.Context) ProductTypeAttributeTypeElementType2LocalizedValueOutput
 }
 
-type ProductTypeAttributeTypeElementTypeLocalizedValueArgs struct {
+type ProductTypeAttributeTypeElementType2LocalizedValueArgs struct {
 	Key   pulumi.StringInput `pulumi:"key"`
 	Label pulumi.MapInput    `pulumi:"label"`
 }
 
-func (ProductTypeAttributeTypeElementTypeLocalizedValueArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProductTypeAttributeTypeElementTypeLocalizedValue)(nil)).Elem()
+func (ProductTypeAttributeTypeElementType2LocalizedValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductTypeAttributeTypeElementType2LocalizedValue)(nil)).Elem()
 }
 
-func (i ProductTypeAttributeTypeElementTypeLocalizedValueArgs) ToProductTypeAttributeTypeElementTypeLocalizedValueOutput() ProductTypeAttributeTypeElementTypeLocalizedValueOutput {
-	return i.ToProductTypeAttributeTypeElementTypeLocalizedValueOutputWithContext(context.Background())
+func (i ProductTypeAttributeTypeElementType2LocalizedValueArgs) ToProductTypeAttributeTypeElementType2LocalizedValueOutput() ProductTypeAttributeTypeElementType2LocalizedValueOutput {
+	return i.ToProductTypeAttributeTypeElementType2LocalizedValueOutputWithContext(context.Background())
 }
 
-func (i ProductTypeAttributeTypeElementTypeLocalizedValueArgs) ToProductTypeAttributeTypeElementTypeLocalizedValueOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementTypeLocalizedValueOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProductTypeAttributeTypeElementTypeLocalizedValueOutput)
+func (i ProductTypeAttributeTypeElementType2LocalizedValueArgs) ToProductTypeAttributeTypeElementType2LocalizedValueOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementType2LocalizedValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductTypeAttributeTypeElementType2LocalizedValueOutput)
 }
 
-// ProductTypeAttributeTypeElementTypeLocalizedValueArrayInput is an input type that accepts ProductTypeAttributeTypeElementTypeLocalizedValueArray and ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput values.
-// You can construct a concrete instance of `ProductTypeAttributeTypeElementTypeLocalizedValueArrayInput` via:
+// ProductTypeAttributeTypeElementType2LocalizedValueArrayInput is an input type that accepts ProductTypeAttributeTypeElementType2LocalizedValueArray and ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput values.
+// You can construct a concrete instance of `ProductTypeAttributeTypeElementType2LocalizedValueArrayInput` via:
 //
-//          ProductTypeAttributeTypeElementTypeLocalizedValueArray{ ProductTypeAttributeTypeElementTypeLocalizedValueArgs{...} }
-type ProductTypeAttributeTypeElementTypeLocalizedValueArrayInput interface {
+//          ProductTypeAttributeTypeElementType2LocalizedValueArray{ ProductTypeAttributeTypeElementType2LocalizedValueArgs{...} }
+type ProductTypeAttributeTypeElementType2LocalizedValueArrayInput interface {
 	pulumi.Input
 
-	ToProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput() ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput
-	ToProductTypeAttributeTypeElementTypeLocalizedValueArrayOutputWithContext(context.Context) ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput
+	ToProductTypeAttributeTypeElementType2LocalizedValueArrayOutput() ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput
+	ToProductTypeAttributeTypeElementType2LocalizedValueArrayOutputWithContext(context.Context) ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput
 }
 
-type ProductTypeAttributeTypeElementTypeLocalizedValueArray []ProductTypeAttributeTypeElementTypeLocalizedValueInput
+type ProductTypeAttributeTypeElementType2LocalizedValueArray []ProductTypeAttributeTypeElementType2LocalizedValueInput
 
-func (ProductTypeAttributeTypeElementTypeLocalizedValueArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ProductTypeAttributeTypeElementTypeLocalizedValue)(nil)).Elem()
+func (ProductTypeAttributeTypeElementType2LocalizedValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProductTypeAttributeTypeElementType2LocalizedValue)(nil)).Elem()
 }
 
-func (i ProductTypeAttributeTypeElementTypeLocalizedValueArray) ToProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput() ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput {
-	return i.ToProductTypeAttributeTypeElementTypeLocalizedValueArrayOutputWithContext(context.Background())
+func (i ProductTypeAttributeTypeElementType2LocalizedValueArray) ToProductTypeAttributeTypeElementType2LocalizedValueArrayOutput() ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput {
+	return i.ToProductTypeAttributeTypeElementType2LocalizedValueArrayOutputWithContext(context.Background())
 }
 
-func (i ProductTypeAttributeTypeElementTypeLocalizedValueArray) ToProductTypeAttributeTypeElementTypeLocalizedValueArrayOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput)
+func (i ProductTypeAttributeTypeElementType2LocalizedValueArray) ToProductTypeAttributeTypeElementType2LocalizedValueArrayOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput)
 }
 
-type ProductTypeAttributeTypeElementTypeLocalizedValueOutput struct{ *pulumi.OutputState }
+type ProductTypeAttributeTypeElementType2LocalizedValueOutput struct{ *pulumi.OutputState }
 
-func (ProductTypeAttributeTypeElementTypeLocalizedValueOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProductTypeAttributeTypeElementTypeLocalizedValue)(nil)).Elem()
+func (ProductTypeAttributeTypeElementType2LocalizedValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProductTypeAttributeTypeElementType2LocalizedValue)(nil)).Elem()
 }
 
-func (o ProductTypeAttributeTypeElementTypeLocalizedValueOutput) ToProductTypeAttributeTypeElementTypeLocalizedValueOutput() ProductTypeAttributeTypeElementTypeLocalizedValueOutput {
+func (o ProductTypeAttributeTypeElementType2LocalizedValueOutput) ToProductTypeAttributeTypeElementType2LocalizedValueOutput() ProductTypeAttributeTypeElementType2LocalizedValueOutput {
 	return o
 }
 
-func (o ProductTypeAttributeTypeElementTypeLocalizedValueOutput) ToProductTypeAttributeTypeElementTypeLocalizedValueOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementTypeLocalizedValueOutput {
+func (o ProductTypeAttributeTypeElementType2LocalizedValueOutput) ToProductTypeAttributeTypeElementType2LocalizedValueOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementType2LocalizedValueOutput {
 	return o
 }
 
-func (o ProductTypeAttributeTypeElementTypeLocalizedValueOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v ProductTypeAttributeTypeElementTypeLocalizedValue) string { return v.Key }).(pulumi.StringOutput)
+func (o ProductTypeAttributeTypeElementType2LocalizedValueOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2LocalizedValue) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o ProductTypeAttributeTypeElementTypeLocalizedValueOutput) Label() pulumi.MapOutput {
-	return o.ApplyT(func(v ProductTypeAttributeTypeElementTypeLocalizedValue) map[string]interface{} { return v.Label }).(pulumi.MapOutput)
+func (o ProductTypeAttributeTypeElementType2LocalizedValueOutput) Label() pulumi.MapOutput {
+	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2LocalizedValue) map[string]interface{} { return v.Label }).(pulumi.MapOutput)
 }
 
-type ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput struct{ *pulumi.OutputState }
+type ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput struct{ *pulumi.OutputState }
 
-func (ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ProductTypeAttributeTypeElementTypeLocalizedValue)(nil)).Elem()
+func (ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProductTypeAttributeTypeElementType2LocalizedValue)(nil)).Elem()
 }
 
-func (o ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput) ToProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput() ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput {
+func (o ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput) ToProductTypeAttributeTypeElementType2LocalizedValueArrayOutput() ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput {
 	return o
 }
 
-func (o ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput) ToProductTypeAttributeTypeElementTypeLocalizedValueArrayOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput {
+func (o ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput) ToProductTypeAttributeTypeElementType2LocalizedValueArrayOutputWithContext(ctx context.Context) ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput {
 	return o
 }
 
-func (o ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput) Index(i pulumi.IntInput) ProductTypeAttributeTypeElementTypeLocalizedValueOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProductTypeAttributeTypeElementTypeLocalizedValue {
-		return vs[0].([]ProductTypeAttributeTypeElementTypeLocalizedValue)[vs[1].(int)]
-	}).(ProductTypeAttributeTypeElementTypeLocalizedValueOutput)
+func (o ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput) Index(i pulumi.IntInput) ProductTypeAttributeTypeElementType2LocalizedValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProductTypeAttributeTypeElementType2LocalizedValue {
+		return vs[0].([]ProductTypeAttributeTypeElementType2LocalizedValue)[vs[1].(int)]
+	}).(ProductTypeAttributeTypeElementType2LocalizedValueOutput)
 }
 
 type ProductTypeAttributeTypeLocalizedValue struct {
@@ -2850,7 +2850,7 @@ func (o TypeFieldArrayOutput) Index(i pulumi.IntInput) TypeFieldOutput {
 }
 
 type TypeFieldType struct {
-	ElementType     *TypeFieldTypeElementType     `pulumi:"elementType"`
+	ElementType2    *TypeFieldTypeElementType2    `pulumi:"ElementType2"`
 	LocalizedValues []TypeFieldTypeLocalizedValue `pulumi:"localizedValues"`
 	Name            string                        `pulumi:"name"`
 	ReferenceTypeId *string                       `pulumi:"referenceTypeId"`
@@ -2869,7 +2869,7 @@ type TypeFieldTypeInput interface {
 }
 
 type TypeFieldTypeArgs struct {
-	ElementType     TypeFieldTypeElementTypePtrInput      `pulumi:"elementType"`
+	ElementType2    TypeFieldTypeElementType2PtrInput     `pulumi:"ElementType2"`
 	LocalizedValues TypeFieldTypeLocalizedValueArrayInput `pulumi:"localizedValues"`
 	Name            pulumi.StringInput                    `pulumi:"name"`
 	ReferenceTypeId pulumi.StringPtrInput                 `pulumi:"referenceTypeId"`
@@ -2902,8 +2902,8 @@ func (o TypeFieldTypeOutput) ToTypeFieldTypeOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o TypeFieldTypeOutput) ElementType() TypeFieldTypeElementTypePtrOutput {
-	return o.ApplyT(func(v TypeFieldType) *TypeFieldTypeElementType { return v.ElementType }).(TypeFieldTypeElementTypePtrOutput)
+func (o TypeFieldTypeOutput) ElementType2() TypeFieldTypeElementType2PtrOutput {
+	return o.ApplyT(func(v TypeFieldType) *TypeFieldTypeElementType2 { return v.ElementType2 }).(TypeFieldTypeElementType2PtrOutput)
 }
 
 func (o TypeFieldTypeOutput) LocalizedValues() TypeFieldTypeLocalizedValueArrayOutput {
@@ -2922,152 +2922,152 @@ func (o TypeFieldTypeOutput) Values() pulumi.MapOutput {
 	return o.ApplyT(func(v TypeFieldType) map[string]interface{} { return v.Values }).(pulumi.MapOutput)
 }
 
-type TypeFieldTypeElementType struct {
-	LocalizedValues []TypeFieldTypeElementTypeLocalizedValue `pulumi:"localizedValues"`
-	Name            string                                   `pulumi:"name"`
-	ReferenceTypeId *string                                  `pulumi:"referenceTypeId"`
-	Values          map[string]interface{}                   `pulumi:"values"`
+type TypeFieldTypeElementType2 struct {
+	LocalizedValues []TypeFieldTypeElementType2LocalizedValue `pulumi:"localizedValues"`
+	Name            string                                    `pulumi:"name"`
+	ReferenceTypeId *string                                   `pulumi:"referenceTypeId"`
+	Values          map[string]interface{}                    `pulumi:"values"`
 }
 
-// TypeFieldTypeElementTypeInput is an input type that accepts TypeFieldTypeElementTypeArgs and TypeFieldTypeElementTypeOutput values.
-// You can construct a concrete instance of `TypeFieldTypeElementTypeInput` via:
+// TypeFieldTypeElementType2Input is an input type that accepts TypeFieldTypeElementType2Args and TypeFieldTypeElementType2Output values.
+// You can construct a concrete instance of `TypeFieldTypeElementType2Input` via:
 //
-//          TypeFieldTypeElementTypeArgs{...}
-type TypeFieldTypeElementTypeInput interface {
+//          TypeFieldTypeElementType2Args{...}
+type TypeFieldTypeElementType2Input interface {
 	pulumi.Input
 
-	ToTypeFieldTypeElementTypeOutput() TypeFieldTypeElementTypeOutput
-	ToTypeFieldTypeElementTypeOutputWithContext(context.Context) TypeFieldTypeElementTypeOutput
+	ToTypeFieldTypeElementType2Output() TypeFieldTypeElementType2Output
+	ToTypeFieldTypeElementType2OutputWithContext(context.Context) TypeFieldTypeElementType2Output
 }
 
-type TypeFieldTypeElementTypeArgs struct {
-	LocalizedValues TypeFieldTypeElementTypeLocalizedValueArrayInput `pulumi:"localizedValues"`
-	Name            pulumi.StringInput                               `pulumi:"name"`
-	ReferenceTypeId pulumi.StringPtrInput                            `pulumi:"referenceTypeId"`
-	Values          pulumi.MapInput                                  `pulumi:"values"`
+type TypeFieldTypeElementType2Args struct {
+	LocalizedValues TypeFieldTypeElementType2LocalizedValueArrayInput `pulumi:"localizedValues"`
+	Name            pulumi.StringInput                                `pulumi:"name"`
+	ReferenceTypeId pulumi.StringPtrInput                             `pulumi:"referenceTypeId"`
+	Values          pulumi.MapInput                                   `pulumi:"values"`
 }
 
-func (TypeFieldTypeElementTypeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*TypeFieldTypeElementType)(nil)).Elem()
+func (TypeFieldTypeElementType2Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*TypeFieldTypeElementType2)(nil)).Elem()
 }
 
-func (i TypeFieldTypeElementTypeArgs) ToTypeFieldTypeElementTypeOutput() TypeFieldTypeElementTypeOutput {
-	return i.ToTypeFieldTypeElementTypeOutputWithContext(context.Background())
+func (i TypeFieldTypeElementType2Args) ToTypeFieldTypeElementType2Output() TypeFieldTypeElementType2Output {
+	return i.ToTypeFieldTypeElementType2OutputWithContext(context.Background())
 }
 
-func (i TypeFieldTypeElementTypeArgs) ToTypeFieldTypeElementTypeOutputWithContext(ctx context.Context) TypeFieldTypeElementTypeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TypeFieldTypeElementTypeOutput)
+func (i TypeFieldTypeElementType2Args) ToTypeFieldTypeElementType2OutputWithContext(ctx context.Context) TypeFieldTypeElementType2Output {
+	return pulumi.ToOutputWithContext(ctx, i).(TypeFieldTypeElementType2Output)
 }
 
-func (i TypeFieldTypeElementTypeArgs) ToTypeFieldTypeElementTypePtrOutput() TypeFieldTypeElementTypePtrOutput {
-	return i.ToTypeFieldTypeElementTypePtrOutputWithContext(context.Background())
+func (i TypeFieldTypeElementType2Args) ToTypeFieldTypeElementType2PtrOutput() TypeFieldTypeElementType2PtrOutput {
+	return i.ToTypeFieldTypeElementType2PtrOutputWithContext(context.Background())
 }
 
-func (i TypeFieldTypeElementTypeArgs) ToTypeFieldTypeElementTypePtrOutputWithContext(ctx context.Context) TypeFieldTypeElementTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TypeFieldTypeElementTypeOutput).ToTypeFieldTypeElementTypePtrOutputWithContext(ctx)
+func (i TypeFieldTypeElementType2Args) ToTypeFieldTypeElementType2PtrOutputWithContext(ctx context.Context) TypeFieldTypeElementType2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TypeFieldTypeElementType2Output).ToTypeFieldTypeElementType2PtrOutputWithContext(ctx)
 }
 
-// TypeFieldTypeElementTypePtrInput is an input type that accepts TypeFieldTypeElementTypeArgs, TypeFieldTypeElementTypePtr and TypeFieldTypeElementTypePtrOutput values.
-// You can construct a concrete instance of `TypeFieldTypeElementTypePtrInput` via:
+// TypeFieldTypeElementType2PtrInput is an input type that accepts TypeFieldTypeElementType2Args, TypeFieldTypeElementType2Ptr and TypeFieldTypeElementType2PtrOutput values.
+// You can construct a concrete instance of `TypeFieldTypeElementType2PtrInput` via:
 //
-//          TypeFieldTypeElementTypeArgs{...}
+//          TypeFieldTypeElementType2Args{...}
 //
 //  or:
 //
 //          nil
-type TypeFieldTypeElementTypePtrInput interface {
+type TypeFieldTypeElementType2PtrInput interface {
 	pulumi.Input
 
-	ToTypeFieldTypeElementTypePtrOutput() TypeFieldTypeElementTypePtrOutput
-	ToTypeFieldTypeElementTypePtrOutputWithContext(context.Context) TypeFieldTypeElementTypePtrOutput
+	ToTypeFieldTypeElementType2PtrOutput() TypeFieldTypeElementType2PtrOutput
+	ToTypeFieldTypeElementType2PtrOutputWithContext(context.Context) TypeFieldTypeElementType2PtrOutput
 }
 
-type typeFieldTypeElementTypePtrType TypeFieldTypeElementTypeArgs
+type typeFieldTypeElementType2PtrType TypeFieldTypeElementType2Args
 
-func TypeFieldTypeElementTypePtr(v *TypeFieldTypeElementTypeArgs) TypeFieldTypeElementTypePtrInput {
-	return (*typeFieldTypeElementTypePtrType)(v)
+func TypeFieldTypeElementType2Ptr(v *TypeFieldTypeElementType2Args) TypeFieldTypeElementType2PtrInput {
+	return (*typeFieldTypeElementType2PtrType)(v)
 }
 
-func (*typeFieldTypeElementTypePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**TypeFieldTypeElementType)(nil)).Elem()
+func (*typeFieldTypeElementType2PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TypeFieldTypeElementType2)(nil)).Elem()
 }
 
-func (i *typeFieldTypeElementTypePtrType) ToTypeFieldTypeElementTypePtrOutput() TypeFieldTypeElementTypePtrOutput {
-	return i.ToTypeFieldTypeElementTypePtrOutputWithContext(context.Background())
+func (i *typeFieldTypeElementType2PtrType) ToTypeFieldTypeElementType2PtrOutput() TypeFieldTypeElementType2PtrOutput {
+	return i.ToTypeFieldTypeElementType2PtrOutputWithContext(context.Background())
 }
 
-func (i *typeFieldTypeElementTypePtrType) ToTypeFieldTypeElementTypePtrOutputWithContext(ctx context.Context) TypeFieldTypeElementTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TypeFieldTypeElementTypePtrOutput)
+func (i *typeFieldTypeElementType2PtrType) ToTypeFieldTypeElementType2PtrOutputWithContext(ctx context.Context) TypeFieldTypeElementType2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TypeFieldTypeElementType2PtrOutput)
 }
 
-type TypeFieldTypeElementTypeOutput struct{ *pulumi.OutputState }
+type TypeFieldTypeElementType2Output struct{ *pulumi.OutputState }
 
-func (TypeFieldTypeElementTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TypeFieldTypeElementType)(nil)).Elem()
+func (TypeFieldTypeElementType2Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*TypeFieldTypeElementType2)(nil)).Elem()
 }
 
-func (o TypeFieldTypeElementTypeOutput) ToTypeFieldTypeElementTypeOutput() TypeFieldTypeElementTypeOutput {
+func (o TypeFieldTypeElementType2Output) ToTypeFieldTypeElementType2Output() TypeFieldTypeElementType2Output {
 	return o
 }
 
-func (o TypeFieldTypeElementTypeOutput) ToTypeFieldTypeElementTypeOutputWithContext(ctx context.Context) TypeFieldTypeElementTypeOutput {
+func (o TypeFieldTypeElementType2Output) ToTypeFieldTypeElementType2OutputWithContext(ctx context.Context) TypeFieldTypeElementType2Output {
 	return o
 }
 
-func (o TypeFieldTypeElementTypeOutput) ToTypeFieldTypeElementTypePtrOutput() TypeFieldTypeElementTypePtrOutput {
-	return o.ToTypeFieldTypeElementTypePtrOutputWithContext(context.Background())
+func (o TypeFieldTypeElementType2Output) ToTypeFieldTypeElementType2PtrOutput() TypeFieldTypeElementType2PtrOutput {
+	return o.ToTypeFieldTypeElementType2PtrOutputWithContext(context.Background())
 }
 
-func (o TypeFieldTypeElementTypeOutput) ToTypeFieldTypeElementTypePtrOutputWithContext(ctx context.Context) TypeFieldTypeElementTypePtrOutput {
-	return o.ApplyT(func(v TypeFieldTypeElementType) *TypeFieldTypeElementType {
+func (o TypeFieldTypeElementType2Output) ToTypeFieldTypeElementType2PtrOutputWithContext(ctx context.Context) TypeFieldTypeElementType2PtrOutput {
+	return o.ApplyT(func(v TypeFieldTypeElementType2) *TypeFieldTypeElementType2 {
 		return &v
-	}).(TypeFieldTypeElementTypePtrOutput)
+	}).(TypeFieldTypeElementType2PtrOutput)
 }
-func (o TypeFieldTypeElementTypeOutput) LocalizedValues() TypeFieldTypeElementTypeLocalizedValueArrayOutput {
-	return o.ApplyT(func(v TypeFieldTypeElementType) []TypeFieldTypeElementTypeLocalizedValue { return v.LocalizedValues }).(TypeFieldTypeElementTypeLocalizedValueArrayOutput)
-}
-
-func (o TypeFieldTypeElementTypeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v TypeFieldTypeElementType) string { return v.Name }).(pulumi.StringOutput)
+func (o TypeFieldTypeElementType2Output) LocalizedValues() TypeFieldTypeElementType2LocalizedValueArrayOutput {
+	return o.ApplyT(func(v TypeFieldTypeElementType2) []TypeFieldTypeElementType2LocalizedValue { return v.LocalizedValues }).(TypeFieldTypeElementType2LocalizedValueArrayOutput)
 }
 
-func (o TypeFieldTypeElementTypeOutput) ReferenceTypeId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v TypeFieldTypeElementType) *string { return v.ReferenceTypeId }).(pulumi.StringPtrOutput)
+func (o TypeFieldTypeElementType2Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v TypeFieldTypeElementType2) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o TypeFieldTypeElementTypeOutput) Values() pulumi.MapOutput {
-	return o.ApplyT(func(v TypeFieldTypeElementType) map[string]interface{} { return v.Values }).(pulumi.MapOutput)
+func (o TypeFieldTypeElementType2Output) ReferenceTypeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TypeFieldTypeElementType2) *string { return v.ReferenceTypeId }).(pulumi.StringPtrOutput)
 }
 
-type TypeFieldTypeElementTypePtrOutput struct{ *pulumi.OutputState }
-
-func (TypeFieldTypeElementTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**TypeFieldTypeElementType)(nil)).Elem()
+func (o TypeFieldTypeElementType2Output) Values() pulumi.MapOutput {
+	return o.ApplyT(func(v TypeFieldTypeElementType2) map[string]interface{} { return v.Values }).(pulumi.MapOutput)
 }
 
-func (o TypeFieldTypeElementTypePtrOutput) ToTypeFieldTypeElementTypePtrOutput() TypeFieldTypeElementTypePtrOutput {
+type TypeFieldTypeElementType2PtrOutput struct{ *pulumi.OutputState }
+
+func (TypeFieldTypeElementType2PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TypeFieldTypeElementType2)(nil)).Elem()
+}
+
+func (o TypeFieldTypeElementType2PtrOutput) ToTypeFieldTypeElementType2PtrOutput() TypeFieldTypeElementType2PtrOutput {
 	return o
 }
 
-func (o TypeFieldTypeElementTypePtrOutput) ToTypeFieldTypeElementTypePtrOutputWithContext(ctx context.Context) TypeFieldTypeElementTypePtrOutput {
+func (o TypeFieldTypeElementType2PtrOutput) ToTypeFieldTypeElementType2PtrOutputWithContext(ctx context.Context) TypeFieldTypeElementType2PtrOutput {
 	return o
 }
 
-func (o TypeFieldTypeElementTypePtrOutput) Elem() TypeFieldTypeElementTypeOutput {
-	return o.ApplyT(func(v *TypeFieldTypeElementType) TypeFieldTypeElementType { return *v }).(TypeFieldTypeElementTypeOutput)
+func (o TypeFieldTypeElementType2PtrOutput) Elem() TypeFieldTypeElementType2Output {
+	return o.ApplyT(func(v *TypeFieldTypeElementType2) TypeFieldTypeElementType2 { return *v }).(TypeFieldTypeElementType2Output)
 }
 
-func (o TypeFieldTypeElementTypePtrOutput) LocalizedValues() TypeFieldTypeElementTypeLocalizedValueArrayOutput {
-	return o.ApplyT(func(v *TypeFieldTypeElementType) []TypeFieldTypeElementTypeLocalizedValue {
+func (o TypeFieldTypeElementType2PtrOutput) LocalizedValues() TypeFieldTypeElementType2LocalizedValueArrayOutput {
+	return o.ApplyT(func(v *TypeFieldTypeElementType2) []TypeFieldTypeElementType2LocalizedValue {
 		if v == nil {
 			return nil
 		}
 		return v.LocalizedValues
-	}).(TypeFieldTypeElementTypeLocalizedValueArrayOutput)
+	}).(TypeFieldTypeElementType2LocalizedValueArrayOutput)
 }
 
-func (o TypeFieldTypeElementTypePtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *TypeFieldTypeElementType) *string {
+func (o TypeFieldTypeElementType2PtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TypeFieldTypeElementType2) *string {
 		if v == nil {
 			return nil
 		}
@@ -3075,8 +3075,8 @@ func (o TypeFieldTypeElementTypePtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o TypeFieldTypeElementTypePtrOutput) ReferenceTypeId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *TypeFieldTypeElementType) *string {
+func (o TypeFieldTypeElementType2PtrOutput) ReferenceTypeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TypeFieldTypeElementType2) *string {
 		if v == nil {
 			return nil
 		}
@@ -3084,8 +3084,8 @@ func (o TypeFieldTypeElementTypePtrOutput) ReferenceTypeId() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o TypeFieldTypeElementTypePtrOutput) Values() pulumi.MapOutput {
-	return o.ApplyT(func(v *TypeFieldTypeElementType) map[string]interface{} {
+func (o TypeFieldTypeElementType2PtrOutput) Values() pulumi.MapOutput {
+	return o.ApplyT(func(v *TypeFieldTypeElementType2) map[string]interface{} {
 		if v == nil {
 			return nil
 		}
@@ -3093,104 +3093,104 @@ func (o TypeFieldTypeElementTypePtrOutput) Values() pulumi.MapOutput {
 	}).(pulumi.MapOutput)
 }
 
-type TypeFieldTypeElementTypeLocalizedValue struct {
+type TypeFieldTypeElementType2LocalizedValue struct {
 	Key   string                 `pulumi:"key"`
 	Label map[string]interface{} `pulumi:"label"`
 }
 
-// TypeFieldTypeElementTypeLocalizedValueInput is an input type that accepts TypeFieldTypeElementTypeLocalizedValueArgs and TypeFieldTypeElementTypeLocalizedValueOutput values.
-// You can construct a concrete instance of `TypeFieldTypeElementTypeLocalizedValueInput` via:
+// TypeFieldTypeElementType2LocalizedValueInput is an input type that accepts TypeFieldTypeElementType2LocalizedValueArgs and TypeFieldTypeElementType2LocalizedValueOutput values.
+// You can construct a concrete instance of `TypeFieldTypeElementType2LocalizedValueInput` via:
 //
-//          TypeFieldTypeElementTypeLocalizedValueArgs{...}
-type TypeFieldTypeElementTypeLocalizedValueInput interface {
+//          TypeFieldTypeElementType2LocalizedValueArgs{...}
+type TypeFieldTypeElementType2LocalizedValueInput interface {
 	pulumi.Input
 
-	ToTypeFieldTypeElementTypeLocalizedValueOutput() TypeFieldTypeElementTypeLocalizedValueOutput
-	ToTypeFieldTypeElementTypeLocalizedValueOutputWithContext(context.Context) TypeFieldTypeElementTypeLocalizedValueOutput
+	ToTypeFieldTypeElementType2LocalizedValueOutput() TypeFieldTypeElementType2LocalizedValueOutput
+	ToTypeFieldTypeElementType2LocalizedValueOutputWithContext(context.Context) TypeFieldTypeElementType2LocalizedValueOutput
 }
 
-type TypeFieldTypeElementTypeLocalizedValueArgs struct {
+type TypeFieldTypeElementType2LocalizedValueArgs struct {
 	Key   pulumi.StringInput `pulumi:"key"`
 	Label pulumi.MapInput    `pulumi:"label"`
 }
 
-func (TypeFieldTypeElementTypeLocalizedValueArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*TypeFieldTypeElementTypeLocalizedValue)(nil)).Elem()
+func (TypeFieldTypeElementType2LocalizedValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TypeFieldTypeElementType2LocalizedValue)(nil)).Elem()
 }
 
-func (i TypeFieldTypeElementTypeLocalizedValueArgs) ToTypeFieldTypeElementTypeLocalizedValueOutput() TypeFieldTypeElementTypeLocalizedValueOutput {
-	return i.ToTypeFieldTypeElementTypeLocalizedValueOutputWithContext(context.Background())
+func (i TypeFieldTypeElementType2LocalizedValueArgs) ToTypeFieldTypeElementType2LocalizedValueOutput() TypeFieldTypeElementType2LocalizedValueOutput {
+	return i.ToTypeFieldTypeElementType2LocalizedValueOutputWithContext(context.Background())
 }
 
-func (i TypeFieldTypeElementTypeLocalizedValueArgs) ToTypeFieldTypeElementTypeLocalizedValueOutputWithContext(ctx context.Context) TypeFieldTypeElementTypeLocalizedValueOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TypeFieldTypeElementTypeLocalizedValueOutput)
+func (i TypeFieldTypeElementType2LocalizedValueArgs) ToTypeFieldTypeElementType2LocalizedValueOutputWithContext(ctx context.Context) TypeFieldTypeElementType2LocalizedValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TypeFieldTypeElementType2LocalizedValueOutput)
 }
 
-// TypeFieldTypeElementTypeLocalizedValueArrayInput is an input type that accepts TypeFieldTypeElementTypeLocalizedValueArray and TypeFieldTypeElementTypeLocalizedValueArrayOutput values.
-// You can construct a concrete instance of `TypeFieldTypeElementTypeLocalizedValueArrayInput` via:
+// TypeFieldTypeElementType2LocalizedValueArrayInput is an input type that accepts TypeFieldTypeElementType2LocalizedValueArray and TypeFieldTypeElementType2LocalizedValueArrayOutput values.
+// You can construct a concrete instance of `TypeFieldTypeElementType2LocalizedValueArrayInput` via:
 //
-//          TypeFieldTypeElementTypeLocalizedValueArray{ TypeFieldTypeElementTypeLocalizedValueArgs{...} }
-type TypeFieldTypeElementTypeLocalizedValueArrayInput interface {
+//          TypeFieldTypeElementType2LocalizedValueArray{ TypeFieldTypeElementType2LocalizedValueArgs{...} }
+type TypeFieldTypeElementType2LocalizedValueArrayInput interface {
 	pulumi.Input
 
-	ToTypeFieldTypeElementTypeLocalizedValueArrayOutput() TypeFieldTypeElementTypeLocalizedValueArrayOutput
-	ToTypeFieldTypeElementTypeLocalizedValueArrayOutputWithContext(context.Context) TypeFieldTypeElementTypeLocalizedValueArrayOutput
+	ToTypeFieldTypeElementType2LocalizedValueArrayOutput() TypeFieldTypeElementType2LocalizedValueArrayOutput
+	ToTypeFieldTypeElementType2LocalizedValueArrayOutputWithContext(context.Context) TypeFieldTypeElementType2LocalizedValueArrayOutput
 }
 
-type TypeFieldTypeElementTypeLocalizedValueArray []TypeFieldTypeElementTypeLocalizedValueInput
+type TypeFieldTypeElementType2LocalizedValueArray []TypeFieldTypeElementType2LocalizedValueInput
 
-func (TypeFieldTypeElementTypeLocalizedValueArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]TypeFieldTypeElementTypeLocalizedValue)(nil)).Elem()
+func (TypeFieldTypeElementType2LocalizedValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TypeFieldTypeElementType2LocalizedValue)(nil)).Elem()
 }
 
-func (i TypeFieldTypeElementTypeLocalizedValueArray) ToTypeFieldTypeElementTypeLocalizedValueArrayOutput() TypeFieldTypeElementTypeLocalizedValueArrayOutput {
-	return i.ToTypeFieldTypeElementTypeLocalizedValueArrayOutputWithContext(context.Background())
+func (i TypeFieldTypeElementType2LocalizedValueArray) ToTypeFieldTypeElementType2LocalizedValueArrayOutput() TypeFieldTypeElementType2LocalizedValueArrayOutput {
+	return i.ToTypeFieldTypeElementType2LocalizedValueArrayOutputWithContext(context.Background())
 }
 
-func (i TypeFieldTypeElementTypeLocalizedValueArray) ToTypeFieldTypeElementTypeLocalizedValueArrayOutputWithContext(ctx context.Context) TypeFieldTypeElementTypeLocalizedValueArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TypeFieldTypeElementTypeLocalizedValueArrayOutput)
+func (i TypeFieldTypeElementType2LocalizedValueArray) ToTypeFieldTypeElementType2LocalizedValueArrayOutputWithContext(ctx context.Context) TypeFieldTypeElementType2LocalizedValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TypeFieldTypeElementType2LocalizedValueArrayOutput)
 }
 
-type TypeFieldTypeElementTypeLocalizedValueOutput struct{ *pulumi.OutputState }
+type TypeFieldTypeElementType2LocalizedValueOutput struct{ *pulumi.OutputState }
 
-func (TypeFieldTypeElementTypeLocalizedValueOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TypeFieldTypeElementTypeLocalizedValue)(nil)).Elem()
+func (TypeFieldTypeElementType2LocalizedValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TypeFieldTypeElementType2LocalizedValue)(nil)).Elem()
 }
 
-func (o TypeFieldTypeElementTypeLocalizedValueOutput) ToTypeFieldTypeElementTypeLocalizedValueOutput() TypeFieldTypeElementTypeLocalizedValueOutput {
+func (o TypeFieldTypeElementType2LocalizedValueOutput) ToTypeFieldTypeElementType2LocalizedValueOutput() TypeFieldTypeElementType2LocalizedValueOutput {
 	return o
 }
 
-func (o TypeFieldTypeElementTypeLocalizedValueOutput) ToTypeFieldTypeElementTypeLocalizedValueOutputWithContext(ctx context.Context) TypeFieldTypeElementTypeLocalizedValueOutput {
+func (o TypeFieldTypeElementType2LocalizedValueOutput) ToTypeFieldTypeElementType2LocalizedValueOutputWithContext(ctx context.Context) TypeFieldTypeElementType2LocalizedValueOutput {
 	return o
 }
 
-func (o TypeFieldTypeElementTypeLocalizedValueOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v TypeFieldTypeElementTypeLocalizedValue) string { return v.Key }).(pulumi.StringOutput)
+func (o TypeFieldTypeElementType2LocalizedValueOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TypeFieldTypeElementType2LocalizedValue) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o TypeFieldTypeElementTypeLocalizedValueOutput) Label() pulumi.MapOutput {
-	return o.ApplyT(func(v TypeFieldTypeElementTypeLocalizedValue) map[string]interface{} { return v.Label }).(pulumi.MapOutput)
+func (o TypeFieldTypeElementType2LocalizedValueOutput) Label() pulumi.MapOutput {
+	return o.ApplyT(func(v TypeFieldTypeElementType2LocalizedValue) map[string]interface{} { return v.Label }).(pulumi.MapOutput)
 }
 
-type TypeFieldTypeElementTypeLocalizedValueArrayOutput struct{ *pulumi.OutputState }
+type TypeFieldTypeElementType2LocalizedValueArrayOutput struct{ *pulumi.OutputState }
 
-func (TypeFieldTypeElementTypeLocalizedValueArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]TypeFieldTypeElementTypeLocalizedValue)(nil)).Elem()
+func (TypeFieldTypeElementType2LocalizedValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TypeFieldTypeElementType2LocalizedValue)(nil)).Elem()
 }
 
-func (o TypeFieldTypeElementTypeLocalizedValueArrayOutput) ToTypeFieldTypeElementTypeLocalizedValueArrayOutput() TypeFieldTypeElementTypeLocalizedValueArrayOutput {
+func (o TypeFieldTypeElementType2LocalizedValueArrayOutput) ToTypeFieldTypeElementType2LocalizedValueArrayOutput() TypeFieldTypeElementType2LocalizedValueArrayOutput {
 	return o
 }
 
-func (o TypeFieldTypeElementTypeLocalizedValueArrayOutput) ToTypeFieldTypeElementTypeLocalizedValueArrayOutputWithContext(ctx context.Context) TypeFieldTypeElementTypeLocalizedValueArrayOutput {
+func (o TypeFieldTypeElementType2LocalizedValueArrayOutput) ToTypeFieldTypeElementType2LocalizedValueArrayOutputWithContext(ctx context.Context) TypeFieldTypeElementType2LocalizedValueArrayOutput {
 	return o
 }
 
-func (o TypeFieldTypeElementTypeLocalizedValueArrayOutput) Index(i pulumi.IntInput) TypeFieldTypeElementTypeLocalizedValueOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TypeFieldTypeElementTypeLocalizedValue {
-		return vs[0].([]TypeFieldTypeElementTypeLocalizedValue)[vs[1].(int)]
-	}).(TypeFieldTypeElementTypeLocalizedValueOutput)
+func (o TypeFieldTypeElementType2LocalizedValueArrayOutput) Index(i pulumi.IntInput) TypeFieldTypeElementType2LocalizedValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TypeFieldTypeElementType2LocalizedValue {
+		return vs[0].([]TypeFieldTypeElementType2LocalizedValue)[vs[1].(int)]
+	}).(TypeFieldTypeElementType2LocalizedValueOutput)
 }
 
 type TypeFieldTypeLocalizedValue struct {
@@ -3307,10 +3307,10 @@ func init() {
 	pulumi.RegisterOutputType(ProductTypeAttributeOutput{})
 	pulumi.RegisterOutputType(ProductTypeAttributeArrayOutput{})
 	pulumi.RegisterOutputType(ProductTypeAttributeTypeOutput{})
-	pulumi.RegisterOutputType(ProductTypeAttributeTypeElementTypeOutput{})
-	pulumi.RegisterOutputType(ProductTypeAttributeTypeElementTypePtrOutput{})
-	pulumi.RegisterOutputType(ProductTypeAttributeTypeElementTypeLocalizedValueOutput{})
-	pulumi.RegisterOutputType(ProductTypeAttributeTypeElementTypeLocalizedValueArrayOutput{})
+	pulumi.RegisterOutputType(ProductTypeAttributeTypeElementType2Output{})
+	pulumi.RegisterOutputType(ProductTypeAttributeTypeElementType2PtrOutput{})
+	pulumi.RegisterOutputType(ProductTypeAttributeTypeElementType2LocalizedValueOutput{})
+	pulumi.RegisterOutputType(ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput{})
 	pulumi.RegisterOutputType(ProductTypeAttributeTypeLocalizedValueOutput{})
 	pulumi.RegisterOutputType(ProductTypeAttributeTypeLocalizedValueArrayOutput{})
 	pulumi.RegisterOutputType(ProjectSettingsExternalOauthOutput{})
@@ -3336,10 +3336,10 @@ func init() {
 	pulumi.RegisterOutputType(TypeFieldOutput{})
 	pulumi.RegisterOutputType(TypeFieldArrayOutput{})
 	pulumi.RegisterOutputType(TypeFieldTypeOutput{})
-	pulumi.RegisterOutputType(TypeFieldTypeElementTypeOutput{})
-	pulumi.RegisterOutputType(TypeFieldTypeElementTypePtrOutput{})
-	pulumi.RegisterOutputType(TypeFieldTypeElementTypeLocalizedValueOutput{})
-	pulumi.RegisterOutputType(TypeFieldTypeElementTypeLocalizedValueArrayOutput{})
+	pulumi.RegisterOutputType(TypeFieldTypeElementType2Output{})
+	pulumi.RegisterOutputType(TypeFieldTypeElementType2PtrOutput{})
+	pulumi.RegisterOutputType(TypeFieldTypeElementType2LocalizedValueOutput{})
+	pulumi.RegisterOutputType(TypeFieldTypeElementType2LocalizedValueArrayOutput{})
 	pulumi.RegisterOutputType(TypeFieldTypeLocalizedValueOutput{})
 	pulumi.RegisterOutputType(TypeFieldTypeLocalizedValueArrayOutput{})
 }
