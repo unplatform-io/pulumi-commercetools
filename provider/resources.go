@@ -86,14 +86,34 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"commercetools_subscription":       {Tok: makeResource(mainMod, "Subscription")},
-			"commercetools_api_client":         {Tok: makeResource(mainMod, "ApiClient")},
-			"commercetools_api_extension":      {Tok: makeResource(mainMod, "ApiExtension")},
-			"commercetools_cart_discount":      {Tok: makeResource(mainMod, "CartDiscount")},
-			"commercetools_channel":            {Tok: makeResource(mainMod, "Channel")},
-			"commercetools_custom_object":      {Tok: makeResource(mainMod, "CustomObject")},
-			"commercetools_discount_code":      {Tok: makeResource(mainMod, "DiscountCode")},
-			"commercetools_product_type":       {Tok: makeResource(mainMod, "ProductType")},
+			"commercetools_subscription":  {Tok: makeResource(mainMod, "Subscription")},
+			"commercetools_api_client":    {Tok: makeResource(mainMod, "ApiClient")},
+			"commercetools_api_extension": {Tok: makeResource(mainMod, "ApiExtension")},
+			"commercetools_cart_discount": {Tok: makeResource(mainMod, "CartDiscount")},
+			"commercetools_channel":       {Tok: makeResource(mainMod, "Channel")},
+			"commercetools_custom_object": {Tok: makeResource(mainMod, "CustomObject")},
+			"commercetools_discount_code": {Tok: makeResource(mainMod, "DiscountCode")},
+			"commercetools_product_type": {
+				Tok: makeResource(mainMod, "ProductType"),
+				// Rename ElementType, because a property with that name already exists in the GO SDK
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"attribute": {
+						Elem: &tfbridge.SchemaInfo{
+							Fields: map[string]*tfbridge.SchemaInfo{
+								"type": {
+									Elem: &tfbridge.SchemaInfo{
+										Fields: map[string]*tfbridge.SchemaInfo{
+											"element_type": {
+												Name: "ElementType2",
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			"commercetools_project_settings":   {Tok: makeResource(mainMod, "ProjectSettings")},
 			"commercetools_shipping_method":    {Tok: makeResource(mainMod, "ShippingMethod")},
 			"commercetools_shipping_zone":      {Tok: makeResource(mainMod, "ShippingZone")},
@@ -102,7 +122,27 @@ func Provider() tfbridge.ProviderInfo {
 			"commercetools_store":              {Tok: makeResource(mainMod, "Store")},
 			"commercetools_tax_category":       {Tok: makeResource(mainMod, "TaxCategory")},
 			"commercetools_tax_category_rate":  {Tok: makeResource(mainMod, "TaxCategoryRate")},
-			"commercetools_type":               {Tok: makeResource(mainMod, "Type")},
+			"commercetools_type": {
+				Tok: makeResource(mainMod, "Type"),
+				// Rename ElementType, because a property with that name already exists in the GO SDK
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"field": {
+						Elem: &tfbridge.SchemaInfo{
+							Fields: map[string]*tfbridge.SchemaInfo{
+								"type": {
+									Elem: &tfbridge.SchemaInfo{
+										Fields: map[string]*tfbridge.SchemaInfo{
+											"element_type": {
+												Name: "ElementType2",
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.

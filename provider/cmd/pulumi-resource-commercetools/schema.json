@@ -294,8 +294,8 @@
         },
         "commercetools:index/ProductTypeAttributeType:ProductTypeAttributeType": {
             "properties": {
-                "elementType": {
-                    "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeElementType:ProductTypeAttributeTypeElementType",
+                "ElementType2": {
+                    "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeElementType2:ProductTypeAttributeTypeElementType2",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -354,12 +354,12 @@
                 "name"
             ]
         },
-        "commercetools:index/ProductTypeAttributeTypeElementType:ProductTypeAttributeTypeElementType": {
+        "commercetools:index/ProductTypeAttributeTypeElementType2:ProductTypeAttributeTypeElementType2": {
             "properties": {
                 "localizedValues": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeElementTypeLocalizedValue:ProductTypeAttributeTypeElementTypeLocalizedValue"
+                        "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeElementType2LocalizedValue:ProductTypeAttributeTypeElementType2LocalizedValue"
                     },
                     "language": {
                         "python": {
@@ -408,7 +408,7 @@
                 "name"
             ]
         },
-        "commercetools:index/ProductTypeAttributeTypeElementTypeLocalizedValue:ProductTypeAttributeTypeElementTypeLocalizedValue": {
+        "commercetools:index/ProductTypeAttributeTypeElementType2LocalizedValue:ProductTypeAttributeTypeElementType2LocalizedValue": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -738,8 +738,8 @@
         },
         "commercetools:index/TypeFieldType:TypeFieldType": {
             "properties": {
-                "elementType": {
-                    "$ref": "#/types/commercetools:index/TypeFieldTypeElementType:TypeFieldTypeElementType",
+                "ElementType2": {
+                    "$ref": "#/types/commercetools:index/TypeFieldTypeElementType2:TypeFieldTypeElementType2",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -790,12 +790,12 @@
                 "name"
             ]
         },
-        "commercetools:index/TypeFieldTypeElementType:TypeFieldTypeElementType": {
+        "commercetools:index/TypeFieldTypeElementType2:TypeFieldTypeElementType2": {
             "properties": {
                 "localizedValues": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/commercetools:index/TypeFieldTypeElementTypeLocalizedValue:TypeFieldTypeElementTypeLocalizedValue"
+                        "$ref": "#/types/commercetools:index/TypeFieldTypeElementType2LocalizedValue:TypeFieldTypeElementType2LocalizedValue"
                     },
                     "language": {
                         "python": {
@@ -836,7 +836,7 @@
                 "name"
             ]
         },
-        "commercetools:index/TypeFieldTypeElementTypeLocalizedValue:TypeFieldTypeElementTypeLocalizedValue": {
+        "commercetools:index/TypeFieldTypeElementType2LocalizedValue:TypeFieldTypeElementType2LocalizedValue": {
             "properties": {
                 "key": {
                     "type": "string",

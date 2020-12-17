@@ -12,8 +12,8 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class TypeFieldTypeArgs : Pulumi.ResourceArgs
     {
-        [Input("elementType")]
-        public Input<Inputs.TypeFieldTypeElementTypeArgs>? ElementType { get; set; }
+        [Input("ElementType2")]
+        public Input<Inputs.TypeFieldTypeElementType2Args>? ElementType2 { get; set; }
 
         [Input("localizedValues")]
         private InputList<Inputs.TypeFieldTypeLocalizedValueArgs>? _localizedValues;

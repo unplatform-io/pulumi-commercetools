@@ -11,13 +11,13 @@ namespace Pulumi.Commercetools.Outputs
 {
 
     [OutputType]
-    public sealed class TypeFieldTypeElementTypeLocalizedValue
+    public sealed class ProductTypeAttributeTypeElementType2LocalizedValue
     {
         public readonly string Key;
         public readonly ImmutableDictionary<string, object> Label;
 
         [OutputConstructor]
-        private TypeFieldTypeElementTypeLocalizedValue(
+        private ProductTypeAttributeTypeElementType2LocalizedValue(
             string key,
 
             ImmutableDictionary<string, object> label)

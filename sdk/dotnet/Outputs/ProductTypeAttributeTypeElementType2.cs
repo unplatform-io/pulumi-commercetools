@@ -11,17 +11,17 @@ namespace Pulumi.Commercetools.Outputs
 {
 
     [OutputType]
-    public sealed class ProductTypeAttributeTypeElementType
+    public sealed class ProductTypeAttributeTypeElementType2
     {
-        public readonly ImmutableArray<Outputs.ProductTypeAttributeTypeElementTypeLocalizedValue> LocalizedValues;
+        public readonly ImmutableArray<Outputs.ProductTypeAttributeTypeElementType2LocalizedValue> LocalizedValues;
         public readonly string Name;
         public readonly string? ReferenceTypeId;
         public readonly string? TypeReference;
         public readonly ImmutableDictionary<string, object>? Values;
 
         [OutputConstructor]
-        private ProductTypeAttributeTypeElementType(
-            ImmutableArray<Outputs.ProductTypeAttributeTypeElementTypeLocalizedValue> localizedValues,
+        private ProductTypeAttributeTypeElementType2(
+            ImmutableArray<Outputs.ProductTypeAttributeTypeElementType2LocalizedValue> localizedValues,
 
             string name,
 

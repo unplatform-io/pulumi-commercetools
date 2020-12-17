@@ -12,8 +12,8 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class ProductTypeAttributeTypeGetArgs : Pulumi.ResourceArgs
     {
-        [Input("elementType")]
-        public Input<Inputs.ProductTypeAttributeTypeElementTypeGetArgs>? ElementType { get; set; }
+        [Input("ElementType2")]
+        public Input<Inputs.ProductTypeAttributeTypeElementType2GetArgs>? ElementType2 { get; set; }
 
         [Input("localizedValues")]
         private InputList<Inputs.ProductTypeAttributeTypeLocalizedValueGetArgs>? _localizedValues;

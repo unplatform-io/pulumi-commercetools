@@ -16,8 +16,8 @@ __all__ = [
     'CartDiscountValueMoneyArgs',
     'ProductTypeAttributeArgs',
     'ProductTypeAttributeTypeArgs',
-    'ProductTypeAttributeTypeElementTypeArgs',
-    'ProductTypeAttributeTypeElementTypeLocalizedValueArgs',
+    'ProductTypeAttributeTypeElementType2Args',
+    'ProductTypeAttributeTypeElementType2LocalizedValueArgs',
     'ProductTypeAttributeTypeLocalizedValueArgs',
     'ProjectSettingsExternalOauthArgs',
     'ProjectSettingsMessagesArgs',
@@ -31,8 +31,8 @@ __all__ = [
     'TaxCategoryRateSubRateArgs',
     'TypeFieldArgs',
     'TypeFieldTypeArgs',
-    'TypeFieldTypeElementTypeArgs',
-    'TypeFieldTypeElementTypeLocalizedValueArgs',
+    'TypeFieldTypeElementType2Args',
+    'TypeFieldTypeElementType2LocalizedValueArgs',
     'TypeFieldTypeLocalizedValueArgs',
 ]
 
@@ -396,14 +396,14 @@ class ProductTypeAttributeArgs:
 class ProductTypeAttributeTypeArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 element_type: Optional[pulumi.Input['ProductTypeAttributeTypeElementTypeArgs']] = None,
+                 element_type2: Optional[pulumi.Input['ProductTypeAttributeTypeElementType2Args']] = None,
                  localized_values: Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeLocalizedValueArgs']]]] = None,
                  reference_type_id: Optional[pulumi.Input[str]] = None,
                  type_reference: Optional[pulumi.Input[str]] = None,
                  values: Optional[pulumi.Input[Mapping[str, Any]]] = None):
         pulumi.set(__self__, "name", name)
-        if element_type is not None:
-            pulumi.set(__self__, "element_type", element_type)
+        if element_type2 is not None:
+            pulumi.set(__self__, "element_type2", element_type2)
         if localized_values is not None:
             pulumi.set(__self__, "localized_values", localized_values)
         if reference_type_id is not None:
@@ -423,13 +423,13 @@ class ProductTypeAttributeTypeArgs:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter(name="elementType")
-    def element_type(self) -> Optional[pulumi.Input['ProductTypeAttributeTypeElementTypeArgs']]:
-        return pulumi.get(self, "element_type")
+    @pulumi.getter(name="ElementType2")
+    def element_type2(self) -> Optional[pulumi.Input['ProductTypeAttributeTypeElementType2Args']]:
+        return pulumi.get(self, "element_type2")
 
-    @element_type.setter
-    def element_type(self, value: Optional[pulumi.Input['ProductTypeAttributeTypeElementTypeArgs']]):
-        pulumi.set(self, "element_type", value)
+    @element_type2.setter
+    def element_type2(self, value: Optional[pulumi.Input['ProductTypeAttributeTypeElementType2Args']]):
+        pulumi.set(self, "element_type2", value)
 
     @property
     @pulumi.getter(name="localizedValues")
@@ -469,10 +469,10 @@ class ProductTypeAttributeTypeArgs:
 
 
 @pulumi.input_type
-class ProductTypeAttributeTypeElementTypeArgs:
+class ProductTypeAttributeTypeElementType2Args:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 localized_values: Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementTypeLocalizedValueArgs']]]] = None,
+                 localized_values: Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementType2LocalizedValueArgs']]]] = None,
                  reference_type_id: Optional[pulumi.Input[str]] = None,
                  type_reference: Optional[pulumi.Input[str]] = None,
                  values: Optional[pulumi.Input[Mapping[str, Any]]] = None):
@@ -497,11 +497,11 @@ class ProductTypeAttributeTypeElementTypeArgs:
 
     @property
     @pulumi.getter(name="localizedValues")
-    def localized_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementTypeLocalizedValueArgs']]]]:
+    def localized_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementType2LocalizedValueArgs']]]]:
         return pulumi.get(self, "localized_values")
 
     @localized_values.setter
-    def localized_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementTypeLocalizedValueArgs']]]]):
+    def localized_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementType2LocalizedValueArgs']]]]):
         pulumi.set(self, "localized_values", value)
 
     @property
@@ -533,7 +533,7 @@ class ProductTypeAttributeTypeElementTypeArgs:
 
 
 @pulumi.input_type
-class ProductTypeAttributeTypeElementTypeLocalizedValueArgs:
+class ProductTypeAttributeTypeElementType2LocalizedValueArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  label: pulumi.Input[Mapping[str, Any]]):
@@ -1000,13 +1000,13 @@ class TypeFieldArgs:
 class TypeFieldTypeArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 element_type: Optional[pulumi.Input['TypeFieldTypeElementTypeArgs']] = None,
+                 element_type2: Optional[pulumi.Input['TypeFieldTypeElementType2Args']] = None,
                  localized_values: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeLocalizedValueArgs']]]] = None,
                  reference_type_id: Optional[pulumi.Input[str]] = None,
                  values: Optional[pulumi.Input[Mapping[str, Any]]] = None):
         pulumi.set(__self__, "name", name)
-        if element_type is not None:
-            pulumi.set(__self__, "element_type", element_type)
+        if element_type2 is not None:
+            pulumi.set(__self__, "element_type2", element_type2)
         if localized_values is not None:
             pulumi.set(__self__, "localized_values", localized_values)
         if reference_type_id is not None:
@@ -1024,13 +1024,13 @@ class TypeFieldTypeArgs:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter(name="elementType")
-    def element_type(self) -> Optional[pulumi.Input['TypeFieldTypeElementTypeArgs']]:
-        return pulumi.get(self, "element_type")
+    @pulumi.getter(name="ElementType2")
+    def element_type2(self) -> Optional[pulumi.Input['TypeFieldTypeElementType2Args']]:
+        return pulumi.get(self, "element_type2")
 
-    @element_type.setter
-    def element_type(self, value: Optional[pulumi.Input['TypeFieldTypeElementTypeArgs']]):
-        pulumi.set(self, "element_type", value)
+    @element_type2.setter
+    def element_type2(self, value: Optional[pulumi.Input['TypeFieldTypeElementType2Args']]):
+        pulumi.set(self, "element_type2", value)
 
     @property
     @pulumi.getter(name="localizedValues")
@@ -1061,10 +1061,10 @@ class TypeFieldTypeArgs:
 
 
 @pulumi.input_type
-class TypeFieldTypeElementTypeArgs:
+class TypeFieldTypeElementType2Args:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 localized_values: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementTypeLocalizedValueArgs']]]] = None,
+                 localized_values: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementType2LocalizedValueArgs']]]] = None,
                  reference_type_id: Optional[pulumi.Input[str]] = None,
                  values: Optional[pulumi.Input[Mapping[str, Any]]] = None):
         pulumi.set(__self__, "name", name)
@@ -1086,11 +1086,11 @@ class TypeFieldTypeElementTypeArgs:
 
     @property
     @pulumi.getter(name="localizedValues")
-    def localized_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementTypeLocalizedValueArgs']]]]:
+    def localized_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementType2LocalizedValueArgs']]]]:
         return pulumi.get(self, "localized_values")
 
     @localized_values.setter
-    def localized_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementTypeLocalizedValueArgs']]]]):
+    def localized_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementType2LocalizedValueArgs']]]]):
         pulumi.set(self, "localized_values", value)
 
     @property
@@ -1113,7 +1113,7 @@ class TypeFieldTypeElementTypeArgs:
 
 
 @pulumi.input_type
-class TypeFieldTypeElementTypeLocalizedValueArgs:
+class TypeFieldTypeElementType2LocalizedValueArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  label: pulumi.Input[Mapping[str, Any]]):

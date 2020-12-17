@@ -13,7 +13,7 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ProductTypeAttributeType
     {
-        public readonly Outputs.ProductTypeAttributeTypeElementType? ElementType;
+        public readonly Outputs.ProductTypeAttributeTypeElementType2? ElementType2;
         public readonly ImmutableArray<Outputs.ProductTypeAttributeTypeLocalizedValue> LocalizedValues;
         public readonly string Name;
         public readonly string? ReferenceTypeId;
@@ -22,7 +22,7 @@ namespace Pulumi.Commercetools.Outputs
 
         [OutputConstructor]
         private ProductTypeAttributeType(
-            Outputs.ProductTypeAttributeTypeElementType? elementType,
+            Outputs.ProductTypeAttributeTypeElementType2? ElementType2,
 
             ImmutableArray<Outputs.ProductTypeAttributeTypeLocalizedValue> localizedValues,
 
@@ -34,7 +34,7 @@ namespace Pulumi.Commercetools.Outputs
 
             ImmutableDictionary<string, object>? values)
         {
-            ElementType = elementType;
+            this.ElementType2 = ElementType2;
             LocalizedValues = localizedValues;
             Name = name;
             ReferenceTypeId = referenceTypeId;
