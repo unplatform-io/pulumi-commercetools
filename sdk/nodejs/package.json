@@ -1,5 +1,5 @@
 {
-    "name": "@pulumi/commercetools",
+    "name": "@unplatform/commercetools",
     "version": "${VERSION}",
     "description": "A Pulumi package for creating and managing commercetools cloud resources.",
     "keywords": [
