@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/unplatform-io/pulumi-commercetools/workflows/master/badge.svg)](https://github.com/unplatform-io/pulumi-commercetools/actions)
+[![Actions Status](https://github.com/unplatform-io/pulumi-commercetools/workflows/release/badge.svg)](https://github.com/unplatform-io/pulumi-commercetools/actions)
 [![NPM version](https://badge.fury.io/js/%40unplatform%2Fcommercetools.svg)](https://www.npmjs.com/package/@unplatform/commercetools)
 [![Python version](https://badge.fury.io/py/pulumi-commercetools.svg)](https://pypi.org/project/pulumi-commercetools)
 [![NuGet version](https://badge.fury.io/nu/pulumi.commercetools.svg)](https://badge.fury.io/nu/pulumi.commercetools)
