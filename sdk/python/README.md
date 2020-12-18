@@ -1,86 +1,67 @@
-# Terraform Bridge Provider Boilerplate
+[![Actions Status](https://github.com/unplatform-io/pulumi-commercetools/workflows/master/badge.svg)](https://github.com/unplatform-io/pulumi-commercetools/actions)
+[![NPM version](https://badge.fury.io/js/%40unplatform%2Fcommercetools.svg)](https://www.npmjs.com/package/@unplatform/commercetools)
+[![Python version](https://badge.fury.io/py/pulumi-commercetools.svg)](https://pypi.org/project/pulumi-commercetools)
+[![NuGet version](https://badge.fury.io/nu/pulumi.commercetools.svg)](https://badge.fury.io/nu/pulumi.commercetools)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/unplatform-io/pulumi-commercetools/sdk/v2/go)](https://pkg.go.dev/github.com/unplatform-io/pulumi-commercetools/sdk/v2/go)
 
-This repository contains boilerplate code for building a new Pulumi provider which wraps an existing
-Terraform provider, if the existing provider uses _Go Modules_.
+# CommerceTools provider
+The CommerceTools resource provider for Pulumi lets you provision [CommerceTools](https://commercetools.com/) resources.
 
-Modify this README to describe:
+This provider is a [bridge] (https://github.com/pulumi/pulumi-terraform-bridge) to the excellent [CommerceTools Terraform Provider](https://github.com/labd/terraform-provider-commercetools) from the Labd folks.
 
-- The type of resources the provider manages
-- Add a build status image from Travis at the top of the README
-- Update package names in the information below
-- Add any important documentation of concepts (e.g. the "serverless" components in the AWS provider).
-
-## Creating a Pulumi Terraform Bridge Provider
-
-First, clone this repo with the name of the desired provider in place of `commercetools`:
-
-```
-git clone https://github.com/pulumi/pulumi-tf-provider-boilerplate pulumi-commercetools
-```
-
-Second, replace references to `commercetools` with the name of your provider:
-
-```
-make prepare NAME=foo REPOSITORY=github.com/pulumi/pulumi-foo
-```
-
-Next, list the configuration points for the provider in the area of the README.
-
-
-> Note: If the name of the desired Pulumi provider differs from the name of the Terraform provider, you will need to carefully distinguish between the references - see https://github.com/pulumi/pulumi-azure for an example.
-
-### Add dependencies
-
-In order to properly build the sdks, the following tools are expected:
-- `pulumictl` (See the project's README for installation instructions: https://github.com/pulumi/pulumictl)
-
-In the root of the repository, run:
-
-- `GO111MODULE=on go get github.com/pulumi/pulumi-terraform@master`
-- `(cd provider && go get github.com/terraform-providers/terraform-provider-foo)`  (where `foo` is the name of the provider - note the parenthesis to run this in a subshell)
-- `(cd provider && go mod download)`
-
-### Build the provider:
-
-- Edit `provider/resources.go` to map each resource, and specify provider information
-- `make build_sdks`
+To use this package, please [install the Pulumi CLI first](https://pulumi.io/).] 
 
 ## Installing
 
-This package is available in many languages in the standard packaging formats.
+The plugin itself needs to be installed by running:
+
+    `pulumi plugin install --server https://github.com/unplatform-io/pulumi-commercetools/releases/download/v0.0.0 resource commercetools v0.0.0`
+
+Where v0.0.0 is the desired version.
+
+This SDK is available in many languages in the standard packaging formats.
 
 ### Node.js (Java/TypeScript)
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
-    $ npm install @pulumi/xyx
+    $ npm install @unplatform/commercetools
 
 or `yarn`:
 
-    $ yarn add @pulumi/xyx
+    $ yarn add @unplatform/commercetools
 
 ### Python
 
 To use from Python, install using `pip`:
 
-    $ pip install pulumi_xyx
+    $ pip install pulumi_commercetools
 
 ### Go
 
 To use from Go, use `go get` to grab the latest version of the library
 
-    $ go get github.com/pulumi/pulumi-commercetools/sdk/go/...
+    $ go get github.com/unplatform-io/pulumi-commercetools/sdk/v2/go/...
+
+### .NET
+
+To use from .NET, install using `dotnet add package`:
+
+    $ dotnet add package Pulumi.CommerceTools
 
 ## Configuration
 
 The following configuration points are available for the `commercetools` provider:
 
-- `commercetools:apiKey` (environment: `XYZ_API_KEY`) - the API key for `commercetools`
-- `commercetools:region` (environment: `XYZ_REGION`) - the region in which to deploy resources
+- `commercetools:apiUrl` - the url of the commercetools api (e.g. `https://api.europe-west1.gcp.commercetools.com`)
+- `commercetools:tokenUrl` - the url used to authenticate (e.g. `https://auth.europe-west1.gcp.commercetools.com`)
+- `commercetools:scopes` - the authentication scopes needed
+- `commercetools:clientId` - the client id used to authenticate
+- `commercetools:clientSecret` - the client secret used to authenticate
+- `commercetools:projectKey` - the key of the commerce tools project
 
 ## Reference
 
-For detailed reference documentation, please visit [the API docs][1].
+For detailed reference documentation, please visit [the docs of the commerce tools terraform provider][1].
 
-
-[1]: https://www.pulumi.com/docs/reference/pkg/x/
+[1]: https://commercetools-terraform-provider.readthedocs.io/en/latest/
