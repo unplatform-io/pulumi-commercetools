@@ -17,8 +17,7 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
-
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	commercetools "github.com/unplatform-io/pulumi-commercetools/provider"
 	"github.com/unplatform-io/pulumi-commercetools/provider/pkg/version"
 )

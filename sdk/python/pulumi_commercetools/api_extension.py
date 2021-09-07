@@ -5,15 +5,177 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['ApiExtension']
+__all__ = ['ApiExtensionArgs', 'ApiExtension']
+
+@pulumi.input_type
+class ApiExtensionArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input['ApiExtensionDestinationArgs'],
+                 triggers: pulumi.Input[Sequence[pulumi.Input['ApiExtensionTriggerArgs']]],
+                 key: Optional[pulumi.Input[str]] = None,
+                 timeout_in_ms: Optional[pulumi.Input[int]] = None):
+        """
+        The set of arguments for constructing a ApiExtension resource.
+        :param pulumi.Input['ApiExtensionDestinationArgs'] destination: [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+               reached
+        :param pulumi.Input[Sequence[pulumi.Input['ApiExtensionTriggerArgs']]] triggers: Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+               extension
+        :param pulumi.Input[str] key: User-specific unique identifier for the extension
+        :param pulumi.Input[int] timeout_in_ms: Extension timeout in milliseconds
+        """
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "triggers", triggers)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if timeout_in_ms is not None:
+            pulumi.set(__self__, "timeout_in_ms", timeout_in_ms)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input['ApiExtensionDestinationArgs']:
+        """
+        [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+        reached
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input['ApiExtensionDestinationArgs']):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter
+    def triggers(self) -> pulumi.Input[Sequence[pulumi.Input['ApiExtensionTriggerArgs']]]:
+        """
+        Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+        extension
+        """
+        return pulumi.get(self, "triggers")
+
+    @triggers.setter
+    def triggers(self, value: pulumi.Input[Sequence[pulumi.Input['ApiExtensionTriggerArgs']]]):
+        pulumi.set(self, "triggers", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        User-specific unique identifier for the extension
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="timeoutInMs")
+    def timeout_in_ms(self) -> Optional[pulumi.Input[int]]:
+        """
+        Extension timeout in milliseconds
+        """
+        return pulumi.get(self, "timeout_in_ms")
+
+    @timeout_in_ms.setter
+    def timeout_in_ms(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout_in_ms", value)
+
+
+@pulumi.input_type
+class _ApiExtensionState:
+    def __init__(__self__, *,
+                 destination: Optional[pulumi.Input['ApiExtensionDestinationArgs']] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 timeout_in_ms: Optional[pulumi.Input[int]] = None,
+                 triggers: Optional[pulumi.Input[Sequence[pulumi.Input['ApiExtensionTriggerArgs']]]] = None,
+                 version: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering ApiExtension resources.
+        :param pulumi.Input['ApiExtensionDestinationArgs'] destination: [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+               reached
+        :param pulumi.Input[str] key: User-specific unique identifier for the extension
+        :param pulumi.Input[int] timeout_in_ms: Extension timeout in milliseconds
+        :param pulumi.Input[Sequence[pulumi.Input['ApiExtensionTriggerArgs']]] triggers: Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+               extension
+        """
+        if destination is not None:
+            pulumi.set(__self__, "destination", destination)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if timeout_in_ms is not None:
+            pulumi.set(__self__, "timeout_in_ms", timeout_in_ms)
+        if triggers is not None:
+            pulumi.set(__self__, "triggers", triggers)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> Optional[pulumi.Input['ApiExtensionDestinationArgs']]:
+        """
+        [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+        reached
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: Optional[pulumi.Input['ApiExtensionDestinationArgs']]):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        User-specific unique identifier for the extension
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="timeoutInMs")
+    def timeout_in_ms(self) -> Optional[pulumi.Input[int]]:
+        """
+        Extension timeout in milliseconds
+        """
+        return pulumi.get(self, "timeout_in_ms")
+
+    @timeout_in_ms.setter
+    def timeout_in_ms(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "timeout_in_ms", value)
+
+    @property
+    @pulumi.getter
+    def triggers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiExtensionTriggerArgs']]]]:
+        """
+        Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+        extension
+        """
+        return pulumi.get(self, "triggers")
+
+    @triggers.setter
+    def triggers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiExtensionTriggerArgs']]]]):
+        pulumi.set(self, "triggers", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "version", value)
 
 
 class ApiExtension(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -21,20 +183,46 @@ class ApiExtension(pulumi.CustomResource):
                  key: Optional[pulumi.Input[str]] = None,
                  timeout_in_ms: Optional[pulumi.Input[int]] = None,
                  triggers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiExtensionTriggerArgs']]]]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Create a ApiExtension resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ApiExtensionDestinationArgs']] destination: [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+               reached
+        :param pulumi.Input[str] key: User-specific unique identifier for the extension
+        :param pulumi.Input[int] timeout_in_ms: Extension timeout in milliseconds
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiExtensionTriggerArgs']]]] triggers: Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+               extension
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ApiExtensionArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a ApiExtension resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param ApiExtensionArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ApiExtensionArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 destination: Optional[pulumi.Input[pulumi.InputType['ApiExtensionDestinationArgs']]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 timeout_in_ms: Optional[pulumi.Input[int]] = None,
+                 triggers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiExtensionTriggerArgs']]]]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -44,17 +232,17 @@ class ApiExtension(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ApiExtensionArgs.__new__(ApiExtensionArgs)
 
-            if destination is None:
+            if destination is None and not opts.urn:
                 raise TypeError("Missing required property 'destination'")
-            __props__['destination'] = destination
-            __props__['key'] = key
-            __props__['timeout_in_ms'] = timeout_in_ms
-            if triggers is None:
+            __props__.__dict__["destination"] = destination
+            __props__.__dict__["key"] = key
+            __props__.__dict__["timeout_in_ms"] = timeout_in_ms
+            if triggers is None and not opts.urn:
                 raise TypeError("Missing required property 'triggers'")
-            __props__['triggers'] = triggers
-            __props__['version'] = None
+            __props__.__dict__["triggers"] = triggers
+            __props__.__dict__["version"] = None
         super(ApiExtension, __self__).__init__(
             'commercetools:index/apiExtension:ApiExtension',
             resource_name,
@@ -77,46 +265,60 @@ class ApiExtension(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ApiExtensionDestinationArgs']] destination: [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+               reached
+        :param pulumi.Input[str] key: User-specific unique identifier for the extension
+        :param pulumi.Input[int] timeout_in_ms: Extension timeout in milliseconds
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiExtensionTriggerArgs']]]] triggers: Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+               extension
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ApiExtensionState.__new__(_ApiExtensionState)
 
-        __props__["destination"] = destination
-        __props__["key"] = key
-        __props__["timeout_in_ms"] = timeout_in_ms
-        __props__["triggers"] = triggers
-        __props__["version"] = version
+        __props__.__dict__["destination"] = destination
+        __props__.__dict__["key"] = key
+        __props__.__dict__["timeout_in_ms"] = timeout_in_ms
+        __props__.__dict__["triggers"] = triggers
+        __props__.__dict__["version"] = version
         return ApiExtension(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def destination(self) -> pulumi.Output['outputs.ApiExtensionDestination']:
+        """
+        [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+        reached
+        """
         return pulumi.get(self, "destination")
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Output[Optional[str]]:
+        """
+        User-specific unique identifier for the extension
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="timeoutInMs")
     def timeout_in_ms(self) -> pulumi.Output[Optional[int]]:
+        """
+        Extension timeout in milliseconds
+        """
         return pulumi.get(self, "timeout_in_ms")
 
     @property
     @pulumi.getter
     def triggers(self) -> pulumi.Output[Sequence['outputs.ApiExtensionTrigger']]:
+        """
+        Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+        extension
+        """
         return pulumi.get(self, "triggers")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[int]:
         return pulumi.get(self, "version")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

@@ -32,7 +32,13 @@ export class ApiClient extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApiClient.__pulumiType;
     }
 
+    /**
+     * Name of the API client
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
+     */
     public readonly scopes!: pulumi.Output<string[]>;
     public /*out*/ readonly secret!: pulumi.Output<string>;
 
@@ -46,26 +52,23 @@ export class ApiClient extends pulumi.CustomResource {
     constructor(name: string, args: ApiClientArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ApiClientArgs | ApiClientState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ApiClientState | undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["scopes"] = state ? state.scopes : undefined;
             inputs["secret"] = state ? state.secret : undefined;
         } else {
             const args = argsOrState as ApiClientArgs | undefined;
-            if (!args || args.scopes === undefined) {
+            if ((!args || args.scopes === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'scopes'");
             }
             inputs["name"] = args ? args.name : undefined;
             inputs["scopes"] = args ? args.scopes : undefined;
             inputs["secret"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ApiClient.__pulumiType, name, inputs, opts);
     }
@@ -75,15 +78,27 @@ export class ApiClient extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApiClient resources.
  */
 export interface ApiClientState {
-    readonly name?: pulumi.Input<string>;
-    readonly scopes?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly secret?: pulumi.Input<string>;
+    /**
+     * Name of the API client
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
+     */
+    scopes?: pulumi.Input<pulumi.Input<string>[]>;
+    secret?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a ApiClient resource.
  */
 export interface ApiClientArgs {
-    readonly name?: pulumi.Input<string>;
-    readonly scopes: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Name of the API client
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
+     */
+    scopes: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class Subscription extends pulumi.CustomResource {
@@ -34,10 +33,26 @@ export class Subscription extends pulumi.CustomResource {
         return obj['__pulumiType'] === Subscription.__pulumiType;
     }
 
+    /**
+     * The change notifications subscribed to
+     */
     public readonly changes!: pulumi.Output<outputs.SubscriptionChange[] | undefined>;
+    /**
+     * The Message Queue into which the notifications are to be sentSee also the [Destination API
+     * Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+     */
     public readonly destination!: pulumi.Output<outputs.SubscriptionDestination | undefined>;
+    /**
+     * The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+     */
     public readonly format!: pulumi.Output<outputs.SubscriptionFormat | undefined>;
+    /**
+     * User-specific unique identifier for the subscription
+     */
     public readonly key!: pulumi.Output<string | undefined>;
+    /**
+     * The messages subscribed to
+     */
     public readonly messages!: pulumi.Output<outputs.SubscriptionMessage[] | undefined>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
@@ -51,7 +66,8 @@ export class Subscription extends pulumi.CustomResource {
     constructor(name: string, args?: SubscriptionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SubscriptionArgs | SubscriptionState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SubscriptionState | undefined;
             inputs["changes"] = state ? state.changes : undefined;
             inputs["destination"] = state ? state.destination : undefined;
@@ -68,12 +84,8 @@ export class Subscription extends pulumi.CustomResource {
             inputs["messages"] = args ? args.messages : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Subscription.__pulumiType, name, inputs, opts);
     }
@@ -83,21 +95,53 @@ export class Subscription extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Subscription resources.
  */
 export interface SubscriptionState {
-    readonly changes?: pulumi.Input<pulumi.Input<inputs.SubscriptionChange>[]>;
-    readonly destination?: pulumi.Input<inputs.SubscriptionDestination>;
-    readonly format?: pulumi.Input<inputs.SubscriptionFormat>;
-    readonly key?: pulumi.Input<string>;
-    readonly messages?: pulumi.Input<pulumi.Input<inputs.SubscriptionMessage>[]>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * The change notifications subscribed to
+     */
+    changes?: pulumi.Input<pulumi.Input<inputs.SubscriptionChange>[]>;
+    /**
+     * The Message Queue into which the notifications are to be sentSee also the [Destination API
+     * Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+     */
+    destination?: pulumi.Input<inputs.SubscriptionDestination>;
+    /**
+     * The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+     */
+    format?: pulumi.Input<inputs.SubscriptionFormat>;
+    /**
+     * User-specific unique identifier for the subscription
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * The messages subscribed to
+     */
+    messages?: pulumi.Input<pulumi.Input<inputs.SubscriptionMessage>[]>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a Subscription resource.
  */
 export interface SubscriptionArgs {
-    readonly changes?: pulumi.Input<pulumi.Input<inputs.SubscriptionChange>[]>;
-    readonly destination?: pulumi.Input<inputs.SubscriptionDestination>;
-    readonly format?: pulumi.Input<inputs.SubscriptionFormat>;
-    readonly key?: pulumi.Input<string>;
-    readonly messages?: pulumi.Input<pulumi.Input<inputs.SubscriptionMessage>[]>;
+    /**
+     * The change notifications subscribed to
+     */
+    changes?: pulumi.Input<pulumi.Input<inputs.SubscriptionChange>[]>;
+    /**
+     * The Message Queue into which the notifications are to be sentSee also the [Destination API
+     * Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+     */
+    destination?: pulumi.Input<inputs.SubscriptionDestination>;
+    /**
+     * The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+     */
+    format?: pulumi.Input<inputs.SubscriptionFormat>;
+    /**
+     * User-specific unique identifier for the subscription
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * The messages subscribed to
+     */
+    messages?: pulumi.Input<pulumi.Input<inputs.SubscriptionMessage>[]>;
 }

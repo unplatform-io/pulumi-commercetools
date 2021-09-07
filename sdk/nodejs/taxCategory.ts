@@ -33,6 +33,9 @@ export class TaxCategory extends pulumi.CustomResource {
     }
 
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * User-specific unique identifier for the category
+     */
     public readonly key!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public /*out*/ readonly version!: pulumi.Output<number>;
@@ -47,7 +50,8 @@ export class TaxCategory extends pulumi.CustomResource {
     constructor(name: string, args?: TaxCategoryArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TaxCategoryArgs | TaxCategoryState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as TaxCategoryState | undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["key"] = state ? state.key : undefined;
@@ -60,12 +64,8 @@ export class TaxCategory extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(TaxCategory.__pulumiType, name, inputs, opts);
     }
@@ -75,17 +75,23 @@ export class TaxCategory extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TaxCategory resources.
  */
 export interface TaxCategoryState {
-    readonly description?: pulumi.Input<string>;
-    readonly key?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly version?: pulumi.Input<number>;
+    description?: pulumi.Input<string>;
+    /**
+     * User-specific unique identifier for the category
+     */
+    key?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a TaxCategory resource.
  */
 export interface TaxCategoryArgs {
-    readonly description?: pulumi.Input<string>;
-    readonly key?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    /**
+     * User-specific unique identifier for the category
+     */
+    key?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
 }

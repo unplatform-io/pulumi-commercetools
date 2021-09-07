@@ -5,15 +5,232 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['TaxCategoryRate']
+__all__ = ['TaxCategoryRateArgs', 'TaxCategoryRate']
+
+@pulumi.input_type
+class TaxCategoryRateArgs:
+    def __init__(__self__, *,
+                 country: pulumi.Input[str],
+                 included_in_price: pulumi.Input[bool],
+                 tax_category_id: pulumi.Input[str],
+                 amount: Optional[pulumi.Input[float]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
+                 sub_rates: Optional[pulumi.Input[Sequence[pulumi.Input['TaxCategoryRateSubRateArgs']]]] = None):
+        """
+        The set of arguments for constructing a TaxCategoryRate resource.
+        :param pulumi.Input[str] country: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        :param pulumi.Input[float] amount: Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+        :param pulumi.Input[str] state: The state in the country
+        :param pulumi.Input[Sequence[pulumi.Input['TaxCategoryRateSubRateArgs']]] sub_rates: For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+               taxes)
+        """
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "included_in_price", included_in_price)
+        pulumi.set(__self__, "tax_category_id", tax_category_id)
+        if amount is not None:
+            pulumi.set(__self__, "amount", amount)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if sub_rates is not None:
+            pulumi.set(__self__, "sub_rates", sub_rates)
+
+    @property
+    @pulumi.getter
+    def country(self) -> pulumi.Input[str]:
+        """
+        A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
+        return pulumi.get(self, "country")
+
+    @country.setter
+    def country(self, value: pulumi.Input[str]):
+        pulumi.set(self, "country", value)
+
+    @property
+    @pulumi.getter(name="includedInPrice")
+    def included_in_price(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "included_in_price")
+
+    @included_in_price.setter
+    def included_in_price(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "included_in_price", value)
+
+    @property
+    @pulumi.getter(name="taxCategoryId")
+    def tax_category_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "tax_category_id")
+
+    @tax_category_id.setter
+    def tax_category_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "tax_category_id", value)
+
+    @property
+    @pulumi.getter
+    def amount(self) -> Optional[pulumi.Input[float]]:
+        """
+        Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+        """
+        return pulumi.get(self, "amount")
+
+    @amount.setter
+    def amount(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "amount", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        The state in the country
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
+    @property
+    @pulumi.getter(name="subRates")
+    def sub_rates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TaxCategoryRateSubRateArgs']]]]:
+        """
+        For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+        taxes)
+        """
+        return pulumi.get(self, "sub_rates")
+
+    @sub_rates.setter
+    def sub_rates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TaxCategoryRateSubRateArgs']]]]):
+        pulumi.set(self, "sub_rates", value)
+
+
+@pulumi.input_type
+class _TaxCategoryRateState:
+    def __init__(__self__, *,
+                 amount: Optional[pulumi.Input[float]] = None,
+                 country: Optional[pulumi.Input[str]] = None,
+                 included_in_price: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
+                 sub_rates: Optional[pulumi.Input[Sequence[pulumi.Input['TaxCategoryRateSubRateArgs']]]] = None,
+                 tax_category_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering TaxCategoryRate resources.
+        :param pulumi.Input[float] amount: Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+        :param pulumi.Input[str] country: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        :param pulumi.Input[str] state: The state in the country
+        :param pulumi.Input[Sequence[pulumi.Input['TaxCategoryRateSubRateArgs']]] sub_rates: For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+               taxes)
+        """
+        if amount is not None:
+            pulumi.set(__self__, "amount", amount)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if included_in_price is not None:
+            pulumi.set(__self__, "included_in_price", included_in_price)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if sub_rates is not None:
+            pulumi.set(__self__, "sub_rates", sub_rates)
+        if tax_category_id is not None:
+            pulumi.set(__self__, "tax_category_id", tax_category_id)
+
+    @property
+    @pulumi.getter
+    def amount(self) -> Optional[pulumi.Input[float]]:
+        """
+        Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+        """
+        return pulumi.get(self, "amount")
+
+    @amount.setter
+    def amount(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "amount", value)
+
+    @property
+    @pulumi.getter
+    def country(self) -> Optional[pulumi.Input[str]]:
+        """
+        A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
+        return pulumi.get(self, "country")
+
+    @country.setter
+    def country(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "country", value)
+
+    @property
+    @pulumi.getter(name="includedInPrice")
+    def included_in_price(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "included_in_price")
+
+    @included_in_price.setter
+    def included_in_price(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "included_in_price", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        The state in the country
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
+    @property
+    @pulumi.getter(name="subRates")
+    def sub_rates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TaxCategoryRateSubRateArgs']]]]:
+        """
+        For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+        taxes)
+        """
+        return pulumi.get(self, "sub_rates")
+
+    @sub_rates.setter
+    def sub_rates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TaxCategoryRateSubRateArgs']]]]):
+        pulumi.set(self, "sub_rates", value)
+
+    @property
+    @pulumi.getter(name="taxCategoryId")
+    def tax_category_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tax_category_id")
+
+    @tax_category_id.setter
+    def tax_category_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tax_category_id", value)
 
 
 class TaxCategoryRate(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -24,20 +241,48 @@ class TaxCategoryRate(pulumi.CustomResource):
                  state: Optional[pulumi.Input[str]] = None,
                  sub_rates: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TaxCategoryRateSubRateArgs']]]]] = None,
                  tax_category_id: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Create a TaxCategoryRate resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[float] amount: Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+        :param pulumi.Input[str] country: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        :param pulumi.Input[str] state: The state in the country
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TaxCategoryRateSubRateArgs']]]] sub_rates: For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+               taxes)
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: TaxCategoryRateArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a TaxCategoryRate resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param TaxCategoryRateArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(TaxCategoryRateArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 amount: Optional[pulumi.Input[float]] = None,
+                 country: Optional[pulumi.Input[str]] = None,
+                 included_in_price: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
+                 sub_rates: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TaxCategoryRateSubRateArgs']]]]] = None,
+                 tax_category_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -47,21 +292,21 @@ class TaxCategoryRate(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = TaxCategoryRateArgs.__new__(TaxCategoryRateArgs)
 
-            __props__['amount'] = amount
-            if country is None:
+            __props__.__dict__["amount"] = amount
+            if country is None and not opts.urn:
                 raise TypeError("Missing required property 'country'")
-            __props__['country'] = country
-            if included_in_price is None:
+            __props__.__dict__["country"] = country
+            if included_in_price is None and not opts.urn:
                 raise TypeError("Missing required property 'included_in_price'")
-            __props__['included_in_price'] = included_in_price
-            __props__['name'] = name
-            __props__['state'] = state
-            __props__['sub_rates'] = sub_rates
-            if tax_category_id is None:
+            __props__.__dict__["included_in_price"] = included_in_price
+            __props__.__dict__["name"] = name
+            __props__.__dict__["state"] = state
+            __props__.__dict__["sub_rates"] = sub_rates
+            if tax_category_id is None and not opts.urn:
                 raise TypeError("Missing required property 'tax_category_id'")
-            __props__['tax_category_id'] = tax_category_id
+            __props__.__dict__["tax_category_id"] = tax_category_id
         super(TaxCategoryRate, __self__).__init__(
             'commercetools:index/taxCategoryRate:TaxCategoryRate',
             resource_name,
@@ -86,28 +331,39 @@ class TaxCategoryRate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[float] amount: Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+        :param pulumi.Input[str] country: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        :param pulumi.Input[str] state: The state in the country
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TaxCategoryRateSubRateArgs']]]] sub_rates: For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+               taxes)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _TaxCategoryRateState.__new__(_TaxCategoryRateState)
 
-        __props__["amount"] = amount
-        __props__["country"] = country
-        __props__["included_in_price"] = included_in_price
-        __props__["name"] = name
-        __props__["state"] = state
-        __props__["sub_rates"] = sub_rates
-        __props__["tax_category_id"] = tax_category_id
+        __props__.__dict__["amount"] = amount
+        __props__.__dict__["country"] = country
+        __props__.__dict__["included_in_price"] = included_in_price
+        __props__.__dict__["name"] = name
+        __props__.__dict__["state"] = state
+        __props__.__dict__["sub_rates"] = sub_rates
+        __props__.__dict__["tax_category_id"] = tax_category_id
         return TaxCategoryRate(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def amount(self) -> pulumi.Output[Optional[float]]:
+        """
+        Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+        """
         return pulumi.get(self, "amount")
 
     @property
     @pulumi.getter
     def country(self) -> pulumi.Output[str]:
+        """
+        A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
         return pulumi.get(self, "country")
 
     @property
@@ -123,21 +379,22 @@ class TaxCategoryRate(pulumi.CustomResource):
     @property
     @pulumi.getter
     def state(self) -> pulumi.Output[Optional[str]]:
+        """
+        The state in the country
+        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="subRates")
     def sub_rates(self) -> pulumi.Output[Optional[Sequence['outputs.TaxCategoryRateSubRate']]]:
+        """
+        For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+        taxes)
+        """
         return pulumi.get(self, "sub_rates")
 
     @property
     @pulumi.getter(name="taxCategoryId")
     def tax_category_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "tax_category_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

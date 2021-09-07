@@ -32,8 +32,17 @@ export class CustomObject extends pulumi.CustomResource {
         return obj['__pulumiType'] === CustomObject.__pulumiType;
     }
 
+    /**
+     * A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+     */
     public readonly container!: pulumi.Output<string>;
+    /**
+     * String matching the pattern '[-_~.a-zA-Z0-9]+'
+     */
     public readonly key!: pulumi.Output<string>;
+    /**
+     * JSON types Number, String, Boolean, Array, Object
+     */
     public readonly value!: pulumi.Output<string>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
@@ -47,7 +56,8 @@ export class CustomObject extends pulumi.CustomResource {
     constructor(name: string, args: CustomObjectArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CustomObjectArgs | CustomObjectState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as CustomObjectState | undefined;
             inputs["container"] = state ? state.container : undefined;
             inputs["key"] = state ? state.key : undefined;
@@ -55,13 +65,13 @@ export class CustomObject extends pulumi.CustomResource {
             inputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as CustomObjectArgs | undefined;
-            if (!args || args.container === undefined) {
+            if ((!args || args.container === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'container'");
             }
-            if (!args || args.key === undefined) {
+            if ((!args || args.key === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
-            if (!args || args.value === undefined) {
+            if ((!args || args.value === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
             inputs["container"] = args ? args.container : undefined;
@@ -69,12 +79,8 @@ export class CustomObject extends pulumi.CustomResource {
             inputs["value"] = args ? args.value : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(CustomObject.__pulumiType, name, inputs, opts);
     }
@@ -84,17 +90,35 @@ export class CustomObject extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CustomObject resources.
  */
 export interface CustomObjectState {
-    readonly container?: pulumi.Input<string>;
-    readonly key?: pulumi.Input<string>;
-    readonly value?: pulumi.Input<string>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+     */
+    container?: pulumi.Input<string>;
+    /**
+     * String matching the pattern '[-_~.a-zA-Z0-9]+'
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * JSON types Number, String, Boolean, Array, Object
+     */
+    value?: pulumi.Input<string>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a CustomObject resource.
  */
 export interface CustomObjectArgs {
-    readonly container: pulumi.Input<string>;
-    readonly key: pulumi.Input<string>;
-    readonly value: pulumi.Input<string>;
+    /**
+     * A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+     */
+    container: pulumi.Input<string>;
+    /**
+     * String matching the pattern '[-_~.a-zA-Z0-9]+'
+     */
+    key: pulumi.Input<string>;
+    /**
+     * JSON types Number, String, Boolean, Array, Object
+     */
+    value: pulumi.Input<string>;
 }

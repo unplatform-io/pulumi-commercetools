@@ -5,15 +5,205 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Type']
+__all__ = ['TypeArgs', 'Type']
+
+@pulumi.input_type
+class TypeArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 resource_type_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 fields: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]]] = None,
+                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        The set of arguments for constructing a Type resource.
+        :param pulumi.Input[str] key: Identifier for the type (max. 256 characters)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_type_ids: Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+               is valid
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]] fields: [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "resource_type_ids", resource_type_ids)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        Identifier for the type (max. 256 characters)
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="resourceTypeIds")
+    def resource_type_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+        is valid
+        """
+        return pulumi.get(self, "resource_type_ids")
+
+    @resource_type_ids.setter
+    def resource_type_ids(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "resource_type_ids", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]]]:
+        """
+        [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+        """
+        return pulumi.get(self, "fields")
+
+    @fields.setter
+    def fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]]]):
+        pulumi.set(self, "fields", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _TypeState:
+    def __init__(__self__, *,
+                 description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 fields: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 resource_type_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 version: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering Type resources.
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]] fields: [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+        :param pulumi.Input[str] key: Identifier for the type (max. 256 characters)
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_type_ids: Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+               is valid
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if resource_type_ids is not None:
+            pulumi.set(__self__, "resource_type_ids", resource_type_ids)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]]]:
+        """
+        [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+        """
+        return pulumi.get(self, "fields")
+
+    @fields.setter
+    def fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]]]):
+        pulumi.set(self, "fields", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier for the type (max. 256 characters)
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="resourceTypeIds")
+    def resource_type_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+        is valid
+        """
+        return pulumi.get(self, "resource_type_ids")
+
+    @resource_type_ids.setter
+    def resource_type_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "resource_type_ids", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "version", value)
 
 
 class Type(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -22,20 +212,47 @@ class Type(pulumi.CustomResource):
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  resource_type_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Create a Type resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TypeFieldArgs']]]] fields: [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+        :param pulumi.Input[str] key: Identifier for the type (max. 256 characters)
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_type_ids: Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+               is valid
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: TypeArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a Type resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param TypeArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(TypeArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TypeFieldArgs']]]]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 resource_type_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -45,18 +262,18 @@ class Type(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = TypeArgs.__new__(TypeArgs)
 
-            __props__['description'] = description
-            __props__['fields'] = fields
-            if key is None:
+            __props__.__dict__["description"] = description
+            __props__.__dict__["fields"] = fields
+            if key is None and not opts.urn:
                 raise TypeError("Missing required property 'key'")
-            __props__['key'] = key
-            __props__['name'] = name
-            if resource_type_ids is None:
+            __props__.__dict__["key"] = key
+            __props__.__dict__["name"] = name
+            if resource_type_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_type_ids'")
-            __props__['resource_type_ids'] = resource_type_ids
-            __props__['version'] = None
+            __props__.__dict__["resource_type_ids"] = resource_type_ids
+            __props__.__dict__["version"] = None
         super(Type, __self__).__init__(
             'commercetools:index/type:Type',
             resource_name,
@@ -80,52 +297,68 @@ class Type(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TypeFieldArgs']]]] fields: [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+        :param pulumi.Input[str] key: Identifier for the type (max. 256 characters)
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_type_ids: Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+               is valid
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _TypeState.__new__(_TypeState)
 
-        __props__["description"] = description
-        __props__["fields"] = fields
-        __props__["key"] = key
-        __props__["name"] = name
-        __props__["resource_type_ids"] = resource_type_ids
-        __props__["version"] = version
+        __props__.__dict__["description"] = description
+        __props__.__dict__["fields"] = fields
+        __props__.__dict__["key"] = key
+        __props__.__dict__["name"] = name
+        __props__.__dict__["resource_type_ids"] = resource_type_ids
+        __props__.__dict__["version"] = version
         return Type(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def fields(self) -> pulumi.Output[Optional[Sequence['outputs.TypeField']]]:
+        """
+        [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+        """
         return pulumi.get(self, "fields")
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Output[str]:
+        """
+        Identifier for the type (max. 256 characters)
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[Mapping[str, Any]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="resourceTypeIds")
     def resource_type_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+        is valid
+        """
         return pulumi.get(self, "resource_type_ids")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[int]:
         return pulumi.get(self, "version")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

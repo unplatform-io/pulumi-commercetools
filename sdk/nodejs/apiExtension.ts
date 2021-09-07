@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class ApiExtension extends pulumi.CustomResource {
@@ -34,9 +33,23 @@ export class ApiExtension extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApiExtension.__pulumiType;
     }
 
+    /**
+     * [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+     * reached
+     */
     public readonly destination!: pulumi.Output<outputs.ApiExtensionDestination>;
+    /**
+     * User-specific unique identifier for the extension
+     */
     public readonly key!: pulumi.Output<string | undefined>;
+    /**
+     * Extension timeout in milliseconds
+     */
     public readonly timeoutInMs!: pulumi.Output<number | undefined>;
+    /**
+     * Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+     * extension
+     */
     public readonly triggers!: pulumi.Output<outputs.ApiExtensionTrigger[]>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
@@ -50,7 +63,8 @@ export class ApiExtension extends pulumi.CustomResource {
     constructor(name: string, args: ApiExtensionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ApiExtensionArgs | ApiExtensionState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ApiExtensionState | undefined;
             inputs["destination"] = state ? state.destination : undefined;
             inputs["key"] = state ? state.key : undefined;
@@ -59,10 +73,10 @@ export class ApiExtension extends pulumi.CustomResource {
             inputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ApiExtensionArgs | undefined;
-            if (!args || args.destination === undefined) {
+            if ((!args || args.destination === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'destination'");
             }
-            if (!args || args.triggers === undefined) {
+            if ((!args || args.triggers === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'triggers'");
             }
             inputs["destination"] = args ? args.destination : undefined;
@@ -71,12 +85,8 @@ export class ApiExtension extends pulumi.CustomResource {
             inputs["triggers"] = args ? args.triggers : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ApiExtension.__pulumiType, name, inputs, opts);
     }
@@ -86,19 +96,47 @@ export class ApiExtension extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApiExtension resources.
  */
 export interface ApiExtensionState {
-    readonly destination?: pulumi.Input<inputs.ApiExtensionDestination>;
-    readonly key?: pulumi.Input<string>;
-    readonly timeoutInMs?: pulumi.Input<number>;
-    readonly triggers?: pulumi.Input<pulumi.Input<inputs.ApiExtensionTrigger>[]>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+     * reached
+     */
+    destination?: pulumi.Input<inputs.ApiExtensionDestination>;
+    /**
+     * User-specific unique identifier for the extension
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * Extension timeout in milliseconds
+     */
+    timeoutInMs?: pulumi.Input<number>;
+    /**
+     * Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+     * extension
+     */
+    triggers?: pulumi.Input<pulumi.Input<inputs.ApiExtensionTrigger>[]>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a ApiExtension resource.
  */
 export interface ApiExtensionArgs {
-    readonly destination: pulumi.Input<inputs.ApiExtensionDestination>;
-    readonly key?: pulumi.Input<string>;
-    readonly timeoutInMs?: pulumi.Input<number>;
-    readonly triggers: pulumi.Input<pulumi.Input<inputs.ApiExtensionTrigger>[]>;
+    /**
+     * [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+     * reached
+     */
+    destination: pulumi.Input<inputs.ApiExtensionDestination>;
+    /**
+     * User-specific unique identifier for the extension
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * Extension timeout in milliseconds
+     */
+    timeoutInMs?: pulumi.Input<number>;
+    /**
+     * Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+     * extension
+     */
+    triggers: pulumi.Input<pulumi.Input<inputs.ApiExtensionTrigger>[]>;
 }

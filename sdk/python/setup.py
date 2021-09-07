@@ -27,8 +27,11 @@ class InstallPluginCommand(install):
 
 
 def readme():
-    with open('README.md', encoding='utf-8') as f:
-        return f.read()
+    try:
+        with open('README.md', encoding='utf-8') as f:
+            return f.read()
+    except FileNotFoundError:
+            return "commercetools Pulumi Package - Development Version"
 
 
 setup(name='pulumi_commercetools',
@@ -48,12 +51,12 @@ setup(name='pulumi_commercetools',
       packages=find_packages(),
       package_data={
           'pulumi_commercetools': [
-              'py.typed'
+              'py.typed',
           ]
       },
       install_requires=[
           'parver>=0.2.1',
-          'pulumi>=2.9.0,<3.0.0',
+          'pulumi>=3.0.0,<4.0.0',
           'semver>=2.8.1'
       ],
       zip_safe=False)

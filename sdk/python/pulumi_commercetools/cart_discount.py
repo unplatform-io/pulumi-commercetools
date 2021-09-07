@@ -5,15 +5,428 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['CartDiscount']
+__all__ = ['CartDiscountArgs', 'CartDiscount']
+
+@pulumi.input_type
+class CartDiscountArgs:
+    def __init__(__self__, *,
+                 predicate: pulumi.Input[str],
+                 sort_order: pulumi.Input[str],
+                 value: pulumi.Input['CartDiscountValueArgs'],
+                 description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 is_active: Optional[pulumi.Input[bool]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 requires_discount_code: Optional[pulumi.Input[bool]] = None,
+                 stacking_mode: Optional[pulumi.Input[str]] = None,
+                 target: Optional[pulumi.Input['CartDiscountTargetArgs']] = None,
+                 valid_from: Optional[pulumi.Input[str]] = None,
+                 valid_until: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a CartDiscount resource.
+        :param pulumi.Input[str] predicate: A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        :param pulumi.Input[str] sort_order: The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+               by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+               order is unambiguous among all cart discounts
+        :param pulumi.Input['CartDiscountValueArgs'] value: Defines the effect the discount will have.
+               [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[bool] is_active: Only active discount can be applied to the cart
+        :param pulumi.Input[str] key: User-specific unique identifier for a cart discount. Must be unique across a project
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[bool] requires_discount_code: States whether the discount can only be used in a connection with a
+               [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+        :param pulumi.Input[str] stacking_mode: Specifies whether the application of this discount causes the following discounts to be ignored
+        :param pulumi.Input['CartDiscountTargetArgs'] target: Empty when the value has type giftLineItem, otherwise a
+               [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+        """
+        pulumi.set(__self__, "predicate", predicate)
+        pulumi.set(__self__, "sort_order", sort_order)
+        pulumi.set(__self__, "value", value)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if requires_discount_code is not None:
+            pulumi.set(__self__, "requires_discount_code", requires_discount_code)
+        if stacking_mode is not None:
+            pulumi.set(__self__, "stacking_mode", stacking_mode)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+        if valid_from is not None:
+            pulumi.set(__self__, "valid_from", valid_from)
+        if valid_until is not None:
+            pulumi.set(__self__, "valid_until", valid_until)
+
+    @property
+    @pulumi.getter
+    def predicate(self) -> pulumi.Input[str]:
+        """
+        A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        """
+        return pulumi.get(self, "predicate")
+
+    @predicate.setter
+    def predicate(self, value: pulumi.Input[str]):
+        pulumi.set(self, "predicate", value)
+
+    @property
+    @pulumi.getter(name="sortOrder")
+    def sort_order(self) -> pulumi.Input[str]:
+        """
+        The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+        by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+        order is unambiguous among all cart discounts
+        """
+        return pulumi.get(self, "sort_order")
+
+    @sort_order.setter
+    def sort_order(self, value: pulumi.Input[str]):
+        pulumi.set(self, "sort_order", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input['CartDiscountValueArgs']:
+        """
+        Defines the effect the discount will have.
+        [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input['CartDiscountValueArgs']):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Only active discount can be applied to the cart
+        """
+        return pulumi.get(self, "is_active")
+
+    @is_active.setter
+    def is_active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_active", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        User-specific unique identifier for a cart discount. Must be unique across a project
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="requiresDiscountCode")
+    def requires_discount_code(self) -> Optional[pulumi.Input[bool]]:
+        """
+        States whether the discount can only be used in a connection with a
+        [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+        """
+        return pulumi.get(self, "requires_discount_code")
+
+    @requires_discount_code.setter
+    def requires_discount_code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "requires_discount_code", value)
+
+    @property
+    @pulumi.getter(name="stackingMode")
+    def stacking_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether the application of this discount causes the following discounts to be ignored
+        """
+        return pulumi.get(self, "stacking_mode")
+
+    @stacking_mode.setter
+    def stacking_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "stacking_mode", value)
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[pulumi.Input['CartDiscountTargetArgs']]:
+        """
+        Empty when the value has type giftLineItem, otherwise a
+        [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+        """
+        return pulumi.get(self, "target")
+
+    @target.setter
+    def target(self, value: Optional[pulumi.Input['CartDiscountTargetArgs']]):
+        pulumi.set(self, "target", value)
+
+    @property
+    @pulumi.getter(name="validFrom")
+    def valid_from(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "valid_from")
+
+    @valid_from.setter
+    def valid_from(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valid_from", value)
+
+    @property
+    @pulumi.getter(name="validUntil")
+    def valid_until(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "valid_until")
+
+    @valid_until.setter
+    def valid_until(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valid_until", value)
+
+
+@pulumi.input_type
+class _CartDiscountState:
+    def __init__(__self__, *,
+                 description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 is_active: Optional[pulumi.Input[bool]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 predicate: Optional[pulumi.Input[str]] = None,
+                 requires_discount_code: Optional[pulumi.Input[bool]] = None,
+                 sort_order: Optional[pulumi.Input[str]] = None,
+                 stacking_mode: Optional[pulumi.Input[str]] = None,
+                 target: Optional[pulumi.Input['CartDiscountTargetArgs']] = None,
+                 valid_from: Optional[pulumi.Input[str]] = None,
+                 valid_until: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input['CartDiscountValueArgs']] = None,
+                 version: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering CartDiscount resources.
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[bool] is_active: Only active discount can be applied to the cart
+        :param pulumi.Input[str] key: User-specific unique identifier for a cart discount. Must be unique across a project
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[str] predicate: A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        :param pulumi.Input[bool] requires_discount_code: States whether the discount can only be used in a connection with a
+               [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+        :param pulumi.Input[str] sort_order: The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+               by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+               order is unambiguous among all cart discounts
+        :param pulumi.Input[str] stacking_mode: Specifies whether the application of this discount causes the following discounts to be ignored
+        :param pulumi.Input['CartDiscountTargetArgs'] target: Empty when the value has type giftLineItem, otherwise a
+               [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+        :param pulumi.Input['CartDiscountValueArgs'] value: Defines the effect the discount will have.
+               [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if predicate is not None:
+            pulumi.set(__self__, "predicate", predicate)
+        if requires_discount_code is not None:
+            pulumi.set(__self__, "requires_discount_code", requires_discount_code)
+        if sort_order is not None:
+            pulumi.set(__self__, "sort_order", sort_order)
+        if stacking_mode is not None:
+            pulumi.set(__self__, "stacking_mode", stacking_mode)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+        if valid_from is not None:
+            pulumi.set(__self__, "valid_from", valid_from)
+        if valid_until is not None:
+            pulumi.set(__self__, "valid_until", valid_until)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Only active discount can be applied to the cart
+        """
+        return pulumi.get(self, "is_active")
+
+    @is_active.setter
+    def is_active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_active", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        User-specific unique identifier for a cart discount. Must be unique across a project
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def predicate(self) -> Optional[pulumi.Input[str]]:
+        """
+        A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        """
+        return pulumi.get(self, "predicate")
+
+    @predicate.setter
+    def predicate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "predicate", value)
+
+    @property
+    @pulumi.getter(name="requiresDiscountCode")
+    def requires_discount_code(self) -> Optional[pulumi.Input[bool]]:
+        """
+        States whether the discount can only be used in a connection with a
+        [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+        """
+        return pulumi.get(self, "requires_discount_code")
+
+    @requires_discount_code.setter
+    def requires_discount_code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "requires_discount_code", value)
+
+    @property
+    @pulumi.getter(name="sortOrder")
+    def sort_order(self) -> Optional[pulumi.Input[str]]:
+        """
+        The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+        by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+        order is unambiguous among all cart discounts
+        """
+        return pulumi.get(self, "sort_order")
+
+    @sort_order.setter
+    def sort_order(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sort_order", value)
+
+    @property
+    @pulumi.getter(name="stackingMode")
+    def stacking_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether the application of this discount causes the following discounts to be ignored
+        """
+        return pulumi.get(self, "stacking_mode")
+
+    @stacking_mode.setter
+    def stacking_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "stacking_mode", value)
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[pulumi.Input['CartDiscountTargetArgs']]:
+        """
+        Empty when the value has type giftLineItem, otherwise a
+        [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+        """
+        return pulumi.get(self, "target")
+
+    @target.setter
+    def target(self, value: Optional[pulumi.Input['CartDiscountTargetArgs']]):
+        pulumi.set(self, "target", value)
+
+    @property
+    @pulumi.getter(name="validFrom")
+    def valid_from(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "valid_from")
+
+    @valid_from.setter
+    def valid_from(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valid_from", value)
+
+    @property
+    @pulumi.getter(name="validUntil")
+    def valid_until(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "valid_until")
+
+    @valid_until.setter
+    def valid_until(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valid_until", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input['CartDiscountValueArgs']]:
+        """
+        Defines the effect the discount will have.
+        [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input['CartDiscountValueArgs']]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "version", value)
 
 
 class CartDiscount(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -29,20 +442,63 @@ class CartDiscount(pulumi.CustomResource):
                  valid_from: Optional[pulumi.Input[str]] = None,
                  valid_until: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[pulumi.InputType['CartDiscountValueArgs']]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Create a CartDiscount resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[bool] is_active: Only active discount can be applied to the cart
+        :param pulumi.Input[str] key: User-specific unique identifier for a cart discount. Must be unique across a project
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[str] predicate: A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        :param pulumi.Input[bool] requires_discount_code: States whether the discount can only be used in a connection with a
+               [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+        :param pulumi.Input[str] sort_order: The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+               by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+               order is unambiguous among all cart discounts
+        :param pulumi.Input[str] stacking_mode: Specifies whether the application of this discount causes the following discounts to be ignored
+        :param pulumi.Input[pulumi.InputType['CartDiscountTargetArgs']] target: Empty when the value has type giftLineItem, otherwise a
+               [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+        :param pulumi.Input[pulumi.InputType['CartDiscountValueArgs']] value: Defines the effect the discount will have.
+               [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: CartDiscountArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a CartDiscount resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param CartDiscountArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(CartDiscountArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 is_active: Optional[pulumi.Input[bool]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 predicate: Optional[pulumi.Input[str]] = None,
+                 requires_discount_code: Optional[pulumi.Input[bool]] = None,
+                 sort_order: Optional[pulumi.Input[str]] = None,
+                 stacking_mode: Optional[pulumi.Input[str]] = None,
+                 target: Optional[pulumi.Input[pulumi.InputType['CartDiscountTargetArgs']]] = None,
+                 valid_from: Optional[pulumi.Input[str]] = None,
+                 valid_until: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[pulumi.InputType['CartDiscountValueArgs']]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -52,27 +508,27 @@ class CartDiscount(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = CartDiscountArgs.__new__(CartDiscountArgs)
 
-            __props__['description'] = description
-            __props__['is_active'] = is_active
-            __props__['key'] = key
-            __props__['name'] = name
-            if predicate is None:
+            __props__.__dict__["description"] = description
+            __props__.__dict__["is_active"] = is_active
+            __props__.__dict__["key"] = key
+            __props__.__dict__["name"] = name
+            if predicate is None and not opts.urn:
                 raise TypeError("Missing required property 'predicate'")
-            __props__['predicate'] = predicate
-            __props__['requires_discount_code'] = requires_discount_code
-            if sort_order is None:
+            __props__.__dict__["predicate"] = predicate
+            __props__.__dict__["requires_discount_code"] = requires_discount_code
+            if sort_order is None and not opts.urn:
                 raise TypeError("Missing required property 'sort_order'")
-            __props__['sort_order'] = sort_order
-            __props__['stacking_mode'] = stacking_mode
-            __props__['target'] = target
-            __props__['valid_from'] = valid_from
-            __props__['valid_until'] = valid_until
-            if value is None:
+            __props__.__dict__["sort_order"] = sort_order
+            __props__.__dict__["stacking_mode"] = stacking_mode
+            __props__.__dict__["target"] = target
+            __props__.__dict__["valid_from"] = valid_from
+            __props__.__dict__["valid_until"] = valid_until
+            if value is None and not opts.urn:
                 raise TypeError("Missing required property 'value'")
-            __props__['value'] = value
-            __props__['version'] = None
+            __props__.__dict__["value"] = value
+            __props__.__dict__["version"] = None
         super(CartDiscount, __self__).__init__(
             'commercetools:index/cartDiscount:CartDiscount',
             resource_name,
@@ -103,69 +559,115 @@ class CartDiscount(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[bool] is_active: Only active discount can be applied to the cart
+        :param pulumi.Input[str] key: User-specific unique identifier for a cart discount. Must be unique across a project
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[str] predicate: A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        :param pulumi.Input[bool] requires_discount_code: States whether the discount can only be used in a connection with a
+               [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+        :param pulumi.Input[str] sort_order: The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+               by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+               order is unambiguous among all cart discounts
+        :param pulumi.Input[str] stacking_mode: Specifies whether the application of this discount causes the following discounts to be ignored
+        :param pulumi.Input[pulumi.InputType['CartDiscountTargetArgs']] target: Empty when the value has type giftLineItem, otherwise a
+               [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+        :param pulumi.Input[pulumi.InputType['CartDiscountValueArgs']] value: Defines the effect the discount will have.
+               [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _CartDiscountState.__new__(_CartDiscountState)
 
-        __props__["description"] = description
-        __props__["is_active"] = is_active
-        __props__["key"] = key
-        __props__["name"] = name
-        __props__["predicate"] = predicate
-        __props__["requires_discount_code"] = requires_discount_code
-        __props__["sort_order"] = sort_order
-        __props__["stacking_mode"] = stacking_mode
-        __props__["target"] = target
-        __props__["valid_from"] = valid_from
-        __props__["valid_until"] = valid_until
-        __props__["value"] = value
-        __props__["version"] = version
+        __props__.__dict__["description"] = description
+        __props__.__dict__["is_active"] = is_active
+        __props__.__dict__["key"] = key
+        __props__.__dict__["name"] = name
+        __props__.__dict__["predicate"] = predicate
+        __props__.__dict__["requires_discount_code"] = requires_discount_code
+        __props__.__dict__["sort_order"] = sort_order
+        __props__.__dict__["stacking_mode"] = stacking_mode
+        __props__.__dict__["target"] = target
+        __props__.__dict__["valid_from"] = valid_from
+        __props__.__dict__["valid_until"] = valid_until
+        __props__.__dict__["value"] = value
+        __props__.__dict__["version"] = version
         return CartDiscount(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="isActive")
     def is_active(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Only active discount can be applied to the cart
+        """
         return pulumi.get(self, "is_active")
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Output[Optional[str]]:
+        """
+        User-specific unique identifier for a cart discount. Must be unique across a project
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[Mapping[str, Any]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def predicate(self) -> pulumi.Output[str]:
+        """
+        A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        """
         return pulumi.get(self, "predicate")
 
     @property
     @pulumi.getter(name="requiresDiscountCode")
     def requires_discount_code(self) -> pulumi.Output[Optional[bool]]:
+        """
+        States whether the discount can only be used in a connection with a
+        [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+        """
         return pulumi.get(self, "requires_discount_code")
 
     @property
     @pulumi.getter(name="sortOrder")
     def sort_order(self) -> pulumi.Output[str]:
+        """
+        The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+        by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+        order is unambiguous among all cart discounts
+        """
         return pulumi.get(self, "sort_order")
 
     @property
     @pulumi.getter(name="stackingMode")
     def stacking_mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies whether the application of this discount causes the following discounts to be ignored
+        """
         return pulumi.get(self, "stacking_mode")
 
     @property
     @pulumi.getter
     def target(self) -> pulumi.Output[Optional['outputs.CartDiscountTarget']]:
+        """
+        Empty when the value has type giftLineItem, otherwise a
+        [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+        """
         return pulumi.get(self, "target")
 
     @property
@@ -181,16 +683,14 @@ class CartDiscount(pulumi.CustomResource):
     @property
     @pulumi.getter
     def value(self) -> pulumi.Output['outputs.CartDiscountValue']:
+        """
+        Defines the effect the discount will have.
+        [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+        """
         return pulumi.get(self, "value")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[int]:
         return pulumi.get(self, "version")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
