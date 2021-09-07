@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"path/filepath"
 	"unicode"
-
 	"github.com/unplatform-io/pulumi-commercetools/provider/pkg/version"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
