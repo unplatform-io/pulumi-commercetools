@@ -4,19 +4,26 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type Type struct {
 	pulumi.CustomResourceState
 
-	Description     pulumi.MapOutput         `pulumi:"description"`
-	Fields          TypeFieldArrayOutput     `pulumi:"fields"`
-	Key             pulumi.StringOutput      `pulumi:"key"`
-	Name            pulumi.MapOutput         `pulumi:"name"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description pulumi.MapOutput `pulumi:"description"`
+	// [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+	Fields TypeFieldArrayOutput `pulumi:"fields"`
+	// Identifier for the type (max. 256 characters)
+	Key pulumi.StringOutput `pulumi:"key"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapOutput `pulumi:"name"`
+	// Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+	// is valid
 	ResourceTypeIds pulumi.StringArrayOutput `pulumi:"resourceTypeIds"`
 	Version         pulumi.IntOutput         `pulumi:"version"`
 }
@@ -24,14 +31,15 @@ type Type struct {
 // NewType registers a new resource with the given unique name, arguments, and options.
 func NewType(ctx *pulumi.Context,
 	name string, args *TypeArgs, opts ...pulumi.ResourceOption) (*Type, error) {
-	if args == nil || args.Key == nil {
-		return nil, errors.New("missing required argument 'Key'")
-	}
-	if args == nil || args.ResourceTypeIds == nil {
-		return nil, errors.New("missing required argument 'ResourceTypeIds'")
-	}
 	if args == nil {
-		args = &TypeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Key == nil {
+		return nil, errors.New("invalid value for required argument 'Key'")
+	}
+	if args.ResourceTypeIds == nil {
+		return nil, errors.New("invalid value for required argument 'ResourceTypeIds'")
 	}
 	var resource Type
 	err := ctx.RegisterResource("commercetools:index/type:Type", name, args, &resource, opts...)
@@ -55,19 +63,31 @@ func GetType(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Type resources.
 type typeState struct {
-	Description     map[string]interface{} `pulumi:"description"`
-	Fields          []TypeField            `pulumi:"fields"`
-	Key             *string                `pulumi:"key"`
-	Name            map[string]interface{} `pulumi:"name"`
-	ResourceTypeIds []string               `pulumi:"resourceTypeIds"`
-	Version         *int                   `pulumi:"version"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description map[string]interface{} `pulumi:"description"`
+	// [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+	Fields []TypeField `pulumi:"fields"`
+	// Identifier for the type (max. 256 characters)
+	Key *string `pulumi:"key"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name map[string]interface{} `pulumi:"name"`
+	// Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+	// is valid
+	ResourceTypeIds []string `pulumi:"resourceTypeIds"`
+	Version         *int     `pulumi:"version"`
 }
 
 type TypeState struct {
-	Description     pulumi.MapInput
-	Fields          TypeFieldArrayInput
-	Key             pulumi.StringPtrInput
-	Name            pulumi.MapInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description pulumi.MapInput
+	// [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+	Fields TypeFieldArrayInput
+	// Identifier for the type (max. 256 characters)
+	Key pulumi.StringPtrInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapInput
+	// Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+	// is valid
 	ResourceTypeIds pulumi.StringArrayInput
 	Version         pulumi.IntPtrInput
 }
@@ -77,22 +97,221 @@ func (TypeState) ElementType() reflect.Type {
 }
 
 type typeArgs struct {
-	Description     map[string]interface{} `pulumi:"description"`
-	Fields          []TypeField            `pulumi:"fields"`
-	Key             string                 `pulumi:"key"`
-	Name            map[string]interface{} `pulumi:"name"`
-	ResourceTypeIds []string               `pulumi:"resourceTypeIds"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description map[string]interface{} `pulumi:"description"`
+	// [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+	Fields []TypeField `pulumi:"fields"`
+	// Identifier for the type (max. 256 characters)
+	Key string `pulumi:"key"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name map[string]interface{} `pulumi:"name"`
+	// Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+	// is valid
+	ResourceTypeIds []string `pulumi:"resourceTypeIds"`
 }
 
 // The set of arguments for constructing a Type resource.
 type TypeArgs struct {
-	Description     pulumi.MapInput
-	Fields          TypeFieldArrayInput
-	Key             pulumi.StringInput
-	Name            pulumi.MapInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description pulumi.MapInput
+	// [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+	Fields TypeFieldArrayInput
+	// Identifier for the type (max. 256 characters)
+	Key pulumi.StringInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapInput
+	// Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+	// is valid
 	ResourceTypeIds pulumi.StringArrayInput
 }
 
 func (TypeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*typeArgs)(nil)).Elem()
+}
+
+type TypeInput interface {
+	pulumi.Input
+
+	ToTypeOutput() TypeOutput
+	ToTypeOutputWithContext(ctx context.Context) TypeOutput
+}
+
+func (*Type) ElementType() reflect.Type {
+	return reflect.TypeOf((*Type)(nil))
+}
+
+func (i *Type) ToTypeOutput() TypeOutput {
+	return i.ToTypeOutputWithContext(context.Background())
+}
+
+func (i *Type) ToTypeOutputWithContext(ctx context.Context) TypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TypeOutput)
+}
+
+func (i *Type) ToTypePtrOutput() TypePtrOutput {
+	return i.ToTypePtrOutputWithContext(context.Background())
+}
+
+func (i *Type) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TypePtrOutput)
+}
+
+type TypePtrInput interface {
+	pulumi.Input
+
+	ToTypePtrOutput() TypePtrOutput
+	ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput
+}
+
+type typePtrType TypeArgs
+
+func (*typePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Type)(nil))
+}
+
+func (i *typePtrType) ToTypePtrOutput() TypePtrOutput {
+	return i.ToTypePtrOutputWithContext(context.Background())
+}
+
+func (i *typePtrType) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TypePtrOutput)
+}
+
+// TypeArrayInput is an input type that accepts TypeArray and TypeArrayOutput values.
+// You can construct a concrete instance of `TypeArrayInput` via:
+//
+//          TypeArray{ TypeArgs{...} }
+type TypeArrayInput interface {
+	pulumi.Input
+
+	ToTypeArrayOutput() TypeArrayOutput
+	ToTypeArrayOutputWithContext(context.Context) TypeArrayOutput
+}
+
+type TypeArray []TypeInput
+
+func (TypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*Type)(nil))
+}
+
+func (i TypeArray) ToTypeArrayOutput() TypeArrayOutput {
+	return i.ToTypeArrayOutputWithContext(context.Background())
+}
+
+func (i TypeArray) ToTypeArrayOutputWithContext(ctx context.Context) TypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TypeArrayOutput)
+}
+
+// TypeMapInput is an input type that accepts TypeMap and TypeMapOutput values.
+// You can construct a concrete instance of `TypeMapInput` via:
+//
+//          TypeMap{ "key": TypeArgs{...} }
+type TypeMapInput interface {
+	pulumi.Input
+
+	ToTypeMapOutput() TypeMapOutput
+	ToTypeMapOutputWithContext(context.Context) TypeMapOutput
+}
+
+type TypeMap map[string]TypeInput
+
+func (TypeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*Type)(nil))
+}
+
+func (i TypeMap) ToTypeMapOutput() TypeMapOutput {
+	return i.ToTypeMapOutputWithContext(context.Background())
+}
+
+func (i TypeMap) ToTypeMapOutputWithContext(ctx context.Context) TypeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TypeMapOutput)
+}
+
+type TypeOutput struct {
+	*pulumi.OutputState
+}
+
+func (TypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Type)(nil))
+}
+
+func (o TypeOutput) ToTypeOutput() TypeOutput {
+	return o
+}
+
+func (o TypeOutput) ToTypeOutputWithContext(ctx context.Context) TypeOutput {
+	return o
+}
+
+func (o TypeOutput) ToTypePtrOutput() TypePtrOutput {
+	return o.ToTypePtrOutputWithContext(context.Background())
+}
+
+func (o TypeOutput) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
+	return o.ApplyT(func(v Type) *Type {
+		return &v
+	}).(TypePtrOutput)
+}
+
+type TypePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Type)(nil))
+}
+
+func (o TypePtrOutput) ToTypePtrOutput() TypePtrOutput {
+	return o
+}
+
+func (o TypePtrOutput) ToTypePtrOutputWithContext(ctx context.Context) TypePtrOutput {
+	return o
+}
+
+type TypeArrayOutput struct{ *pulumi.OutputState }
+
+func (TypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Type)(nil))
+}
+
+func (o TypeArrayOutput) ToTypeArrayOutput() TypeArrayOutput {
+	return o
+}
+
+func (o TypeArrayOutput) ToTypeArrayOutputWithContext(ctx context.Context) TypeArrayOutput {
+	return o
+}
+
+func (o TypeArrayOutput) Index(i pulumi.IntInput) TypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Type {
+		return vs[0].([]Type)[vs[1].(int)]
+	}).(TypeOutput)
+}
+
+type TypeMapOutput struct{ *pulumi.OutputState }
+
+func (TypeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]Type)(nil))
+}
+
+func (o TypeMapOutput) ToTypeMapOutput() TypeMapOutput {
+	return o
+}
+
+func (o TypeMapOutput) ToTypeMapOutputWithContext(ctx context.Context) TypeMapOutput {
+	return o
+}
+
+func (o TypeMapOutput) MapIndex(k pulumi.StringInput) TypeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Type {
+		return vs[0].(map[string]Type)[vs[1].(string)]
+	}).(TypeOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(TypeOutput{})
+	pulumi.RegisterOutputType(TypePtrOutput{})
+	pulumi.RegisterOutputType(TypeArrayOutput{})
+	pulumi.RegisterOutputType(TypeMapOutput{})
 }

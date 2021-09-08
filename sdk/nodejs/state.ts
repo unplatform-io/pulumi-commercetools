@@ -32,12 +32,38 @@ export class State extends pulumi.CustomResource {
         return obj['__pulumiType'] === State.__pulumiType;
     }
 
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly description!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+     * initial state
+     */
     public readonly initial!: pulumi.Output<boolean | undefined>;
+    /**
+     * A unique identifier for the state
+     */
     public readonly key!: pulumi.Output<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly name!: pulumi.Output<{[key: string]: any}>;
+    /**
+     * Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+     */
     public readonly roles!: pulumi.Output<string[] | undefined>;
+    /**
+     * Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+     * example: Initial -> Shipped). When performing a transitionState update action and transitions is set, the currently
+     * referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+     * a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+     * performing a transitionState update action, any other state of the same type can be transitioned to
+     */
     public readonly transitions!: pulumi.Output<string[] | undefined>;
+    /**
+     * [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+     */
     public readonly type!: pulumi.Output<string>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
@@ -51,7 +77,8 @@ export class State extends pulumi.CustomResource {
     constructor(name: string, args: StateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: StateArgs | StateState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as StateState | undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["initial"] = state ? state.initial : undefined;
@@ -63,10 +90,10 @@ export class State extends pulumi.CustomResource {
             inputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as StateArgs | undefined;
-            if (!args || args.key === undefined) {
+            if ((!args || args.key === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
-            if (!args || args.type === undefined) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
             inputs["description"] = args ? args.description : undefined;
@@ -78,12 +105,8 @@ export class State extends pulumi.CustomResource {
             inputs["type"] = args ? args.type : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(State.__pulumiType, name, inputs, opts);
     }
@@ -93,25 +116,77 @@ export class State extends pulumi.CustomResource {
  * Input properties used for looking up and filtering State resources.
  */
 export interface StateState {
-    readonly description?: pulumi.Input<{[key: string]: any}>;
-    readonly initial?: pulumi.Input<boolean>;
-    readonly key?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly roles?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly transitions?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly type?: pulumi.Input<string>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    description?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+     * initial state
+     */
+    initial?: pulumi.Input<boolean>;
+    /**
+     * A unique identifier for the state
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+     */
+    roles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+     * example: Initial -> Shipped). When performing a transitionState update action and transitions is set, the currently
+     * referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+     * a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+     * performing a transitionState update action, any other state of the same type can be transitioned to
+     */
+    transitions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+     */
+    type?: pulumi.Input<string>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a State resource.
  */
 export interface StateArgs {
-    readonly description?: pulumi.Input<{[key: string]: any}>;
-    readonly initial?: pulumi.Input<boolean>;
-    readonly key: pulumi.Input<string>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly roles?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly transitions?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly type: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    description?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+     * initial state
+     */
+    initial?: pulumi.Input<boolean>;
+    /**
+     * A unique identifier for the state
+     */
+    key: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+     */
+    roles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+     * example: Initial -> Shipped). When performing a transitionState update action and transitions is set, the currently
+     * referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+     * a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+     * performing a transitionState update action, any other state of the same type can be transitioned to
+     */
+    transitions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+     */
+    type: pulumi.Input<string>;
 }

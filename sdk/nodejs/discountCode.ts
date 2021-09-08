@@ -32,16 +32,47 @@ export class DiscountCode extends pulumi.CustomResource {
         return obj['__pulumiType'] === DiscountCode.__pulumiType;
     }
 
+    /**
+     * The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+     */
     public readonly cartDiscounts!: pulumi.Output<string[]>;
+    /**
+     * Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+     * cart
+     */
     public readonly code!: pulumi.Output<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly description!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * The groups to which this discount code belong
+     */
     public readonly groups!: pulumi.Output<string[] | undefined>;
     public readonly isActive!: pulumi.Output<boolean | undefined>;
+    /**
+     * The discount code can only be applied maxApplications times
+     */
     public readonly maxApplications!: pulumi.Output<number | undefined>;
+    /**
+     * The discount code can only be applied maxApplicationsPerCustomer times per customer
+     */
     public readonly maxApplicationsPerCustomer!: pulumi.Output<number | undefined>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly name!: pulumi.Output<{[key: string]: any}>;
+    /**
+     * [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+     */
     public readonly predicate!: pulumi.Output<string | undefined>;
+    /**
+     * The time from which the discount can be applied on a cart. Before that time the code is invalid
+     */
     public readonly validFrom!: pulumi.Output<string | undefined>;
+    /**
+     * The time until the discount can be applied on a cart. After that time the code is invalid
+     */
     public readonly validUntil!: pulumi.Output<string | undefined>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
@@ -55,7 +86,8 @@ export class DiscountCode extends pulumi.CustomResource {
     constructor(name: string, args: DiscountCodeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DiscountCodeArgs | DiscountCodeState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as DiscountCodeState | undefined;
             inputs["cartDiscounts"] = state ? state.cartDiscounts : undefined;
             inputs["code"] = state ? state.code : undefined;
@@ -71,10 +103,10 @@ export class DiscountCode extends pulumi.CustomResource {
             inputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as DiscountCodeArgs | undefined;
-            if (!args || args.cartDiscounts === undefined) {
+            if ((!args || args.cartDiscounts === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'cartDiscounts'");
             }
-            if (!args || args.code === undefined) {
+            if ((!args || args.code === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'code'");
             }
             inputs["cartDiscounts"] = args ? args.cartDiscounts : undefined;
@@ -90,12 +122,8 @@ export class DiscountCode extends pulumi.CustomResource {
             inputs["validUntil"] = args ? args.validUntil : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(DiscountCode.__pulumiType, name, inputs, opts);
     }
@@ -105,33 +133,95 @@ export class DiscountCode extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DiscountCode resources.
  */
 export interface DiscountCodeState {
-    readonly cartDiscounts?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly code?: pulumi.Input<string>;
-    readonly description?: pulumi.Input<{[key: string]: any}>;
-    readonly groups?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly isActive?: pulumi.Input<boolean>;
-    readonly maxApplications?: pulumi.Input<number>;
-    readonly maxApplicationsPerCustomer?: pulumi.Input<number>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly predicate?: pulumi.Input<string>;
-    readonly validFrom?: pulumi.Input<string>;
-    readonly validUntil?: pulumi.Input<string>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+     */
+    cartDiscounts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+     * cart
+     */
+    code?: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    description?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The groups to which this discount code belong
+     */
+    groups?: pulumi.Input<pulumi.Input<string>[]>;
+    isActive?: pulumi.Input<boolean>;
+    /**
+     * The discount code can only be applied maxApplications times
+     */
+    maxApplications?: pulumi.Input<number>;
+    /**
+     * The discount code can only be applied maxApplicationsPerCustomer times per customer
+     */
+    maxApplicationsPerCustomer?: pulumi.Input<number>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+     */
+    predicate?: pulumi.Input<string>;
+    /**
+     * The time from which the discount can be applied on a cart. Before that time the code is invalid
+     */
+    validFrom?: pulumi.Input<string>;
+    /**
+     * The time until the discount can be applied on a cart. After that time the code is invalid
+     */
+    validUntil?: pulumi.Input<string>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a DiscountCode resource.
  */
 export interface DiscountCodeArgs {
-    readonly cartDiscounts: pulumi.Input<pulumi.Input<string>[]>;
-    readonly code: pulumi.Input<string>;
-    readonly description?: pulumi.Input<{[key: string]: any}>;
-    readonly groups?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly isActive?: pulumi.Input<boolean>;
-    readonly maxApplications?: pulumi.Input<number>;
-    readonly maxApplicationsPerCustomer?: pulumi.Input<number>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly predicate?: pulumi.Input<string>;
-    readonly validFrom?: pulumi.Input<string>;
-    readonly validUntil?: pulumi.Input<string>;
+    /**
+     * The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+     */
+    cartDiscounts: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+     * cart
+     */
+    code: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    description?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The groups to which this discount code belong
+     */
+    groups?: pulumi.Input<pulumi.Input<string>[]>;
+    isActive?: pulumi.Input<boolean>;
+    /**
+     * The discount code can only be applied maxApplications times
+     */
+    maxApplications?: pulumi.Input<number>;
+    /**
+     * The discount code can only be applied maxApplicationsPerCustomer times per customer
+     */
+    maxApplicationsPerCustomer?: pulumi.Input<number>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+     */
+    predicate?: pulumi.Input<string>;
+    /**
+     * The time from which the discount can be applied on a cart. Before that time the code is invalid
+     */
+    validFrom?: pulumi.Input<string>;
+    /**
+     * The time until the discount can be applied on a cart. After that time the code is invalid
+     */
+    validUntil?: pulumi.Input<string>;
 }

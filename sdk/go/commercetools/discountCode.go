@@ -4,40 +4,53 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type DiscountCode struct {
 	pulumi.CustomResourceState
 
-	CartDiscounts              pulumi.StringArrayOutput `pulumi:"cartDiscounts"`
-	Code                       pulumi.StringOutput      `pulumi:"code"`
-	Description                pulumi.MapOutput         `pulumi:"description"`
-	Groups                     pulumi.StringArrayOutput `pulumi:"groups"`
-	IsActive                   pulumi.BoolPtrOutput     `pulumi:"isActive"`
-	MaxApplications            pulumi.IntPtrOutput      `pulumi:"maxApplications"`
-	MaxApplicationsPerCustomer pulumi.IntPtrOutput      `pulumi:"maxApplicationsPerCustomer"`
-	Name                       pulumi.MapOutput         `pulumi:"name"`
-	Predicate                  pulumi.StringPtrOutput   `pulumi:"predicate"`
-	ValidFrom                  pulumi.StringPtrOutput   `pulumi:"validFrom"`
-	ValidUntil                 pulumi.StringPtrOutput   `pulumi:"validUntil"`
-	Version                    pulumi.IntOutput         `pulumi:"version"`
+	// The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+	CartDiscounts pulumi.StringArrayOutput `pulumi:"cartDiscounts"`
+	// Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+	// cart
+	Code pulumi.StringOutput `pulumi:"code"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description pulumi.MapOutput `pulumi:"description"`
+	// The groups to which this discount code belong
+	Groups   pulumi.StringArrayOutput `pulumi:"groups"`
+	IsActive pulumi.BoolPtrOutput     `pulumi:"isActive"`
+	// The discount code can only be applied maxApplications times
+	MaxApplications pulumi.IntPtrOutput `pulumi:"maxApplications"`
+	// The discount code can only be applied maxApplicationsPerCustomer times per customer
+	MaxApplicationsPerCustomer pulumi.IntPtrOutput `pulumi:"maxApplicationsPerCustomer"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapOutput `pulumi:"name"`
+	// [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+	Predicate pulumi.StringPtrOutput `pulumi:"predicate"`
+	// The time from which the discount can be applied on a cart. Before that time the code is invalid
+	ValidFrom pulumi.StringPtrOutput `pulumi:"validFrom"`
+	// The time until the discount can be applied on a cart. After that time the code is invalid
+	ValidUntil pulumi.StringPtrOutput `pulumi:"validUntil"`
+	Version    pulumi.IntOutput       `pulumi:"version"`
 }
 
 // NewDiscountCode registers a new resource with the given unique name, arguments, and options.
 func NewDiscountCode(ctx *pulumi.Context,
 	name string, args *DiscountCodeArgs, opts ...pulumi.ResourceOption) (*DiscountCode, error) {
-	if args == nil || args.CartDiscounts == nil {
-		return nil, errors.New("missing required argument 'CartDiscounts'")
-	}
-	if args == nil || args.Code == nil {
-		return nil, errors.New("missing required argument 'Code'")
-	}
 	if args == nil {
-		args = &DiscountCodeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.CartDiscounts == nil {
+		return nil, errors.New("invalid value for required argument 'CartDiscounts'")
+	}
+	if args.Code == nil {
+		return nil, errors.New("invalid value for required argument 'Code'")
 	}
 	var resource DiscountCode
 	err := ctx.RegisterResource("commercetools:index/discountCode:DiscountCode", name, args, &resource, opts...)
@@ -61,33 +74,55 @@ func GetDiscountCode(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DiscountCode resources.
 type discountCodeState struct {
-	CartDiscounts              []string               `pulumi:"cartDiscounts"`
-	Code                       *string                `pulumi:"code"`
-	Description                map[string]interface{} `pulumi:"description"`
-	Groups                     []string               `pulumi:"groups"`
-	IsActive                   *bool                  `pulumi:"isActive"`
-	MaxApplications            *int                   `pulumi:"maxApplications"`
-	MaxApplicationsPerCustomer *int                   `pulumi:"maxApplicationsPerCustomer"`
-	Name                       map[string]interface{} `pulumi:"name"`
-	Predicate                  *string                `pulumi:"predicate"`
-	ValidFrom                  *string                `pulumi:"validFrom"`
-	ValidUntil                 *string                `pulumi:"validUntil"`
-	Version                    *int                   `pulumi:"version"`
+	// The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+	CartDiscounts []string `pulumi:"cartDiscounts"`
+	// Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+	// cart
+	Code *string `pulumi:"code"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description map[string]interface{} `pulumi:"description"`
+	// The groups to which this discount code belong
+	Groups   []string `pulumi:"groups"`
+	IsActive *bool    `pulumi:"isActive"`
+	// The discount code can only be applied maxApplications times
+	MaxApplications *int `pulumi:"maxApplications"`
+	// The discount code can only be applied maxApplicationsPerCustomer times per customer
+	MaxApplicationsPerCustomer *int `pulumi:"maxApplicationsPerCustomer"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name map[string]interface{} `pulumi:"name"`
+	// [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+	Predicate *string `pulumi:"predicate"`
+	// The time from which the discount can be applied on a cart. Before that time the code is invalid
+	ValidFrom *string `pulumi:"validFrom"`
+	// The time until the discount can be applied on a cart. After that time the code is invalid
+	ValidUntil *string `pulumi:"validUntil"`
+	Version    *int    `pulumi:"version"`
 }
 
 type DiscountCodeState struct {
-	CartDiscounts              pulumi.StringArrayInput
-	Code                       pulumi.StringPtrInput
-	Description                pulumi.MapInput
-	Groups                     pulumi.StringArrayInput
-	IsActive                   pulumi.BoolPtrInput
-	MaxApplications            pulumi.IntPtrInput
+	// The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+	CartDiscounts pulumi.StringArrayInput
+	// Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+	// cart
+	Code pulumi.StringPtrInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description pulumi.MapInput
+	// The groups to which this discount code belong
+	Groups   pulumi.StringArrayInput
+	IsActive pulumi.BoolPtrInput
+	// The discount code can only be applied maxApplications times
+	MaxApplications pulumi.IntPtrInput
+	// The discount code can only be applied maxApplicationsPerCustomer times per customer
 	MaxApplicationsPerCustomer pulumi.IntPtrInput
-	Name                       pulumi.MapInput
-	Predicate                  pulumi.StringPtrInput
-	ValidFrom                  pulumi.StringPtrInput
-	ValidUntil                 pulumi.StringPtrInput
-	Version                    pulumi.IntPtrInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapInput
+	// [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+	Predicate pulumi.StringPtrInput
+	// The time from which the discount can be applied on a cart. Before that time the code is invalid
+	ValidFrom pulumi.StringPtrInput
+	// The time until the discount can be applied on a cart. After that time the code is invalid
+	ValidUntil pulumi.StringPtrInput
+	Version    pulumi.IntPtrInput
 }
 
 func (DiscountCodeState) ElementType() reflect.Type {
@@ -95,34 +130,243 @@ func (DiscountCodeState) ElementType() reflect.Type {
 }
 
 type discountCodeArgs struct {
-	CartDiscounts              []string               `pulumi:"cartDiscounts"`
-	Code                       string                 `pulumi:"code"`
-	Description                map[string]interface{} `pulumi:"description"`
-	Groups                     []string               `pulumi:"groups"`
-	IsActive                   *bool                  `pulumi:"isActive"`
-	MaxApplications            *int                   `pulumi:"maxApplications"`
-	MaxApplicationsPerCustomer *int                   `pulumi:"maxApplicationsPerCustomer"`
-	Name                       map[string]interface{} `pulumi:"name"`
-	Predicate                  *string                `pulumi:"predicate"`
-	ValidFrom                  *string                `pulumi:"validFrom"`
-	ValidUntil                 *string                `pulumi:"validUntil"`
+	// The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+	CartDiscounts []string `pulumi:"cartDiscounts"`
+	// Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+	// cart
+	Code string `pulumi:"code"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description map[string]interface{} `pulumi:"description"`
+	// The groups to which this discount code belong
+	Groups   []string `pulumi:"groups"`
+	IsActive *bool    `pulumi:"isActive"`
+	// The discount code can only be applied maxApplications times
+	MaxApplications *int `pulumi:"maxApplications"`
+	// The discount code can only be applied maxApplicationsPerCustomer times per customer
+	MaxApplicationsPerCustomer *int `pulumi:"maxApplicationsPerCustomer"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name map[string]interface{} `pulumi:"name"`
+	// [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+	Predicate *string `pulumi:"predicate"`
+	// The time from which the discount can be applied on a cart. Before that time the code is invalid
+	ValidFrom *string `pulumi:"validFrom"`
+	// The time until the discount can be applied on a cart. After that time the code is invalid
+	ValidUntil *string `pulumi:"validUntil"`
 }
 
 // The set of arguments for constructing a DiscountCode resource.
 type DiscountCodeArgs struct {
-	CartDiscounts              pulumi.StringArrayInput
-	Code                       pulumi.StringInput
-	Description                pulumi.MapInput
-	Groups                     pulumi.StringArrayInput
-	IsActive                   pulumi.BoolPtrInput
-	MaxApplications            pulumi.IntPtrInput
+	// The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+	CartDiscounts pulumi.StringArrayInput
+	// Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+	// cart
+	Code pulumi.StringInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description pulumi.MapInput
+	// The groups to which this discount code belong
+	Groups   pulumi.StringArrayInput
+	IsActive pulumi.BoolPtrInput
+	// The discount code can only be applied maxApplications times
+	MaxApplications pulumi.IntPtrInput
+	// The discount code can only be applied maxApplicationsPerCustomer times per customer
 	MaxApplicationsPerCustomer pulumi.IntPtrInput
-	Name                       pulumi.MapInput
-	Predicate                  pulumi.StringPtrInput
-	ValidFrom                  pulumi.StringPtrInput
-	ValidUntil                 pulumi.StringPtrInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapInput
+	// [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+	Predicate pulumi.StringPtrInput
+	// The time from which the discount can be applied on a cart. Before that time the code is invalid
+	ValidFrom pulumi.StringPtrInput
+	// The time until the discount can be applied on a cart. After that time the code is invalid
+	ValidUntil pulumi.StringPtrInput
 }
 
 func (DiscountCodeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*discountCodeArgs)(nil)).Elem()
+}
+
+type DiscountCodeInput interface {
+	pulumi.Input
+
+	ToDiscountCodeOutput() DiscountCodeOutput
+	ToDiscountCodeOutputWithContext(ctx context.Context) DiscountCodeOutput
+}
+
+func (*DiscountCode) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiscountCode)(nil))
+}
+
+func (i *DiscountCode) ToDiscountCodeOutput() DiscountCodeOutput {
+	return i.ToDiscountCodeOutputWithContext(context.Background())
+}
+
+func (i *DiscountCode) ToDiscountCodeOutputWithContext(ctx context.Context) DiscountCodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiscountCodeOutput)
+}
+
+func (i *DiscountCode) ToDiscountCodePtrOutput() DiscountCodePtrOutput {
+	return i.ToDiscountCodePtrOutputWithContext(context.Background())
+}
+
+func (i *DiscountCode) ToDiscountCodePtrOutputWithContext(ctx context.Context) DiscountCodePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiscountCodePtrOutput)
+}
+
+type DiscountCodePtrInput interface {
+	pulumi.Input
+
+	ToDiscountCodePtrOutput() DiscountCodePtrOutput
+	ToDiscountCodePtrOutputWithContext(ctx context.Context) DiscountCodePtrOutput
+}
+
+type discountCodePtrType DiscountCodeArgs
+
+func (*discountCodePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiscountCode)(nil))
+}
+
+func (i *discountCodePtrType) ToDiscountCodePtrOutput() DiscountCodePtrOutput {
+	return i.ToDiscountCodePtrOutputWithContext(context.Background())
+}
+
+func (i *discountCodePtrType) ToDiscountCodePtrOutputWithContext(ctx context.Context) DiscountCodePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiscountCodePtrOutput)
+}
+
+// DiscountCodeArrayInput is an input type that accepts DiscountCodeArray and DiscountCodeArrayOutput values.
+// You can construct a concrete instance of `DiscountCodeArrayInput` via:
+//
+//          DiscountCodeArray{ DiscountCodeArgs{...} }
+type DiscountCodeArrayInput interface {
+	pulumi.Input
+
+	ToDiscountCodeArrayOutput() DiscountCodeArrayOutput
+	ToDiscountCodeArrayOutputWithContext(context.Context) DiscountCodeArrayOutput
+}
+
+type DiscountCodeArray []DiscountCodeInput
+
+func (DiscountCodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*DiscountCode)(nil))
+}
+
+func (i DiscountCodeArray) ToDiscountCodeArrayOutput() DiscountCodeArrayOutput {
+	return i.ToDiscountCodeArrayOutputWithContext(context.Background())
+}
+
+func (i DiscountCodeArray) ToDiscountCodeArrayOutputWithContext(ctx context.Context) DiscountCodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiscountCodeArrayOutput)
+}
+
+// DiscountCodeMapInput is an input type that accepts DiscountCodeMap and DiscountCodeMapOutput values.
+// You can construct a concrete instance of `DiscountCodeMapInput` via:
+//
+//          DiscountCodeMap{ "key": DiscountCodeArgs{...} }
+type DiscountCodeMapInput interface {
+	pulumi.Input
+
+	ToDiscountCodeMapOutput() DiscountCodeMapOutput
+	ToDiscountCodeMapOutputWithContext(context.Context) DiscountCodeMapOutput
+}
+
+type DiscountCodeMap map[string]DiscountCodeInput
+
+func (DiscountCodeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*DiscountCode)(nil))
+}
+
+func (i DiscountCodeMap) ToDiscountCodeMapOutput() DiscountCodeMapOutput {
+	return i.ToDiscountCodeMapOutputWithContext(context.Background())
+}
+
+func (i DiscountCodeMap) ToDiscountCodeMapOutputWithContext(ctx context.Context) DiscountCodeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiscountCodeMapOutput)
+}
+
+type DiscountCodeOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiscountCodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiscountCode)(nil))
+}
+
+func (o DiscountCodeOutput) ToDiscountCodeOutput() DiscountCodeOutput {
+	return o
+}
+
+func (o DiscountCodeOutput) ToDiscountCodeOutputWithContext(ctx context.Context) DiscountCodeOutput {
+	return o
+}
+
+func (o DiscountCodeOutput) ToDiscountCodePtrOutput() DiscountCodePtrOutput {
+	return o.ToDiscountCodePtrOutputWithContext(context.Background())
+}
+
+func (o DiscountCodeOutput) ToDiscountCodePtrOutputWithContext(ctx context.Context) DiscountCodePtrOutput {
+	return o.ApplyT(func(v DiscountCode) *DiscountCode {
+		return &v
+	}).(DiscountCodePtrOutput)
+}
+
+type DiscountCodePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DiscountCodePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiscountCode)(nil))
+}
+
+func (o DiscountCodePtrOutput) ToDiscountCodePtrOutput() DiscountCodePtrOutput {
+	return o
+}
+
+func (o DiscountCodePtrOutput) ToDiscountCodePtrOutputWithContext(ctx context.Context) DiscountCodePtrOutput {
+	return o
+}
+
+type DiscountCodeArrayOutput struct{ *pulumi.OutputState }
+
+func (DiscountCodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DiscountCode)(nil))
+}
+
+func (o DiscountCodeArrayOutput) ToDiscountCodeArrayOutput() DiscountCodeArrayOutput {
+	return o
+}
+
+func (o DiscountCodeArrayOutput) ToDiscountCodeArrayOutputWithContext(ctx context.Context) DiscountCodeArrayOutput {
+	return o
+}
+
+func (o DiscountCodeArrayOutput) Index(i pulumi.IntInput) DiscountCodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DiscountCode {
+		return vs[0].([]DiscountCode)[vs[1].(int)]
+	}).(DiscountCodeOutput)
+}
+
+type DiscountCodeMapOutput struct{ *pulumi.OutputState }
+
+func (DiscountCodeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]DiscountCode)(nil))
+}
+
+func (o DiscountCodeMapOutput) ToDiscountCodeMapOutput() DiscountCodeMapOutput {
+	return o
+}
+
+func (o DiscountCodeMapOutput) ToDiscountCodeMapOutputWithContext(ctx context.Context) DiscountCodeMapOutput {
+	return o
+}
+
+func (o DiscountCodeMapOutput) MapIndex(k pulumi.StringInput) DiscountCodeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DiscountCode {
+		return vs[0].(map[string]DiscountCode)[vs[1].(string)]
+	}).(DiscountCodeOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(DiscountCodeOutput{})
+	pulumi.RegisterOutputType(DiscountCodePtrOutput{})
+	pulumi.RegisterOutputType(DiscountCodeArrayOutput{})
+	pulumi.RegisterOutputType(DiscountCodeMapOutput{})
 }

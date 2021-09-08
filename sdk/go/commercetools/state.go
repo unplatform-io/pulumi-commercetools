@@ -4,36 +4,50 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type State struct {
 	pulumi.CustomResourceState
 
-	Description pulumi.MapOutput         `pulumi:"description"`
-	Initial     pulumi.BoolPtrOutput     `pulumi:"initial"`
-	Key         pulumi.StringOutput      `pulumi:"key"`
-	Name        pulumi.MapOutput         `pulumi:"name"`
-	Roles       pulumi.StringArrayOutput `pulumi:"roles"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Description pulumi.MapOutput `pulumi:"description"`
+	// A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+	// initial state
+	Initial pulumi.BoolPtrOutput `pulumi:"initial"`
+	// A unique identifier for the state
+	Key pulumi.StringOutput `pulumi:"key"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapOutput `pulumi:"name"`
+	// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+	Roles pulumi.StringArrayOutput `pulumi:"roles"`
+	// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+	// example: Initial -> Shipped). When performing a transitionState update action and transitions is set, the currently
+	// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+	// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+	// performing a transitionState update action, any other state of the same type can be transitioned to
 	Transitions pulumi.StringArrayOutput `pulumi:"transitions"`
-	Type        pulumi.StringOutput      `pulumi:"type"`
-	Version     pulumi.IntOutput         `pulumi:"version"`
+	// [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+	Type    pulumi.StringOutput `pulumi:"type"`
+	Version pulumi.IntOutput    `pulumi:"version"`
 }
 
 // NewState registers a new resource with the given unique name, arguments, and options.
 func NewState(ctx *pulumi.Context,
 	name string, args *StateArgs, opts ...pulumi.ResourceOption) (*State, error) {
-	if args == nil || args.Key == nil {
-		return nil, errors.New("missing required argument 'Key'")
-	}
-	if args == nil || args.Type == nil {
-		return nil, errors.New("missing required argument 'Type'")
-	}
 	if args == nil {
-		args = &StateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Key == nil {
+		return nil, errors.New("invalid value for required argument 'Key'")
+	}
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	var resource State
 	err := ctx.RegisterResource("commercetools:index/state:State", name, args, &resource, opts...)
@@ -57,25 +71,49 @@ func GetState(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering State resources.
 type stateState struct {
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Description map[string]interface{} `pulumi:"description"`
-	Initial     *bool                  `pulumi:"initial"`
-	Key         *string                `pulumi:"key"`
-	Name        map[string]interface{} `pulumi:"name"`
-	Roles       []string               `pulumi:"roles"`
-	Transitions []string               `pulumi:"transitions"`
-	Type        *string                `pulumi:"type"`
-	Version     *int                   `pulumi:"version"`
+	// A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+	// initial state
+	Initial *bool `pulumi:"initial"`
+	// A unique identifier for the state
+	Key *string `pulumi:"key"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name map[string]interface{} `pulumi:"name"`
+	// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+	Roles []string `pulumi:"roles"`
+	// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+	// example: Initial -> Shipped). When performing a transitionState update action and transitions is set, the currently
+	// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+	// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+	// performing a transitionState update action, any other state of the same type can be transitioned to
+	Transitions []string `pulumi:"transitions"`
+	// [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+	Type    *string `pulumi:"type"`
+	Version *int    `pulumi:"version"`
 }
 
 type StateState struct {
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Description pulumi.MapInput
-	Initial     pulumi.BoolPtrInput
-	Key         pulumi.StringPtrInput
-	Name        pulumi.MapInput
-	Roles       pulumi.StringArrayInput
+	// A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+	// initial state
+	Initial pulumi.BoolPtrInput
+	// A unique identifier for the state
+	Key pulumi.StringPtrInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapInput
+	// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+	Roles pulumi.StringArrayInput
+	// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+	// example: Initial -> Shipped). When performing a transitionState update action and transitions is set, the currently
+	// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+	// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+	// performing a transitionState update action, any other state of the same type can be transitioned to
 	Transitions pulumi.StringArrayInput
-	Type        pulumi.StringPtrInput
-	Version     pulumi.IntPtrInput
+	// [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+	Type    pulumi.StringPtrInput
+	Version pulumi.IntPtrInput
 }
 
 func (StateState) ElementType() reflect.Type {
@@ -83,26 +121,237 @@ func (StateState) ElementType() reflect.Type {
 }
 
 type stateArgs struct {
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Description map[string]interface{} `pulumi:"description"`
-	Initial     *bool                  `pulumi:"initial"`
-	Key         string                 `pulumi:"key"`
-	Name        map[string]interface{} `pulumi:"name"`
-	Roles       []string               `pulumi:"roles"`
-	Transitions []string               `pulumi:"transitions"`
-	Type        string                 `pulumi:"type"`
+	// A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+	// initial state
+	Initial *bool `pulumi:"initial"`
+	// A unique identifier for the state
+	Key string `pulumi:"key"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name map[string]interface{} `pulumi:"name"`
+	// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+	Roles []string `pulumi:"roles"`
+	// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+	// example: Initial -> Shipped). When performing a transitionState update action and transitions is set, the currently
+	// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+	// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+	// performing a transitionState update action, any other state of the same type can be transitioned to
+	Transitions []string `pulumi:"transitions"`
+	// [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+	Type string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a State resource.
 type StateArgs struct {
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Description pulumi.MapInput
-	Initial     pulumi.BoolPtrInput
-	Key         pulumi.StringInput
-	Name        pulumi.MapInput
-	Roles       pulumi.StringArrayInput
+	// A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+	// initial state
+	Initial pulumi.BoolPtrInput
+	// A unique identifier for the state
+	Key pulumi.StringInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapInput
+	// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+	Roles pulumi.StringArrayInput
+	// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+	// example: Initial -> Shipped). When performing a transitionState update action and transitions is set, the currently
+	// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+	// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+	// performing a transitionState update action, any other state of the same type can be transitioned to
 	Transitions pulumi.StringArrayInput
-	Type        pulumi.StringInput
+	// [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+	Type pulumi.StringInput
 }
 
 func (StateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*stateArgs)(nil)).Elem()
+}
+
+type StateInput interface {
+	pulumi.Input
+
+	ToStateOutput() StateOutput
+	ToStateOutputWithContext(ctx context.Context) StateOutput
+}
+
+func (*State) ElementType() reflect.Type {
+	return reflect.TypeOf((*State)(nil))
+}
+
+func (i *State) ToStateOutput() StateOutput {
+	return i.ToStateOutputWithContext(context.Background())
+}
+
+func (i *State) ToStateOutputWithContext(ctx context.Context) StateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StateOutput)
+}
+
+func (i *State) ToStatePtrOutput() StatePtrOutput {
+	return i.ToStatePtrOutputWithContext(context.Background())
+}
+
+func (i *State) ToStatePtrOutputWithContext(ctx context.Context) StatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StatePtrOutput)
+}
+
+type StatePtrInput interface {
+	pulumi.Input
+
+	ToStatePtrOutput() StatePtrOutput
+	ToStatePtrOutputWithContext(ctx context.Context) StatePtrOutput
+}
+
+type statePtrType StateArgs
+
+func (*statePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**State)(nil))
+}
+
+func (i *statePtrType) ToStatePtrOutput() StatePtrOutput {
+	return i.ToStatePtrOutputWithContext(context.Background())
+}
+
+func (i *statePtrType) ToStatePtrOutputWithContext(ctx context.Context) StatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StatePtrOutput)
+}
+
+// StateArrayInput is an input type that accepts StateArray and StateArrayOutput values.
+// You can construct a concrete instance of `StateArrayInput` via:
+//
+//          StateArray{ StateArgs{...} }
+type StateArrayInput interface {
+	pulumi.Input
+
+	ToStateArrayOutput() StateArrayOutput
+	ToStateArrayOutputWithContext(context.Context) StateArrayOutput
+}
+
+type StateArray []StateInput
+
+func (StateArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*State)(nil))
+}
+
+func (i StateArray) ToStateArrayOutput() StateArrayOutput {
+	return i.ToStateArrayOutputWithContext(context.Background())
+}
+
+func (i StateArray) ToStateArrayOutputWithContext(ctx context.Context) StateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StateArrayOutput)
+}
+
+// StateMapInput is an input type that accepts StateMap and StateMapOutput values.
+// You can construct a concrete instance of `StateMapInput` via:
+//
+//          StateMap{ "key": StateArgs{...} }
+type StateMapInput interface {
+	pulumi.Input
+
+	ToStateMapOutput() StateMapOutput
+	ToStateMapOutputWithContext(context.Context) StateMapOutput
+}
+
+type StateMap map[string]StateInput
+
+func (StateMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*State)(nil))
+}
+
+func (i StateMap) ToStateMapOutput() StateMapOutput {
+	return i.ToStateMapOutputWithContext(context.Background())
+}
+
+func (i StateMap) ToStateMapOutputWithContext(ctx context.Context) StateMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StateMapOutput)
+}
+
+type StateOutput struct {
+	*pulumi.OutputState
+}
+
+func (StateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*State)(nil))
+}
+
+func (o StateOutput) ToStateOutput() StateOutput {
+	return o
+}
+
+func (o StateOutput) ToStateOutputWithContext(ctx context.Context) StateOutput {
+	return o
+}
+
+func (o StateOutput) ToStatePtrOutput() StatePtrOutput {
+	return o.ToStatePtrOutputWithContext(context.Background())
+}
+
+func (o StateOutput) ToStatePtrOutputWithContext(ctx context.Context) StatePtrOutput {
+	return o.ApplyT(func(v State) *State {
+		return &v
+	}).(StatePtrOutput)
+}
+
+type StatePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (StatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**State)(nil))
+}
+
+func (o StatePtrOutput) ToStatePtrOutput() StatePtrOutput {
+	return o
+}
+
+func (o StatePtrOutput) ToStatePtrOutputWithContext(ctx context.Context) StatePtrOutput {
+	return o
+}
+
+type StateArrayOutput struct{ *pulumi.OutputState }
+
+func (StateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]State)(nil))
+}
+
+func (o StateArrayOutput) ToStateArrayOutput() StateArrayOutput {
+	return o
+}
+
+func (o StateArrayOutput) ToStateArrayOutputWithContext(ctx context.Context) StateArrayOutput {
+	return o
+}
+
+func (o StateArrayOutput) Index(i pulumi.IntInput) StateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) State {
+		return vs[0].([]State)[vs[1].(int)]
+	}).(StateOutput)
+}
+
+type StateMapOutput struct{ *pulumi.OutputState }
+
+func (StateMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]State)(nil))
+}
+
+func (o StateMapOutput) ToStateMapOutput() StateMapOutput {
+	return o
+}
+
+func (o StateMapOutput) ToStateMapOutputWithContext(ctx context.Context) StateMapOutput {
+	return o
+}
+
+func (o StateMapOutput) MapIndex(k pulumi.StringInput) StateOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) State {
+		return vs[0].(map[string]State)[vs[1].(string)]
+	}).(StateOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(StateOutput{})
+	pulumi.RegisterOutputType(StatePtrOutput{})
+	pulumi.RegisterOutputType(StateArrayOutput{})
+	pulumi.RegisterOutputType(StateMapOutput{})
 }

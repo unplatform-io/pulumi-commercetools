@@ -4,19 +4,22 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type ShippingZone struct {
 	pulumi.CustomResourceState
 
-	Description pulumi.StringPtrOutput          `pulumi:"description"`
-	Key         pulumi.StringPtrOutput          `pulumi:"key"`
-	Locations   ShippingZoneLocationArrayOutput `pulumi:"locations"`
-	Name        pulumi.StringOutput             `pulumi:"name"`
-	Version     pulumi.IntOutput                `pulumi:"version"`
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// User-specific unique identifier for a zone. Must be unique across a project
+	Key pulumi.StringPtrOutput `pulumi:"key"`
+	// [Location](https://docs.commercetools.com/api/projects/zones#location)
+	Locations ShippingZoneLocationArrayOutput `pulumi:"locations"`
+	Name      pulumi.StringOutput             `pulumi:"name"`
+	Version   pulumi.IntOutput                `pulumi:"version"`
 }
 
 // NewShippingZone registers a new resource with the given unique name, arguments, and options.
@@ -25,6 +28,7 @@ func NewShippingZone(ctx *pulumi.Context,
 	if args == nil {
 		args = &ShippingZoneArgs{}
 	}
+
 	var resource ShippingZone
 	err := ctx.RegisterResource("commercetools:index/shippingZone:ShippingZone", name, args, &resource, opts...)
 	if err != nil {
@@ -47,19 +51,23 @@ func GetShippingZone(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ShippingZone resources.
 type shippingZoneState struct {
-	Description *string                `pulumi:"description"`
-	Key         *string                `pulumi:"key"`
-	Locations   []ShippingZoneLocation `pulumi:"locations"`
-	Name        *string                `pulumi:"name"`
-	Version     *int                   `pulumi:"version"`
+	Description *string `pulumi:"description"`
+	// User-specific unique identifier for a zone. Must be unique across a project
+	Key *string `pulumi:"key"`
+	// [Location](https://docs.commercetools.com/api/projects/zones#location)
+	Locations []ShippingZoneLocation `pulumi:"locations"`
+	Name      *string                `pulumi:"name"`
+	Version   *int                   `pulumi:"version"`
 }
 
 type ShippingZoneState struct {
 	Description pulumi.StringPtrInput
-	Key         pulumi.StringPtrInput
-	Locations   ShippingZoneLocationArrayInput
-	Name        pulumi.StringPtrInput
-	Version     pulumi.IntPtrInput
+	// User-specific unique identifier for a zone. Must be unique across a project
+	Key pulumi.StringPtrInput
+	// [Location](https://docs.commercetools.com/api/projects/zones#location)
+	Locations ShippingZoneLocationArrayInput
+	Name      pulumi.StringPtrInput
+	Version   pulumi.IntPtrInput
 }
 
 func (ShippingZoneState) ElementType() reflect.Type {
@@ -67,20 +75,211 @@ func (ShippingZoneState) ElementType() reflect.Type {
 }
 
 type shippingZoneArgs struct {
-	Description *string                `pulumi:"description"`
-	Key         *string                `pulumi:"key"`
-	Locations   []ShippingZoneLocation `pulumi:"locations"`
-	Name        *string                `pulumi:"name"`
+	Description *string `pulumi:"description"`
+	// User-specific unique identifier for a zone. Must be unique across a project
+	Key *string `pulumi:"key"`
+	// [Location](https://docs.commercetools.com/api/projects/zones#location)
+	Locations []ShippingZoneLocation `pulumi:"locations"`
+	Name      *string                `pulumi:"name"`
 }
 
 // The set of arguments for constructing a ShippingZone resource.
 type ShippingZoneArgs struct {
 	Description pulumi.StringPtrInput
-	Key         pulumi.StringPtrInput
-	Locations   ShippingZoneLocationArrayInput
-	Name        pulumi.StringPtrInput
+	// User-specific unique identifier for a zone. Must be unique across a project
+	Key pulumi.StringPtrInput
+	// [Location](https://docs.commercetools.com/api/projects/zones#location)
+	Locations ShippingZoneLocationArrayInput
+	Name      pulumi.StringPtrInput
 }
 
 func (ShippingZoneArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*shippingZoneArgs)(nil)).Elem()
+}
+
+type ShippingZoneInput interface {
+	pulumi.Input
+
+	ToShippingZoneOutput() ShippingZoneOutput
+	ToShippingZoneOutputWithContext(ctx context.Context) ShippingZoneOutput
+}
+
+func (*ShippingZone) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippingZone)(nil))
+}
+
+func (i *ShippingZone) ToShippingZoneOutput() ShippingZoneOutput {
+	return i.ToShippingZoneOutputWithContext(context.Background())
+}
+
+func (i *ShippingZone) ToShippingZoneOutputWithContext(ctx context.Context) ShippingZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneOutput)
+}
+
+func (i *ShippingZone) ToShippingZonePtrOutput() ShippingZonePtrOutput {
+	return i.ToShippingZonePtrOutputWithContext(context.Background())
+}
+
+func (i *ShippingZone) ToShippingZonePtrOutputWithContext(ctx context.Context) ShippingZonePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZonePtrOutput)
+}
+
+type ShippingZonePtrInput interface {
+	pulumi.Input
+
+	ToShippingZonePtrOutput() ShippingZonePtrOutput
+	ToShippingZonePtrOutputWithContext(ctx context.Context) ShippingZonePtrOutput
+}
+
+type shippingZonePtrType ShippingZoneArgs
+
+func (*shippingZonePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShippingZone)(nil))
+}
+
+func (i *shippingZonePtrType) ToShippingZonePtrOutput() ShippingZonePtrOutput {
+	return i.ToShippingZonePtrOutputWithContext(context.Background())
+}
+
+func (i *shippingZonePtrType) ToShippingZonePtrOutputWithContext(ctx context.Context) ShippingZonePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZonePtrOutput)
+}
+
+// ShippingZoneArrayInput is an input type that accepts ShippingZoneArray and ShippingZoneArrayOutput values.
+// You can construct a concrete instance of `ShippingZoneArrayInput` via:
+//
+//          ShippingZoneArray{ ShippingZoneArgs{...} }
+type ShippingZoneArrayInput interface {
+	pulumi.Input
+
+	ToShippingZoneArrayOutput() ShippingZoneArrayOutput
+	ToShippingZoneArrayOutputWithContext(context.Context) ShippingZoneArrayOutput
+}
+
+type ShippingZoneArray []ShippingZoneInput
+
+func (ShippingZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ShippingZone)(nil))
+}
+
+func (i ShippingZoneArray) ToShippingZoneArrayOutput() ShippingZoneArrayOutput {
+	return i.ToShippingZoneArrayOutputWithContext(context.Background())
+}
+
+func (i ShippingZoneArray) ToShippingZoneArrayOutputWithContext(ctx context.Context) ShippingZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneArrayOutput)
+}
+
+// ShippingZoneMapInput is an input type that accepts ShippingZoneMap and ShippingZoneMapOutput values.
+// You can construct a concrete instance of `ShippingZoneMapInput` via:
+//
+//          ShippingZoneMap{ "key": ShippingZoneArgs{...} }
+type ShippingZoneMapInput interface {
+	pulumi.Input
+
+	ToShippingZoneMapOutput() ShippingZoneMapOutput
+	ToShippingZoneMapOutputWithContext(context.Context) ShippingZoneMapOutput
+}
+
+type ShippingZoneMap map[string]ShippingZoneInput
+
+func (ShippingZoneMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ShippingZone)(nil))
+}
+
+func (i ShippingZoneMap) ToShippingZoneMapOutput() ShippingZoneMapOutput {
+	return i.ToShippingZoneMapOutputWithContext(context.Background())
+}
+
+func (i ShippingZoneMap) ToShippingZoneMapOutputWithContext(ctx context.Context) ShippingZoneMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneMapOutput)
+}
+
+type ShippingZoneOutput struct {
+	*pulumi.OutputState
+}
+
+func (ShippingZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippingZone)(nil))
+}
+
+func (o ShippingZoneOutput) ToShippingZoneOutput() ShippingZoneOutput {
+	return o
+}
+
+func (o ShippingZoneOutput) ToShippingZoneOutputWithContext(ctx context.Context) ShippingZoneOutput {
+	return o
+}
+
+func (o ShippingZoneOutput) ToShippingZonePtrOutput() ShippingZonePtrOutput {
+	return o.ToShippingZonePtrOutputWithContext(context.Background())
+}
+
+func (o ShippingZoneOutput) ToShippingZonePtrOutputWithContext(ctx context.Context) ShippingZonePtrOutput {
+	return o.ApplyT(func(v ShippingZone) *ShippingZone {
+		return &v
+	}).(ShippingZonePtrOutput)
+}
+
+type ShippingZonePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ShippingZonePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShippingZone)(nil))
+}
+
+func (o ShippingZonePtrOutput) ToShippingZonePtrOutput() ShippingZonePtrOutput {
+	return o
+}
+
+func (o ShippingZonePtrOutput) ToShippingZonePtrOutputWithContext(ctx context.Context) ShippingZonePtrOutput {
+	return o
+}
+
+type ShippingZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (ShippingZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ShippingZone)(nil))
+}
+
+func (o ShippingZoneArrayOutput) ToShippingZoneArrayOutput() ShippingZoneArrayOutput {
+	return o
+}
+
+func (o ShippingZoneArrayOutput) ToShippingZoneArrayOutputWithContext(ctx context.Context) ShippingZoneArrayOutput {
+	return o
+}
+
+func (o ShippingZoneArrayOutput) Index(i pulumi.IntInput) ShippingZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ShippingZone {
+		return vs[0].([]ShippingZone)[vs[1].(int)]
+	}).(ShippingZoneOutput)
+}
+
+type ShippingZoneMapOutput struct{ *pulumi.OutputState }
+
+func (ShippingZoneMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ShippingZone)(nil))
+}
+
+func (o ShippingZoneMapOutput) ToShippingZoneMapOutput() ShippingZoneMapOutput {
+	return o
+}
+
+func (o ShippingZoneMapOutput) ToShippingZoneMapOutputWithContext(ctx context.Context) ShippingZoneMapOutput {
+	return o
+}
+
+func (o ShippingZoneMapOutput) MapIndex(k pulumi.StringInput) ShippingZoneOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ShippingZone {
+		return vs[0].(map[string]ShippingZone)[vs[1].(string)]
+	}).(ShippingZoneOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(ShippingZoneOutput{})
+	pulumi.RegisterOutputType(ShippingZonePtrOutput{})
+	pulumi.RegisterOutputType(ShippingZoneArrayOutput{})
+	pulumi.RegisterOutputType(ShippingZoneMapOutput{})
 }

@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class TaxCategoryRate extends pulumi.CustomResource {
@@ -34,11 +33,24 @@ export class TaxCategoryRate extends pulumi.CustomResource {
         return obj['__pulumiType'] === TaxCategoryRate.__pulumiType;
     }
 
+    /**
+     * Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+     */
     public readonly amount!: pulumi.Output<number | undefined>;
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
     public readonly country!: pulumi.Output<string>;
     public readonly includedInPrice!: pulumi.Output<boolean>;
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The state in the country
+     */
     public readonly state!: pulumi.Output<string | undefined>;
+    /**
+     * For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+     * taxes)
+     */
     public readonly subRates!: pulumi.Output<outputs.TaxCategoryRateSubRate[] | undefined>;
     public readonly taxCategoryId!: pulumi.Output<string>;
 
@@ -52,7 +64,8 @@ export class TaxCategoryRate extends pulumi.CustomResource {
     constructor(name: string, args: TaxCategoryRateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TaxCategoryRateArgs | TaxCategoryRateState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as TaxCategoryRateState | undefined;
             inputs["amount"] = state ? state.amount : undefined;
             inputs["country"] = state ? state.country : undefined;
@@ -63,13 +76,13 @@ export class TaxCategoryRate extends pulumi.CustomResource {
             inputs["taxCategoryId"] = state ? state.taxCategoryId : undefined;
         } else {
             const args = argsOrState as TaxCategoryRateArgs | undefined;
-            if (!args || args.country === undefined) {
+            if ((!args || args.country === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'country'");
             }
-            if (!args || args.includedInPrice === undefined) {
+            if ((!args || args.includedInPrice === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'includedInPrice'");
             }
-            if (!args || args.taxCategoryId === undefined) {
+            if ((!args || args.taxCategoryId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'taxCategoryId'");
             }
             inputs["amount"] = args ? args.amount : undefined;
@@ -80,12 +93,8 @@ export class TaxCategoryRate extends pulumi.CustomResource {
             inputs["subRates"] = args ? args.subRates : undefined;
             inputs["taxCategoryId"] = args ? args.taxCategoryId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(TaxCategoryRate.__pulumiType, name, inputs, opts);
     }
@@ -95,24 +104,50 @@ export class TaxCategoryRate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TaxCategoryRate resources.
  */
 export interface TaxCategoryRateState {
-    readonly amount?: pulumi.Input<number>;
-    readonly country?: pulumi.Input<string>;
-    readonly includedInPrice?: pulumi.Input<boolean>;
-    readonly name?: pulumi.Input<string>;
-    readonly state?: pulumi.Input<string>;
-    readonly subRates?: pulumi.Input<pulumi.Input<inputs.TaxCategoryRateSubRate>[]>;
-    readonly taxCategoryId?: pulumi.Input<string>;
+    /**
+     * Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+     */
+    amount?: pulumi.Input<number>;
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
+    country?: pulumi.Input<string>;
+    includedInPrice?: pulumi.Input<boolean>;
+    name?: pulumi.Input<string>;
+    /**
+     * The state in the country
+     */
+    state?: pulumi.Input<string>;
+    /**
+     * For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+     * taxes)
+     */
+    subRates?: pulumi.Input<pulumi.Input<inputs.TaxCategoryRateSubRate>[]>;
+    taxCategoryId?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a TaxCategoryRate resource.
  */
 export interface TaxCategoryRateArgs {
-    readonly amount?: pulumi.Input<number>;
-    readonly country: pulumi.Input<string>;
-    readonly includedInPrice: pulumi.Input<boolean>;
-    readonly name?: pulumi.Input<string>;
-    readonly state?: pulumi.Input<string>;
-    readonly subRates?: pulumi.Input<pulumi.Input<inputs.TaxCategoryRateSubRate>[]>;
-    readonly taxCategoryId: pulumi.Input<string>;
+    /**
+     * Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+     */
+    amount?: pulumi.Input<number>;
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
+    country: pulumi.Input<string>;
+    includedInPrice: pulumi.Input<boolean>;
+    name?: pulumi.Input<string>;
+    /**
+     * The state in the country
+     */
+    state?: pulumi.Input<string>;
+    /**
+     * For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+     * taxes)
+     */
+    subRates?: pulumi.Input<pulumi.Input<inputs.TaxCategoryRateSubRate>[]>;
+    taxCategoryId: pulumi.Input<string>;
 }

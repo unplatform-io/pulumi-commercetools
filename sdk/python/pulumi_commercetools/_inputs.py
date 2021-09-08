@@ -5,8 +5,8 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 
 __all__ = [
     'ApiExtensionDestinationArgs',
@@ -19,11 +19,15 @@ __all__ = [
     'ProductTypeAttributeTypeElementType2Args',
     'ProductTypeAttributeTypeElementType2LocalizedValueArgs',
     'ProductTypeAttributeTypeLocalizedValueArgs',
+    'ProjectSettingsCartsArgs',
     'ProjectSettingsExternalOauthArgs',
     'ProjectSettingsMessagesArgs',
+    'ProjectSettingsShippingRateCartClassificationValueArgs',
     'ShippingZoneLocationArgs',
     'ShippingZoneRateFreeAboveArgs',
     'ShippingZoneRatePriceArgs',
+    'ShippingZoneRateShippingRatePriceTierArgs',
+    'ShippingZoneRateShippingRatePriceTierPriceArgs',
     'SubscriptionChangeArgs',
     'SubscriptionDestinationArgs',
     'SubscriptionFormatArgs',
@@ -587,6 +591,34 @@ class ProductTypeAttributeTypeLocalizedValueArgs:
 
 
 @pulumi.input_type
+class ProjectSettingsCartsArgs:
+    def __init__(__self__, *,
+                 country_tax_rate_fallback_enabled: pulumi.Input[bool],
+                 delete_days_after_last_modification: Optional[pulumi.Input[int]] = None):
+        pulumi.set(__self__, "country_tax_rate_fallback_enabled", country_tax_rate_fallback_enabled)
+        if delete_days_after_last_modification is not None:
+            pulumi.set(__self__, "delete_days_after_last_modification", delete_days_after_last_modification)
+
+    @property
+    @pulumi.getter(name="countryTaxRateFallbackEnabled")
+    def country_tax_rate_fallback_enabled(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "country_tax_rate_fallback_enabled")
+
+    @country_tax_rate_fallback_enabled.setter
+    def country_tax_rate_fallback_enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "country_tax_rate_fallback_enabled", value)
+
+    @property
+    @pulumi.getter(name="deleteDaysAfterLastModification")
+    def delete_days_after_last_modification(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "delete_days_after_last_modification")
+
+    @delete_days_after_last_modification.setter
+    def delete_days_after_last_modification(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "delete_days_after_last_modification", value)
+
+
+@pulumi.input_type
 class ProjectSettingsExternalOauthArgs:
     def __init__(__self__, *,
                  authorization_header: pulumi.Input[str],
@@ -627,6 +659,34 @@ class ProjectSettingsMessagesArgs:
     @enabled.setter
     def enabled(self, value: pulumi.Input[bool]):
         pulumi.set(self, "enabled", value)
+
+
+@pulumi.input_type
+class ProjectSettingsShippingRateCartClassificationValueArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 label: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        pulumi.set(__self__, "key", key)
+        if label is not None:
+            pulumi.set(__self__, "label", label)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def label(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "label")
+
+    @label.setter
+    def label(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "label", value)
 
 
 @pulumi.input_type
@@ -686,6 +746,96 @@ class ShippingZoneRateFreeAboveArgs:
 
 @pulumi.input_type
 class ShippingZoneRatePriceArgs:
+    def __init__(__self__, *,
+                 cent_amount: pulumi.Input[int],
+                 currency_code: pulumi.Input[str]):
+        pulumi.set(__self__, "cent_amount", cent_amount)
+        pulumi.set(__self__, "currency_code", currency_code)
+
+    @property
+    @pulumi.getter(name="centAmount")
+    def cent_amount(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "cent_amount")
+
+    @cent_amount.setter
+    def cent_amount(self, value: pulumi.Input[int]):
+        pulumi.set(self, "cent_amount", value)
+
+    @property
+    @pulumi.getter(name="currencyCode")
+    def currency_code(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "currency_code")
+
+    @currency_code.setter
+    def currency_code(self, value: pulumi.Input[str]):
+        pulumi.set(self, "currency_code", value)
+
+
+@pulumi.input_type
+class ShippingZoneRateShippingRatePriceTierArgs:
+    def __init__(__self__, *,
+                 price: pulumi.Input['ShippingZoneRateShippingRatePriceTierPriceArgs'],
+                 type: pulumi.Input[str],
+                 minimum_cent_amount: Optional[pulumi.Input[int]] = None,
+                 score: Optional[pulumi.Input[float]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "price", price)
+        pulumi.set(__self__, "type", type)
+        if minimum_cent_amount is not None:
+            pulumi.set(__self__, "minimum_cent_amount", minimum_cent_amount)
+        if score is not None:
+            pulumi.set(__self__, "score", score)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def price(self) -> pulumi.Input['ShippingZoneRateShippingRatePriceTierPriceArgs']:
+        return pulumi.get(self, "price")
+
+    @price.setter
+    def price(self, value: pulumi.Input['ShippingZoneRateShippingRatePriceTierPriceArgs']):
+        pulumi.set(self, "price", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="minimumCentAmount")
+    def minimum_cent_amount(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "minimum_cent_amount")
+
+    @minimum_cent_amount.setter
+    def minimum_cent_amount(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "minimum_cent_amount", value)
+
+    @property
+    @pulumi.getter
+    def score(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "score")
+
+    @score.setter
+    def score(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "score", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ShippingZoneRateShippingRatePriceTierPriceArgs:
     def __init__(__self__, *,
                  cent_amount: pulumi.Input[int],
                  currency_code: pulumi.Input[str]):

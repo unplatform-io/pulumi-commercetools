@@ -4,18 +4,20 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type TaxCategory struct {
 	pulumi.CustomResourceState
 
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Key         pulumi.StringPtrOutput `pulumi:"key"`
-	Name        pulumi.StringOutput    `pulumi:"name"`
-	Version     pulumi.IntOutput       `pulumi:"version"`
+	// User-specific unique identifier for the category
+	Key     pulumi.StringPtrOutput `pulumi:"key"`
+	Name    pulumi.StringOutput    `pulumi:"name"`
+	Version pulumi.IntOutput       `pulumi:"version"`
 }
 
 // NewTaxCategory registers a new resource with the given unique name, arguments, and options.
@@ -24,6 +26,7 @@ func NewTaxCategory(ctx *pulumi.Context,
 	if args == nil {
 		args = &TaxCategoryArgs{}
 	}
+
 	var resource TaxCategory
 	err := ctx.RegisterResource("commercetools:index/taxCategory:TaxCategory", name, args, &resource, opts...)
 	if err != nil {
@@ -47,16 +50,18 @@ func GetTaxCategory(ctx *pulumi.Context,
 // Input properties used for looking up and filtering TaxCategory resources.
 type taxCategoryState struct {
 	Description *string `pulumi:"description"`
-	Key         *string `pulumi:"key"`
-	Name        *string `pulumi:"name"`
-	Version     *int    `pulumi:"version"`
+	// User-specific unique identifier for the category
+	Key     *string `pulumi:"key"`
+	Name    *string `pulumi:"name"`
+	Version *int    `pulumi:"version"`
 }
 
 type TaxCategoryState struct {
 	Description pulumi.StringPtrInput
-	Key         pulumi.StringPtrInput
-	Name        pulumi.StringPtrInput
-	Version     pulumi.IntPtrInput
+	// User-specific unique identifier for the category
+	Key     pulumi.StringPtrInput
+	Name    pulumi.StringPtrInput
+	Version pulumi.IntPtrInput
 }
 
 func (TaxCategoryState) ElementType() reflect.Type {
@@ -65,17 +70,206 @@ func (TaxCategoryState) ElementType() reflect.Type {
 
 type taxCategoryArgs struct {
 	Description *string `pulumi:"description"`
-	Key         *string `pulumi:"key"`
-	Name        *string `pulumi:"name"`
+	// User-specific unique identifier for the category
+	Key  *string `pulumi:"key"`
+	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a TaxCategory resource.
 type TaxCategoryArgs struct {
 	Description pulumi.StringPtrInput
-	Key         pulumi.StringPtrInput
-	Name        pulumi.StringPtrInput
+	// User-specific unique identifier for the category
+	Key  pulumi.StringPtrInput
+	Name pulumi.StringPtrInput
 }
 
 func (TaxCategoryArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*taxCategoryArgs)(nil)).Elem()
+}
+
+type TaxCategoryInput interface {
+	pulumi.Input
+
+	ToTaxCategoryOutput() TaxCategoryOutput
+	ToTaxCategoryOutputWithContext(ctx context.Context) TaxCategoryOutput
+}
+
+func (*TaxCategory) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxCategory)(nil))
+}
+
+func (i *TaxCategory) ToTaxCategoryOutput() TaxCategoryOutput {
+	return i.ToTaxCategoryOutputWithContext(context.Background())
+}
+
+func (i *TaxCategory) ToTaxCategoryOutputWithContext(ctx context.Context) TaxCategoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxCategoryOutput)
+}
+
+func (i *TaxCategory) ToTaxCategoryPtrOutput() TaxCategoryPtrOutput {
+	return i.ToTaxCategoryPtrOutputWithContext(context.Background())
+}
+
+func (i *TaxCategory) ToTaxCategoryPtrOutputWithContext(ctx context.Context) TaxCategoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxCategoryPtrOutput)
+}
+
+type TaxCategoryPtrInput interface {
+	pulumi.Input
+
+	ToTaxCategoryPtrOutput() TaxCategoryPtrOutput
+	ToTaxCategoryPtrOutputWithContext(ctx context.Context) TaxCategoryPtrOutput
+}
+
+type taxCategoryPtrType TaxCategoryArgs
+
+func (*taxCategoryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TaxCategory)(nil))
+}
+
+func (i *taxCategoryPtrType) ToTaxCategoryPtrOutput() TaxCategoryPtrOutput {
+	return i.ToTaxCategoryPtrOutputWithContext(context.Background())
+}
+
+func (i *taxCategoryPtrType) ToTaxCategoryPtrOutputWithContext(ctx context.Context) TaxCategoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxCategoryPtrOutput)
+}
+
+// TaxCategoryArrayInput is an input type that accepts TaxCategoryArray and TaxCategoryArrayOutput values.
+// You can construct a concrete instance of `TaxCategoryArrayInput` via:
+//
+//          TaxCategoryArray{ TaxCategoryArgs{...} }
+type TaxCategoryArrayInput interface {
+	pulumi.Input
+
+	ToTaxCategoryArrayOutput() TaxCategoryArrayOutput
+	ToTaxCategoryArrayOutputWithContext(context.Context) TaxCategoryArrayOutput
+}
+
+type TaxCategoryArray []TaxCategoryInput
+
+func (TaxCategoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*TaxCategory)(nil))
+}
+
+func (i TaxCategoryArray) ToTaxCategoryArrayOutput() TaxCategoryArrayOutput {
+	return i.ToTaxCategoryArrayOutputWithContext(context.Background())
+}
+
+func (i TaxCategoryArray) ToTaxCategoryArrayOutputWithContext(ctx context.Context) TaxCategoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxCategoryArrayOutput)
+}
+
+// TaxCategoryMapInput is an input type that accepts TaxCategoryMap and TaxCategoryMapOutput values.
+// You can construct a concrete instance of `TaxCategoryMapInput` via:
+//
+//          TaxCategoryMap{ "key": TaxCategoryArgs{...} }
+type TaxCategoryMapInput interface {
+	pulumi.Input
+
+	ToTaxCategoryMapOutput() TaxCategoryMapOutput
+	ToTaxCategoryMapOutputWithContext(context.Context) TaxCategoryMapOutput
+}
+
+type TaxCategoryMap map[string]TaxCategoryInput
+
+func (TaxCategoryMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*TaxCategory)(nil))
+}
+
+func (i TaxCategoryMap) ToTaxCategoryMapOutput() TaxCategoryMapOutput {
+	return i.ToTaxCategoryMapOutputWithContext(context.Background())
+}
+
+func (i TaxCategoryMap) ToTaxCategoryMapOutputWithContext(ctx context.Context) TaxCategoryMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TaxCategoryMapOutput)
+}
+
+type TaxCategoryOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxCategoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TaxCategory)(nil))
+}
+
+func (o TaxCategoryOutput) ToTaxCategoryOutput() TaxCategoryOutput {
+	return o
+}
+
+func (o TaxCategoryOutput) ToTaxCategoryOutputWithContext(ctx context.Context) TaxCategoryOutput {
+	return o
+}
+
+func (o TaxCategoryOutput) ToTaxCategoryPtrOutput() TaxCategoryPtrOutput {
+	return o.ToTaxCategoryPtrOutputWithContext(context.Background())
+}
+
+func (o TaxCategoryOutput) ToTaxCategoryPtrOutputWithContext(ctx context.Context) TaxCategoryPtrOutput {
+	return o.ApplyT(func(v TaxCategory) *TaxCategory {
+		return &v
+	}).(TaxCategoryPtrOutput)
+}
+
+type TaxCategoryPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (TaxCategoryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TaxCategory)(nil))
+}
+
+func (o TaxCategoryPtrOutput) ToTaxCategoryPtrOutput() TaxCategoryPtrOutput {
+	return o
+}
+
+func (o TaxCategoryPtrOutput) ToTaxCategoryPtrOutputWithContext(ctx context.Context) TaxCategoryPtrOutput {
+	return o
+}
+
+type TaxCategoryArrayOutput struct{ *pulumi.OutputState }
+
+func (TaxCategoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TaxCategory)(nil))
+}
+
+func (o TaxCategoryArrayOutput) ToTaxCategoryArrayOutput() TaxCategoryArrayOutput {
+	return o
+}
+
+func (o TaxCategoryArrayOutput) ToTaxCategoryArrayOutputWithContext(ctx context.Context) TaxCategoryArrayOutput {
+	return o
+}
+
+func (o TaxCategoryArrayOutput) Index(i pulumi.IntInput) TaxCategoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TaxCategory {
+		return vs[0].([]TaxCategory)[vs[1].(int)]
+	}).(TaxCategoryOutput)
+}
+
+type TaxCategoryMapOutput struct{ *pulumi.OutputState }
+
+func (TaxCategoryMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]TaxCategory)(nil))
+}
+
+func (o TaxCategoryMapOutput) ToTaxCategoryMapOutput() TaxCategoryMapOutput {
+	return o
+}
+
+func (o TaxCategoryMapOutput) ToTaxCategoryMapOutputWithContext(ctx context.Context) TaxCategoryMapOutput {
+	return o
+}
+
+func (o TaxCategoryMapOutput) MapIndex(k pulumi.StringInput) TaxCategoryOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) TaxCategory {
+		return vs[0].(map[string]TaxCategory)[vs[1].(string)]
+	}).(TaxCategoryOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(TaxCategoryOutput{})
+	pulumi.RegisterOutputType(TaxCategoryPtrOutput{})
+	pulumi.RegisterOutputType(TaxCategoryArrayOutput{})
+	pulumi.RegisterOutputType(TaxCategoryMapOutput{})
 }

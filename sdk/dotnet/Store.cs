@@ -9,20 +9,36 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/store:Store")]
     public partial class Store : Pulumi.CustomResource
     {
+        /// <summary>
+        /// Set of ResourceIdentifier to a Channel with ProductDistribution
+        /// </summary>
         [Output("distributionChannels")]
         public Output<ImmutableArray<string>> DistributionChannels { get; private set; } = null!;
 
+        /// <summary>
+        /// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+        /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        /// </summary>
         [Output("languages")]
         public Output<ImmutableArray<string>> Languages { get; private set; } = null!;
 
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("name")]
         public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Set of ResourceIdentifier of Channels with InventorySupply
+        /// </summary>
         [Output("supplyChannels")]
         public Output<ImmutableArray<string>> SupplyChannels { get; private set; } = null!;
 
@@ -77,17 +93,28 @@ namespace Pulumi.Commercetools
     {
         [Input("distributionChannels")]
         private InputList<string>? _distributionChannels;
+
+        /// <summary>
+        /// Set of ResourceIdentifier to a Channel with ProductDistribution
+        /// </summary>
         public InputList<string> DistributionChannels
         {
             get => _distributionChannels ?? (_distributionChannels = new InputList<string>());
             set => _distributionChannels = value;
         }
 
+        /// <summary>
+        /// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         [Input("languages")]
         private InputList<string>? _languages;
+
+        /// <summary>
+        /// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        /// </summary>
         public InputList<string> Languages
         {
             get => _languages ?? (_languages = new InputList<string>());
@@ -96,6 +123,10 @@ namespace Pulumi.Commercetools
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
@@ -104,6 +135,10 @@ namespace Pulumi.Commercetools
 
         [Input("supplyChannels")]
         private InputList<string>? _supplyChannels;
+
+        /// <summary>
+        /// Set of ResourceIdentifier of Channels with InventorySupply
+        /// </summary>
         public InputList<string> SupplyChannels
         {
             get => _supplyChannels ?? (_supplyChannels = new InputList<string>());
@@ -119,17 +154,28 @@ namespace Pulumi.Commercetools
     {
         [Input("distributionChannels")]
         private InputList<string>? _distributionChannels;
+
+        /// <summary>
+        /// Set of ResourceIdentifier to a Channel with ProductDistribution
+        /// </summary>
         public InputList<string> DistributionChannels
         {
             get => _distributionChannels ?? (_distributionChannels = new InputList<string>());
             set => _distributionChannels = value;
         }
 
+        /// <summary>
+        /// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("languages")]
         private InputList<string>? _languages;
+
+        /// <summary>
+        /// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        /// </summary>
         public InputList<string> Languages
         {
             get => _languages ?? (_languages = new InputList<string>());
@@ -138,6 +184,10 @@ namespace Pulumi.Commercetools
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
@@ -146,6 +196,10 @@ namespace Pulumi.Commercetools
 
         [Input("supplyChannels")]
         private InputList<string>? _supplyChannels;
+
+        /// <summary>
+        /// Set of ResourceIdentifier of Channels with InventorySupply
+        /// </summary>
         public InputList<string> SupplyChannels
         {
             get => _supplyChannels ?? (_supplyChannels = new InputList<string>());

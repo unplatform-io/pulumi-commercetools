@@ -69,6 +69,19 @@ namespace Pulumi.Commercetools
             using var stream = assembly.GetManifestResourceStream("Pulumi.Commercetools.version.txt");
             using var reader = new StreamReader(stream ?? throw new NotSupportedException("Missing embedded version.txt file"));
             version = reader.ReadToEnd().Trim();
+            var parts = version.Split("\n");
+            if (parts.Length == 2)
+            {
+                // The first part is the provider name.
+                version = parts[1].Trim();
+            }
+        }
+    }
+
+    internal sealed class CommercetoolsResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    {
+        public CommercetoolsResourceTypeAttribute(string type) : base(type, Utilities.Version)
+        {
         }
     }
 }

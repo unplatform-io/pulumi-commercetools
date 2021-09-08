@@ -5,8 +5,8 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 
 __all__ = [
@@ -20,11 +20,15 @@ __all__ = [
     'ProductTypeAttributeTypeElementType2',
     'ProductTypeAttributeTypeElementType2LocalizedValue',
     'ProductTypeAttributeTypeLocalizedValue',
+    'ProjectSettingsCarts',
     'ProjectSettingsExternalOauth',
     'ProjectSettingsMessages',
+    'ProjectSettingsShippingRateCartClassificationValue',
     'ShippingZoneLocation',
     'ShippingZoneRateFreeAbove',
     'ShippingZoneRatePrice',
+    'ShippingZoneRateShippingRatePriceTier',
+    'ShippingZoneRateShippingRatePriceTierPrice',
     'SubscriptionChange',
     'SubscriptionDestination',
     'SubscriptionFormat',
@@ -39,6 +43,29 @@ __all__ = [
 
 @pulumi.output_type
 class ApiExtensionDestination(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "accessSecret":
+            suggest = "access_secret"
+        elif key == "authorizationHeader":
+            suggest = "authorization_header"
+        elif key == "azureAuthentication":
+            suggest = "azure_authentication"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApiExtensionDestination. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApiExtensionDestination.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApiExtensionDestination.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  type: str,
                  access_key: Optional[str] = None,
@@ -96,12 +123,26 @@ class ApiExtensionDestination(dict):
     def url(self) -> Optional[str]:
         return pulumi.get(self, "url")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ApiExtensionTrigger(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "resourceTypeId":
+            suggest = "resource_type_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ApiExtensionTrigger. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ApiExtensionTrigger.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ApiExtensionTrigger.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  actions: Sequence[str],
                  resource_type_id: str):
@@ -117,9 +158,6 @@ class ApiExtensionTrigger(dict):
     @pulumi.getter(name="resourceTypeId")
     def resource_type_id(self) -> str:
         return pulumi.get(self, "resource_type_id")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -141,12 +179,30 @@ class CartDiscountTarget(dict):
     def predicate(self) -> Optional[str]:
         return pulumi.get(self, "predicate")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class CartDiscountValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "distributionChannelId":
+            suggest = "distribution_channel_id"
+        elif key == "productId":
+            suggest = "product_id"
+        elif key == "supplyChannelId":
+            suggest = "supply_channel_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CartDiscountValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CartDiscountValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CartDiscountValue.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  type: str,
                  distribution_channel_id: Optional[str] = None,
@@ -204,12 +260,28 @@ class CartDiscountValue(dict):
     def variant(self) -> Optional[int]:
         return pulumi.get(self, "variant")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class CartDiscountValueMoney(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "centAmount":
+            suggest = "cent_amount"
+        elif key == "currencyCode":
+            suggest = "currency_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CartDiscountValueMoney. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CartDiscountValueMoney.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CartDiscountValueMoney.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  cent_amount: int,
                  currency_code: str):
@@ -226,12 +298,28 @@ class CartDiscountValueMoney(dict):
     def currency_code(self) -> str:
         return pulumi.get(self, "currency_code")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ProductTypeAttribute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inputHint":
+            suggest = "input_hint"
+        elif key == "inputTip":
+            suggest = "input_tip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProductTypeAttribute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProductTypeAttribute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProductTypeAttribute.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  label: Mapping[str, Any],
                  name: str,
@@ -295,12 +383,32 @@ class ProductTypeAttribute(dict):
     def searchable(self) -> Optional[bool]:
         return pulumi.get(self, "searchable")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ProductTypeAttributeType(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ElementType2":
+            suggest = "element_type2"
+        elif key == "localizedValues":
+            suggest = "localized_values"
+        elif key == "referenceTypeId":
+            suggest = "reference_type_id"
+        elif key == "typeReference":
+            suggest = "type_reference"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProductTypeAttributeType. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProductTypeAttributeType.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProductTypeAttributeType.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  element_type2: Optional['outputs.ProductTypeAttributeTypeElementType2'] = None,
@@ -350,12 +458,30 @@ class ProductTypeAttributeType(dict):
     def values(self) -> Optional[Mapping[str, Any]]:
         return pulumi.get(self, "values")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ProductTypeAttributeTypeElementType2(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "localizedValues":
+            suggest = "localized_values"
+        elif key == "referenceTypeId":
+            suggest = "reference_type_id"
+        elif key == "typeReference":
+            suggest = "type_reference"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProductTypeAttributeTypeElementType2. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProductTypeAttributeTypeElementType2.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProductTypeAttributeTypeElementType2.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  localized_values: Optional[Sequence['outputs.ProductTypeAttributeTypeElementType2LocalizedValue']] = None,
@@ -397,9 +523,6 @@ class ProductTypeAttributeTypeElementType2(dict):
     def values(self) -> Optional[Mapping[str, Any]]:
         return pulumi.get(self, "values")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ProductTypeAttributeTypeElementType2LocalizedValue(dict):
@@ -418,9 +541,6 @@ class ProductTypeAttributeTypeElementType2LocalizedValue(dict):
     @pulumi.getter
     def label(self) -> Mapping[str, Any]:
         return pulumi.get(self, "label")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -441,12 +561,65 @@ class ProductTypeAttributeTypeLocalizedValue(dict):
     def label(self) -> Mapping[str, Any]:
         return pulumi.get(self, "label")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+@pulumi.output_type
+class ProjectSettingsCarts(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "countryTaxRateFallbackEnabled":
+            suggest = "country_tax_rate_fallback_enabled"
+        elif key == "deleteDaysAfterLastModification":
+            suggest = "delete_days_after_last_modification"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProjectSettingsCarts. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProjectSettingsCarts.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProjectSettingsCarts.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 country_tax_rate_fallback_enabled: bool,
+                 delete_days_after_last_modification: Optional[int] = None):
+        pulumi.set(__self__, "country_tax_rate_fallback_enabled", country_tax_rate_fallback_enabled)
+        if delete_days_after_last_modification is not None:
+            pulumi.set(__self__, "delete_days_after_last_modification", delete_days_after_last_modification)
+
+    @property
+    @pulumi.getter(name="countryTaxRateFallbackEnabled")
+    def country_tax_rate_fallback_enabled(self) -> bool:
+        return pulumi.get(self, "country_tax_rate_fallback_enabled")
+
+    @property
+    @pulumi.getter(name="deleteDaysAfterLastModification")
+    def delete_days_after_last_modification(self) -> Optional[int]:
+        return pulumi.get(self, "delete_days_after_last_modification")
 
 
 @pulumi.output_type
 class ProjectSettingsExternalOauth(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "authorizationHeader":
+            suggest = "authorization_header"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProjectSettingsExternalOauth. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProjectSettingsExternalOauth.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProjectSettingsExternalOauth.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  authorization_header: str,
                  url: str):
@@ -463,9 +636,6 @@ class ProjectSettingsExternalOauth(dict):
     def url(self) -> str:
         return pulumi.get(self, "url")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ProjectSettingsMessages(dict):
@@ -478,8 +648,25 @@ class ProjectSettingsMessages(dict):
     def enabled(self) -> bool:
         return pulumi.get(self, "enabled")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+@pulumi.output_type
+class ProjectSettingsShippingRateCartClassificationValue(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 label: Optional[Mapping[str, Any]] = None):
+        pulumi.set(__self__, "key", key)
+        if label is not None:
+            pulumi.set(__self__, "label", label)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def label(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "label")
 
 
 @pulumi.output_type
@@ -501,12 +688,28 @@ class ShippingZoneLocation(dict):
     def state(self) -> Optional[str]:
         return pulumi.get(self, "state")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ShippingZoneRateFreeAbove(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "centAmount":
+            suggest = "cent_amount"
+        elif key == "currencyCode":
+            suggest = "currency_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ShippingZoneRateFreeAbove. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ShippingZoneRateFreeAbove.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ShippingZoneRateFreeAbove.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  cent_amount: int,
                  currency_code: str):
@@ -522,13 +725,29 @@ class ShippingZoneRateFreeAbove(dict):
     @pulumi.getter(name="currencyCode")
     def currency_code(self) -> str:
         return pulumi.get(self, "currency_code")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class ShippingZoneRatePrice(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "centAmount":
+            suggest = "cent_amount"
+        elif key == "currencyCode":
+            suggest = "currency_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ShippingZoneRatePrice. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ShippingZoneRatePrice.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ShippingZoneRatePrice.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  cent_amount: int,
                  currency_code: str):
@@ -545,12 +764,124 @@ class ShippingZoneRatePrice(dict):
     def currency_code(self) -> str:
         return pulumi.get(self, "currency_code")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+@pulumi.output_type
+class ShippingZoneRateShippingRatePriceTier(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "minimumCentAmount":
+            suggest = "minimum_cent_amount"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ShippingZoneRateShippingRatePriceTier. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ShippingZoneRateShippingRatePriceTier.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ShippingZoneRateShippingRatePriceTier.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 price: 'outputs.ShippingZoneRateShippingRatePriceTierPrice',
+                 type: str,
+                 minimum_cent_amount: Optional[int] = None,
+                 score: Optional[float] = None,
+                 value: Optional[str] = None):
+        pulumi.set(__self__, "price", price)
+        pulumi.set(__self__, "type", type)
+        if minimum_cent_amount is not None:
+            pulumi.set(__self__, "minimum_cent_amount", minimum_cent_amount)
+        if score is not None:
+            pulumi.set(__self__, "score", score)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def price(self) -> 'outputs.ShippingZoneRateShippingRatePriceTierPrice':
+        return pulumi.get(self, "price")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="minimumCentAmount")
+    def minimum_cent_amount(self) -> Optional[int]:
+        return pulumi.get(self, "minimum_cent_amount")
+
+    @property
+    @pulumi.getter
+    def score(self) -> Optional[float]:
+        return pulumi.get(self, "score")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ShippingZoneRateShippingRatePriceTierPrice(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "centAmount":
+            suggest = "cent_amount"
+        elif key == "currencyCode":
+            suggest = "currency_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ShippingZoneRateShippingRatePriceTierPrice. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ShippingZoneRateShippingRatePriceTierPrice.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ShippingZoneRateShippingRatePriceTierPrice.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cent_amount: int,
+                 currency_code: str):
+        pulumi.set(__self__, "cent_amount", cent_amount)
+        pulumi.set(__self__, "currency_code", currency_code)
+
+    @property
+    @pulumi.getter(name="centAmount")
+    def cent_amount(self) -> int:
+        return pulumi.get(self, "cent_amount")
+
+    @property
+    @pulumi.getter(name="currencyCode")
+    def currency_code(self) -> str:
+        return pulumi.get(self, "currency_code")
 
 
 @pulumi.output_type
 class SubscriptionChange(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "resourceTypeIds":
+            suggest = "resource_type_ids"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionChange. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionChange.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionChange.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  resource_type_ids: Optional[Sequence[str]] = None):
         if resource_type_ids is not None:
@@ -561,12 +892,36 @@ class SubscriptionChange(dict):
     def resource_type_ids(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "resource_type_ids")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class SubscriptionDestination(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKey":
+            suggest = "access_key"
+        elif key == "accessSecret":
+            suggest = "access_secret"
+        elif key == "connectionString":
+            suggest = "connection_string"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "queueUrl":
+            suggest = "queue_url"
+        elif key == "topicArn":
+            suggest = "topic_arn"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionDestination. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionDestination.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionDestination.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  region: str,
                  type: str,
@@ -646,12 +1001,26 @@ class SubscriptionDestination(dict):
     def topic_arn(self) -> Optional[str]:
         return pulumi.get(self, "topic_arn")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class SubscriptionFormat(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cloudEventsVersion":
+            suggest = "cloud_events_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionFormat. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionFormat.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionFormat.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  type: str,
                  cloud_events_version: Optional[str] = None):
@@ -669,12 +1038,26 @@ class SubscriptionFormat(dict):
     def cloud_events_version(self) -> Optional[str]:
         return pulumi.get(self, "cloud_events_version")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class SubscriptionMessage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "resourceTypeId":
+            suggest = "resource_type_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionMessage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionMessage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionMessage.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  resource_type_id: Optional[str] = None,
                  types: Optional[Sequence[str]] = None):
@@ -692,9 +1075,6 @@ class SubscriptionMessage(dict):
     @pulumi.getter
     def types(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "types")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -715,12 +1095,26 @@ class TaxCategoryRateSubRate(dict):
     def name(self) -> str:
         return pulumi.get(self, "name")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class TypeField(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inputHint":
+            suggest = "input_hint"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TypeField. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TypeField.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TypeField.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  label: Mapping[str, Any],
                  name: str,
@@ -760,12 +1154,30 @@ class TypeField(dict):
     def required(self) -> Optional[bool]:
         return pulumi.get(self, "required")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class TypeFieldType(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ElementType2":
+            suggest = "element_type2"
+        elif key == "localizedValues":
+            suggest = "localized_values"
+        elif key == "referenceTypeId":
+            suggest = "reference_type_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TypeFieldType. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TypeFieldType.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TypeFieldType.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  element_type2: Optional['outputs.TypeFieldTypeElementType2'] = None,
@@ -807,12 +1219,28 @@ class TypeFieldType(dict):
     def values(self) -> Optional[Mapping[str, Any]]:
         return pulumi.get(self, "values")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class TypeFieldTypeElementType2(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "localizedValues":
+            suggest = "localized_values"
+        elif key == "referenceTypeId":
+            suggest = "reference_type_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TypeFieldTypeElementType2. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TypeFieldTypeElementType2.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TypeFieldTypeElementType2.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  localized_values: Optional[Sequence['outputs.TypeFieldTypeElementType2LocalizedValue']] = None,
@@ -846,9 +1274,6 @@ class TypeFieldTypeElementType2(dict):
     def values(self) -> Optional[Mapping[str, Any]]:
         return pulumi.get(self, "values")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class TypeFieldTypeElementType2LocalizedValue(dict):
@@ -868,9 +1293,6 @@ class TypeFieldTypeElementType2LocalizedValue(dict):
     def label(self) -> Mapping[str, Any]:
         return pulumi.get(self, "label")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class TypeFieldTypeLocalizedValue(dict):
@@ -889,8 +1311,5 @@ class TypeFieldTypeLocalizedValue(dict):
     @pulumi.getter
     def label(self) -> Mapping[str, Any]:
         return pulumi.get(self, "label")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

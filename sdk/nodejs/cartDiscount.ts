@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class CartDiscount extends pulumi.CustomResource {
@@ -34,17 +33,52 @@ export class CartDiscount extends pulumi.CustomResource {
         return obj['__pulumiType'] === CartDiscount.__pulumiType;
     }
 
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly description!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * Only active discount can be applied to the cart
+     */
     public readonly isActive!: pulumi.Output<boolean | undefined>;
+    /**
+     * User-specific unique identifier for a cart discount. Must be unique across a project
+     */
     public readonly key!: pulumi.Output<string | undefined>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly name!: pulumi.Output<{[key: string]: any}>;
+    /**
+     * A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+     */
     public readonly predicate!: pulumi.Output<string>;
+    /**
+     * States whether the discount can only be used in a connection with a
+     * [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+     */
     public readonly requiresDiscountCode!: pulumi.Output<boolean | undefined>;
+    /**
+     * The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+     * by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+     * order is unambiguous among all cart discounts
+     */
     public readonly sortOrder!: pulumi.Output<string>;
+    /**
+     * Specifies whether the application of this discount causes the following discounts to be ignored
+     */
     public readonly stackingMode!: pulumi.Output<string | undefined>;
+    /**
+     * Empty when the value has type giftLineItem, otherwise a
+     * [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+     */
     public readonly target!: pulumi.Output<outputs.CartDiscountTarget | undefined>;
     public readonly validFrom!: pulumi.Output<string | undefined>;
     public readonly validUntil!: pulumi.Output<string | undefined>;
+    /**
+     * Defines the effect the discount will have.
+     * [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+     */
     public readonly value!: pulumi.Output<outputs.CartDiscountValue>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
@@ -58,7 +92,8 @@ export class CartDiscount extends pulumi.CustomResource {
     constructor(name: string, args: CartDiscountArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CartDiscountArgs | CartDiscountState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as CartDiscountState | undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["isActive"] = state ? state.isActive : undefined;
@@ -75,13 +110,13 @@ export class CartDiscount extends pulumi.CustomResource {
             inputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as CartDiscountArgs | undefined;
-            if (!args || args.predicate === undefined) {
+            if ((!args || args.predicate === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'predicate'");
             }
-            if (!args || args.sortOrder === undefined) {
+            if ((!args || args.sortOrder === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'sortOrder'");
             }
-            if (!args || args.value === undefined) {
+            if ((!args || args.value === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
             inputs["description"] = args ? args.description : undefined;
@@ -98,12 +133,8 @@ export class CartDiscount extends pulumi.CustomResource {
             inputs["value"] = args ? args.value : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(CartDiscount.__pulumiType, name, inputs, opts);
     }
@@ -113,35 +144,105 @@ export class CartDiscount extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CartDiscount resources.
  */
 export interface CartDiscountState {
-    readonly description?: pulumi.Input<{[key: string]: any}>;
-    readonly isActive?: pulumi.Input<boolean>;
-    readonly key?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly predicate?: pulumi.Input<string>;
-    readonly requiresDiscountCode?: pulumi.Input<boolean>;
-    readonly sortOrder?: pulumi.Input<string>;
-    readonly stackingMode?: pulumi.Input<string>;
-    readonly target?: pulumi.Input<inputs.CartDiscountTarget>;
-    readonly validFrom?: pulumi.Input<string>;
-    readonly validUntil?: pulumi.Input<string>;
-    readonly value?: pulumi.Input<inputs.CartDiscountValue>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    description?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Only active discount can be applied to the cart
+     */
+    isActive?: pulumi.Input<boolean>;
+    /**
+     * User-specific unique identifier for a cart discount. Must be unique across a project
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+     */
+    predicate?: pulumi.Input<string>;
+    /**
+     * States whether the discount can only be used in a connection with a
+     * [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+     */
+    requiresDiscountCode?: pulumi.Input<boolean>;
+    /**
+     * The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+     * by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+     * order is unambiguous among all cart discounts
+     */
+    sortOrder?: pulumi.Input<string>;
+    /**
+     * Specifies whether the application of this discount causes the following discounts to be ignored
+     */
+    stackingMode?: pulumi.Input<string>;
+    /**
+     * Empty when the value has type giftLineItem, otherwise a
+     * [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+     */
+    target?: pulumi.Input<inputs.CartDiscountTarget>;
+    validFrom?: pulumi.Input<string>;
+    validUntil?: pulumi.Input<string>;
+    /**
+     * Defines the effect the discount will have.
+     * [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+     */
+    value?: pulumi.Input<inputs.CartDiscountValue>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a CartDiscount resource.
  */
 export interface CartDiscountArgs {
-    readonly description?: pulumi.Input<{[key: string]: any}>;
-    readonly isActive?: pulumi.Input<boolean>;
-    readonly key?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly predicate: pulumi.Input<string>;
-    readonly requiresDiscountCode?: pulumi.Input<boolean>;
-    readonly sortOrder: pulumi.Input<string>;
-    readonly stackingMode?: pulumi.Input<string>;
-    readonly target?: pulumi.Input<inputs.CartDiscountTarget>;
-    readonly validFrom?: pulumi.Input<string>;
-    readonly validUntil?: pulumi.Input<string>;
-    readonly value: pulumi.Input<inputs.CartDiscountValue>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    description?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Only active discount can be applied to the cart
+     */
+    isActive?: pulumi.Input<boolean>;
+    /**
+     * User-specific unique identifier for a cart discount. Must be unique across a project
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+     */
+    predicate: pulumi.Input<string>;
+    /**
+     * States whether the discount can only be used in a connection with a
+     * [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+     */
+    requiresDiscountCode?: pulumi.Input<boolean>;
+    /**
+     * The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+     * by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+     * order is unambiguous among all cart discounts
+     */
+    sortOrder: pulumi.Input<string>;
+    /**
+     * Specifies whether the application of this discount causes the following discounts to be ignored
+     */
+    stackingMode?: pulumi.Input<string>;
+    /**
+     * Empty when the value has type giftLineItem, otherwise a
+     * [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+     */
+    target?: pulumi.Input<inputs.CartDiscountTarget>;
+    validFrom?: pulumi.Input<string>;
+    validUntil?: pulumi.Input<string>;
+    /**
+     * Defines the effect the discount will have.
+     * [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+     */
+    value: pulumi.Input<inputs.CartDiscountValue>;
 }

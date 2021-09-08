@@ -9,11 +9,18 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/taxCategoryRate:TaxCategoryRate")]
     public partial class TaxCategoryRate : Pulumi.CustomResource
     {
+        /// <summary>
+        /// Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+        /// </summary>
         [Output("amount")]
         public Output<double?> Amount { get; private set; } = null!;
 
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
         [Output("country")]
         public Output<string> Country { get; private set; } = null!;
 
@@ -23,9 +30,16 @@ namespace Pulumi.Commercetools
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The state in the country
+        /// </summary>
         [Output("state")]
         public Output<string?> State { get; private set; } = null!;
 
+        /// <summary>
+        /// For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+        /// taxes)
+        /// </summary>
         [Output("subRates")]
         public Output<ImmutableArray<Outputs.TaxCategoryRateSubRate>> SubRates { get; private set; } = null!;
 
@@ -78,9 +92,15 @@ namespace Pulumi.Commercetools
 
     public sealed class TaxCategoryRateArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+        /// </summary>
         [Input("amount")]
         public Input<double>? Amount { get; set; }
 
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
         [Input("country", required: true)]
         public Input<string> Country { get; set; } = null!;
 
@@ -90,11 +110,19 @@ namespace Pulumi.Commercetools
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The state in the country
+        /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
 
         [Input("subRates")]
         private InputList<Inputs.TaxCategoryRateSubRateArgs>? _subRates;
+
+        /// <summary>
+        /// For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+        /// taxes)
+        /// </summary>
         public InputList<Inputs.TaxCategoryRateSubRateArgs> SubRates
         {
             get => _subRates ?? (_subRates = new InputList<Inputs.TaxCategoryRateSubRateArgs>());
@@ -111,9 +139,15 @@ namespace Pulumi.Commercetools
 
     public sealed class TaxCategoryRateState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
+        /// </summary>
         [Input("amount")]
         public Input<double>? Amount { get; set; }
 
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
         [Input("country")]
         public Input<string>? Country { get; set; }
 
@@ -123,11 +157,19 @@ namespace Pulumi.Commercetools
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The state in the country
+        /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
 
         [Input("subRates")]
         private InputList<Inputs.TaxCategoryRateSubRateGetArgs>? _subRates;
+
+        /// <summary>
+        /// For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local
+        /// taxes)
+        /// </summary>
         public InputList<Inputs.TaxCategoryRateSubRateGetArgs> SubRates
         {
             get => _subRates ?? (_subRates = new InputList<Inputs.TaxCategoryRateSubRateGetArgs>());

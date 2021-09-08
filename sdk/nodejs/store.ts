@@ -32,10 +32,25 @@ export class Store extends pulumi.CustomResource {
         return obj['__pulumiType'] === Store.__pulumiType;
     }
 
+    /**
+     * Set of ResourceIdentifier to a Channel with ProductDistribution
+     */
     public readonly distributionChannels!: pulumi.Output<string[] | undefined>;
+    /**
+     * User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+     */
     public readonly key!: pulumi.Output<string>;
+    /**
+     * [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+     */
     public readonly languages!: pulumi.Output<string[] | undefined>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly name!: pulumi.Output<{[key: string]: any}>;
+    /**
+     * Set of ResourceIdentifier of Channels with InventorySupply
+     */
     public readonly supplyChannels!: pulumi.Output<string[] | undefined>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
@@ -49,7 +64,8 @@ export class Store extends pulumi.CustomResource {
     constructor(name: string, args: StoreArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: StoreArgs | StoreState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as StoreState | undefined;
             inputs["distributionChannels"] = state ? state.distributionChannels : undefined;
             inputs["key"] = state ? state.key : undefined;
@@ -59,7 +75,7 @@ export class Store extends pulumi.CustomResource {
             inputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as StoreArgs | undefined;
-            if (!args || args.key === undefined) {
+            if ((!args || args.key === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
             inputs["distributionChannels"] = args ? args.distributionChannels : undefined;
@@ -69,12 +85,8 @@ export class Store extends pulumi.CustomResource {
             inputs["supplyChannels"] = args ? args.supplyChannels : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Store.__pulumiType, name, inputs, opts);
     }
@@ -84,21 +96,51 @@ export class Store extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Store resources.
  */
 export interface StoreState {
-    readonly distributionChannels?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly key?: pulumi.Input<string>;
-    readonly languages?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly supplyChannels?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * Set of ResourceIdentifier to a Channel with ProductDistribution
+     */
+    distributionChannels?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+     */
+    languages?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Set of ResourceIdentifier of Channels with InventorySupply
+     */
+    supplyChannels?: pulumi.Input<pulumi.Input<string>[]>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a Store resource.
  */
 export interface StoreArgs {
-    readonly distributionChannels?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly key: pulumi.Input<string>;
-    readonly languages?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly supplyChannels?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Set of ResourceIdentifier to a Channel with ProductDistribution
+     */
+    distributionChannels?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+     */
+    key: pulumi.Input<string>;
+    /**
+     * [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+     */
+    languages?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Set of ResourceIdentifier of Channels with InventorySupply
+     */
+    supplyChannels?: pulumi.Input<pulumi.Input<string>[]>;
 }

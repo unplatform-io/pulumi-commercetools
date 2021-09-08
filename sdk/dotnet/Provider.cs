@@ -15,8 +15,47 @@ namespace Pulumi.Commercetools
     /// construction to achieve fine-grained programmatic control over provider settings. See the
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
+    [CommercetoolsResourceType("pulumi:providers:commercetools")]
     public partial class Provider : Pulumi.ProviderResource
     {
+        /// <summary>
+        /// The API URL of the commercetools platform. https://docs.commercetools.com/http-api
+        /// </summary>
+        [Output("apiUrl")]
+        public Output<string> ApiUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// The OAuth Client ID for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
+        /// </summary>
+        [Output("clientId")]
+        public Output<string> ClientId { get; private set; } = null!;
+
+        /// <summary>
+        /// The OAuth Client Secret for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
+        /// </summary>
+        [Output("clientSecret")]
+        public Output<string> ClientSecret { get; private set; } = null!;
+
+        /// <summary>
+        /// The project key of commercetools platform project. https://docs.commercetools.com/getting-started
+        /// </summary>
+        [Output("projectKey")]
+        public Output<string> ProjectKey { get; private set; } = null!;
+
+        /// <summary>
+        /// A list as string of OAuth scopes assigned to a project key, to access resources in a commercetools platform project.
+        /// https://docs.commercetools.com/http-api-authorization
+        /// </summary>
+        [Output("scopes")]
+        public Output<string> Scopes { get; private set; } = null!;
+
+        /// <summary>
+        /// The authentication URL of the commercetools platform. https://docs.commercetools.com/http-api-authorization
+        /// </summary>
+        [Output("tokenUrl")]
+        public Output<string> TokenUrl { get; private set; } = null!;
+
+
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>

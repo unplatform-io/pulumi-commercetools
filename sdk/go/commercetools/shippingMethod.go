@@ -4,19 +4,26 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type ShippingMethod struct {
 	pulumi.CustomResourceState
 
-	Description   pulumi.StringPtrOutput `pulumi:"description"`
-	IsDefault     pulumi.BoolPtrOutput   `pulumi:"isDefault"`
-	Key           pulumi.StringPtrOutput `pulumi:"key"`
-	Name          pulumi.StringOutput    `pulumi:"name"`
-	Predicate     pulumi.StringPtrOutput `pulumi:"predicate"`
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// One shipping method in a project can be default
+	IsDefault pulumi.BoolPtrOutput `pulumi:"isDefault"`
+	// User-specific unique identifier for the shipping method
+	Key pulumi.StringPtrOutput `pulumi:"key"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedDescription pulumi.MapOutput    `pulumi:"localizedDescription"`
+	Name                 pulumi.StringOutput `pulumi:"name"`
+	// A Cart predicate which can be used to more precisely select a shipping method for a cart
+	Predicate pulumi.StringPtrOutput `pulumi:"predicate"`
+	// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 	TaxCategoryId pulumi.StringPtrOutput `pulumi:"taxCategoryId"`
 	Version       pulumi.IntOutput       `pulumi:"version"`
 }
@@ -27,6 +34,7 @@ func NewShippingMethod(ctx *pulumi.Context,
 	if args == nil {
 		args = &ShippingMethodArgs{}
 	}
+
 	var resource ShippingMethod
 	err := ctx.RegisterResource("commercetools:index/shippingMethod:ShippingMethod", name, args, &resource, opts...)
 	if err != nil {
@@ -49,21 +57,33 @@ func GetShippingMethod(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ShippingMethod resources.
 type shippingMethodState struct {
-	Description   *string `pulumi:"description"`
-	IsDefault     *bool   `pulumi:"isDefault"`
-	Key           *string `pulumi:"key"`
-	Name          *string `pulumi:"name"`
-	Predicate     *string `pulumi:"predicate"`
+	Description *string `pulumi:"description"`
+	// One shipping method in a project can be default
+	IsDefault *bool `pulumi:"isDefault"`
+	// User-specific unique identifier for the shipping method
+	Key *string `pulumi:"key"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedDescription map[string]interface{} `pulumi:"localizedDescription"`
+	Name                 *string                `pulumi:"name"`
+	// A Cart predicate which can be used to more precisely select a shipping method for a cart
+	Predicate *string `pulumi:"predicate"`
+	// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 	TaxCategoryId *string `pulumi:"taxCategoryId"`
 	Version       *int    `pulumi:"version"`
 }
 
 type ShippingMethodState struct {
-	Description   pulumi.StringPtrInput
-	IsDefault     pulumi.BoolPtrInput
-	Key           pulumi.StringPtrInput
-	Name          pulumi.StringPtrInput
-	Predicate     pulumi.StringPtrInput
+	Description pulumi.StringPtrInput
+	// One shipping method in a project can be default
+	IsDefault pulumi.BoolPtrInput
+	// User-specific unique identifier for the shipping method
+	Key pulumi.StringPtrInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedDescription pulumi.MapInput
+	Name                 pulumi.StringPtrInput
+	// A Cart predicate which can be used to more precisely select a shipping method for a cart
+	Predicate pulumi.StringPtrInput
+	// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 	TaxCategoryId pulumi.StringPtrInput
 	Version       pulumi.IntPtrInput
 }
@@ -73,24 +93,223 @@ func (ShippingMethodState) ElementType() reflect.Type {
 }
 
 type shippingMethodArgs struct {
-	Description   *string `pulumi:"description"`
-	IsDefault     *bool   `pulumi:"isDefault"`
-	Key           *string `pulumi:"key"`
-	Name          *string `pulumi:"name"`
-	Predicate     *string `pulumi:"predicate"`
+	Description *string `pulumi:"description"`
+	// One shipping method in a project can be default
+	IsDefault *bool `pulumi:"isDefault"`
+	// User-specific unique identifier for the shipping method
+	Key *string `pulumi:"key"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedDescription map[string]interface{} `pulumi:"localizedDescription"`
+	Name                 *string                `pulumi:"name"`
+	// A Cart predicate which can be used to more precisely select a shipping method for a cart
+	Predicate *string `pulumi:"predicate"`
+	// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 	TaxCategoryId *string `pulumi:"taxCategoryId"`
 }
 
 // The set of arguments for constructing a ShippingMethod resource.
 type ShippingMethodArgs struct {
-	Description   pulumi.StringPtrInput
-	IsDefault     pulumi.BoolPtrInput
-	Key           pulumi.StringPtrInput
-	Name          pulumi.StringPtrInput
-	Predicate     pulumi.StringPtrInput
+	Description pulumi.StringPtrInput
+	// One shipping method in a project can be default
+	IsDefault pulumi.BoolPtrInput
+	// User-specific unique identifier for the shipping method
+	Key pulumi.StringPtrInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedDescription pulumi.MapInput
+	Name                 pulumi.StringPtrInput
+	// A Cart predicate which can be used to more precisely select a shipping method for a cart
+	Predicate pulumi.StringPtrInput
+	// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 	TaxCategoryId pulumi.StringPtrInput
 }
 
 func (ShippingMethodArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*shippingMethodArgs)(nil)).Elem()
+}
+
+type ShippingMethodInput interface {
+	pulumi.Input
+
+	ToShippingMethodOutput() ShippingMethodOutput
+	ToShippingMethodOutputWithContext(ctx context.Context) ShippingMethodOutput
+}
+
+func (*ShippingMethod) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippingMethod)(nil))
+}
+
+func (i *ShippingMethod) ToShippingMethodOutput() ShippingMethodOutput {
+	return i.ToShippingMethodOutputWithContext(context.Background())
+}
+
+func (i *ShippingMethod) ToShippingMethodOutputWithContext(ctx context.Context) ShippingMethodOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingMethodOutput)
+}
+
+func (i *ShippingMethod) ToShippingMethodPtrOutput() ShippingMethodPtrOutput {
+	return i.ToShippingMethodPtrOutputWithContext(context.Background())
+}
+
+func (i *ShippingMethod) ToShippingMethodPtrOutputWithContext(ctx context.Context) ShippingMethodPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingMethodPtrOutput)
+}
+
+type ShippingMethodPtrInput interface {
+	pulumi.Input
+
+	ToShippingMethodPtrOutput() ShippingMethodPtrOutput
+	ToShippingMethodPtrOutputWithContext(ctx context.Context) ShippingMethodPtrOutput
+}
+
+type shippingMethodPtrType ShippingMethodArgs
+
+func (*shippingMethodPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShippingMethod)(nil))
+}
+
+func (i *shippingMethodPtrType) ToShippingMethodPtrOutput() ShippingMethodPtrOutput {
+	return i.ToShippingMethodPtrOutputWithContext(context.Background())
+}
+
+func (i *shippingMethodPtrType) ToShippingMethodPtrOutputWithContext(ctx context.Context) ShippingMethodPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingMethodPtrOutput)
+}
+
+// ShippingMethodArrayInput is an input type that accepts ShippingMethodArray and ShippingMethodArrayOutput values.
+// You can construct a concrete instance of `ShippingMethodArrayInput` via:
+//
+//          ShippingMethodArray{ ShippingMethodArgs{...} }
+type ShippingMethodArrayInput interface {
+	pulumi.Input
+
+	ToShippingMethodArrayOutput() ShippingMethodArrayOutput
+	ToShippingMethodArrayOutputWithContext(context.Context) ShippingMethodArrayOutput
+}
+
+type ShippingMethodArray []ShippingMethodInput
+
+func (ShippingMethodArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ShippingMethod)(nil))
+}
+
+func (i ShippingMethodArray) ToShippingMethodArrayOutput() ShippingMethodArrayOutput {
+	return i.ToShippingMethodArrayOutputWithContext(context.Background())
+}
+
+func (i ShippingMethodArray) ToShippingMethodArrayOutputWithContext(ctx context.Context) ShippingMethodArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingMethodArrayOutput)
+}
+
+// ShippingMethodMapInput is an input type that accepts ShippingMethodMap and ShippingMethodMapOutput values.
+// You can construct a concrete instance of `ShippingMethodMapInput` via:
+//
+//          ShippingMethodMap{ "key": ShippingMethodArgs{...} }
+type ShippingMethodMapInput interface {
+	pulumi.Input
+
+	ToShippingMethodMapOutput() ShippingMethodMapOutput
+	ToShippingMethodMapOutputWithContext(context.Context) ShippingMethodMapOutput
+}
+
+type ShippingMethodMap map[string]ShippingMethodInput
+
+func (ShippingMethodMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ShippingMethod)(nil))
+}
+
+func (i ShippingMethodMap) ToShippingMethodMapOutput() ShippingMethodMapOutput {
+	return i.ToShippingMethodMapOutputWithContext(context.Background())
+}
+
+func (i ShippingMethodMap) ToShippingMethodMapOutputWithContext(ctx context.Context) ShippingMethodMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingMethodMapOutput)
+}
+
+type ShippingMethodOutput struct {
+	*pulumi.OutputState
+}
+
+func (ShippingMethodOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippingMethod)(nil))
+}
+
+func (o ShippingMethodOutput) ToShippingMethodOutput() ShippingMethodOutput {
+	return o
+}
+
+func (o ShippingMethodOutput) ToShippingMethodOutputWithContext(ctx context.Context) ShippingMethodOutput {
+	return o
+}
+
+func (o ShippingMethodOutput) ToShippingMethodPtrOutput() ShippingMethodPtrOutput {
+	return o.ToShippingMethodPtrOutputWithContext(context.Background())
+}
+
+func (o ShippingMethodOutput) ToShippingMethodPtrOutputWithContext(ctx context.Context) ShippingMethodPtrOutput {
+	return o.ApplyT(func(v ShippingMethod) *ShippingMethod {
+		return &v
+	}).(ShippingMethodPtrOutput)
+}
+
+type ShippingMethodPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ShippingMethodPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShippingMethod)(nil))
+}
+
+func (o ShippingMethodPtrOutput) ToShippingMethodPtrOutput() ShippingMethodPtrOutput {
+	return o
+}
+
+func (o ShippingMethodPtrOutput) ToShippingMethodPtrOutputWithContext(ctx context.Context) ShippingMethodPtrOutput {
+	return o
+}
+
+type ShippingMethodArrayOutput struct{ *pulumi.OutputState }
+
+func (ShippingMethodArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ShippingMethod)(nil))
+}
+
+func (o ShippingMethodArrayOutput) ToShippingMethodArrayOutput() ShippingMethodArrayOutput {
+	return o
+}
+
+func (o ShippingMethodArrayOutput) ToShippingMethodArrayOutputWithContext(ctx context.Context) ShippingMethodArrayOutput {
+	return o
+}
+
+func (o ShippingMethodArrayOutput) Index(i pulumi.IntInput) ShippingMethodOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ShippingMethod {
+		return vs[0].([]ShippingMethod)[vs[1].(int)]
+	}).(ShippingMethodOutput)
+}
+
+type ShippingMethodMapOutput struct{ *pulumi.OutputState }
+
+func (ShippingMethodMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ShippingMethod)(nil))
+}
+
+func (o ShippingMethodMapOutput) ToShippingMethodMapOutput() ShippingMethodMapOutput {
+	return o
+}
+
+func (o ShippingMethodMapOutput) ToShippingMethodMapOutputWithContext(ctx context.Context) ShippingMethodMapOutput {
+	return o
+}
+
+func (o ShippingMethodMapOutput) MapIndex(k pulumi.StringInput) ShippingMethodOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ShippingMethod {
+		return vs[0].(map[string]ShippingMethod)[vs[1].(string)]
+	}).(ShippingMethodOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(ShippingMethodOutput{})
+	pulumi.RegisterOutputType(ShippingMethodPtrOutput{})
+	pulumi.RegisterOutputType(ShippingMethodArrayOutput{})
+	pulumi.RegisterOutputType(ShippingMethodMapOutput{})
 }

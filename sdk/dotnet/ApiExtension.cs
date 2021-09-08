@@ -9,17 +9,32 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/apiExtension:ApiExtension")]
     public partial class ApiExtension : Pulumi.CustomResource
     {
+        /// <summary>
+        /// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+        /// reached
+        /// </summary>
         [Output("destination")]
         public Output<Outputs.ApiExtensionDestination> Destination { get; private set; } = null!;
 
+        /// <summary>
+        /// User-specific unique identifier for the extension
+        /// </summary>
         [Output("key")]
         public Output<string?> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// Extension timeout in milliseconds
+        /// </summary>
         [Output("timeoutInMs")]
         public Output<int?> TimeoutInMs { get; private set; } = null!;
 
+        /// <summary>
+        /// Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+        /// extension
+        /// </summary>
         [Output("triggers")]
         public Output<ImmutableArray<Outputs.ApiExtensionTrigger>> Triggers { get; private set; } = null!;
 
@@ -72,17 +87,32 @@ namespace Pulumi.Commercetools
 
     public sealed class ApiExtensionArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+        /// reached
+        /// </summary>
         [Input("destination", required: true)]
         public Input<Inputs.ApiExtensionDestinationArgs> Destination { get; set; } = null!;
 
+        /// <summary>
+        /// User-specific unique identifier for the extension
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
+        /// <summary>
+        /// Extension timeout in milliseconds
+        /// </summary>
         [Input("timeoutInMs")]
         public Input<int>? TimeoutInMs { get; set; }
 
         [Input("triggers", required: true)]
         private InputList<Inputs.ApiExtensionTriggerArgs>? _triggers;
+
+        /// <summary>
+        /// Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+        /// extension
+        /// </summary>
         public InputList<Inputs.ApiExtensionTriggerArgs> Triggers
         {
             get => _triggers ?? (_triggers = new InputList<Inputs.ApiExtensionTriggerArgs>());
@@ -96,17 +126,32 @@ namespace Pulumi.Commercetools
 
     public sealed class ApiExtensionState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+        /// reached
+        /// </summary>
         [Input("destination")]
         public Input<Inputs.ApiExtensionDestinationGetArgs>? Destination { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for the extension
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
+        /// <summary>
+        /// Extension timeout in milliseconds
+        /// </summary>
         [Input("timeoutInMs")]
         public Input<int>? TimeoutInMs { get; set; }
 
         [Input("triggers")]
         private InputList<Inputs.ApiExtensionTriggerGetArgs>? _triggers;
+
+        /// <summary>
+        /// Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+        /// extension
+        /// </summary>
         public InputList<Inputs.ApiExtensionTriggerGetArgs> Triggers
         {
             get => _triggers ?? (_triggers = new InputList<Inputs.ApiExtensionTriggerGetArgs>());

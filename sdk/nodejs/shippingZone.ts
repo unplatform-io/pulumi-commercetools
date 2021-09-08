@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class ShippingZone extends pulumi.CustomResource {
@@ -35,7 +34,13 @@ export class ShippingZone extends pulumi.CustomResource {
     }
 
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * User-specific unique identifier for a zone. Must be unique across a project
+     */
     public readonly key!: pulumi.Output<string | undefined>;
+    /**
+     * [Location](https://docs.commercetools.com/api/projects/zones#location)
+     */
     public readonly locations!: pulumi.Output<outputs.ShippingZoneLocation[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public /*out*/ readonly version!: pulumi.Output<number>;
@@ -50,7 +55,8 @@ export class ShippingZone extends pulumi.CustomResource {
     constructor(name: string, args?: ShippingZoneArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ShippingZoneArgs | ShippingZoneState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ShippingZoneState | undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["key"] = state ? state.key : undefined;
@@ -65,12 +71,8 @@ export class ShippingZone extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ShippingZone.__pulumiType, name, inputs, opts);
     }
@@ -80,19 +82,31 @@ export class ShippingZone extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ShippingZone resources.
  */
 export interface ShippingZoneState {
-    readonly description?: pulumi.Input<string>;
-    readonly key?: pulumi.Input<string>;
-    readonly locations?: pulumi.Input<pulumi.Input<inputs.ShippingZoneLocation>[]>;
-    readonly name?: pulumi.Input<string>;
-    readonly version?: pulumi.Input<number>;
+    description?: pulumi.Input<string>;
+    /**
+     * User-specific unique identifier for a zone. Must be unique across a project
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * [Location](https://docs.commercetools.com/api/projects/zones#location)
+     */
+    locations?: pulumi.Input<pulumi.Input<inputs.ShippingZoneLocation>[]>;
+    name?: pulumi.Input<string>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a ShippingZone resource.
  */
 export interface ShippingZoneArgs {
-    readonly description?: pulumi.Input<string>;
-    readonly key?: pulumi.Input<string>;
-    readonly locations?: pulumi.Input<pulumi.Input<inputs.ShippingZoneLocation>[]>;
-    readonly name?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
+    /**
+     * User-specific unique identifier for a zone. Must be unique across a project
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * [Location](https://docs.commercetools.com/api/projects/zones#location)
+     */
+    locations?: pulumi.Input<pulumi.Input<inputs.ShippingZoneLocation>[]>;
+    name?: pulumi.Input<string>;
 }

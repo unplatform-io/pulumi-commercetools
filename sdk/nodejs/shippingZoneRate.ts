@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class ShippingZoneRate extends pulumi.CustomResource {
@@ -34,9 +33,18 @@ export class ShippingZoneRate extends pulumi.CustomResource {
         return obj['__pulumiType'] === ShippingZoneRate.__pulumiType;
     }
 
+    /**
+     * The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+     */
     public readonly freeAbove!: pulumi.Output<outputs.ShippingZoneRateFreeAbove | undefined>;
     public readonly price!: pulumi.Output<outputs.ShippingZoneRatePrice>;
     public readonly shippingMethodId!: pulumi.Output<string>;
+    /**
+     * A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+     * tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+     * API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+     */
+    public readonly shippingRatePriceTiers!: pulumi.Output<outputs.ShippingZoneRateShippingRatePriceTier[] | undefined>;
     public readonly shippingZoneId!: pulumi.Output<string>;
 
     /**
@@ -49,34 +57,33 @@ export class ShippingZoneRate extends pulumi.CustomResource {
     constructor(name: string, args: ShippingZoneRateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ShippingZoneRateArgs | ShippingZoneRateState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ShippingZoneRateState | undefined;
             inputs["freeAbove"] = state ? state.freeAbove : undefined;
             inputs["price"] = state ? state.price : undefined;
             inputs["shippingMethodId"] = state ? state.shippingMethodId : undefined;
+            inputs["shippingRatePriceTiers"] = state ? state.shippingRatePriceTiers : undefined;
             inputs["shippingZoneId"] = state ? state.shippingZoneId : undefined;
         } else {
             const args = argsOrState as ShippingZoneRateArgs | undefined;
-            if (!args || args.price === undefined) {
+            if ((!args || args.price === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'price'");
             }
-            if (!args || args.shippingMethodId === undefined) {
+            if ((!args || args.shippingMethodId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'shippingMethodId'");
             }
-            if (!args || args.shippingZoneId === undefined) {
+            if ((!args || args.shippingZoneId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'shippingZoneId'");
             }
             inputs["freeAbove"] = args ? args.freeAbove : undefined;
             inputs["price"] = args ? args.price : undefined;
             inputs["shippingMethodId"] = args ? args.shippingMethodId : undefined;
+            inputs["shippingRatePriceTiers"] = args ? args.shippingRatePriceTiers : undefined;
             inputs["shippingZoneId"] = args ? args.shippingZoneId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ShippingZoneRate.__pulumiType, name, inputs, opts);
     }
@@ -86,18 +93,36 @@ export class ShippingZoneRate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ShippingZoneRate resources.
  */
 export interface ShippingZoneRateState {
-    readonly freeAbove?: pulumi.Input<inputs.ShippingZoneRateFreeAbove>;
-    readonly price?: pulumi.Input<inputs.ShippingZoneRatePrice>;
-    readonly shippingMethodId?: pulumi.Input<string>;
-    readonly shippingZoneId?: pulumi.Input<string>;
+    /**
+     * The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+     */
+    freeAbove?: pulumi.Input<inputs.ShippingZoneRateFreeAbove>;
+    price?: pulumi.Input<inputs.ShippingZoneRatePrice>;
+    shippingMethodId?: pulumi.Input<string>;
+    /**
+     * A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+     * tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+     * API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+     */
+    shippingRatePriceTiers?: pulumi.Input<pulumi.Input<inputs.ShippingZoneRateShippingRatePriceTier>[]>;
+    shippingZoneId?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a ShippingZoneRate resource.
  */
 export interface ShippingZoneRateArgs {
-    readonly freeAbove?: pulumi.Input<inputs.ShippingZoneRateFreeAbove>;
-    readonly price: pulumi.Input<inputs.ShippingZoneRatePrice>;
-    readonly shippingMethodId: pulumi.Input<string>;
-    readonly shippingZoneId: pulumi.Input<string>;
+    /**
+     * The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+     */
+    freeAbove?: pulumi.Input<inputs.ShippingZoneRateFreeAbove>;
+    price: pulumi.Input<inputs.ShippingZoneRatePrice>;
+    shippingMethodId: pulumi.Input<string>;
+    /**
+     * A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+     * tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+     * API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+     */
+    shippingRatePriceTiers?: pulumi.Input<pulumi.Input<inputs.ShippingZoneRateShippingRatePriceTier>[]>;
+    shippingZoneId: pulumi.Input<string>;
 }

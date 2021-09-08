@@ -9,11 +9,18 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/apiClient:ApiClient")]
     public partial class ApiClient : Pulumi.CustomResource
     {
+        /// <summary>
+        /// Name of the API client
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
+        /// </summary>
         [Output("scopes")]
         public Output<ImmutableArray<string>> Scopes { get; private set; } = null!;
 
@@ -66,11 +73,18 @@ namespace Pulumi.Commercetools
 
     public sealed class ApiClientArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of the API client
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("scopes", required: true)]
         private InputList<string>? _scopes;
+
+        /// <summary>
+        /// A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
+        /// </summary>
         public InputList<string> Scopes
         {
             get => _scopes ?? (_scopes = new InputList<string>());
@@ -84,11 +98,18 @@ namespace Pulumi.Commercetools
 
     public sealed class ApiClientState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of the API client
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("scopes")]
         private InputList<string>? _scopes;
+
+        /// <summary>
+        /// A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
+        /// </summary>
         public InputList<string> Scopes
         {
             get => _scopes ?? (_scopes = new InputList<string>());

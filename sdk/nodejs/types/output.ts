@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 
 export interface ApiExtensionDestination {
     accessKey?: string;
@@ -78,6 +77,11 @@ export interface ProductTypeAttributeTypeLocalizedValue {
     label: {[key: string]: any};
 }
 
+export interface ProjectSettingsCarts {
+    countryTaxRateFallbackEnabled: boolean;
+    deleteDaysAfterLastModification?: number;
+}
+
 export interface ProjectSettingsExternalOauth {
     authorizationHeader: string;
     url: string;
@@ -85,6 +89,11 @@ export interface ProjectSettingsExternalOauth {
 
 export interface ProjectSettingsMessages {
     enabled: boolean;
+}
+
+export interface ProjectSettingsShippingRateCartClassificationValue {
+    key: string;
+    label?: {[key: string]: any};
 }
 
 export interface ShippingZoneLocation {
@@ -98,6 +107,19 @@ export interface ShippingZoneRateFreeAbove {
 }
 
 export interface ShippingZoneRatePrice {
+    centAmount: number;
+    currencyCode: string;
+}
+
+export interface ShippingZoneRateShippingRatePriceTier {
+    minimumCentAmount?: number;
+    price: outputs.ShippingZoneRateShippingRatePriceTierPrice;
+    score?: number;
+    type: string;
+    value?: string;
+}
+
+export interface ShippingZoneRateShippingRatePriceTierPrice {
     centAmount: number;
     currencyCode: string;
 }

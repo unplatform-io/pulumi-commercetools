@@ -9,38 +9,70 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/discountCode:DiscountCode")]
     public partial class DiscountCode : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+        /// </summary>
         [Output("cartDiscounts")]
         public Output<ImmutableArray<string>> CartDiscounts { get; private set; } = null!;
 
+        /// <summary>
+        /// Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+        /// cart
+        /// </summary>
         [Output("code")]
         public Output<string> Code { get; private set; } = null!;
 
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("description")]
         public Output<ImmutableDictionary<string, object>?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// The groups to which this discount code belong
+        /// </summary>
         [Output("groups")]
         public Output<ImmutableArray<string>> Groups { get; private set; } = null!;
 
         [Output("isActive")]
         public Output<bool?> IsActive { get; private set; } = null!;
 
+        /// <summary>
+        /// The discount code can only be applied maxApplications times
+        /// </summary>
         [Output("maxApplications")]
         public Output<int?> MaxApplications { get; private set; } = null!;
 
+        /// <summary>
+        /// The discount code can only be applied maxApplicationsPerCustomer times per customer
+        /// </summary>
         [Output("maxApplicationsPerCustomer")]
         public Output<int?> MaxApplicationsPerCustomer { get; private set; } = null!;
 
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("name")]
         public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        /// </summary>
         [Output("predicate")]
         public Output<string?> Predicate { get; private set; } = null!;
 
+        /// <summary>
+        /// The time from which the discount can be applied on a cart. Before that time the code is invalid
+        /// </summary>
         [Output("validFrom")]
         public Output<string?> ValidFrom { get; private set; } = null!;
 
+        /// <summary>
+        /// The time until the discount can be applied on a cart. After that time the code is invalid
+        /// </summary>
         [Output("validUntil")]
         public Output<string?> ValidUntil { get; private set; } = null!;
 
@@ -95,17 +127,29 @@ namespace Pulumi.Commercetools
     {
         [Input("cartDiscounts", required: true)]
         private InputList<string>? _cartDiscounts;
+
+        /// <summary>
+        /// The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+        /// </summary>
         public InputList<string> CartDiscounts
         {
             get => _cartDiscounts ?? (_cartDiscounts = new InputList<string>());
             set => _cartDiscounts = value;
         }
 
+        /// <summary>
+        /// Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+        /// cart
+        /// </summary>
         [Input("code", required: true)]
         public Input<string> Code { get; set; } = null!;
 
         [Input("description")]
         private InputMap<object>? _description;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Description
         {
             get => _description ?? (_description = new InputMap<object>());
@@ -114,6 +158,10 @@ namespace Pulumi.Commercetools
 
         [Input("groups")]
         private InputList<string>? _groups;
+
+        /// <summary>
+        /// The groups to which this discount code belong
+        /// </summary>
         public InputList<string> Groups
         {
             get => _groups ?? (_groups = new InputList<string>());
@@ -123,26 +171,45 @@ namespace Pulumi.Commercetools
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
 
+        /// <summary>
+        /// The discount code can only be applied maxApplications times
+        /// </summary>
         [Input("maxApplications")]
         public Input<int>? MaxApplications { get; set; }
 
+        /// <summary>
+        /// The discount code can only be applied maxApplicationsPerCustomer times per customer
+        /// </summary>
         [Input("maxApplicationsPerCustomer")]
         public Input<int>? MaxApplicationsPerCustomer { get; set; }
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
             set => _name = value;
         }
 
+        /// <summary>
+        /// [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        /// </summary>
         [Input("predicate")]
         public Input<string>? Predicate { get; set; }
 
+        /// <summary>
+        /// The time from which the discount can be applied on a cart. Before that time the code is invalid
+        /// </summary>
         [Input("validFrom")]
         public Input<string>? ValidFrom { get; set; }
 
+        /// <summary>
+        /// The time until the discount can be applied on a cart. After that time the code is invalid
+        /// </summary>
         [Input("validUntil")]
         public Input<string>? ValidUntil { get; set; }
 
@@ -155,17 +222,29 @@ namespace Pulumi.Commercetools
     {
         [Input("cartDiscounts")]
         private InputList<string>? _cartDiscounts;
+
+        /// <summary>
+        /// The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+        /// </summary>
         public InputList<string> CartDiscounts
         {
             get => _cartDiscounts ?? (_cartDiscounts = new InputList<string>());
             set => _cartDiscounts = value;
         }
 
+        /// <summary>
+        /// Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+        /// cart
+        /// </summary>
         [Input("code")]
         public Input<string>? Code { get; set; }
 
         [Input("description")]
         private InputMap<object>? _description;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Description
         {
             get => _description ?? (_description = new InputMap<object>());
@@ -174,6 +253,10 @@ namespace Pulumi.Commercetools
 
         [Input("groups")]
         private InputList<string>? _groups;
+
+        /// <summary>
+        /// The groups to which this discount code belong
+        /// </summary>
         public InputList<string> Groups
         {
             get => _groups ?? (_groups = new InputList<string>());
@@ -183,26 +266,45 @@ namespace Pulumi.Commercetools
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
 
+        /// <summary>
+        /// The discount code can only be applied maxApplications times
+        /// </summary>
         [Input("maxApplications")]
         public Input<int>? MaxApplications { get; set; }
 
+        /// <summary>
+        /// The discount code can only be applied maxApplicationsPerCustomer times per customer
+        /// </summary>
         [Input("maxApplicationsPerCustomer")]
         public Input<int>? MaxApplicationsPerCustomer { get; set; }
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
             set => _name = value;
         }
 
+        /// <summary>
+        /// [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        /// </summary>
         [Input("predicate")]
         public Input<string>? Predicate { get; set; }
 
+        /// <summary>
+        /// The time from which the discount can be applied on a cart. Before that time the code is invalid
+        /// </summary>
         [Input("validFrom")]
         public Input<string>? ValidFrom { get; set; }
 
+        /// <summary>
+        /// The time until the discount can be applied on a cart. After that time the code is invalid
+        /// </summary>
         [Input("validUntil")]
         public Input<string>? ValidUntil { get; set; }
 

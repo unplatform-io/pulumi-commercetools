@@ -4,20 +4,27 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type Subscription struct {
 	pulumi.CustomResourceState
 
-	Changes     SubscriptionChangeArrayOutput    `pulumi:"changes"`
+	// The change notifications subscribed to
+	Changes SubscriptionChangeArrayOutput `pulumi:"changes"`
+	// The Message Queue into which the notifications are to be sentSee also the [Destination API
+	// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
 	Destination SubscriptionDestinationPtrOutput `pulumi:"destination"`
-	Format      SubscriptionFormatPtrOutput      `pulumi:"format"`
-	Key         pulumi.StringPtrOutput           `pulumi:"key"`
-	Messages    SubscriptionMessageArrayOutput   `pulumi:"messages"`
-	Version     pulumi.IntOutput                 `pulumi:"version"`
+	// The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+	Format SubscriptionFormatPtrOutput `pulumi:"format"`
+	// User-specific unique identifier for the subscription
+	Key pulumi.StringPtrOutput `pulumi:"key"`
+	// The messages subscribed to
+	Messages SubscriptionMessageArrayOutput `pulumi:"messages"`
+	Version  pulumi.IntOutput               `pulumi:"version"`
 }
 
 // NewSubscription registers a new resource with the given unique name, arguments, and options.
@@ -26,6 +33,7 @@ func NewSubscription(ctx *pulumi.Context,
 	if args == nil {
 		args = &SubscriptionArgs{}
 	}
+
 	var resource Subscription
 	err := ctx.RegisterResource("commercetools:index/subscription:Subscription", name, args, &resource, opts...)
 	if err != nil {
@@ -48,21 +56,33 @@ func GetSubscription(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Subscription resources.
 type subscriptionState struct {
-	Changes     []SubscriptionChange     `pulumi:"changes"`
+	// The change notifications subscribed to
+	Changes []SubscriptionChange `pulumi:"changes"`
+	// The Message Queue into which the notifications are to be sentSee also the [Destination API
+	// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
 	Destination *SubscriptionDestination `pulumi:"destination"`
-	Format      *SubscriptionFormat      `pulumi:"format"`
-	Key         *string                  `pulumi:"key"`
-	Messages    []SubscriptionMessage    `pulumi:"messages"`
-	Version     *int                     `pulumi:"version"`
+	// The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+	Format *SubscriptionFormat `pulumi:"format"`
+	// User-specific unique identifier for the subscription
+	Key *string `pulumi:"key"`
+	// The messages subscribed to
+	Messages []SubscriptionMessage `pulumi:"messages"`
+	Version  *int                  `pulumi:"version"`
 }
 
 type SubscriptionState struct {
-	Changes     SubscriptionChangeArrayInput
+	// The change notifications subscribed to
+	Changes SubscriptionChangeArrayInput
+	// The Message Queue into which the notifications are to be sentSee also the [Destination API
+	// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
 	Destination SubscriptionDestinationPtrInput
-	Format      SubscriptionFormatPtrInput
-	Key         pulumi.StringPtrInput
-	Messages    SubscriptionMessageArrayInput
-	Version     pulumi.IntPtrInput
+	// The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+	Format SubscriptionFormatPtrInput
+	// User-specific unique identifier for the subscription
+	Key pulumi.StringPtrInput
+	// The messages subscribed to
+	Messages SubscriptionMessageArrayInput
+	Version  pulumi.IntPtrInput
 }
 
 func (SubscriptionState) ElementType() reflect.Type {
@@ -70,22 +90,221 @@ func (SubscriptionState) ElementType() reflect.Type {
 }
 
 type subscriptionArgs struct {
-	Changes     []SubscriptionChange     `pulumi:"changes"`
+	// The change notifications subscribed to
+	Changes []SubscriptionChange `pulumi:"changes"`
+	// The Message Queue into which the notifications are to be sentSee also the [Destination API
+	// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
 	Destination *SubscriptionDestination `pulumi:"destination"`
-	Format      *SubscriptionFormat      `pulumi:"format"`
-	Key         *string                  `pulumi:"key"`
-	Messages    []SubscriptionMessage    `pulumi:"messages"`
+	// The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+	Format *SubscriptionFormat `pulumi:"format"`
+	// User-specific unique identifier for the subscription
+	Key *string `pulumi:"key"`
+	// The messages subscribed to
+	Messages []SubscriptionMessage `pulumi:"messages"`
 }
 
 // The set of arguments for constructing a Subscription resource.
 type SubscriptionArgs struct {
-	Changes     SubscriptionChangeArrayInput
+	// The change notifications subscribed to
+	Changes SubscriptionChangeArrayInput
+	// The Message Queue into which the notifications are to be sentSee also the [Destination API
+	// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
 	Destination SubscriptionDestinationPtrInput
-	Format      SubscriptionFormatPtrInput
-	Key         pulumi.StringPtrInput
-	Messages    SubscriptionMessageArrayInput
+	// The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+	Format SubscriptionFormatPtrInput
+	// User-specific unique identifier for the subscription
+	Key pulumi.StringPtrInput
+	// The messages subscribed to
+	Messages SubscriptionMessageArrayInput
 }
 
 func (SubscriptionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*subscriptionArgs)(nil)).Elem()
+}
+
+type SubscriptionInput interface {
+	pulumi.Input
+
+	ToSubscriptionOutput() SubscriptionOutput
+	ToSubscriptionOutputWithContext(ctx context.Context) SubscriptionOutput
+}
+
+func (*Subscription) ElementType() reflect.Type {
+	return reflect.TypeOf((*Subscription)(nil))
+}
+
+func (i *Subscription) ToSubscriptionOutput() SubscriptionOutput {
+	return i.ToSubscriptionOutputWithContext(context.Background())
+}
+
+func (i *Subscription) ToSubscriptionOutputWithContext(ctx context.Context) SubscriptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionOutput)
+}
+
+func (i *Subscription) ToSubscriptionPtrOutput() SubscriptionPtrOutput {
+	return i.ToSubscriptionPtrOutputWithContext(context.Background())
+}
+
+func (i *Subscription) ToSubscriptionPtrOutputWithContext(ctx context.Context) SubscriptionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPtrOutput)
+}
+
+type SubscriptionPtrInput interface {
+	pulumi.Input
+
+	ToSubscriptionPtrOutput() SubscriptionPtrOutput
+	ToSubscriptionPtrOutputWithContext(ctx context.Context) SubscriptionPtrOutput
+}
+
+type subscriptionPtrType SubscriptionArgs
+
+func (*subscriptionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Subscription)(nil))
+}
+
+func (i *subscriptionPtrType) ToSubscriptionPtrOutput() SubscriptionPtrOutput {
+	return i.ToSubscriptionPtrOutputWithContext(context.Background())
+}
+
+func (i *subscriptionPtrType) ToSubscriptionPtrOutputWithContext(ctx context.Context) SubscriptionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionPtrOutput)
+}
+
+// SubscriptionArrayInput is an input type that accepts SubscriptionArray and SubscriptionArrayOutput values.
+// You can construct a concrete instance of `SubscriptionArrayInput` via:
+//
+//          SubscriptionArray{ SubscriptionArgs{...} }
+type SubscriptionArrayInput interface {
+	pulumi.Input
+
+	ToSubscriptionArrayOutput() SubscriptionArrayOutput
+	ToSubscriptionArrayOutputWithContext(context.Context) SubscriptionArrayOutput
+}
+
+type SubscriptionArray []SubscriptionInput
+
+func (SubscriptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*Subscription)(nil))
+}
+
+func (i SubscriptionArray) ToSubscriptionArrayOutput() SubscriptionArrayOutput {
+	return i.ToSubscriptionArrayOutputWithContext(context.Background())
+}
+
+func (i SubscriptionArray) ToSubscriptionArrayOutputWithContext(ctx context.Context) SubscriptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionArrayOutput)
+}
+
+// SubscriptionMapInput is an input type that accepts SubscriptionMap and SubscriptionMapOutput values.
+// You can construct a concrete instance of `SubscriptionMapInput` via:
+//
+//          SubscriptionMap{ "key": SubscriptionArgs{...} }
+type SubscriptionMapInput interface {
+	pulumi.Input
+
+	ToSubscriptionMapOutput() SubscriptionMapOutput
+	ToSubscriptionMapOutputWithContext(context.Context) SubscriptionMapOutput
+}
+
+type SubscriptionMap map[string]SubscriptionInput
+
+func (SubscriptionMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*Subscription)(nil))
+}
+
+func (i SubscriptionMap) ToSubscriptionMapOutput() SubscriptionMapOutput {
+	return i.ToSubscriptionMapOutputWithContext(context.Background())
+}
+
+func (i SubscriptionMap) ToSubscriptionMapOutputWithContext(ctx context.Context) SubscriptionMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubscriptionMapOutput)
+}
+
+type SubscriptionOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Subscription)(nil))
+}
+
+func (o SubscriptionOutput) ToSubscriptionOutput() SubscriptionOutput {
+	return o
+}
+
+func (o SubscriptionOutput) ToSubscriptionOutputWithContext(ctx context.Context) SubscriptionOutput {
+	return o
+}
+
+func (o SubscriptionOutput) ToSubscriptionPtrOutput() SubscriptionPtrOutput {
+	return o.ToSubscriptionPtrOutputWithContext(context.Background())
+}
+
+func (o SubscriptionOutput) ToSubscriptionPtrOutputWithContext(ctx context.Context) SubscriptionPtrOutput {
+	return o.ApplyT(func(v Subscription) *Subscription {
+		return &v
+	}).(SubscriptionPtrOutput)
+}
+
+type SubscriptionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SubscriptionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Subscription)(nil))
+}
+
+func (o SubscriptionPtrOutput) ToSubscriptionPtrOutput() SubscriptionPtrOutput {
+	return o
+}
+
+func (o SubscriptionPtrOutput) ToSubscriptionPtrOutputWithContext(ctx context.Context) SubscriptionPtrOutput {
+	return o
+}
+
+type SubscriptionArrayOutput struct{ *pulumi.OutputState }
+
+func (SubscriptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Subscription)(nil))
+}
+
+func (o SubscriptionArrayOutput) ToSubscriptionArrayOutput() SubscriptionArrayOutput {
+	return o
+}
+
+func (o SubscriptionArrayOutput) ToSubscriptionArrayOutputWithContext(ctx context.Context) SubscriptionArrayOutput {
+	return o
+}
+
+func (o SubscriptionArrayOutput) Index(i pulumi.IntInput) SubscriptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Subscription {
+		return vs[0].([]Subscription)[vs[1].(int)]
+	}).(SubscriptionOutput)
+}
+
+type SubscriptionMapOutput struct{ *pulumi.OutputState }
+
+func (SubscriptionMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]Subscription)(nil))
+}
+
+func (o SubscriptionMapOutput) ToSubscriptionMapOutput() SubscriptionMapOutput {
+	return o
+}
+
+func (o SubscriptionMapOutput) ToSubscriptionMapOutputWithContext(ctx context.Context) SubscriptionMapOutput {
+	return o
+}
+
+func (o SubscriptionMapOutput) MapIndex(k pulumi.StringInput) SubscriptionOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Subscription {
+		return vs[0].(map[string]Subscription)[vs[1].(string)]
+	}).(SubscriptionOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(SubscriptionOutput{})
+	pulumi.RegisterOutputType(SubscriptionPtrOutput{})
+	pulumi.RegisterOutputType(SubscriptionArrayOutput{})
+	pulumi.RegisterOutputType(SubscriptionMapOutput{})
 }

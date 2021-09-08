@@ -5,13 +5,387 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 
-__all__ = ['DiscountCode']
+__all__ = ['DiscountCodeArgs', 'DiscountCode']
+
+@pulumi.input_type
+class DiscountCodeArgs:
+    def __init__(__self__, *,
+                 cart_discounts: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 code: pulumi.Input[str],
+                 description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 is_active: Optional[pulumi.Input[bool]] = None,
+                 max_applications: Optional[pulumi.Input[int]] = None,
+                 max_applications_per_customer: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 predicate: Optional[pulumi.Input[str]] = None,
+                 valid_from: Optional[pulumi.Input[str]] = None,
+                 valid_until: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a DiscountCode resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cart_discounts: The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+        :param pulumi.Input[str] code: Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+               cart
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
+        :param pulumi.Input[int] max_applications: The discount code can only be applied maxApplications times
+        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied maxApplicationsPerCustomer times per customer
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[str] predicate: [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        :param pulumi.Input[str] valid_from: The time from which the discount can be applied on a cart. Before that time the code is invalid
+        :param pulumi.Input[str] valid_until: The time until the discount can be applied on a cart. After that time the code is invalid
+        """
+        pulumi.set(__self__, "cart_discounts", cart_discounts)
+        pulumi.set(__self__, "code", code)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+        if max_applications is not None:
+            pulumi.set(__self__, "max_applications", max_applications)
+        if max_applications_per_customer is not None:
+            pulumi.set(__self__, "max_applications_per_customer", max_applications_per_customer)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if predicate is not None:
+            pulumi.set(__self__, "predicate", predicate)
+        if valid_from is not None:
+            pulumi.set(__self__, "valid_from", valid_from)
+        if valid_until is not None:
+            pulumi.set(__self__, "valid_until", valid_until)
+
+    @property
+    @pulumi.getter(name="cartDiscounts")
+    def cart_discounts(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+        """
+        return pulumi.get(self, "cart_discounts")
+
+    @cart_discounts.setter
+    def cart_discounts(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "cart_discounts", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> pulumi.Input[str]:
+        """
+        Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+        cart
+        """
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: pulumi.Input[str]):
+        pulumi.set(self, "code", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The groups to which this discount code belong
+        """
+        return pulumi.get(self, "groups")
+
+    @groups.setter
+    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "groups", value)
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "is_active")
+
+    @is_active.setter
+    def is_active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_active", value)
+
+    @property
+    @pulumi.getter(name="maxApplications")
+    def max_applications(self) -> Optional[pulumi.Input[int]]:
+        """
+        The discount code can only be applied maxApplications times
+        """
+        return pulumi.get(self, "max_applications")
+
+    @max_applications.setter
+    def max_applications(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_applications", value)
+
+    @property
+    @pulumi.getter(name="maxApplicationsPerCustomer")
+    def max_applications_per_customer(self) -> Optional[pulumi.Input[int]]:
+        """
+        The discount code can only be applied maxApplicationsPerCustomer times per customer
+        """
+        return pulumi.get(self, "max_applications_per_customer")
+
+    @max_applications_per_customer.setter
+    def max_applications_per_customer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_applications_per_customer", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def predicate(self) -> Optional[pulumi.Input[str]]:
+        """
+        [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        """
+        return pulumi.get(self, "predicate")
+
+    @predicate.setter
+    def predicate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "predicate", value)
+
+    @property
+    @pulumi.getter(name="validFrom")
+    def valid_from(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time from which the discount can be applied on a cart. Before that time the code is invalid
+        """
+        return pulumi.get(self, "valid_from")
+
+    @valid_from.setter
+    def valid_from(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valid_from", value)
+
+    @property
+    @pulumi.getter(name="validUntil")
+    def valid_until(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time until the discount can be applied on a cart. After that time the code is invalid
+        """
+        return pulumi.get(self, "valid_until")
+
+    @valid_until.setter
+    def valid_until(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valid_until", value)
+
+
+@pulumi.input_type
+class _DiscountCodeState:
+    def __init__(__self__, *,
+                 cart_discounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 code: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 is_active: Optional[pulumi.Input[bool]] = None,
+                 max_applications: Optional[pulumi.Input[int]] = None,
+                 max_applications_per_customer: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 predicate: Optional[pulumi.Input[str]] = None,
+                 valid_from: Optional[pulumi.Input[str]] = None,
+                 valid_until: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering DiscountCode resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cart_discounts: The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+        :param pulumi.Input[str] code: Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+               cart
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
+        :param pulumi.Input[int] max_applications: The discount code can only be applied maxApplications times
+        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied maxApplicationsPerCustomer times per customer
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[str] predicate: [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        :param pulumi.Input[str] valid_from: The time from which the discount can be applied on a cart. Before that time the code is invalid
+        :param pulumi.Input[str] valid_until: The time until the discount can be applied on a cart. After that time the code is invalid
+        """
+        if cart_discounts is not None:
+            pulumi.set(__self__, "cart_discounts", cart_discounts)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+        if max_applications is not None:
+            pulumi.set(__self__, "max_applications", max_applications)
+        if max_applications_per_customer is not None:
+            pulumi.set(__self__, "max_applications_per_customer", max_applications_per_customer)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if predicate is not None:
+            pulumi.set(__self__, "predicate", predicate)
+        if valid_from is not None:
+            pulumi.set(__self__, "valid_from", valid_from)
+        if valid_until is not None:
+            pulumi.set(__self__, "valid_until", valid_until)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="cartDiscounts")
+    def cart_discounts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+        """
+        return pulumi.get(self, "cart_discounts")
+
+    @cart_discounts.setter
+    def cart_discounts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "cart_discounts", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+        cart
+        """
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "code", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The groups to which this discount code belong
+        """
+        return pulumi.get(self, "groups")
+
+    @groups.setter
+    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "groups", value)
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "is_active")
+
+    @is_active.setter
+    def is_active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_active", value)
+
+    @property
+    @pulumi.getter(name="maxApplications")
+    def max_applications(self) -> Optional[pulumi.Input[int]]:
+        """
+        The discount code can only be applied maxApplications times
+        """
+        return pulumi.get(self, "max_applications")
+
+    @max_applications.setter
+    def max_applications(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_applications", value)
+
+    @property
+    @pulumi.getter(name="maxApplicationsPerCustomer")
+    def max_applications_per_customer(self) -> Optional[pulumi.Input[int]]:
+        """
+        The discount code can only be applied maxApplicationsPerCustomer times per customer
+        """
+        return pulumi.get(self, "max_applications_per_customer")
+
+    @max_applications_per_customer.setter
+    def max_applications_per_customer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_applications_per_customer", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def predicate(self) -> Optional[pulumi.Input[str]]:
+        """
+        [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        """
+        return pulumi.get(self, "predicate")
+
+    @predicate.setter
+    def predicate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "predicate", value)
+
+    @property
+    @pulumi.getter(name="validFrom")
+    def valid_from(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time from which the discount can be applied on a cart. Before that time the code is invalid
+        """
+        return pulumi.get(self, "valid_from")
+
+    @valid_from.setter
+    def valid_from(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valid_from", value)
+
+    @property
+    @pulumi.getter(name="validUntil")
+    def valid_until(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time until the discount can be applied on a cart. After that time the code is invalid
+        """
+        return pulumi.get(self, "valid_until")
+
+    @valid_until.setter
+    def valid_until(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "valid_until", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "version", value)
 
 
 class DiscountCode(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -26,20 +400,58 @@ class DiscountCode(pulumi.CustomResource):
                  predicate: Optional[pulumi.Input[str]] = None,
                  valid_from: Optional[pulumi.Input[str]] = None,
                  valid_until: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Create a DiscountCode resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cart_discounts: The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+        :param pulumi.Input[str] code: Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+               cart
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
+        :param pulumi.Input[int] max_applications: The discount code can only be applied maxApplications times
+        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied maxApplicationsPerCustomer times per customer
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[str] predicate: [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        :param pulumi.Input[str] valid_from: The time from which the discount can be applied on a cart. Before that time the code is invalid
+        :param pulumi.Input[str] valid_until: The time until the discount can be applied on a cart. After that time the code is invalid
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: DiscountCodeArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a DiscountCode resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param DiscountCodeArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(DiscountCodeArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cart_discounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 code: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 is_active: Optional[pulumi.Input[bool]] = None,
+                 max_applications: Optional[pulumi.Input[int]] = None,
+                 max_applications_per_customer: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 predicate: Optional[pulumi.Input[str]] = None,
+                 valid_from: Optional[pulumi.Input[str]] = None,
+                 valid_until: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -49,24 +461,24 @@ class DiscountCode(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = DiscountCodeArgs.__new__(DiscountCodeArgs)
 
-            if cart_discounts is None:
+            if cart_discounts is None and not opts.urn:
                 raise TypeError("Missing required property 'cart_discounts'")
-            __props__['cart_discounts'] = cart_discounts
-            if code is None:
+            __props__.__dict__["cart_discounts"] = cart_discounts
+            if code is None and not opts.urn:
                 raise TypeError("Missing required property 'code'")
-            __props__['code'] = code
-            __props__['description'] = description
-            __props__['groups'] = groups
-            __props__['is_active'] = is_active
-            __props__['max_applications'] = max_applications
-            __props__['max_applications_per_customer'] = max_applications_per_customer
-            __props__['name'] = name
-            __props__['predicate'] = predicate
-            __props__['valid_from'] = valid_from
-            __props__['valid_until'] = valid_until
-            __props__['version'] = None
+            __props__.__dict__["code"] = code
+            __props__.__dict__["description"] = description
+            __props__.__dict__["groups"] = groups
+            __props__.__dict__["is_active"] = is_active
+            __props__.__dict__["max_applications"] = max_applications
+            __props__.__dict__["max_applications_per_customer"] = max_applications_per_customer
+            __props__.__dict__["name"] = name
+            __props__.__dict__["predicate"] = predicate
+            __props__.__dict__["valid_from"] = valid_from
+            __props__.__dict__["valid_until"] = valid_until
+            __props__.__dict__["version"] = None
         super(DiscountCode, __self__).__init__(
             'commercetools:index/discountCode:DiscountCode',
             resource_name,
@@ -96,43 +508,67 @@ class DiscountCode(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cart_discounts: The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+        :param pulumi.Input[str] code: Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+               cart
+        :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
+        :param pulumi.Input[int] max_applications: The discount code can only be applied maxApplications times
+        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied maxApplicationsPerCustomer times per customer
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[str] predicate: [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        :param pulumi.Input[str] valid_from: The time from which the discount can be applied on a cart. Before that time the code is invalid
+        :param pulumi.Input[str] valid_until: The time until the discount can be applied on a cart. After that time the code is invalid
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _DiscountCodeState.__new__(_DiscountCodeState)
 
-        __props__["cart_discounts"] = cart_discounts
-        __props__["code"] = code
-        __props__["description"] = description
-        __props__["groups"] = groups
-        __props__["is_active"] = is_active
-        __props__["max_applications"] = max_applications
-        __props__["max_applications_per_customer"] = max_applications_per_customer
-        __props__["name"] = name
-        __props__["predicate"] = predicate
-        __props__["valid_from"] = valid_from
-        __props__["valid_until"] = valid_until
-        __props__["version"] = version
+        __props__.__dict__["cart_discounts"] = cart_discounts
+        __props__.__dict__["code"] = code
+        __props__.__dict__["description"] = description
+        __props__.__dict__["groups"] = groups
+        __props__.__dict__["is_active"] = is_active
+        __props__.__dict__["max_applications"] = max_applications
+        __props__.__dict__["max_applications_per_customer"] = max_applications_per_customer
+        __props__.__dict__["name"] = name
+        __props__.__dict__["predicate"] = predicate
+        __props__.__dict__["valid_from"] = valid_from
+        __props__.__dict__["valid_until"] = valid_until
+        __props__.__dict__["version"] = version
         return DiscountCode(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="cartDiscounts")
     def cart_discounts(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
+        """
         return pulumi.get(self, "cart_discounts")
 
     @property
     @pulumi.getter
     def code(self) -> pulumi.Output[str]:
+        """
+        Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the
+        cart
+        """
         return pulumi.get(self, "code")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def groups(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The groups to which this discount code belong
+        """
         return pulumi.get(self, "groups")
 
     @property
@@ -143,41 +579,53 @@ class DiscountCode(pulumi.CustomResource):
     @property
     @pulumi.getter(name="maxApplications")
     def max_applications(self) -> pulumi.Output[Optional[int]]:
+        """
+        The discount code can only be applied maxApplications times
+        """
         return pulumi.get(self, "max_applications")
 
     @property
     @pulumi.getter(name="maxApplicationsPerCustomer")
     def max_applications_per_customer(self) -> pulumi.Output[Optional[int]]:
+        """
+        The discount code can only be applied maxApplicationsPerCustomer times per customer
+        """
         return pulumi.get(self, "max_applications_per_customer")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[Mapping[str, Any]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def predicate(self) -> pulumi.Output[Optional[str]]:
+        """
+        [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        """
         return pulumi.get(self, "predicate")
 
     @property
     @pulumi.getter(name="validFrom")
     def valid_from(self) -> pulumi.Output[Optional[str]]:
+        """
+        The time from which the discount can be applied on a cart. Before that time the code is invalid
+        """
         return pulumi.get(self, "valid_from")
 
     @property
     @pulumi.getter(name="validUntil")
     def valid_until(self) -> pulumi.Output[Optional[str]]:
+        """
+        The time until the discount can be applied on a cart. After that time the code is invalid
+        """
         return pulumi.get(self, "valid_until")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[int]:
         return pulumi.get(self, "version")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

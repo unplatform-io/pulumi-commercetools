@@ -5,33 +5,176 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 
-__all__ = ['CustomObject']
+__all__ = ['CustomObjectArgs', 'CustomObject']
+
+@pulumi.input_type
+class CustomObjectArgs:
+    def __init__(__self__, *,
+                 container: pulumi.Input[str],
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a CustomObject resource.
+        :param pulumi.Input[str] container: A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+        :param pulumi.Input[str] key: String matching the pattern '[-_~.a-zA-Z0-9]+'
+        :param pulumi.Input[str] value: JSON types Number, String, Boolean, Array, Object
+        """
+        pulumi.set(__self__, "container", container)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def container(self) -> pulumi.Input[str]:
+        """
+        A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+        """
+        return pulumi.get(self, "container")
+
+    @container.setter
+    def container(self, value: pulumi.Input[str]):
+        pulumi.set(self, "container", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        String matching the pattern '[-_~.a-zA-Z0-9]+'
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        JSON types Number, String, Boolean, Array, Object
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class _CustomObjectState:
+    def __init__(__self__, *,
+                 container: Optional[pulumi.Input[str]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering CustomObject resources.
+        :param pulumi.Input[str] container: A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+        :param pulumi.Input[str] key: String matching the pattern '[-_~.a-zA-Z0-9]+'
+        :param pulumi.Input[str] value: JSON types Number, String, Boolean, Array, Object
+        """
+        if container is not None:
+            pulumi.set(__self__, "container", container)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def container(self) -> Optional[pulumi.Input[str]]:
+        """
+        A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+        """
+        return pulumi.get(self, "container")
+
+    @container.setter
+    def container(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "container", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        String matching the pattern '[-_~.a-zA-Z0-9]+'
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        JSON types Number, String, Boolean, Array, Object
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "version", value)
 
 
 class CustomObject(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  container: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Create a CustomObject resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] container: A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+        :param pulumi.Input[str] key: String matching the pattern '[-_~.a-zA-Z0-9]+'
+        :param pulumi.Input[str] value: JSON types Number, String, Boolean, Array, Object
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: CustomObjectArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a CustomObject resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param CustomObjectArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(CustomObjectArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 container: Optional[pulumi.Input[str]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -41,18 +184,18 @@ class CustomObject(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = CustomObjectArgs.__new__(CustomObjectArgs)
 
-            if container is None:
+            if container is None and not opts.urn:
                 raise TypeError("Missing required property 'container'")
-            __props__['container'] = container
-            if key is None:
+            __props__.__dict__["container"] = container
+            if key is None and not opts.urn:
                 raise TypeError("Missing required property 'key'")
-            __props__['key'] = key
-            if value is None:
+            __props__.__dict__["key"] = key
+            if value is None and not opts.urn:
                 raise TypeError("Missing required property 'value'")
-            __props__['value'] = value
-            __props__['version'] = None
+            __props__.__dict__["value"] = value
+            __props__.__dict__["version"] = None
         super(CustomObject, __self__).__init__(
             'commercetools:index/customObject:CustomObject',
             resource_name,
@@ -74,40 +217,46 @@ class CustomObject(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] container: A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+        :param pulumi.Input[str] key: String matching the pattern '[-_~.a-zA-Z0-9]+'
+        :param pulumi.Input[str] value: JSON types Number, String, Boolean, Array, Object
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _CustomObjectState.__new__(_CustomObjectState)
 
-        __props__["container"] = container
-        __props__["key"] = key
-        __props__["value"] = value
-        __props__["version"] = version
+        __props__.__dict__["container"] = container
+        __props__.__dict__["key"] = key
+        __props__.__dict__["value"] = value
+        __props__.__dict__["version"] = version
         return CustomObject(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def container(self) -> pulumi.Output[str]:
+        """
+        A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+        """
         return pulumi.get(self, "container")
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Output[str]:
+        """
+        String matching the pattern '[-_~.a-zA-Z0-9]+'
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def value(self) -> pulumi.Output[str]:
+        """
+        JSON types Number, String, Boolean, Array, Object
+        """
         return pulumi.get(self, "value")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[int]:
         return pulumi.get(self, "version")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

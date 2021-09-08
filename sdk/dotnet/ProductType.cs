@@ -9,14 +9,21 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/productType:ProductType")]
     public partial class ProductType : Pulumi.CustomResource
     {
+        /// <summary>
+        /// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        /// </summary>
         [Output("attributes")]
         public Output<ImmutableArray<Outputs.ProductTypeAttribute>> Attributes { get; private set; } = null!;
 
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// User-specific unique identifier for the product type (max. 256 characters)
+        /// </summary>
         [Output("key")]
         public Output<string?> Key { get; private set; } = null!;
 
@@ -74,6 +81,10 @@ namespace Pulumi.Commercetools
     {
         [Input("attributes")]
         private InputList<Inputs.ProductTypeAttributeArgs>? _attributes;
+
+        /// <summary>
+        /// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        /// </summary>
         public InputList<Inputs.ProductTypeAttributeArgs> Attributes
         {
             get => _attributes ?? (_attributes = new InputList<Inputs.ProductTypeAttributeArgs>());
@@ -83,6 +94,9 @@ namespace Pulumi.Commercetools
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for the product type (max. 256 characters)
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
@@ -98,6 +112,10 @@ namespace Pulumi.Commercetools
     {
         [Input("attributes")]
         private InputList<Inputs.ProductTypeAttributeGetArgs>? _attributes;
+
+        /// <summary>
+        /// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        /// </summary>
         public InputList<Inputs.ProductTypeAttributeGetArgs> Attributes
         {
             get => _attributes ?? (_attributes = new InputList<Inputs.ProductTypeAttributeGetArgs>());
@@ -107,6 +125,9 @@ namespace Pulumi.Commercetools
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for the product type (max. 256 characters)
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
