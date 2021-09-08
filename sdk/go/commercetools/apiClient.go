@@ -4,16 +4,19 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type ApiClient struct {
 	pulumi.CustomResourceState
 
-	Name   pulumi.StringOutput      `pulumi:"name"`
+	// Name of the API client
+	Name pulumi.StringOutput `pulumi:"name"`
+	// A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
 	Scopes pulumi.StringArrayOutput `pulumi:"scopes"`
 	Secret pulumi.StringOutput      `pulumi:"secret"`
 }
@@ -21,11 +24,12 @@ type ApiClient struct {
 // NewApiClient registers a new resource with the given unique name, arguments, and options.
 func NewApiClient(ctx *pulumi.Context,
 	name string, args *ApiClientArgs, opts ...pulumi.ResourceOption) (*ApiClient, error) {
-	if args == nil || args.Scopes == nil {
-		return nil, errors.New("missing required argument 'Scopes'")
-	}
 	if args == nil {
-		args = &ApiClientArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Scopes == nil {
+		return nil, errors.New("invalid value for required argument 'Scopes'")
 	}
 	var resource ApiClient
 	err := ctx.RegisterResource("commercetools:index/apiClient:ApiClient", name, args, &resource, opts...)
@@ -49,13 +53,17 @@ func GetApiClient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApiClient resources.
 type apiClientState struct {
-	Name   *string  `pulumi:"name"`
+	// Name of the API client
+	Name *string `pulumi:"name"`
+	// A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
 	Scopes []string `pulumi:"scopes"`
 	Secret *string  `pulumi:"secret"`
 }
 
 type ApiClientState struct {
-	Name   pulumi.StringPtrInput
+	// Name of the API client
+	Name pulumi.StringPtrInput
+	// A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
 	Scopes pulumi.StringArrayInput
 	Secret pulumi.StringPtrInput
 }
@@ -65,16 +73,207 @@ func (ApiClientState) ElementType() reflect.Type {
 }
 
 type apiClientArgs struct {
-	Name   *string  `pulumi:"name"`
+	// Name of the API client
+	Name *string `pulumi:"name"`
+	// A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
 	Scopes []string `pulumi:"scopes"`
 }
 
 // The set of arguments for constructing a ApiClient resource.
 type ApiClientArgs struct {
-	Name   pulumi.StringPtrInput
+	// Name of the API client
+	Name pulumi.StringPtrInput
+	// A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)
 	Scopes pulumi.StringArrayInput
 }
 
 func (ApiClientArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiClientArgs)(nil)).Elem()
+}
+
+type ApiClientInput interface {
+	pulumi.Input
+
+	ToApiClientOutput() ApiClientOutput
+	ToApiClientOutputWithContext(ctx context.Context) ApiClientOutput
+}
+
+func (*ApiClient) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiClient)(nil))
+}
+
+func (i *ApiClient) ToApiClientOutput() ApiClientOutput {
+	return i.ToApiClientOutputWithContext(context.Background())
+}
+
+func (i *ApiClient) ToApiClientOutputWithContext(ctx context.Context) ApiClientOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiClientOutput)
+}
+
+func (i *ApiClient) ToApiClientPtrOutput() ApiClientPtrOutput {
+	return i.ToApiClientPtrOutputWithContext(context.Background())
+}
+
+func (i *ApiClient) ToApiClientPtrOutputWithContext(ctx context.Context) ApiClientPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiClientPtrOutput)
+}
+
+type ApiClientPtrInput interface {
+	pulumi.Input
+
+	ToApiClientPtrOutput() ApiClientPtrOutput
+	ToApiClientPtrOutputWithContext(ctx context.Context) ApiClientPtrOutput
+}
+
+type apiClientPtrType ApiClientArgs
+
+func (*apiClientPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiClient)(nil))
+}
+
+func (i *apiClientPtrType) ToApiClientPtrOutput() ApiClientPtrOutput {
+	return i.ToApiClientPtrOutputWithContext(context.Background())
+}
+
+func (i *apiClientPtrType) ToApiClientPtrOutputWithContext(ctx context.Context) ApiClientPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiClientPtrOutput)
+}
+
+// ApiClientArrayInput is an input type that accepts ApiClientArray and ApiClientArrayOutput values.
+// You can construct a concrete instance of `ApiClientArrayInput` via:
+//
+//          ApiClientArray{ ApiClientArgs{...} }
+type ApiClientArrayInput interface {
+	pulumi.Input
+
+	ToApiClientArrayOutput() ApiClientArrayOutput
+	ToApiClientArrayOutputWithContext(context.Context) ApiClientArrayOutput
+}
+
+type ApiClientArray []ApiClientInput
+
+func (ApiClientArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ApiClient)(nil))
+}
+
+func (i ApiClientArray) ToApiClientArrayOutput() ApiClientArrayOutput {
+	return i.ToApiClientArrayOutputWithContext(context.Background())
+}
+
+func (i ApiClientArray) ToApiClientArrayOutputWithContext(ctx context.Context) ApiClientArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiClientArrayOutput)
+}
+
+// ApiClientMapInput is an input type that accepts ApiClientMap and ApiClientMapOutput values.
+// You can construct a concrete instance of `ApiClientMapInput` via:
+//
+//          ApiClientMap{ "key": ApiClientArgs{...} }
+type ApiClientMapInput interface {
+	pulumi.Input
+
+	ToApiClientMapOutput() ApiClientMapOutput
+	ToApiClientMapOutputWithContext(context.Context) ApiClientMapOutput
+}
+
+type ApiClientMap map[string]ApiClientInput
+
+func (ApiClientMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ApiClient)(nil))
+}
+
+func (i ApiClientMap) ToApiClientMapOutput() ApiClientMapOutput {
+	return i.ToApiClientMapOutputWithContext(context.Background())
+}
+
+func (i ApiClientMap) ToApiClientMapOutputWithContext(ctx context.Context) ApiClientMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiClientMapOutput)
+}
+
+type ApiClientOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiClientOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiClient)(nil))
+}
+
+func (o ApiClientOutput) ToApiClientOutput() ApiClientOutput {
+	return o
+}
+
+func (o ApiClientOutput) ToApiClientOutputWithContext(ctx context.Context) ApiClientOutput {
+	return o
+}
+
+func (o ApiClientOutput) ToApiClientPtrOutput() ApiClientPtrOutput {
+	return o.ToApiClientPtrOutputWithContext(context.Background())
+}
+
+func (o ApiClientOutput) ToApiClientPtrOutputWithContext(ctx context.Context) ApiClientPtrOutput {
+	return o.ApplyT(func(v ApiClient) *ApiClient {
+		return &v
+	}).(ApiClientPtrOutput)
+}
+
+type ApiClientPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiClientPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiClient)(nil))
+}
+
+func (o ApiClientPtrOutput) ToApiClientPtrOutput() ApiClientPtrOutput {
+	return o
+}
+
+func (o ApiClientPtrOutput) ToApiClientPtrOutputWithContext(ctx context.Context) ApiClientPtrOutput {
+	return o
+}
+
+type ApiClientArrayOutput struct{ *pulumi.OutputState }
+
+func (ApiClientArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ApiClient)(nil))
+}
+
+func (o ApiClientArrayOutput) ToApiClientArrayOutput() ApiClientArrayOutput {
+	return o
+}
+
+func (o ApiClientArrayOutput) ToApiClientArrayOutputWithContext(ctx context.Context) ApiClientArrayOutput {
+	return o
+}
+
+func (o ApiClientArrayOutput) Index(i pulumi.IntInput) ApiClientOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ApiClient {
+		return vs[0].([]ApiClient)[vs[1].(int)]
+	}).(ApiClientOutput)
+}
+
+type ApiClientMapOutput struct{ *pulumi.OutputState }
+
+func (ApiClientMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ApiClient)(nil))
+}
+
+func (o ApiClientMapOutput) ToApiClientMapOutput() ApiClientMapOutput {
+	return o
+}
+
+func (o ApiClientMapOutput) ToApiClientMapOutputWithContext(ctx context.Context) ApiClientMapOutput {
+	return o
+}
+
+func (o ApiClientMapOutput) MapIndex(k pulumi.StringInput) ApiClientOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ApiClient {
+		return vs[0].(map[string]ApiClient)[vs[1].(string)]
+	}).(ApiClientOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApiClientOutput{})
+	pulumi.RegisterOutputType(ApiClientPtrOutput{})
+	pulumi.RegisterOutputType(ApiClientArrayOutput{})
+	pulumi.RegisterOutputType(ApiClientMapOutput{})
 }

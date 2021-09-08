@@ -32,9 +32,22 @@ export class Channel extends pulumi.CustomResource {
         return obj['__pulumiType'] === Channel.__pulumiType;
     }
 
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly description!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * Any arbitrary string key that uniquely identifies this channel within the project
+     */
     public readonly key!: pulumi.Output<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly name!: pulumi.Output<{[key: string]: any}>;
+    /**
+     * The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must
+     * have at least one role
+     */
     public readonly roles!: pulumi.Output<string[]>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
@@ -48,7 +61,8 @@ export class Channel extends pulumi.CustomResource {
     constructor(name: string, args: ChannelArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ChannelArgs | ChannelState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ChannelState | undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["key"] = state ? state.key : undefined;
@@ -57,10 +71,10 @@ export class Channel extends pulumi.CustomResource {
             inputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ChannelArgs | undefined;
-            if (!args || args.key === undefined) {
+            if ((!args || args.key === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
-            if (!args || args.roles === undefined) {
+            if ((!args || args.roles === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roles'");
             }
             inputs["description"] = args ? args.description : undefined;
@@ -69,12 +83,8 @@ export class Channel extends pulumi.CustomResource {
             inputs["roles"] = args ? args.roles : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Channel.__pulumiType, name, inputs, opts);
     }
@@ -84,19 +94,45 @@ export class Channel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Channel resources.
  */
 export interface ChannelState {
-    readonly description?: pulumi.Input<{[key: string]: any}>;
-    readonly key?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly roles?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    description?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Any arbitrary string key that uniquely identifies this channel within the project
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must
+     * have at least one role
+     */
+    roles?: pulumi.Input<pulumi.Input<string>[]>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a Channel resource.
  */
 export interface ChannelArgs {
-    readonly description?: pulumi.Input<{[key: string]: any}>;
-    readonly key: pulumi.Input<string>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly roles: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    description?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Any arbitrary string key that uniquely identifies this channel within the project
+     */
+    key: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must
+     * have at least one role
+     */
+    roles: pulumi.Input<pulumi.Input<string>[]>;
 }

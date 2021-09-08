@@ -5,38 +5,422 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['ProjectSettings']
+__all__ = ['ProjectSettingsArgs', 'ProjectSettings']
+
+@pulumi.input_type
+class ProjectSettingsArgs:
+    def __init__(__self__, *,
+                 carts: Optional[pulumi.Input['ProjectSettingsCartsArgs']] = None,
+                 countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 currencies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 external_oauth: Optional[pulumi.Input['ProjectSettingsExternalOauthArgs']] = None,
+                 languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 messages: Optional[pulumi.Input['ProjectSettingsMessagesArgs']] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 shipping_rate_cart_classification_values: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectSettingsShippingRateCartClassificationValueArgs']]]] = None,
+                 shipping_rate_input_type: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a ProjectSettings resource.
+        :param pulumi.Input['ProjectSettingsCartsArgs'] carts: [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] currencies: A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        :param pulumi.Input['ProjectSettingsExternalOauthArgs'] external_oauth: [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        :param pulumi.Input['ProjectSettingsMessagesArgs'] messages: [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        :param pulumi.Input[str] name: The name of the project
+        :param pulumi.Input[Sequence[pulumi.Input['ProjectSettingsShippingRateCartClassificationValueArgs']]] shipping_rate_cart_classification_values: If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+               inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+               are checked for uniqueness and the request is rejected if keys are not unique
+        :param pulumi.Input[str] shipping_rate_input_type: Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+               whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+        """
+        if carts is not None:
+            pulumi.set(__self__, "carts", carts)
+        if countries is not None:
+            pulumi.set(__self__, "countries", countries)
+        if currencies is not None:
+            pulumi.set(__self__, "currencies", currencies)
+        if external_oauth is not None:
+            pulumi.set(__self__, "external_oauth", external_oauth)
+        if languages is not None:
+            pulumi.set(__self__, "languages", languages)
+        if messages is not None:
+            pulumi.set(__self__, "messages", messages)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if shipping_rate_cart_classification_values is not None:
+            pulumi.set(__self__, "shipping_rate_cart_classification_values", shipping_rate_cart_classification_values)
+        if shipping_rate_input_type is not None:
+            pulumi.set(__self__, "shipping_rate_input_type", shipping_rate_input_type)
+
+    @property
+    @pulumi.getter
+    def carts(self) -> Optional[pulumi.Input['ProjectSettingsCartsArgs']]:
+        """
+        [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+        """
+        return pulumi.get(self, "carts")
+
+    @carts.setter
+    def carts(self, value: Optional[pulumi.Input['ProjectSettingsCartsArgs']]):
+        pulumi.set(self, "carts", value)
+
+    @property
+    @pulumi.getter
+    def countries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
+        return pulumi.get(self, "countries")
+
+    @countries.setter
+    def countries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "countries", value)
+
+    @property
+    @pulumi.getter
+    def currencies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        """
+        return pulumi.get(self, "currencies")
+
+    @currencies.setter
+    def currencies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "currencies", value)
+
+    @property
+    @pulumi.getter(name="externalOauth")
+    def external_oauth(self) -> Optional[pulumi.Input['ProjectSettingsExternalOauthArgs']]:
+        """
+        [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+        """
+        return pulumi.get(self, "external_oauth")
+
+    @external_oauth.setter
+    def external_oauth(self, value: Optional[pulumi.Input['ProjectSettingsExternalOauthArgs']]):
+        pulumi.set(self, "external_oauth", value)
+
+    @property
+    @pulumi.getter
+    def languages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        """
+        return pulumi.get(self, "languages")
+
+    @languages.setter
+    def languages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "languages", value)
+
+    @property
+    @pulumi.getter
+    def messages(self) -> Optional[pulumi.Input['ProjectSettingsMessagesArgs']]:
+        """
+        [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        """
+        return pulumi.get(self, "messages")
+
+    @messages.setter
+    def messages(self, value: Optional[pulumi.Input['ProjectSettingsMessagesArgs']]):
+        pulumi.set(self, "messages", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the project
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="shippingRateCartClassificationValues")
+    def shipping_rate_cart_classification_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectSettingsShippingRateCartClassificationValueArgs']]]]:
+        """
+        If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+        inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+        are checked for uniqueness and the request is rejected if keys are not unique
+        """
+        return pulumi.get(self, "shipping_rate_cart_classification_values")
+
+    @shipping_rate_cart_classification_values.setter
+    def shipping_rate_cart_classification_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectSettingsShippingRateCartClassificationValueArgs']]]]):
+        pulumi.set(self, "shipping_rate_cart_classification_values", value)
+
+    @property
+    @pulumi.getter(name="shippingRateInputType")
+    def shipping_rate_input_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+        whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+        """
+        return pulumi.get(self, "shipping_rate_input_type")
+
+    @shipping_rate_input_type.setter
+    def shipping_rate_input_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shipping_rate_input_type", value)
+
+
+@pulumi.input_type
+class _ProjectSettingsState:
+    def __init__(__self__, *,
+                 carts: Optional[pulumi.Input['ProjectSettingsCartsArgs']] = None,
+                 countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 currencies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 external_oauth: Optional[pulumi.Input['ProjectSettingsExternalOauthArgs']] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 messages: Optional[pulumi.Input['ProjectSettingsMessagesArgs']] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 shipping_rate_cart_classification_values: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectSettingsShippingRateCartClassificationValueArgs']]]] = None,
+                 shipping_rate_input_type: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering ProjectSettings resources.
+        :param pulumi.Input['ProjectSettingsCartsArgs'] carts: [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] currencies: A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        :param pulumi.Input['ProjectSettingsExternalOauthArgs'] external_oauth: [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+        :param pulumi.Input[str] key: The unique key of the project
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        :param pulumi.Input['ProjectSettingsMessagesArgs'] messages: [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        :param pulumi.Input[str] name: The name of the project
+        :param pulumi.Input[Sequence[pulumi.Input['ProjectSettingsShippingRateCartClassificationValueArgs']]] shipping_rate_cart_classification_values: If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+               inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+               are checked for uniqueness and the request is rejected if keys are not unique
+        :param pulumi.Input[str] shipping_rate_input_type: Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+               whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+        """
+        if carts is not None:
+            pulumi.set(__self__, "carts", carts)
+        if countries is not None:
+            pulumi.set(__self__, "countries", countries)
+        if currencies is not None:
+            pulumi.set(__self__, "currencies", currencies)
+        if external_oauth is not None:
+            pulumi.set(__self__, "external_oauth", external_oauth)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if languages is not None:
+            pulumi.set(__self__, "languages", languages)
+        if messages is not None:
+            pulumi.set(__self__, "messages", messages)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if shipping_rate_cart_classification_values is not None:
+            pulumi.set(__self__, "shipping_rate_cart_classification_values", shipping_rate_cart_classification_values)
+        if shipping_rate_input_type is not None:
+            pulumi.set(__self__, "shipping_rate_input_type", shipping_rate_input_type)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def carts(self) -> Optional[pulumi.Input['ProjectSettingsCartsArgs']]:
+        """
+        [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+        """
+        return pulumi.get(self, "carts")
+
+    @carts.setter
+    def carts(self, value: Optional[pulumi.Input['ProjectSettingsCartsArgs']]):
+        pulumi.set(self, "carts", value)
+
+    @property
+    @pulumi.getter
+    def countries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
+        return pulumi.get(self, "countries")
+
+    @countries.setter
+    def countries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "countries", value)
+
+    @property
+    @pulumi.getter
+    def currencies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        """
+        return pulumi.get(self, "currencies")
+
+    @currencies.setter
+    def currencies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "currencies", value)
+
+    @property
+    @pulumi.getter(name="externalOauth")
+    def external_oauth(self) -> Optional[pulumi.Input['ProjectSettingsExternalOauthArgs']]:
+        """
+        [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+        """
+        return pulumi.get(self, "external_oauth")
+
+    @external_oauth.setter
+    def external_oauth(self, value: Optional[pulumi.Input['ProjectSettingsExternalOauthArgs']]):
+        pulumi.set(self, "external_oauth", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique key of the project
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def languages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        """
+        return pulumi.get(self, "languages")
+
+    @languages.setter
+    def languages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "languages", value)
+
+    @property
+    @pulumi.getter
+    def messages(self) -> Optional[pulumi.Input['ProjectSettingsMessagesArgs']]:
+        """
+        [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        """
+        return pulumi.get(self, "messages")
+
+    @messages.setter
+    def messages(self, value: Optional[pulumi.Input['ProjectSettingsMessagesArgs']]):
+        pulumi.set(self, "messages", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the project
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="shippingRateCartClassificationValues")
+    def shipping_rate_cart_classification_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectSettingsShippingRateCartClassificationValueArgs']]]]:
+        """
+        If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+        inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+        are checked for uniqueness and the request is rejected if keys are not unique
+        """
+        return pulumi.get(self, "shipping_rate_cart_classification_values")
+
+    @shipping_rate_cart_classification_values.setter
+    def shipping_rate_cart_classification_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectSettingsShippingRateCartClassificationValueArgs']]]]):
+        pulumi.set(self, "shipping_rate_cart_classification_values", value)
+
+    @property
+    @pulumi.getter(name="shippingRateInputType")
+    def shipping_rate_input_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+        whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+        """
+        return pulumi.get(self, "shipping_rate_input_type")
+
+    @shipping_rate_input_type.setter
+    def shipping_rate_input_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shipping_rate_input_type", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "version", value)
 
 
 class ProjectSettings(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 carts: Optional[pulumi.Input[pulumi.InputType['ProjectSettingsCartsArgs']]] = None,
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  currencies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  external_oauth: Optional[pulumi.Input[pulumi.InputType['ProjectSettingsExternalOauthArgs']]] = None,
                  languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  messages: Optional[pulumi.Input[pulumi.InputType['ProjectSettingsMessagesArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 shipping_rate_cart_classification_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectSettingsShippingRateCartClassificationValueArgs']]]]] = None,
+                 shipping_rate_input_type: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         """
         Create a ProjectSettings resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ProjectSettingsCartsArgs']] carts: [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] currencies: A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        :param pulumi.Input[pulumi.InputType['ProjectSettingsExternalOauthArgs']] external_oauth: [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        :param pulumi.Input[pulumi.InputType['ProjectSettingsMessagesArgs']] messages: [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        :param pulumi.Input[str] name: The name of the project
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectSettingsShippingRateCartClassificationValueArgs']]]] shipping_rate_cart_classification_values: If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+               inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+               are checked for uniqueness and the request is rejected if keys are not unique
+        :param pulumi.Input[str] shipping_rate_input_type: Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+               whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[ProjectSettingsArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a ProjectSettings resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param ProjectSettingsArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ProjectSettingsArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 carts: Optional[pulumi.Input[pulumi.InputType['ProjectSettingsCartsArgs']]] = None,
+                 countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 currencies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 external_oauth: Optional[pulumi.Input[pulumi.InputType['ProjectSettingsExternalOauthArgs']]] = None,
+                 languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 messages: Optional[pulumi.Input[pulumi.InputType['ProjectSettingsMessagesArgs']]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 shipping_rate_cart_classification_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectSettingsShippingRateCartClassificationValueArgs']]]]] = None,
+                 shipping_rate_input_type: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -46,16 +430,19 @@ class ProjectSettings(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ProjectSettingsArgs.__new__(ProjectSettingsArgs)
 
-            __props__['countries'] = countries
-            __props__['currencies'] = currencies
-            __props__['external_oauth'] = external_oauth
-            __props__['languages'] = languages
-            __props__['messages'] = messages
-            __props__['name'] = name
-            __props__['key'] = None
-            __props__['version'] = None
+            __props__.__dict__["carts"] = carts
+            __props__.__dict__["countries"] = countries
+            __props__.__dict__["currencies"] = currencies
+            __props__.__dict__["external_oauth"] = external_oauth
+            __props__.__dict__["languages"] = languages
+            __props__.__dict__["messages"] = messages
+            __props__.__dict__["name"] = name
+            __props__.__dict__["shipping_rate_cart_classification_values"] = shipping_rate_cart_classification_values
+            __props__.__dict__["shipping_rate_input_type"] = shipping_rate_input_type
+            __props__.__dict__["key"] = None
+            __props__.__dict__["version"] = None
         super(ProjectSettings, __self__).__init__(
             'commercetools:index/projectSettings:ProjectSettings',
             resource_name,
@@ -66,6 +453,7 @@ class ProjectSettings(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            carts: Optional[pulumi.Input[pulumi.InputType['ProjectSettingsCartsArgs']]] = None,
             countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             currencies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             external_oauth: Optional[pulumi.Input[pulumi.InputType['ProjectSettingsExternalOauthArgs']]] = None,
@@ -73,6 +461,8 @@ class ProjectSettings(pulumi.CustomResource):
             languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             messages: Optional[pulumi.Input[pulumi.InputType['ProjectSettingsMessagesArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            shipping_rate_cart_classification_values: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectSettingsShippingRateCartClassificationValueArgs']]]]] = None,
+            shipping_rate_input_type: Optional[pulumi.Input[str]] = None,
             version: Optional[pulumi.Input[int]] = None) -> 'ProjectSettings':
         """
         Get an existing ProjectSettings resource's state with the given name, id, and optional extra
@@ -81,64 +471,122 @@ class ProjectSettings(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ProjectSettingsCartsArgs']] carts: [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] currencies: A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        :param pulumi.Input[pulumi.InputType['ProjectSettingsExternalOauthArgs']] external_oauth: [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+        :param pulumi.Input[str] key: The unique key of the project
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        :param pulumi.Input[pulumi.InputType['ProjectSettingsMessagesArgs']] messages: [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        :param pulumi.Input[str] name: The name of the project
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectSettingsShippingRateCartClassificationValueArgs']]]] shipping_rate_cart_classification_values: If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+               inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+               are checked for uniqueness and the request is rejected if keys are not unique
+        :param pulumi.Input[str] shipping_rate_input_type: Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+               whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ProjectSettingsState.__new__(_ProjectSettingsState)
 
-        __props__["countries"] = countries
-        __props__["currencies"] = currencies
-        __props__["external_oauth"] = external_oauth
-        __props__["key"] = key
-        __props__["languages"] = languages
-        __props__["messages"] = messages
-        __props__["name"] = name
-        __props__["version"] = version
+        __props__.__dict__["carts"] = carts
+        __props__.__dict__["countries"] = countries
+        __props__.__dict__["currencies"] = currencies
+        __props__.__dict__["external_oauth"] = external_oauth
+        __props__.__dict__["key"] = key
+        __props__.__dict__["languages"] = languages
+        __props__.__dict__["messages"] = messages
+        __props__.__dict__["name"] = name
+        __props__.__dict__["shipping_rate_cart_classification_values"] = shipping_rate_cart_classification_values
+        __props__.__dict__["shipping_rate_input_type"] = shipping_rate_input_type
+        __props__.__dict__["version"] = version
         return ProjectSettings(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
+    def carts(self) -> pulumi.Output[Optional['outputs.ProjectSettingsCarts']]:
+        """
+        [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+        """
+        return pulumi.get(self, "carts")
+
+    @property
+    @pulumi.getter
     def countries(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
         return pulumi.get(self, "countries")
 
     @property
     @pulumi.getter
     def currencies(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        """
         return pulumi.get(self, "currencies")
 
     @property
     @pulumi.getter(name="externalOauth")
     def external_oauth(self) -> pulumi.Output[Optional['outputs.ProjectSettingsExternalOauth']]:
+        """
+        [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+        """
         return pulumi.get(self, "external_oauth")
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Output[str]:
+        """
+        The unique key of the project
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def languages(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        """
         return pulumi.get(self, "languages")
 
     @property
     @pulumi.getter
     def messages(self) -> pulumi.Output[Optional['outputs.ProjectSettingsMessages']]:
+        """
+        [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        """
         return pulumi.get(self, "messages")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the project
+        """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="shippingRateCartClassificationValues")
+    def shipping_rate_cart_classification_values(self) -> pulumi.Output[Optional[Sequence['outputs.ProjectSettingsShippingRateCartClassificationValue']]]:
+        """
+        If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+        inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+        are checked for uniqueness and the request is rejected if keys are not unique
+        """
+        return pulumi.get(self, "shipping_rate_cart_classification_values")
+
+    @property
+    @pulumi.getter(name="shippingRateInputType")
+    def shipping_rate_input_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+        whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+        """
+        return pulumi.get(self, "shipping_rate_input_type")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[int]:
         return pulumi.get(self, "version")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

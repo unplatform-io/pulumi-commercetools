@@ -25,6 +25,31 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    /**
+     * The API URL of the commercetools platform. https://docs.commercetools.com/http-api
+     */
+    public readonly apiUrl!: pulumi.Output<string>;
+    /**
+     * The OAuth Client ID for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
+     */
+    public readonly clientId!: pulumi.Output<string>;
+    /**
+     * The OAuth Client Secret for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
+     */
+    public readonly clientSecret!: pulumi.Output<string>;
+    /**
+     * The project key of commercetools platform project. https://docs.commercetools.com/getting-started
+     */
+    public readonly projectKey!: pulumi.Output<string>;
+    /**
+     * A list as string of OAuth scopes assigned to a project key, to access resources in a commercetools platform project.
+     * https://docs.commercetools.com/http-api-authorization
+     */
+    public readonly scopes!: pulumi.Output<string>;
+    /**
+     * The authentication URL of the commercetools platform. https://docs.commercetools.com/http-api-authorization
+     */
+    public readonly tokenUrl!: pulumi.Output<string>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -35,23 +60,24 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
+        opts = opts || {};
         {
-            if (!args || args.apiUrl === undefined) {
+            if ((!args || args.apiUrl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'apiUrl'");
             }
-            if (!args || args.clientId === undefined) {
+            if ((!args || args.clientId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if (!args || args.clientSecret === undefined) {
+            if ((!args || args.clientSecret === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientSecret'");
             }
-            if (!args || args.projectKey === undefined) {
+            if ((!args || args.projectKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectKey'");
             }
-            if (!args || args.scopes === undefined) {
+            if ((!args || args.scopes === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'scopes'");
             }
-            if (!args || args.tokenUrl === undefined) {
+            if ((!args || args.tokenUrl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'tokenUrl'");
             }
             inputs["apiUrl"] = args ? args.apiUrl : undefined;
@@ -61,12 +87,8 @@ export class Provider extends pulumi.ProviderResource {
             inputs["scopes"] = args ? args.scopes : undefined;
             inputs["tokenUrl"] = args ? args.tokenUrl : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Provider.__pulumiType, name, inputs, opts);
     }
@@ -79,26 +101,26 @@ export interface ProviderArgs {
     /**
      * The API URL of the commercetools platform. https://docs.commercetools.com/http-api
      */
-    readonly apiUrl: pulumi.Input<string>;
+    apiUrl: pulumi.Input<string>;
     /**
      * The OAuth Client ID for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
      */
-    readonly clientId: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
     /**
      * The OAuth Client Secret for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
      */
-    readonly clientSecret: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
     /**
      * The project key of commercetools platform project. https://docs.commercetools.com/getting-started
      */
-    readonly projectKey: pulumi.Input<string>;
+    projectKey: pulumi.Input<string>;
     /**
      * A list as string of OAuth scopes assigned to a project key, to access resources in a commercetools platform project.
      * https://docs.commercetools.com/http-api-authorization
      */
-    readonly scopes: pulumi.Input<string>;
+    scopes: pulumi.Input<string>;
     /**
      * The authentication URL of the commercetools platform. https://docs.commercetools.com/http-api-authorization
      */
-    readonly tokenUrl: pulumi.Input<string>;
+    tokenUrl: pulumi.Input<string>;
 }

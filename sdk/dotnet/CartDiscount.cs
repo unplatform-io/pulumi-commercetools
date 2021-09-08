@@ -9,32 +9,64 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/cartDiscount:CartDiscount")]
     public partial class CartDiscount : Pulumi.CustomResource
     {
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("description")]
         public Output<ImmutableDictionary<string, object>?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Only active discount can be applied to the cart
+        /// </summary>
         [Output("isActive")]
         public Output<bool?> IsActive { get; private set; } = null!;
 
+        /// <summary>
+        /// User-specific unique identifier for a cart discount. Must be unique across a project
+        /// </summary>
         [Output("key")]
         public Output<string?> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("name")]
         public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        /// </summary>
         [Output("predicate")]
         public Output<string> Predicate { get; private set; } = null!;
 
+        /// <summary>
+        /// States whether the discount can only be used in a connection with a
+        /// [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+        /// </summary>
         [Output("requiresDiscountCode")]
         public Output<bool?> RequiresDiscountCode { get; private set; } = null!;
 
+        /// <summary>
+        /// The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+        /// by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+        /// order is unambiguous among all cart discounts
+        /// </summary>
         [Output("sortOrder")]
         public Output<string> SortOrder { get; private set; } = null!;
 
+        /// <summary>
+        /// Specifies whether the application of this discount causes the following discounts to be ignored
+        /// </summary>
         [Output("stackingMode")]
         public Output<string?> StackingMode { get; private set; } = null!;
 
+        /// <summary>
+        /// Empty when the value has type giftLineItem, otherwise a
+        /// [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+        /// </summary>
         [Output("target")]
         public Output<Outputs.CartDiscountTarget?> Target { get; private set; } = null!;
 
@@ -44,6 +76,10 @@ namespace Pulumi.Commercetools
         [Output("validUntil")]
         public Output<string?> ValidUntil { get; private set; } = null!;
 
+        /// <summary>
+        /// Defines the effect the discount will have.
+        /// [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+        /// </summary>
         [Output("value")]
         public Output<Outputs.CartDiscountValue> Value { get; private set; } = null!;
 
@@ -98,38 +134,71 @@ namespace Pulumi.Commercetools
     {
         [Input("description")]
         private InputMap<object>? _description;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Description
         {
             get => _description ?? (_description = new InputMap<object>());
             set => _description = value;
         }
 
+        /// <summary>
+        /// Only active discount can be applied to the cart
+        /// </summary>
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for a cart discount. Must be unique across a project
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
             set => _name = value;
         }
 
+        /// <summary>
+        /// A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        /// </summary>
         [Input("predicate", required: true)]
         public Input<string> Predicate { get; set; } = null!;
 
+        /// <summary>
+        /// States whether the discount can only be used in a connection with a
+        /// [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+        /// </summary>
         [Input("requiresDiscountCode")]
         public Input<bool>? RequiresDiscountCode { get; set; }
 
+        /// <summary>
+        /// The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+        /// by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+        /// order is unambiguous among all cart discounts
+        /// </summary>
         [Input("sortOrder", required: true)]
         public Input<string> SortOrder { get; set; } = null!;
 
+        /// <summary>
+        /// Specifies whether the application of this discount causes the following discounts to be ignored
+        /// </summary>
         [Input("stackingMode")]
         public Input<string>? StackingMode { get; set; }
 
+        /// <summary>
+        /// Empty when the value has type giftLineItem, otherwise a
+        /// [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+        /// </summary>
         [Input("target")]
         public Input<Inputs.CartDiscountTargetArgs>? Target { get; set; }
 
@@ -139,6 +208,10 @@ namespace Pulumi.Commercetools
         [Input("validUntil")]
         public Input<string>? ValidUntil { get; set; }
 
+        /// <summary>
+        /// Defines the effect the discount will have.
+        /// [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+        /// </summary>
         [Input("value", required: true)]
         public Input<Inputs.CartDiscountValueArgs> Value { get; set; } = null!;
 
@@ -151,38 +224,71 @@ namespace Pulumi.Commercetools
     {
         [Input("description")]
         private InputMap<object>? _description;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Description
         {
             get => _description ?? (_description = new InputMap<object>());
             set => _description = value;
         }
 
+        /// <summary>
+        /// Only active discount can be applied to the cart
+        /// </summary>
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for a cart discount. Must be unique across a project
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
             set => _name = value;
         }
 
+        /// <summary>
+        /// A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
+        /// </summary>
         [Input("predicate")]
         public Input<string>? Predicate { get; set; }
 
+        /// <summary>
+        /// States whether the discount can only be used in a connection with a
+        /// [DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)
+        /// </summary>
         [Input("requiresDiscountCode")]
         public Input<bool>? RequiresDiscountCode { get; set; }
 
+        /// <summary>
+        /// The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined
+        /// by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
+        /// order is unambiguous among all cart discounts
+        /// </summary>
         [Input("sortOrder")]
         public Input<string>? SortOrder { get; set; }
 
+        /// <summary>
+        /// Specifies whether the application of this discount causes the following discounts to be ignored
+        /// </summary>
         [Input("stackingMode")]
         public Input<string>? StackingMode { get; set; }
 
+        /// <summary>
+        /// Empty when the value has type giftLineItem, otherwise a
+        /// [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
+        /// </summary>
         [Input("target")]
         public Input<Inputs.CartDiscountTargetGetArgs>? Target { get; set; }
 
@@ -192,6 +298,10 @@ namespace Pulumi.Commercetools
         [Input("validUntil")]
         public Input<string>? ValidUntil { get; set; }
 
+        /// <summary>
+        /// Defines the effect the discount will have.
+        /// [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
+        /// </summary>
         [Input("value")]
         public Input<Inputs.CartDiscountValueGetArgs>? Value { get; set; }
 

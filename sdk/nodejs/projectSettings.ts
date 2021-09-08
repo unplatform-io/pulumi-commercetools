@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class ProjectSettings extends pulumi.CustomResource {
@@ -34,13 +33,49 @@ export class ProjectSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === ProjectSettings.__pulumiType;
     }
 
+    /**
+     * [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+     */
+    public readonly carts!: pulumi.Output<outputs.ProjectSettingsCarts | undefined>;
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
     public readonly countries!: pulumi.Output<string[] | undefined>;
+    /**
+     * A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+     */
     public readonly currencies!: pulumi.Output<string[] | undefined>;
+    /**
+     * [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+     */
     public readonly externalOauth!: pulumi.Output<outputs.ProjectSettingsExternalOauth | undefined>;
+    /**
+     * The unique key of the project
+     */
     public /*out*/ readonly key!: pulumi.Output<string>;
+    /**
+     * [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+     */
     public readonly languages!: pulumi.Output<string[] | undefined>;
+    /**
+     * [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+     */
     public readonly messages!: pulumi.Output<outputs.ProjectSettingsMessages | undefined>;
+    /**
+     * The name of the project
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+     * inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+     * are checked for uniqueness and the request is rejected if keys are not unique
+     */
+    public readonly shippingRateCartClassificationValues!: pulumi.Output<outputs.ProjectSettingsShippingRateCartClassificationValue[] | undefined>;
+    /**
+     * Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+     * whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+     */
+    public readonly shippingRateInputType!: pulumi.Output<string | undefined>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
     /**
@@ -53,8 +88,10 @@ export class ProjectSettings extends pulumi.CustomResource {
     constructor(name: string, args?: ProjectSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ProjectSettingsArgs | ProjectSettingsState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ProjectSettingsState | undefined;
+            inputs["carts"] = state ? state.carts : undefined;
             inputs["countries"] = state ? state.countries : undefined;
             inputs["currencies"] = state ? state.currencies : undefined;
             inputs["externalOauth"] = state ? state.externalOauth : undefined;
@@ -62,24 +99,25 @@ export class ProjectSettings extends pulumi.CustomResource {
             inputs["languages"] = state ? state.languages : undefined;
             inputs["messages"] = state ? state.messages : undefined;
             inputs["name"] = state ? state.name : undefined;
+            inputs["shippingRateCartClassificationValues"] = state ? state.shippingRateCartClassificationValues : undefined;
+            inputs["shippingRateInputType"] = state ? state.shippingRateInputType : undefined;
             inputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ProjectSettingsArgs | undefined;
+            inputs["carts"] = args ? args.carts : undefined;
             inputs["countries"] = args ? args.countries : undefined;
             inputs["currencies"] = args ? args.currencies : undefined;
             inputs["externalOauth"] = args ? args.externalOauth : undefined;
             inputs["languages"] = args ? args.languages : undefined;
             inputs["messages"] = args ? args.messages : undefined;
             inputs["name"] = args ? args.name : undefined;
+            inputs["shippingRateCartClassificationValues"] = args ? args.shippingRateCartClassificationValues : undefined;
+            inputs["shippingRateInputType"] = args ? args.shippingRateInputType : undefined;
             inputs["key"] = undefined /*out*/;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ProjectSettings.__pulumiType, name, inputs, opts);
     }
@@ -89,24 +127,93 @@ export class ProjectSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ProjectSettings resources.
  */
 export interface ProjectSettingsState {
-    readonly countries?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly currencies?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly externalOauth?: pulumi.Input<inputs.ProjectSettingsExternalOauth>;
-    readonly key?: pulumi.Input<string>;
-    readonly languages?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly messages?: pulumi.Input<inputs.ProjectSettingsMessages>;
-    readonly name?: pulumi.Input<string>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+     */
+    carts?: pulumi.Input<inputs.ProjectSettingsCarts>;
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
+    countries?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+     */
+    currencies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+     */
+    externalOauth?: pulumi.Input<inputs.ProjectSettingsExternalOauth>;
+    /**
+     * The unique key of the project
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+     */
+    languages?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+     */
+    messages?: pulumi.Input<inputs.ProjectSettingsMessages>;
+    /**
+     * The name of the project
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+     * inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+     * are checked for uniqueness and the request is rejected if keys are not unique
+     */
+    shippingRateCartClassificationValues?: pulumi.Input<pulumi.Input<inputs.ProjectSettingsShippingRateCartClassificationValue>[]>;
+    /**
+     * Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+     * whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+     */
+    shippingRateInputType?: pulumi.Input<string>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a ProjectSettings resource.
  */
 export interface ProjectSettingsArgs {
-    readonly countries?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly currencies?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly externalOauth?: pulumi.Input<inputs.ProjectSettingsExternalOauth>;
-    readonly languages?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly messages?: pulumi.Input<inputs.ProjectSettingsMessages>;
-    readonly name?: pulumi.Input<string>;
+    /**
+     * [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+     */
+    carts?: pulumi.Input<inputs.ProjectSettingsCarts>;
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
+    countries?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+     */
+    currencies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+     */
+    externalOauth?: pulumi.Input<inputs.ProjectSettingsExternalOauth>;
+    /**
+     * [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+     */
+    languages?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+     */
+    messages?: pulumi.Input<inputs.ProjectSettingsMessages>;
+    /**
+     * The name of the project
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+     * inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+     * are checked for uniqueness and the request is rejected if keys are not unique
+     */
+    shippingRateCartClassificationValues?: pulumi.Input<pulumi.Input<inputs.ProjectSettingsShippingRateCartClassificationValue>[]>;
+    /**
+     * Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+     * whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+     */
+    shippingRateInputType?: pulumi.Input<string>;
 }

@@ -9,11 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/taxCategory:TaxCategory")]
     public partial class TaxCategory : Pulumi.CustomResource
     {
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// User-specific unique identifier for the category
+        /// </summary>
         [Output("key")]
         public Output<string?> Key { get; private set; } = null!;
 
@@ -72,6 +76,9 @@ namespace Pulumi.Commercetools
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for the category
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
@@ -88,6 +95,9 @@ namespace Pulumi.Commercetools
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for the category
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 

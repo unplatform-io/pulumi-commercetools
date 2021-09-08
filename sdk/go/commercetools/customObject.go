@@ -4,35 +4,40 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type CustomObject struct {
 	pulumi.CustomResourceState
 
+	// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
 	Container pulumi.StringOutput `pulumi:"container"`
-	Key       pulumi.StringOutput `pulumi:"key"`
-	Value     pulumi.StringOutput `pulumi:"value"`
-	Version   pulumi.IntOutput    `pulumi:"version"`
+	// String matching the pattern '[-_~.a-zA-Z0-9]+'
+	Key pulumi.StringOutput `pulumi:"key"`
+	// JSON types Number, String, Boolean, Array, Object
+	Value   pulumi.StringOutput `pulumi:"value"`
+	Version pulumi.IntOutput    `pulumi:"version"`
 }
 
 // NewCustomObject registers a new resource with the given unique name, arguments, and options.
 func NewCustomObject(ctx *pulumi.Context,
 	name string, args *CustomObjectArgs, opts ...pulumi.ResourceOption) (*CustomObject, error) {
-	if args == nil || args.Container == nil {
-		return nil, errors.New("missing required argument 'Container'")
-	}
-	if args == nil || args.Key == nil {
-		return nil, errors.New("missing required argument 'Key'")
-	}
-	if args == nil || args.Value == nil {
-		return nil, errors.New("missing required argument 'Value'")
-	}
 	if args == nil {
-		args = &CustomObjectArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Container == nil {
+		return nil, errors.New("invalid value for required argument 'Container'")
+	}
+	if args.Key == nil {
+		return nil, errors.New("invalid value for required argument 'Key'")
+	}
+	if args.Value == nil {
+		return nil, errors.New("invalid value for required argument 'Value'")
 	}
 	var resource CustomObject
 	err := ctx.RegisterResource("commercetools:index/customObject:CustomObject", name, args, &resource, opts...)
@@ -56,17 +61,23 @@ func GetCustomObject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CustomObject resources.
 type customObjectState struct {
+	// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
 	Container *string `pulumi:"container"`
-	Key       *string `pulumi:"key"`
-	Value     *string `pulumi:"value"`
-	Version   *int    `pulumi:"version"`
+	// String matching the pattern '[-_~.a-zA-Z0-9]+'
+	Key *string `pulumi:"key"`
+	// JSON types Number, String, Boolean, Array, Object
+	Value   *string `pulumi:"value"`
+	Version *int    `pulumi:"version"`
 }
 
 type CustomObjectState struct {
+	// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
 	Container pulumi.StringPtrInput
-	Key       pulumi.StringPtrInput
-	Value     pulumi.StringPtrInput
-	Version   pulumi.IntPtrInput
+	// String matching the pattern '[-_~.a-zA-Z0-9]+'
+	Key pulumi.StringPtrInput
+	// JSON types Number, String, Boolean, Array, Object
+	Value   pulumi.StringPtrInput
+	Version pulumi.IntPtrInput
 }
 
 func (CustomObjectState) ElementType() reflect.Type {
@@ -74,18 +85,211 @@ func (CustomObjectState) ElementType() reflect.Type {
 }
 
 type customObjectArgs struct {
+	// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
 	Container string `pulumi:"container"`
-	Key       string `pulumi:"key"`
-	Value     string `pulumi:"value"`
+	// String matching the pattern '[-_~.a-zA-Z0-9]+'
+	Key string `pulumi:"key"`
+	// JSON types Number, String, Boolean, Array, Object
+	Value string `pulumi:"value"`
 }
 
 // The set of arguments for constructing a CustomObject resource.
 type CustomObjectArgs struct {
+	// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
 	Container pulumi.StringInput
-	Key       pulumi.StringInput
-	Value     pulumi.StringInput
+	// String matching the pattern '[-_~.a-zA-Z0-9]+'
+	Key pulumi.StringInput
+	// JSON types Number, String, Boolean, Array, Object
+	Value pulumi.StringInput
 }
 
 func (CustomObjectArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*customObjectArgs)(nil)).Elem()
+}
+
+type CustomObjectInput interface {
+	pulumi.Input
+
+	ToCustomObjectOutput() CustomObjectOutput
+	ToCustomObjectOutputWithContext(ctx context.Context) CustomObjectOutput
+}
+
+func (*CustomObject) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomObject)(nil))
+}
+
+func (i *CustomObject) ToCustomObjectOutput() CustomObjectOutput {
+	return i.ToCustomObjectOutputWithContext(context.Background())
+}
+
+func (i *CustomObject) ToCustomObjectOutputWithContext(ctx context.Context) CustomObjectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomObjectOutput)
+}
+
+func (i *CustomObject) ToCustomObjectPtrOutput() CustomObjectPtrOutput {
+	return i.ToCustomObjectPtrOutputWithContext(context.Background())
+}
+
+func (i *CustomObject) ToCustomObjectPtrOutputWithContext(ctx context.Context) CustomObjectPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomObjectPtrOutput)
+}
+
+type CustomObjectPtrInput interface {
+	pulumi.Input
+
+	ToCustomObjectPtrOutput() CustomObjectPtrOutput
+	ToCustomObjectPtrOutputWithContext(ctx context.Context) CustomObjectPtrOutput
+}
+
+type customObjectPtrType CustomObjectArgs
+
+func (*customObjectPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomObject)(nil))
+}
+
+func (i *customObjectPtrType) ToCustomObjectPtrOutput() CustomObjectPtrOutput {
+	return i.ToCustomObjectPtrOutputWithContext(context.Background())
+}
+
+func (i *customObjectPtrType) ToCustomObjectPtrOutputWithContext(ctx context.Context) CustomObjectPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomObjectPtrOutput)
+}
+
+// CustomObjectArrayInput is an input type that accepts CustomObjectArray and CustomObjectArrayOutput values.
+// You can construct a concrete instance of `CustomObjectArrayInput` via:
+//
+//          CustomObjectArray{ CustomObjectArgs{...} }
+type CustomObjectArrayInput interface {
+	pulumi.Input
+
+	ToCustomObjectArrayOutput() CustomObjectArrayOutput
+	ToCustomObjectArrayOutputWithContext(context.Context) CustomObjectArrayOutput
+}
+
+type CustomObjectArray []CustomObjectInput
+
+func (CustomObjectArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*CustomObject)(nil))
+}
+
+func (i CustomObjectArray) ToCustomObjectArrayOutput() CustomObjectArrayOutput {
+	return i.ToCustomObjectArrayOutputWithContext(context.Background())
+}
+
+func (i CustomObjectArray) ToCustomObjectArrayOutputWithContext(ctx context.Context) CustomObjectArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomObjectArrayOutput)
+}
+
+// CustomObjectMapInput is an input type that accepts CustomObjectMap and CustomObjectMapOutput values.
+// You can construct a concrete instance of `CustomObjectMapInput` via:
+//
+//          CustomObjectMap{ "key": CustomObjectArgs{...} }
+type CustomObjectMapInput interface {
+	pulumi.Input
+
+	ToCustomObjectMapOutput() CustomObjectMapOutput
+	ToCustomObjectMapOutputWithContext(context.Context) CustomObjectMapOutput
+}
+
+type CustomObjectMap map[string]CustomObjectInput
+
+func (CustomObjectMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*CustomObject)(nil))
+}
+
+func (i CustomObjectMap) ToCustomObjectMapOutput() CustomObjectMapOutput {
+	return i.ToCustomObjectMapOutputWithContext(context.Background())
+}
+
+func (i CustomObjectMap) ToCustomObjectMapOutputWithContext(ctx context.Context) CustomObjectMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomObjectMapOutput)
+}
+
+type CustomObjectOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomObjectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomObject)(nil))
+}
+
+func (o CustomObjectOutput) ToCustomObjectOutput() CustomObjectOutput {
+	return o
+}
+
+func (o CustomObjectOutput) ToCustomObjectOutputWithContext(ctx context.Context) CustomObjectOutput {
+	return o
+}
+
+func (o CustomObjectOutput) ToCustomObjectPtrOutput() CustomObjectPtrOutput {
+	return o.ToCustomObjectPtrOutputWithContext(context.Background())
+}
+
+func (o CustomObjectOutput) ToCustomObjectPtrOutputWithContext(ctx context.Context) CustomObjectPtrOutput {
+	return o.ApplyT(func(v CustomObject) *CustomObject {
+		return &v
+	}).(CustomObjectPtrOutput)
+}
+
+type CustomObjectPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomObjectPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomObject)(nil))
+}
+
+func (o CustomObjectPtrOutput) ToCustomObjectPtrOutput() CustomObjectPtrOutput {
+	return o
+}
+
+func (o CustomObjectPtrOutput) ToCustomObjectPtrOutputWithContext(ctx context.Context) CustomObjectPtrOutput {
+	return o
+}
+
+type CustomObjectArrayOutput struct{ *pulumi.OutputState }
+
+func (CustomObjectArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomObject)(nil))
+}
+
+func (o CustomObjectArrayOutput) ToCustomObjectArrayOutput() CustomObjectArrayOutput {
+	return o
+}
+
+func (o CustomObjectArrayOutput) ToCustomObjectArrayOutputWithContext(ctx context.Context) CustomObjectArrayOutput {
+	return o
+}
+
+func (o CustomObjectArrayOutput) Index(i pulumi.IntInput) CustomObjectOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomObject {
+		return vs[0].([]CustomObject)[vs[1].(int)]
+	}).(CustomObjectOutput)
+}
+
+type CustomObjectMapOutput struct{ *pulumi.OutputState }
+
+func (CustomObjectMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]CustomObject)(nil))
+}
+
+func (o CustomObjectMapOutput) ToCustomObjectMapOutput() CustomObjectMapOutput {
+	return o
+}
+
+func (o CustomObjectMapOutput) ToCustomObjectMapOutputWithContext(ctx context.Context) CustomObjectMapOutput {
+	return o
+}
+
+func (o CustomObjectMapOutput) MapIndex(k pulumi.StringInput) CustomObjectOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CustomObject {
+		return vs[0].(map[string]CustomObject)[vs[1].(string)]
+	}).(CustomObjectOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(CustomObjectOutput{})
+	pulumi.RegisterOutputType(CustomObjectPtrOutput{})
+	pulumi.RegisterOutputType(CustomObjectArrayOutput{})
+	pulumi.RegisterOutputType(CustomObjectMapOutput{})
 }

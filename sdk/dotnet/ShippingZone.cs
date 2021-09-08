@@ -9,14 +9,21 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/shippingZone:ShippingZone")]
     public partial class ShippingZone : Pulumi.CustomResource
     {
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// User-specific unique identifier for a zone. Must be unique across a project
+        /// </summary>
         [Output("key")]
         public Output<string?> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// [Location](https://docs.commercetools.com/api/projects/zones#location)
+        /// </summary>
         [Output("locations")]
         public Output<ImmutableArray<Outputs.ShippingZoneLocation>> Locations { get; private set; } = null!;
 
@@ -75,11 +82,18 @@ namespace Pulumi.Commercetools
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for a zone. Must be unique across a project
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("locations")]
         private InputList<Inputs.ShippingZoneLocationArgs>? _locations;
+
+        /// <summary>
+        /// [Location](https://docs.commercetools.com/api/projects/zones#location)
+        /// </summary>
         public InputList<Inputs.ShippingZoneLocationArgs> Locations
         {
             get => _locations ?? (_locations = new InputList<Inputs.ShippingZoneLocationArgs>());
@@ -99,11 +113,18 @@ namespace Pulumi.Commercetools
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for a zone. Must be unique across a project
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("locations")]
         private InputList<Inputs.ShippingZoneLocationGetArgs>? _locations;
+
+        /// <summary>
+        /// [Location](https://docs.commercetools.com/api/projects/zones#location)
+        /// </summary>
         public InputList<Inputs.ShippingZoneLocationGetArgs> Locations
         {
             get => _locations ?? (_locations = new InputList<Inputs.ShippingZoneLocationGetArgs>());

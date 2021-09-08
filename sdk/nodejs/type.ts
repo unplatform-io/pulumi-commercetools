@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class Type extends pulumi.CustomResource {
@@ -34,10 +33,26 @@ export class Type extends pulumi.CustomResource {
         return obj['__pulumiType'] === Type.__pulumiType;
     }
 
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly description!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+     */
     public readonly fields!: pulumi.Output<outputs.TypeField[] | undefined>;
+    /**
+     * Identifier for the type (max. 256 characters)
+     */
     public readonly key!: pulumi.Output<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
     public readonly name!: pulumi.Output<{[key: string]: any}>;
+    /**
+     * Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+     * is valid
+     */
     public readonly resourceTypeIds!: pulumi.Output<string[]>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
@@ -51,7 +66,8 @@ export class Type extends pulumi.CustomResource {
     constructor(name: string, args: TypeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TypeArgs | TypeState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as TypeState | undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["fields"] = state ? state.fields : undefined;
@@ -61,10 +77,10 @@ export class Type extends pulumi.CustomResource {
             inputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as TypeArgs | undefined;
-            if (!args || args.key === undefined) {
+            if ((!args || args.key === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
-            if (!args || args.resourceTypeIds === undefined) {
+            if ((!args || args.resourceTypeIds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceTypeIds'");
             }
             inputs["description"] = args ? args.description : undefined;
@@ -74,12 +90,8 @@ export class Type extends pulumi.CustomResource {
             inputs["resourceTypeIds"] = args ? args.resourceTypeIds : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Type.__pulumiType, name, inputs, opts);
     }
@@ -89,21 +101,53 @@ export class Type extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Type resources.
  */
 export interface TypeState {
-    readonly description?: pulumi.Input<{[key: string]: any}>;
-    readonly fields?: pulumi.Input<pulumi.Input<inputs.TypeField>[]>;
-    readonly key?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly resourceTypeIds?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    description?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+     */
+    fields?: pulumi.Input<pulumi.Input<inputs.TypeField>[]>;
+    /**
+     * Identifier for the type (max. 256 characters)
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+     * is valid
+     */
+    resourceTypeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a Type resource.
  */
 export interface TypeArgs {
-    readonly description?: pulumi.Input<{[key: string]: any}>;
-    readonly fields?: pulumi.Input<pulumi.Input<inputs.TypeField>[]>;
-    readonly key: pulumi.Input<string>;
-    readonly name?: pulumi.Input<{[key: string]: any}>;
-    readonly resourceTypeIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    description?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+     */
+    fields?: pulumi.Input<pulumi.Input<inputs.TypeField>[]>;
+    /**
+     * Identifier for the type (max. 256 characters)
+     */
+    key: pulumi.Input<string>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+     * is valid
+     */
+    resourceTypeIds: pulumi.Input<pulumi.Input<string>[]>;
 }

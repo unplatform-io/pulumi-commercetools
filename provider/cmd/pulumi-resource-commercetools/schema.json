@@ -464,6 +464,20 @@
                 "label"
             ]
         },
+        "commercetools:index/ProjectSettingsCarts:ProjectSettingsCarts": {
+            "properties": {
+                "countryTaxRateFallbackEnabled": {
+                    "type": "boolean"
+                },
+                "deleteDaysAfterLastModification": {
+                    "type": "integer"
+                }
+            },
+            "type": "object",
+            "required": [
+                "countryTaxRateFallbackEnabled"
+            ]
+        },
         "commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth": {
             "properties": {
                 "authorizationHeader": {
@@ -488,6 +502,33 @@
             "type": "object",
             "required": [
                 "enabled"
+            ]
+        },
+        "commercetools:index/ProjectSettingsShippingRateCartClassificationValue:ProjectSettingsShippingRateCartClassificationValue": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
             ]
         },
         "commercetools:index/ShippingZoneLocation:ShippingZoneLocation": {
@@ -540,6 +581,80 @@
             ]
         },
         "commercetools:index/ShippingZoneRatePrice:ShippingZoneRatePrice": {
+            "properties": {
+                "centAmount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "currencyCode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "centAmount",
+                "currencyCode"
+            ]
+        },
+        "commercetools:index/ShippingZoneRateShippingRatePriceTier:ShippingZoneRateShippingRatePriceTier": {
+            "properties": {
+                "minimumCentAmount": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "price": {
+                    "$ref": "#/types/commercetools:index/ShippingZoneRateShippingRatePriceTierPrice:ShippingZoneRateShippingRatePriceTierPrice",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "score": {
+                    "type": "number",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "value": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "price",
+                "type"
+            ]
+        },
+        "commercetools:index/ShippingZoneRateShippingRatePriceTierPrice:ShippingZoneRateShippingRatePriceTierPrice": {
             "properties": {
                 "centAmount": {
                     "type": "integer",
@@ -895,6 +1010,40 @@
     },
     "provider": {
         "description": "The provider type for the commercetools package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "apiUrl": {
+                "type": "string",
+                "description": "The API URL of the commercetools platform. https://docs.commercetools.com/http-api\n"
+            },
+            "clientId": {
+                "type": "string",
+                "description": "The OAuth Client ID for a commercetools platform project. https://docs.commercetools.com/http-api-authorization\n"
+            },
+            "clientSecret": {
+                "type": "string",
+                "description": "The OAuth Client Secret for a commercetools platform project. https://docs.commercetools.com/http-api-authorization\n"
+            },
+            "projectKey": {
+                "type": "string",
+                "description": "The project key of commercetools platform project. https://docs.commercetools.com/getting-started\n"
+            },
+            "scopes": {
+                "type": "string",
+                "description": "A list as string of OAuth scopes assigned to a project key, to access resources in a commercetools platform project.\nhttps://docs.commercetools.com/http-api-authorization\n"
+            },
+            "tokenUrl": {
+                "type": "string",
+                "description": "The authentication URL of the commercetools platform. https://docs.commercetools.com/http-api-authorization\n"
+            }
+        },
+        "required": [
+            "apiUrl",
+            "clientId",
+            "clientSecret",
+            "projectKey",
+            "scopes",
+            "tokenUrl"
+        ],
         "inputProperties": {
             "apiUrl": {
                 "type": "string",
@@ -934,13 +1083,15 @@
         "commercetools:index/apiClient:ApiClient": {
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the API client\n"
                 },
                 "scopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)\n"
                 },
                 "secret": {
                     "type": "string"
@@ -953,13 +1104,15 @@
             ],
             "inputProperties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the API client\n"
                 },
                 "scopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)\n"
                 }
             },
             "requiredInputs": [
@@ -969,13 +1122,15 @@
                 "description": "Input properties used for looking up and filtering ApiClient resources.\n",
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Name of the API client\n"
                     },
                     "scopes": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "A list of the [OAuth scopes](https://docs.commercetools.com/http-api-authorization.html#scopes)\n"
                     },
                     "secret": {
                         "type": "string"
@@ -987,19 +1142,23 @@
         "commercetools:index/apiExtension:ApiExtension": {
             "properties": {
                 "destination": {
-                    "$ref": "#/types/commercetools:index/ApiExtensionDestination:ApiExtensionDestination"
+                    "$ref": "#/types/commercetools:index/ApiExtensionDestination:ApiExtensionDestination",
+                    "description": "[Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be\nreached\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the extension\n"
                 },
                 "timeoutInMs": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Extension timeout in milliseconds\n"
                 },
                 "triggers": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ApiExtensionTrigger:ApiExtensionTrigger"
-                    }
+                    },
+                    "description": "Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the\nextension\n"
                 },
                 "version": {
                     "type": "integer"
@@ -1012,19 +1171,23 @@
             ],
             "inputProperties": {
                 "destination": {
-                    "$ref": "#/types/commercetools:index/ApiExtensionDestination:ApiExtensionDestination"
+                    "$ref": "#/types/commercetools:index/ApiExtensionDestination:ApiExtensionDestination",
+                    "description": "[Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be\nreached\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the extension\n"
                 },
                 "timeoutInMs": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Extension timeout in milliseconds\n"
                 },
                 "triggers": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ApiExtensionTrigger:ApiExtensionTrigger"
-                    }
+                    },
+                    "description": "Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the\nextension\n"
                 }
             },
             "requiredInputs": [
@@ -1035,19 +1198,23 @@
                 "description": "Input properties used for looking up and filtering ApiExtension resources.\n",
                 "properties": {
                     "destination": {
-                        "$ref": "#/types/commercetools:index/ApiExtensionDestination:ApiExtensionDestination"
+                        "$ref": "#/types/commercetools:index/ApiExtensionDestination:ApiExtensionDestination",
+                        "description": "[Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be\nreached\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "User-specific unique identifier for the extension\n"
                     },
                     "timeoutInMs": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Extension timeout in milliseconds\n"
                     },
                     "triggers": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/commercetools:index/ApiExtensionTrigger:ApiExtensionTrigger"
-                        }
+                        },
+                        "description": "Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the\nextension\n"
                     },
                     "version": {
                         "type": "integer"
@@ -1062,34 +1229,43 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "isActive": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Only active discount can be applied to the cart\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for a cart discount. Must be unique across a project\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "predicate": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)\n"
                 },
                 "requiresDiscountCode": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "States whether the discount can only be used in a connection with a\n[DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)\n"
                 },
                 "sortOrder": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined\nby this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort\norder is unambiguous among all cart discounts\n"
                 },
                 "stackingMode": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specifies whether the application of this discount causes the following discounts to be ignored\n"
                 },
                 "target": {
-                    "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget"
+                    "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget",
+                    "description": "Empty when the value has type giftLineItem, otherwise a\n[CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)\n"
                 },
                 "validFrom": {
                     "type": "string"
@@ -1098,7 +1274,8 @@
                     "type": "string"
                 },
                 "value": {
-                    "$ref": "#/types/commercetools:index/CartDiscountValue:CartDiscountValue"
+                    "$ref": "#/types/commercetools:index/CartDiscountValue:CartDiscountValue",
+                    "description": "Defines the effect the discount will have.\n[CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)\n"
                 },
                 "version": {
                     "type": "integer"
@@ -1116,34 +1293,43 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "isActive": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Only active discount can be applied to the cart\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for a cart discount. Must be unique across a project\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "predicate": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)\n"
                 },
                 "requiresDiscountCode": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "States whether the discount can only be used in a connection with a\n[DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)\n"
                 },
                 "sortOrder": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined\nby this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort\norder is unambiguous among all cart discounts\n"
                 },
                 "stackingMode": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specifies whether the application of this discount causes the following discounts to be ignored\n"
                 },
                 "target": {
-                    "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget"
+                    "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget",
+                    "description": "Empty when the value has type giftLineItem, otherwise a\n[CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)\n"
                 },
                 "validFrom": {
                     "type": "string"
@@ -1152,7 +1338,8 @@
                     "type": "string"
                 },
                 "value": {
-                    "$ref": "#/types/commercetools:index/CartDiscountValue:CartDiscountValue"
+                    "$ref": "#/types/commercetools:index/CartDiscountValue:CartDiscountValue",
+                    "description": "Defines the effect the discount will have.\n[CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)\n"
                 }
             },
             "requiredInputs": [
@@ -1167,34 +1354,43 @@
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "isActive": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "Only active discount can be applied to the cart\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "User-specific unique identifier for a cart discount. Must be unique across a project\n"
                     },
                     "name": {
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "predicate": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)\n"
                     },
                     "requiresDiscountCode": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "States whether the discount can only be used in a connection with a\n[DiscountCode](https://docs.commercetools.com/api/projects/discountCodes#discountcode)\n"
                     },
                     "sortOrder": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The string must contain a number between 0 and 1. All matching cart discounts are applied to a cart in the order defined\nby this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort\norder is unambiguous among all cart discounts\n"
                     },
                     "stackingMode": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Specifies whether the application of this discount causes the following discounts to be ignored\n"
                     },
                     "target": {
-                        "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget"
+                        "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget",
+                        "description": "Empty when the value has type giftLineItem, otherwise a\n[CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)\n"
                     },
                     "validFrom": {
                         "type": "string"
@@ -1203,7 +1399,8 @@
                         "type": "string"
                     },
                     "value": {
-                        "$ref": "#/types/commercetools:index/CartDiscountValue:CartDiscountValue"
+                        "$ref": "#/types/commercetools:index/CartDiscountValue:CartDiscountValue",
+                        "description": "Defines the effect the discount will have.\n[CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)\n"
                     },
                     "version": {
                         "type": "integer"
@@ -1218,22 +1415,26 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Any arbitrary string key that uniquely identifies this channel within the project\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must\nhave at least one role\n"
                 },
                 "version": {
                     "type": "integer"
@@ -1250,22 +1451,26 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Any arbitrary string key that uniquely identifies this channel within the project\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must\nhave at least one role\n"
                 }
             },
             "requiredInputs": [
@@ -1279,22 +1484,26 @@
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Any arbitrary string key that uniquely identifies this channel within the project\n"
                     },
                     "name": {
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "roles": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must\nhave at least one role\n"
                     },
                     "version": {
                         "type": "integer"
@@ -1306,13 +1515,16 @@
         "commercetools:index/customObject:CustomObject": {
             "properties": {
                 "container": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "String matching the pattern '[-_~.a-zA-Z0-9]+'\n"
                 },
                 "value": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "JSON types Number, String, Boolean, Array, Object\n"
                 },
                 "version": {
                     "type": "integer"
@@ -1326,13 +1538,16 @@
             ],
             "inputProperties": {
                 "container": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "String matching the pattern '[-_~.a-zA-Z0-9]+'\n"
                 },
                 "value": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "JSON types Number, String, Boolean, Array, Object\n"
                 }
             },
             "requiredInputs": [
@@ -1344,13 +1559,16 @@
                 "description": "Input properties used for looking up and filtering CustomObject resources.\n",
                 "properties": {
                     "container": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "String matching the pattern '[-_~.a-zA-Z0-9]+'\n"
                     },
                     "value": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "JSON types Number, String, Boolean, Array, Object\n"
                     },
                     "version": {
                         "type": "integer"
@@ -1365,46 +1583,56 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The referenced matching cart discounts can be applied to the cart once the DiscountCode is added\n"
                 },
                 "code": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the\ncart\n"
                 },
                 "description": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "groups": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The groups to which this discount code belong\n"
                 },
                 "isActive": {
                     "type": "boolean"
                 },
                 "maxApplications": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The discount code can only be applied maxApplications times\n"
                 },
                 "maxApplicationsPerCustomer": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The discount code can only be applied maxApplicationsPerCustomer times per customer\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "predicate": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)\n"
                 },
                 "validFrom": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The time from which the discount can be applied on a cart. Before that time the code is invalid\n"
                 },
                 "validUntil": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The time until the discount can be applied on a cart. After that time the code is invalid\n"
                 },
                 "version": {
                     "type": "integer"
@@ -1421,46 +1649,56 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The referenced matching cart discounts can be applied to the cart once the DiscountCode is added\n"
                 },
                 "code": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the\ncart\n"
                 },
                 "description": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "groups": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The groups to which this discount code belong\n"
                 },
                 "isActive": {
                     "type": "boolean"
                 },
                 "maxApplications": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The discount code can only be applied maxApplications times\n"
                 },
                 "maxApplicationsPerCustomer": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The discount code can only be applied maxApplicationsPerCustomer times per customer\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "predicate": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)\n"
                 },
                 "validFrom": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The time from which the discount can be applied on a cart. Before that time the code is invalid\n"
                 },
                 "validUntil": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The time until the discount can be applied on a cart. After that time the code is invalid\n"
                 }
             },
             "requiredInputs": [
@@ -1474,46 +1712,56 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "The referenced matching cart discounts can be applied to the cart once the DiscountCode is added\n"
                     },
                     "code": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Unique identifier of this discount code. This value is added to the cart to enable the related cart discounts in the\ncart\n"
                     },
                     "description": {
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "groups": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "The groups to which this discount code belong\n"
                     },
                     "isActive": {
                         "type": "boolean"
                     },
                     "maxApplications": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "The discount code can only be applied maxApplications times\n"
                     },
                     "maxApplicationsPerCustomer": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "The discount code can only be applied maxApplicationsPerCustomer times per customer\n"
                     },
                     "name": {
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "predicate": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)\n"
                     },
                     "validFrom": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The time from which the discount can be applied on a cart. Before that time the code is invalid\n"
                     },
                     "validUntil": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The time until the discount can be applied on a cart. After that time the code is invalid\n"
                     },
                     "version": {
                         "type": "integer"
@@ -1528,13 +1776,15 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ProductTypeAttribute:ProductTypeAttribute"
-                    }
+                    },
+                    "description": "[Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)\n"
                 },
                 "description": {
                     "type": "string"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the product type (max. 256 characters)\n"
                 },
                 "name": {
                     "type": "string"
@@ -1552,13 +1802,15 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ProductTypeAttribute:ProductTypeAttribute"
-                    }
+                    },
+                    "description": "[Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)\n"
                 },
                 "description": {
                     "type": "string"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the product type (max. 256 characters)\n"
                 },
                 "name": {
                     "type": "string"
@@ -1571,13 +1823,15 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/commercetools:index/ProductTypeAttribute:ProductTypeAttribute"
-                        }
+                        },
+                        "description": "[Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)\n"
                     },
                     "description": {
                         "type": "string"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "User-specific unique identifier for the product type (max. 256 characters)\n"
                     },
                     "name": {
                         "type": "string"
@@ -1591,35 +1845,57 @@
         },
         "commercetools:index/projectSettings:ProjectSettings": {
             "properties": {
+                "carts": {
+                    "$ref": "#/types/commercetools:index/ProjectSettingsCarts:ProjectSettingsCarts",
+                    "description": "[Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)\n"
+                },
                 "countries": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\n"
                 },
                 "currencies": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)\n"
                 },
                 "externalOauth": {
-                    "$ref": "#/types/commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth"
+                    "$ref": "#/types/commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth",
+                    "description": "[External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique key of the project\n"
                 },
                 "languages": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "[IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)\n"
                 },
                 "messages": {
-                    "$ref": "#/types/commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages"
+                    "$ref": "#/types/commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages",
+                    "description": "[Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the project\n"
+                },
+                "shippingRateCartClassificationValues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ProjectSettingsShippingRateCartClassificationValue:ProjectSettingsShippingRateCartClassificationValue"
+                    },
+                    "description": "If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined\ninside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys\nare checked for uniqueness and the request is rejected if keys are not unique\n"
+                },
+                "shippingRateInputType": {
+                    "type": "string",
+                    "description": "Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,\nwhereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier\n"
                 },
                 "version": {
                     "type": "integer"
@@ -1631,66 +1907,109 @@
                 "version"
             ],
             "inputProperties": {
+                "carts": {
+                    "$ref": "#/types/commercetools:index/ProjectSettingsCarts:ProjectSettingsCarts",
+                    "description": "[Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)\n"
+                },
                 "countries": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\n"
                 },
                 "currencies": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)\n"
                 },
                 "externalOauth": {
-                    "$ref": "#/types/commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth"
+                    "$ref": "#/types/commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth",
+                    "description": "[External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)\n"
                 },
                 "languages": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "[IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)\n"
                 },
                 "messages": {
-                    "$ref": "#/types/commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages"
+                    "$ref": "#/types/commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages",
+                    "description": "[Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the project\n"
+                },
+                "shippingRateCartClassificationValues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ProjectSettingsShippingRateCartClassificationValue:ProjectSettingsShippingRateCartClassificationValue"
+                    },
+                    "description": "If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined\ninside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys\nare checked for uniqueness and the request is rejected if keys are not unique\n"
+                },
+                "shippingRateInputType": {
+                    "type": "string",
+                    "description": "Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,\nwhereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier\n"
                 }
             },
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ProjectSettings resources.\n",
                 "properties": {
+                    "carts": {
+                        "$ref": "#/types/commercetools:index/ProjectSettingsCarts:ProjectSettingsCarts",
+                        "description": "[Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)\n"
+                    },
                     "countries": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\n"
                     },
                     "currencies": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)\n"
                     },
                     "externalOauth": {
-                        "$ref": "#/types/commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth"
+                        "$ref": "#/types/commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth",
+                        "description": "[External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique key of the project\n"
                     },
                     "languages": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "[IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)\n"
                     },
                     "messages": {
-                        "$ref": "#/types/commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages"
+                        "$ref": "#/types/commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages",
+                        "description": "[Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)\n"
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the project\n"
+                    },
+                    "shippingRateCartClassificationValues": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/ProjectSettingsShippingRateCartClassificationValue:ProjectSettingsShippingRateCartClassificationValue"
+                        },
+                        "description": "If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined\ninside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys\nare checked for uniqueness and the request is rejected if keys are not unique\n"
+                    },
+                    "shippingRateInputType": {
+                        "type": "string",
+                        "description": "Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,\nwhereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier\n"
                     },
                     "version": {
                         "type": "integer"
@@ -1705,19 +2024,30 @@
                     "type": "string"
                 },
                 "isDefault": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "One shipping method in a project can be default\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the shipping method\n"
+                },
+                "localizedDescription": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "name": {
                     "type": "string"
                 },
                 "predicate": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A Cart predicate which can be used to more precisely select a shipping method for a cart\n"
                 },
                 "taxCategoryId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)\n"
                 },
                 "version": {
                     "type": "integer"
@@ -1732,19 +2062,30 @@
                     "type": "string"
                 },
                 "isDefault": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "One shipping method in a project can be default\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the shipping method\n"
+                },
+                "localizedDescription": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "name": {
                     "type": "string"
                 },
                 "predicate": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A Cart predicate which can be used to more precisely select a shipping method for a cart\n"
                 },
                 "taxCategoryId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)\n"
                 }
             },
             "stateInputs": {
@@ -1754,19 +2095,30 @@
                         "type": "string"
                     },
                     "isDefault": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "One shipping method in a project can be default\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "User-specific unique identifier for the shipping method\n"
+                    },
+                    "localizedDescription": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "name": {
                         "type": "string"
                     },
                     "predicate": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "A Cart predicate which can be used to more precisely select a shipping method for a cart\n"
                     },
                     "taxCategoryId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)\n"
                     },
                     "version": {
                         "type": "integer"
@@ -1781,13 +2133,15 @@
                     "type": "string"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for a zone. Must be unique across a project\n"
                 },
                 "locations": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ShippingZoneLocation:ShippingZoneLocation"
-                    }
+                    },
+                    "description": "[Location](https://docs.commercetools.com/api/projects/zones#location)\n"
                 },
                 "name": {
                     "type": "string"
@@ -1805,13 +2159,15 @@
                     "type": "string"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for a zone. Must be unique across a project\n"
                 },
                 "locations": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ShippingZoneLocation:ShippingZoneLocation"
-                    }
+                    },
+                    "description": "[Location](https://docs.commercetools.com/api/projects/zones#location)\n"
                 },
                 "name": {
                     "type": "string"
@@ -1824,13 +2180,15 @@
                         "type": "string"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "User-specific unique identifier for a zone. Must be unique across a project\n"
                     },
                     "locations": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/commercetools:index/ShippingZoneLocation:ShippingZoneLocation"
-                        }
+                        },
+                        "description": "[Location](https://docs.commercetools.com/api/projects/zones#location)\n"
                     },
                     "name": {
                         "type": "string"
@@ -1845,13 +2203,21 @@
         "commercetools:index/shippingZoneRate:ShippingZoneRate": {
             "properties": {
                 "freeAbove": {
-                    "$ref": "#/types/commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove"
+                    "$ref": "#/types/commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove",
+                    "description": "The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value\n"
                 },
                 "price": {
                     "$ref": "#/types/commercetools:index/ShippingZoneRatePrice:ShippingZoneRatePrice"
                 },
                 "shippingMethodId": {
                     "type": "string"
+                },
+                "shippingRatePriceTiers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ShippingZoneRateShippingRatePriceTier:ShippingZoneRateShippingRatePriceTier"
+                    },
+                    "description": "A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no\ntiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier\nAPI Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)\n"
                 },
                 "shippingZoneId": {
                     "type": "string"
@@ -1864,13 +2230,21 @@
             ],
             "inputProperties": {
                 "freeAbove": {
-                    "$ref": "#/types/commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove"
+                    "$ref": "#/types/commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove",
+                    "description": "The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value\n"
                 },
                 "price": {
                     "$ref": "#/types/commercetools:index/ShippingZoneRatePrice:ShippingZoneRatePrice"
                 },
                 "shippingMethodId": {
                     "type": "string"
+                },
+                "shippingRatePriceTiers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/ShippingZoneRateShippingRatePriceTier:ShippingZoneRateShippingRatePriceTier"
+                    },
+                    "description": "A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no\ntiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier\nAPI Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)\n"
                 },
                 "shippingZoneId": {
                     "type": "string"
@@ -1885,13 +2259,21 @@
                 "description": "Input properties used for looking up and filtering ShippingZoneRate resources.\n",
                 "properties": {
                     "freeAbove": {
-                        "$ref": "#/types/commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove"
+                        "$ref": "#/types/commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove",
+                        "description": "The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value\n"
                     },
                     "price": {
                         "$ref": "#/types/commercetools:index/ShippingZoneRatePrice:ShippingZoneRatePrice"
                     },
                     "shippingMethodId": {
                         "type": "string"
+                    },
+                    "shippingRatePriceTiers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/ShippingZoneRateShippingRatePriceTier:ShippingZoneRateShippingRatePriceTier"
+                        },
+                        "description": "A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no\ntiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier\nAPI Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)\n"
                     },
                     "shippingZoneId": {
                         "type": "string"
@@ -1906,34 +2288,41 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "initial": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an\ninitial state\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A unique identifier for the state\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)\n"
                 },
                 "transitions": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Transitions are a way to describe possible transformations of the current state to other states of the same type (for\nexample: Initial -\u003e Shipped). When performing a transitionState update action and transitions is set, the currently\nreferenced state must have a transition to the new state. If transitions is an empty list, it means the current state is\na final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When\nperforming a transitionState update action, any other state of the same type can be transitioned to\n"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[StateType](https://docs.commercetools.com/api/projects/states#statetype)\n"
                 },
                 "version": {
                     "type": "integer"
@@ -1950,34 +2339,41 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "initial": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an\ninitial state\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A unique identifier for the state\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)\n"
                 },
                 "transitions": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Transitions are a way to describe possible transformations of the current state to other states of the same type (for\nexample: Initial -\u003e Shipped). When performing a transitionState update action and transitions is set, the currently\nreferenced state must have a transition to the new state. If transitions is an empty list, it means the current state is\na final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When\nperforming a transitionState update action, any other state of the same type can be transitioned to\n"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[StateType](https://docs.commercetools.com/api/projects/states#statetype)\n"
                 }
             },
             "requiredInputs": [
@@ -1991,34 +2387,41 @@
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "initial": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an\ninitial state\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "A unique identifier for the state\n"
                     },
                     "name": {
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "roles": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)\n"
                     },
                     "transitions": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "Transitions are a way to describe possible transformations of the current state to other states of the same type (for\nexample: Initial -\u003e Shipped). When performing a transitionState update action and transitions is set, the currently\nreferenced state must have a transition to the new state. If transitions is an empty list, it means the current state is\na final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When\nperforming a transitionState update action, any other state of the same type can be transitioned to\n"
                     },
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[StateType](https://docs.commercetools.com/api/projects/states#statetype)\n"
                     },
                     "version": {
                         "type": "integer"
@@ -2033,28 +2436,33 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Set of ResourceIdentifier to a Channel with ProductDistribution\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store\n"
                 },
                 "languages": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "[IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "supplyChannels": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Set of ResourceIdentifier of Channels with InventorySupply\n"
                 },
                 "version": {
                     "type": "integer"
@@ -2070,28 +2478,33 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Set of ResourceIdentifier to a Channel with ProductDistribution\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store\n"
                 },
                 "languages": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "[IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "supplyChannels": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Set of ResourceIdentifier of Channels with InventorySupply\n"
                 }
             },
             "requiredInputs": [
@@ -2104,28 +2517,33 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "Set of ResourceIdentifier to a Channel with ProductDistribution\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store\n"
                     },
                     "languages": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "[IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)\n"
                     },
                     "name": {
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "supplyChannels": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "Set of ResourceIdentifier of Channels with InventorySupply\n"
                     },
                     "version": {
                         "type": "integer"
@@ -2140,22 +2558,27 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/SubscriptionChange:SubscriptionChange"
-                    }
+                    },
+                    "description": "The change notifications subscribed to\n"
                 },
                 "destination": {
-                    "$ref": "#/types/commercetools:index/SubscriptionDestination:SubscriptionDestination"
+                    "$ref": "#/types/commercetools:index/SubscriptionDestination:SubscriptionDestination",
+                    "description": "The Message Queue into which the notifications are to be sentSee also the [Destination API\nDocs](https://docs.commercetools.com/api/projects/subscriptions#destination)\n"
                 },
                 "format": {
-                    "$ref": "#/types/commercetools:index/SubscriptionFormat:SubscriptionFormat"
+                    "$ref": "#/types/commercetools:index/SubscriptionFormat:SubscriptionFormat",
+                    "description": "The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the subscription\n"
                 },
                 "messages": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/SubscriptionMessage:SubscriptionMessage"
-                    }
+                    },
+                    "description": "The messages subscribed to\n"
                 },
                 "version": {
                     "type": "integer"
@@ -2169,22 +2592,27 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/SubscriptionChange:SubscriptionChange"
-                    }
+                    },
+                    "description": "The change notifications subscribed to\n"
                 },
                 "destination": {
-                    "$ref": "#/types/commercetools:index/SubscriptionDestination:SubscriptionDestination"
+                    "$ref": "#/types/commercetools:index/SubscriptionDestination:SubscriptionDestination",
+                    "description": "The Message Queue into which the notifications are to be sentSee also the [Destination API\nDocs](https://docs.commercetools.com/api/projects/subscriptions#destination)\n"
                 },
                 "format": {
-                    "$ref": "#/types/commercetools:index/SubscriptionFormat:SubscriptionFormat"
+                    "$ref": "#/types/commercetools:index/SubscriptionFormat:SubscriptionFormat",
+                    "description": "The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the subscription\n"
                 },
                 "messages": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/SubscriptionMessage:SubscriptionMessage"
-                    }
+                    },
+                    "description": "The messages subscribed to\n"
                 }
             },
             "stateInputs": {
@@ -2194,22 +2622,27 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/commercetools:index/SubscriptionChange:SubscriptionChange"
-                        }
+                        },
+                        "description": "The change notifications subscribed to\n"
                     },
                     "destination": {
-                        "$ref": "#/types/commercetools:index/SubscriptionDestination:SubscriptionDestination"
+                        "$ref": "#/types/commercetools:index/SubscriptionDestination:SubscriptionDestination",
+                        "description": "The Message Queue into which the notifications are to be sentSee also the [Destination API\nDocs](https://docs.commercetools.com/api/projects/subscriptions#destination)\n"
                     },
                     "format": {
-                        "$ref": "#/types/commercetools:index/SubscriptionFormat:SubscriptionFormat"
+                        "$ref": "#/types/commercetools:index/SubscriptionFormat:SubscriptionFormat",
+                        "description": "The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "User-specific unique identifier for the subscription\n"
                     },
                     "messages": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/commercetools:index/SubscriptionMessage:SubscriptionMessage"
-                        }
+                        },
+                        "description": "The messages subscribed to\n"
                     },
                     "version": {
                         "type": "integer"
@@ -2224,7 +2657,8 @@
                     "type": "string"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the category\n"
                 },
                 "name": {
                     "type": "string"
@@ -2242,7 +2676,8 @@
                     "type": "string"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User-specific unique identifier for the category\n"
                 },
                 "name": {
                     "type": "string"
@@ -2255,7 +2690,8 @@
                         "type": "string"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "User-specific unique identifier for the category\n"
                     },
                     "name": {
                         "type": "string"
@@ -2270,10 +2706,12 @@
         "commercetools:index/taxCategoryRate:TaxCategoryRate": {
             "properties": {
                 "amount": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any\n"
                 },
                 "country": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\n"
                 },
                 "includedInPrice": {
                     "type": "boolean"
@@ -2282,13 +2720,15 @@
                     "type": "string"
                 },
                 "state": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The state in the country\n"
                 },
                 "subRates": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/TaxCategoryRateSubRate:TaxCategoryRateSubRate"
-                    }
+                    },
+                    "description": "For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local\ntaxes)\n"
                 },
                 "taxCategoryId": {
                     "type": "string"
@@ -2302,10 +2742,12 @@
             ],
             "inputProperties": {
                 "amount": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any\n"
                 },
                 "country": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\n"
                 },
                 "includedInPrice": {
                     "type": "boolean"
@@ -2314,13 +2756,15 @@
                     "type": "string"
                 },
                 "state": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The state in the country\n"
                 },
                 "subRates": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/TaxCategoryRateSubRate:TaxCategoryRateSubRate"
-                    }
+                    },
+                    "description": "For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local\ntaxes)\n"
                 },
                 "taxCategoryId": {
                     "type": "string"
@@ -2335,10 +2779,12 @@
                 "description": "Input properties used for looking up and filtering TaxCategoryRate resources.\n",
                 "properties": {
                     "amount": {
-                        "type": "number"
+                        "type": "number",
+                        "description": "Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any\n"
                     },
                     "country": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\n"
                     },
                     "includedInPrice": {
                         "type": "boolean"
@@ -2347,13 +2793,15 @@
                         "type": "string"
                     },
                     "state": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The state in the country\n"
                     },
                     "subRates": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/commercetools:index/TaxCategoryRateSubRate:TaxCategoryRateSubRate"
-                        }
+                        },
+                        "description": "For countries (for example the US) where the total tax is a combination of multiple taxes (for example state and local\ntaxes)\n"
                     },
                     "taxCategoryId": {
                         "type": "string"
@@ -2368,28 +2816,33 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "fields": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/TypeField:TypeField"
-                    }
+                    },
+                    "description": "[Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Identifier for the type (max. 256 characters)\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "resourceTypeIds": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type\nis valid\n"
                 },
                 "version": {
                     "type": "integer"
@@ -2406,28 +2859,33 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "fields": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/TypeField:TypeField"
-                    }
+                    },
+                    "description": "[Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)\n"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Identifier for the type (max. 256 characters)\n"
                 },
                 "name": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "resourceTypeIds": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type\nis valid\n"
                 }
             },
             "requiredInputs": [
@@ -2441,28 +2899,33 @@
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "fields": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/commercetools:index/TypeField:TypeField"
-                        }
+                        },
+                        "description": "[Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Identifier for the type (max. 256 characters)\n"
                     },
                     "name": {
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        }
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "resourceTypeIds": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type\nis valid\n"
                     },
                     "version": {
                         "type": "integer"
@@ -2474,19 +2937,24 @@
     },
     "language": {
         "csharp": {
+            "compatibility": "tfbridge20",
             "namespaces": null,
             "packageReferences": {
-                "Pulumi": "2.*",
-                "System.Collections.Immutable": "1.6.0"
+                "Pulumi": "3.*"
             }
         },
+        "go": {
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-commercetools/sdk/go/commercetools"
+        },
         "nodejs": {
+            "compatibility": "tfbridge20",
             "dependencies": {
-                "@pulumi/pulumi": "^2.0.0"
+                "@pulumi/pulumi": "^3.0.0"
             },
             "devDependencies": {
                 "@types/mime": "^2.0.0",
-                "@types/node": "^8.0.25"
+                "@types/node": "^10.0.0"
             },
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing commercetools cloud resources.",
@@ -2495,11 +2963,11 @@
             "typescriptVersion": ""
         },
         "python": {
+            "compatibility": "tfbridge20",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-commercetools)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-commercetools` repo](https://github.com/pulumi/pulumi-commercetools/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-commercetools` repo](https://github.com/terraform-providers/terraform-provider-commercetools/issues).",
             "requires": {
-                "pulumi": "\u003e=2.9.0,\u003c3.0.0"
-            },
-            "usesIOClasses": false
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
         }
     }
 }

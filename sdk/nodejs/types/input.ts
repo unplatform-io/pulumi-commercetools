@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 
 export interface ApiExtensionDestination {
     accessKey?: pulumi.Input<string>;
@@ -78,6 +77,11 @@ export interface ProductTypeAttributeTypeLocalizedValue {
     label: pulumi.Input<{[key: string]: any}>;
 }
 
+export interface ProjectSettingsCarts {
+    countryTaxRateFallbackEnabled: pulumi.Input<boolean>;
+    deleteDaysAfterLastModification?: pulumi.Input<number>;
+}
+
 export interface ProjectSettingsExternalOauth {
     authorizationHeader: pulumi.Input<string>;
     url: pulumi.Input<string>;
@@ -85,6 +89,11 @@ export interface ProjectSettingsExternalOauth {
 
 export interface ProjectSettingsMessages {
     enabled: pulumi.Input<boolean>;
+}
+
+export interface ProjectSettingsShippingRateCartClassificationValue {
+    key: pulumi.Input<string>;
+    label?: pulumi.Input<{[key: string]: any}>;
 }
 
 export interface ShippingZoneLocation {
@@ -98,6 +107,19 @@ export interface ShippingZoneRateFreeAbove {
 }
 
 export interface ShippingZoneRatePrice {
+    centAmount: pulumi.Input<number>;
+    currencyCode: pulumi.Input<string>;
+}
+
+export interface ShippingZoneRateShippingRatePriceTier {
+    minimumCentAmount?: pulumi.Input<number>;
+    price: pulumi.Input<inputs.ShippingZoneRateShippingRatePriceTierPrice>;
+    score?: pulumi.Input<number>;
+    type: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface ShippingZoneRateShippingRatePriceTierPrice {
     centAmount: pulumi.Input<number>;
     currencyCode: pulumi.Input<string>;
 }

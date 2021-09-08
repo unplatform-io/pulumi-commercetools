@@ -9,20 +9,37 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/subscription:Subscription")]
     public partial class Subscription : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The change notifications subscribed to
+        /// </summary>
         [Output("changes")]
         public Output<ImmutableArray<Outputs.SubscriptionChange>> Changes { get; private set; } = null!;
 
+        /// <summary>
+        /// The Message Queue into which the notifications are to be sentSee also the [Destination API
+        /// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+        /// </summary>
         [Output("destination")]
         public Output<Outputs.SubscriptionDestination?> Destination { get; private set; } = null!;
 
+        /// <summary>
+        /// The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+        /// </summary>
         [Output("format")]
         public Output<Outputs.SubscriptionFormat?> Format { get; private set; } = null!;
 
+        /// <summary>
+        /// User-specific unique identifier for the subscription
+        /// </summary>
         [Output("key")]
         public Output<string?> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// The messages subscribed to
+        /// </summary>
         [Output("messages")]
         public Output<ImmutableArray<Outputs.SubscriptionMessage>> Messages { get; private set; } = null!;
 
@@ -77,23 +94,41 @@ namespace Pulumi.Commercetools
     {
         [Input("changes")]
         private InputList<Inputs.SubscriptionChangeArgs>? _changes;
+
+        /// <summary>
+        /// The change notifications subscribed to
+        /// </summary>
         public InputList<Inputs.SubscriptionChangeArgs> Changes
         {
             get => _changes ?? (_changes = new InputList<Inputs.SubscriptionChangeArgs>());
             set => _changes = value;
         }
 
+        /// <summary>
+        /// The Message Queue into which the notifications are to be sentSee also the [Destination API
+        /// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+        /// </summary>
         [Input("destination")]
         public Input<Inputs.SubscriptionDestinationArgs>? Destination { get; set; }
 
+        /// <summary>
+        /// The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+        /// </summary>
         [Input("format")]
         public Input<Inputs.SubscriptionFormatArgs>? Format { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for the subscription
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("messages")]
         private InputList<Inputs.SubscriptionMessageArgs>? _messages;
+
+        /// <summary>
+        /// The messages subscribed to
+        /// </summary>
         public InputList<Inputs.SubscriptionMessageArgs> Messages
         {
             get => _messages ?? (_messages = new InputList<Inputs.SubscriptionMessageArgs>());
@@ -109,23 +144,41 @@ namespace Pulumi.Commercetools
     {
         [Input("changes")]
         private InputList<Inputs.SubscriptionChangeGetArgs>? _changes;
+
+        /// <summary>
+        /// The change notifications subscribed to
+        /// </summary>
         public InputList<Inputs.SubscriptionChangeGetArgs> Changes
         {
             get => _changes ?? (_changes = new InputList<Inputs.SubscriptionChangeGetArgs>());
             set => _changes = value;
         }
 
+        /// <summary>
+        /// The Message Queue into which the notifications are to be sentSee also the [Destination API
+        /// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+        /// </summary>
         [Input("destination")]
         public Input<Inputs.SubscriptionDestinationGetArgs>? Destination { get; set; }
 
+        /// <summary>
+        /// The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+        /// </summary>
         [Input("format")]
         public Input<Inputs.SubscriptionFormatGetArgs>? Format { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for the subscription
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("messages")]
         private InputList<Inputs.SubscriptionMessageGetArgs>? _messages;
+
+        /// <summary>
+        /// The messages subscribed to
+        /// </summary>
         public InputList<Inputs.SubscriptionMessageGetArgs> Messages
         {
             get => _messages ?? (_messages = new InputList<Inputs.SubscriptionMessageGetArgs>());

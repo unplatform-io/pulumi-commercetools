@@ -4,10 +4,11 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // The provider type for the commercetools package. By default, resources use package-wide configuration
@@ -16,31 +17,46 @@ import (
 // [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 type Provider struct {
 	pulumi.ProviderResourceState
+
+	// The API URL of the commercetools platform. https://docs.commercetools.com/http-api
+	ApiUrl pulumi.StringOutput `pulumi:"apiUrl"`
+	// The OAuth Client ID for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
+	ClientId pulumi.StringOutput `pulumi:"clientId"`
+	// The OAuth Client Secret for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
+	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
+	// The project key of commercetools platform project. https://docs.commercetools.com/getting-started
+	ProjectKey pulumi.StringOutput `pulumi:"projectKey"`
+	// A list as string of OAuth scopes assigned to a project key, to access resources in a commercetools platform project.
+	// https://docs.commercetools.com/http-api-authorization
+	Scopes pulumi.StringOutput `pulumi:"scopes"`
+	// The authentication URL of the commercetools platform. https://docs.commercetools.com/http-api-authorization
+	TokenUrl pulumi.StringOutput `pulumi:"tokenUrl"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
-	if args == nil || args.ApiUrl == nil {
-		return nil, errors.New("missing required argument 'ApiUrl'")
-	}
-	if args == nil || args.ClientId == nil {
-		return nil, errors.New("missing required argument 'ClientId'")
-	}
-	if args == nil || args.ClientSecret == nil {
-		return nil, errors.New("missing required argument 'ClientSecret'")
-	}
-	if args == nil || args.ProjectKey == nil {
-		return nil, errors.New("missing required argument 'ProjectKey'")
-	}
-	if args == nil || args.Scopes == nil {
-		return nil, errors.New("missing required argument 'Scopes'")
-	}
-	if args == nil || args.TokenUrl == nil {
-		return nil, errors.New("missing required argument 'TokenUrl'")
-	}
 	if args == nil {
-		args = &ProviderArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ApiUrl == nil {
+		return nil, errors.New("invalid value for required argument 'ApiUrl'")
+	}
+	if args.ClientId == nil {
+		return nil, errors.New("invalid value for required argument 'ClientId'")
+	}
+	if args.ClientSecret == nil {
+		return nil, errors.New("invalid value for required argument 'ClientSecret'")
+	}
+	if args.ProjectKey == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectKey'")
+	}
+	if args.Scopes == nil {
+		return nil, errors.New("invalid value for required argument 'Scopes'")
+	}
+	if args.TokenUrl == nil {
+		return nil, errors.New("invalid value for required argument 'TokenUrl'")
 	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:commercetools", name, args, &resource, opts...)
@@ -85,4 +101,99 @@ type ProviderArgs struct {
 
 func (ProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*providerArgs)(nil)).Elem()
+}
+
+type ProviderInput interface {
+	pulumi.Input
+
+	ToProviderOutput() ProviderOutput
+	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
+}
+
+func (*Provider) ElementType() reflect.Type {
+	return reflect.TypeOf((*Provider)(nil))
+}
+
+func (i *Provider) ToProviderOutput() ProviderOutput {
+	return i.ToProviderOutputWithContext(context.Background())
+}
+
+func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+}
+
+func (i *Provider) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *Provider) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
+type ProviderPtrInput interface {
+	pulumi.Input
+
+	ToProviderPtrOutput() ProviderPtrOutput
+	ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput
+}
+
+type providerPtrType ProviderArgs
+
+func (*providerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (i *providerPtrType) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *providerPtrType) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
+type ProviderOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Provider)(nil))
+}
+
+func (o ProviderOutput) ToProviderOutput() ProviderOutput {
+	return o
+}
+
+func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
+	return o
+}
+
+func (o ProviderOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (o ProviderOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o.ApplyT(func(v Provider) *Provider {
+		return &v
+	}).(ProviderPtrOutput)
+}
+
+type ProviderPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderPtrOutput{})
 }

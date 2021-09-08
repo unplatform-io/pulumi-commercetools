@@ -5,15 +5,207 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Subscription']
+__all__ = ['SubscriptionArgs', 'Subscription']
+
+@pulumi.input_type
+class SubscriptionArgs:
+    def __init__(__self__, *,
+                 changes: Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionChangeArgs']]]] = None,
+                 destination: Optional[pulumi.Input['SubscriptionDestinationArgs']] = None,
+                 format: Optional[pulumi.Input['SubscriptionFormatArgs']] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 messages: Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionMessageArgs']]]] = None):
+        """
+        The set of arguments for constructing a Subscription resource.
+        :param pulumi.Input[Sequence[pulumi.Input['SubscriptionChangeArgs']]] changes: The change notifications subscribed to
+        :param pulumi.Input['SubscriptionDestinationArgs'] destination: The Message Queue into which the notifications are to be sentSee also the [Destination API
+               Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+        :param pulumi.Input['SubscriptionFormatArgs'] format: The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+        :param pulumi.Input[str] key: User-specific unique identifier for the subscription
+        :param pulumi.Input[Sequence[pulumi.Input['SubscriptionMessageArgs']]] messages: The messages subscribed to
+        """
+        if changes is not None:
+            pulumi.set(__self__, "changes", changes)
+        if destination is not None:
+            pulumi.set(__self__, "destination", destination)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if messages is not None:
+            pulumi.set(__self__, "messages", messages)
+
+    @property
+    @pulumi.getter
+    def changes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionChangeArgs']]]]:
+        """
+        The change notifications subscribed to
+        """
+        return pulumi.get(self, "changes")
+
+    @changes.setter
+    def changes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionChangeArgs']]]]):
+        pulumi.set(self, "changes", value)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> Optional[pulumi.Input['SubscriptionDestinationArgs']]:
+        """
+        The Message Queue into which the notifications are to be sentSee also the [Destination API
+        Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: Optional[pulumi.Input['SubscriptionDestinationArgs']]):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input['SubscriptionFormatArgs']]:
+        """
+        The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+        """
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input['SubscriptionFormatArgs']]):
+        pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        User-specific unique identifier for the subscription
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def messages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionMessageArgs']]]]:
+        """
+        The messages subscribed to
+        """
+        return pulumi.get(self, "messages")
+
+    @messages.setter
+    def messages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionMessageArgs']]]]):
+        pulumi.set(self, "messages", value)
+
+
+@pulumi.input_type
+class _SubscriptionState:
+    def __init__(__self__, *,
+                 changes: Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionChangeArgs']]]] = None,
+                 destination: Optional[pulumi.Input['SubscriptionDestinationArgs']] = None,
+                 format: Optional[pulumi.Input['SubscriptionFormatArgs']] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 messages: Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionMessageArgs']]]] = None,
+                 version: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering Subscription resources.
+        :param pulumi.Input[Sequence[pulumi.Input['SubscriptionChangeArgs']]] changes: The change notifications subscribed to
+        :param pulumi.Input['SubscriptionDestinationArgs'] destination: The Message Queue into which the notifications are to be sentSee also the [Destination API
+               Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+        :param pulumi.Input['SubscriptionFormatArgs'] format: The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+        :param pulumi.Input[str] key: User-specific unique identifier for the subscription
+        :param pulumi.Input[Sequence[pulumi.Input['SubscriptionMessageArgs']]] messages: The messages subscribed to
+        """
+        if changes is not None:
+            pulumi.set(__self__, "changes", changes)
+        if destination is not None:
+            pulumi.set(__self__, "destination", destination)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if messages is not None:
+            pulumi.set(__self__, "messages", messages)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def changes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionChangeArgs']]]]:
+        """
+        The change notifications subscribed to
+        """
+        return pulumi.get(self, "changes")
+
+    @changes.setter
+    def changes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionChangeArgs']]]]):
+        pulumi.set(self, "changes", value)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> Optional[pulumi.Input['SubscriptionDestinationArgs']]:
+        """
+        The Message Queue into which the notifications are to be sentSee also the [Destination API
+        Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: Optional[pulumi.Input['SubscriptionDestinationArgs']]):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input['SubscriptionFormatArgs']]:
+        """
+        The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+        """
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input['SubscriptionFormatArgs']]):
+        pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        User-specific unique identifier for the subscription
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def messages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionMessageArgs']]]]:
+        """
+        The messages subscribed to
+        """
+        return pulumi.get(self, "messages")
+
+    @messages.setter
+    def messages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SubscriptionMessageArgs']]]]):
+        pulumi.set(self, "messages", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "version", value)
 
 
 class Subscription(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -22,20 +214,47 @@ class Subscription(pulumi.CustomResource):
                  format: Optional[pulumi.Input[pulumi.InputType['SubscriptionFormatArgs']]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  messages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubscriptionMessageArgs']]]]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Create a Subscription resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubscriptionChangeArgs']]]] changes: The change notifications subscribed to
+        :param pulumi.Input[pulumi.InputType['SubscriptionDestinationArgs']] destination: The Message Queue into which the notifications are to be sentSee also the [Destination API
+               Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+        :param pulumi.Input[pulumi.InputType['SubscriptionFormatArgs']] format: The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+        :param pulumi.Input[str] key: User-specific unique identifier for the subscription
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubscriptionMessageArgs']]]] messages: The messages subscribed to
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[SubscriptionArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a Subscription resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param SubscriptionArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SubscriptionArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 changes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubscriptionChangeArgs']]]]] = None,
+                 destination: Optional[pulumi.Input[pulumi.InputType['SubscriptionDestinationArgs']]] = None,
+                 format: Optional[pulumi.Input[pulumi.InputType['SubscriptionFormatArgs']]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 messages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubscriptionMessageArgs']]]]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -45,14 +264,14 @@ class Subscription(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SubscriptionArgs.__new__(SubscriptionArgs)
 
-            __props__['changes'] = changes
-            __props__['destination'] = destination
-            __props__['format'] = format
-            __props__['key'] = key
-            __props__['messages'] = messages
-            __props__['version'] = None
+            __props__.__dict__["changes"] = changes
+            __props__.__dict__["destination"] = destination
+            __props__.__dict__["format"] = format
+            __props__.__dict__["key"] = key
+            __props__.__dict__["messages"] = messages
+            __props__.__dict__["version"] = None
         super(Subscription, __self__).__init__(
             'commercetools:index/subscription:Subscription',
             resource_name,
@@ -76,52 +295,68 @@ class Subscription(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubscriptionChangeArgs']]]] changes: The change notifications subscribed to
+        :param pulumi.Input[pulumi.InputType['SubscriptionDestinationArgs']] destination: The Message Queue into which the notifications are to be sentSee also the [Destination API
+               Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+        :param pulumi.Input[pulumi.InputType['SubscriptionFormatArgs']] format: The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+        :param pulumi.Input[str] key: User-specific unique identifier for the subscription
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubscriptionMessageArgs']]]] messages: The messages subscribed to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SubscriptionState.__new__(_SubscriptionState)
 
-        __props__["changes"] = changes
-        __props__["destination"] = destination
-        __props__["format"] = format
-        __props__["key"] = key
-        __props__["messages"] = messages
-        __props__["version"] = version
+        __props__.__dict__["changes"] = changes
+        __props__.__dict__["destination"] = destination
+        __props__.__dict__["format"] = format
+        __props__.__dict__["key"] = key
+        __props__.__dict__["messages"] = messages
+        __props__.__dict__["version"] = version
         return Subscription(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def changes(self) -> pulumi.Output[Optional[Sequence['outputs.SubscriptionChange']]]:
+        """
+        The change notifications subscribed to
+        """
         return pulumi.get(self, "changes")
 
     @property
     @pulumi.getter
     def destination(self) -> pulumi.Output[Optional['outputs.SubscriptionDestination']]:
+        """
+        The Message Queue into which the notifications are to be sentSee also the [Destination API
+        Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
+        """
         return pulumi.get(self, "destination")
 
     @property
     @pulumi.getter
     def format(self) -> pulumi.Output[Optional['outputs.SubscriptionFormat']]:
+        """
+        The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
+        """
         return pulumi.get(self, "format")
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Output[Optional[str]]:
+        """
+        User-specific unique identifier for the subscription
+        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def messages(self) -> pulumi.Output[Optional[Sequence['outputs.SubscriptionMessage']]]:
+        """
+        The messages subscribed to
+        """
         return pulumi.get(self, "messages")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[int]:
         return pulumi.get(self, "version")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

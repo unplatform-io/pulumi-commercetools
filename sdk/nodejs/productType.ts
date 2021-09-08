@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class ProductType extends pulumi.CustomResource {
@@ -34,8 +33,14 @@ export class ProductType extends pulumi.CustomResource {
         return obj['__pulumiType'] === ProductType.__pulumiType;
     }
 
+    /**
+     * [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+     */
     public readonly attributes!: pulumi.Output<outputs.ProductTypeAttribute[] | undefined>;
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * User-specific unique identifier for the product type (max. 256 characters)
+     */
     public readonly key!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public /*out*/ readonly version!: pulumi.Output<number>;
@@ -50,7 +55,8 @@ export class ProductType extends pulumi.CustomResource {
     constructor(name: string, args?: ProductTypeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ProductTypeArgs | ProductTypeState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ProductTypeState | undefined;
             inputs["attributes"] = state ? state.attributes : undefined;
             inputs["description"] = state ? state.description : undefined;
@@ -65,12 +71,8 @@ export class ProductType extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["version"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ProductType.__pulumiType, name, inputs, opts);
     }
@@ -80,19 +82,31 @@ export class ProductType extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ProductType resources.
  */
 export interface ProductTypeState {
-    readonly attributes?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttribute>[]>;
-    readonly description?: pulumi.Input<string>;
-    readonly key?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
-    readonly version?: pulumi.Input<number>;
+    /**
+     * [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+     */
+    attributes?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttribute>[]>;
+    description?: pulumi.Input<string>;
+    /**
+     * User-specific unique identifier for the product type (max. 256 characters)
+     */
+    key?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    version?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a ProductType resource.
  */
 export interface ProductTypeArgs {
-    readonly attributes?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttribute>[]>;
-    readonly description?: pulumi.Input<string>;
-    readonly key?: pulumi.Input<string>;
-    readonly name?: pulumi.Input<string>;
+    /**
+     * [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+     */
+    attributes?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttribute>[]>;
+    description?: pulumi.Input<string>;
+    /**
+     * User-specific unique identifier for the product type (max. 256 characters)
+     */
+    key?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
 }

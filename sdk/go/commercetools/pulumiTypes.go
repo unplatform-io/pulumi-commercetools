@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type ApiExtensionDestination struct {
@@ -1386,6 +1386,147 @@ func (o ProductTypeAttributeTypeLocalizedValueArrayOutput) Index(i pulumi.IntInp
 	}).(ProductTypeAttributeTypeLocalizedValueOutput)
 }
 
+type ProjectSettingsCarts struct {
+	CountryTaxRateFallbackEnabled   bool `pulumi:"countryTaxRateFallbackEnabled"`
+	DeleteDaysAfterLastModification *int `pulumi:"deleteDaysAfterLastModification"`
+}
+
+// ProjectSettingsCartsInput is an input type that accepts ProjectSettingsCartsArgs and ProjectSettingsCartsOutput values.
+// You can construct a concrete instance of `ProjectSettingsCartsInput` via:
+//
+//          ProjectSettingsCartsArgs{...}
+type ProjectSettingsCartsInput interface {
+	pulumi.Input
+
+	ToProjectSettingsCartsOutput() ProjectSettingsCartsOutput
+	ToProjectSettingsCartsOutputWithContext(context.Context) ProjectSettingsCartsOutput
+}
+
+type ProjectSettingsCartsArgs struct {
+	CountryTaxRateFallbackEnabled   pulumi.BoolInput   `pulumi:"countryTaxRateFallbackEnabled"`
+	DeleteDaysAfterLastModification pulumi.IntPtrInput `pulumi:"deleteDaysAfterLastModification"`
+}
+
+func (ProjectSettingsCartsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectSettingsCarts)(nil)).Elem()
+}
+
+func (i ProjectSettingsCartsArgs) ToProjectSettingsCartsOutput() ProjectSettingsCartsOutput {
+	return i.ToProjectSettingsCartsOutputWithContext(context.Background())
+}
+
+func (i ProjectSettingsCartsArgs) ToProjectSettingsCartsOutputWithContext(ctx context.Context) ProjectSettingsCartsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectSettingsCartsOutput)
+}
+
+func (i ProjectSettingsCartsArgs) ToProjectSettingsCartsPtrOutput() ProjectSettingsCartsPtrOutput {
+	return i.ToProjectSettingsCartsPtrOutputWithContext(context.Background())
+}
+
+func (i ProjectSettingsCartsArgs) ToProjectSettingsCartsPtrOutputWithContext(ctx context.Context) ProjectSettingsCartsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectSettingsCartsOutput).ToProjectSettingsCartsPtrOutputWithContext(ctx)
+}
+
+// ProjectSettingsCartsPtrInput is an input type that accepts ProjectSettingsCartsArgs, ProjectSettingsCartsPtr and ProjectSettingsCartsPtrOutput values.
+// You can construct a concrete instance of `ProjectSettingsCartsPtrInput` via:
+//
+//          ProjectSettingsCartsArgs{...}
+//
+//  or:
+//
+//          nil
+type ProjectSettingsCartsPtrInput interface {
+	pulumi.Input
+
+	ToProjectSettingsCartsPtrOutput() ProjectSettingsCartsPtrOutput
+	ToProjectSettingsCartsPtrOutputWithContext(context.Context) ProjectSettingsCartsPtrOutput
+}
+
+type projectSettingsCartsPtrType ProjectSettingsCartsArgs
+
+func ProjectSettingsCartsPtr(v *ProjectSettingsCartsArgs) ProjectSettingsCartsPtrInput {
+	return (*projectSettingsCartsPtrType)(v)
+}
+
+func (*projectSettingsCartsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectSettingsCarts)(nil)).Elem()
+}
+
+func (i *projectSettingsCartsPtrType) ToProjectSettingsCartsPtrOutput() ProjectSettingsCartsPtrOutput {
+	return i.ToProjectSettingsCartsPtrOutputWithContext(context.Background())
+}
+
+func (i *projectSettingsCartsPtrType) ToProjectSettingsCartsPtrOutputWithContext(ctx context.Context) ProjectSettingsCartsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectSettingsCartsPtrOutput)
+}
+
+type ProjectSettingsCartsOutput struct{ *pulumi.OutputState }
+
+func (ProjectSettingsCartsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectSettingsCarts)(nil)).Elem()
+}
+
+func (o ProjectSettingsCartsOutput) ToProjectSettingsCartsOutput() ProjectSettingsCartsOutput {
+	return o
+}
+
+func (o ProjectSettingsCartsOutput) ToProjectSettingsCartsOutputWithContext(ctx context.Context) ProjectSettingsCartsOutput {
+	return o
+}
+
+func (o ProjectSettingsCartsOutput) ToProjectSettingsCartsPtrOutput() ProjectSettingsCartsPtrOutput {
+	return o.ToProjectSettingsCartsPtrOutputWithContext(context.Background())
+}
+
+func (o ProjectSettingsCartsOutput) ToProjectSettingsCartsPtrOutputWithContext(ctx context.Context) ProjectSettingsCartsPtrOutput {
+	return o.ApplyT(func(v ProjectSettingsCarts) *ProjectSettingsCarts {
+		return &v
+	}).(ProjectSettingsCartsPtrOutput)
+}
+func (o ProjectSettingsCartsOutput) CountryTaxRateFallbackEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ProjectSettingsCarts) bool { return v.CountryTaxRateFallbackEnabled }).(pulumi.BoolOutput)
+}
+
+func (o ProjectSettingsCartsOutput) DeleteDaysAfterLastModification() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ProjectSettingsCarts) *int { return v.DeleteDaysAfterLastModification }).(pulumi.IntPtrOutput)
+}
+
+type ProjectSettingsCartsPtrOutput struct{ *pulumi.OutputState }
+
+func (ProjectSettingsCartsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectSettingsCarts)(nil)).Elem()
+}
+
+func (o ProjectSettingsCartsPtrOutput) ToProjectSettingsCartsPtrOutput() ProjectSettingsCartsPtrOutput {
+	return o
+}
+
+func (o ProjectSettingsCartsPtrOutput) ToProjectSettingsCartsPtrOutputWithContext(ctx context.Context) ProjectSettingsCartsPtrOutput {
+	return o
+}
+
+func (o ProjectSettingsCartsPtrOutput) Elem() ProjectSettingsCartsOutput {
+	return o.ApplyT(func(v *ProjectSettingsCarts) ProjectSettingsCarts { return *v }).(ProjectSettingsCartsOutput)
+}
+
+func (o ProjectSettingsCartsPtrOutput) CountryTaxRateFallbackEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProjectSettingsCarts) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.CountryTaxRateFallbackEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o ProjectSettingsCartsPtrOutput) DeleteDaysAfterLastModification() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ProjectSettingsCarts) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DeleteDaysAfterLastModification
+	}).(pulumi.IntPtrOutput)
+}
+
 type ProjectSettingsExternalOauth struct {
 	AuthorizationHeader string `pulumi:"authorizationHeader"`
 	Url                 string `pulumi:"url"`
@@ -1651,6 +1792,106 @@ func (o ProjectSettingsMessagesPtrOutput) Enabled() pulumi.BoolPtrOutput {
 		}
 		return &v.Enabled
 	}).(pulumi.BoolPtrOutput)
+}
+
+type ProjectSettingsShippingRateCartClassificationValue struct {
+	Key   string                 `pulumi:"key"`
+	Label map[string]interface{} `pulumi:"label"`
+}
+
+// ProjectSettingsShippingRateCartClassificationValueInput is an input type that accepts ProjectSettingsShippingRateCartClassificationValueArgs and ProjectSettingsShippingRateCartClassificationValueOutput values.
+// You can construct a concrete instance of `ProjectSettingsShippingRateCartClassificationValueInput` via:
+//
+//          ProjectSettingsShippingRateCartClassificationValueArgs{...}
+type ProjectSettingsShippingRateCartClassificationValueInput interface {
+	pulumi.Input
+
+	ToProjectSettingsShippingRateCartClassificationValueOutput() ProjectSettingsShippingRateCartClassificationValueOutput
+	ToProjectSettingsShippingRateCartClassificationValueOutputWithContext(context.Context) ProjectSettingsShippingRateCartClassificationValueOutput
+}
+
+type ProjectSettingsShippingRateCartClassificationValueArgs struct {
+	Key   pulumi.StringInput `pulumi:"key"`
+	Label pulumi.MapInput    `pulumi:"label"`
+}
+
+func (ProjectSettingsShippingRateCartClassificationValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectSettingsShippingRateCartClassificationValue)(nil)).Elem()
+}
+
+func (i ProjectSettingsShippingRateCartClassificationValueArgs) ToProjectSettingsShippingRateCartClassificationValueOutput() ProjectSettingsShippingRateCartClassificationValueOutput {
+	return i.ToProjectSettingsShippingRateCartClassificationValueOutputWithContext(context.Background())
+}
+
+func (i ProjectSettingsShippingRateCartClassificationValueArgs) ToProjectSettingsShippingRateCartClassificationValueOutputWithContext(ctx context.Context) ProjectSettingsShippingRateCartClassificationValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectSettingsShippingRateCartClassificationValueOutput)
+}
+
+// ProjectSettingsShippingRateCartClassificationValueArrayInput is an input type that accepts ProjectSettingsShippingRateCartClassificationValueArray and ProjectSettingsShippingRateCartClassificationValueArrayOutput values.
+// You can construct a concrete instance of `ProjectSettingsShippingRateCartClassificationValueArrayInput` via:
+//
+//          ProjectSettingsShippingRateCartClassificationValueArray{ ProjectSettingsShippingRateCartClassificationValueArgs{...} }
+type ProjectSettingsShippingRateCartClassificationValueArrayInput interface {
+	pulumi.Input
+
+	ToProjectSettingsShippingRateCartClassificationValueArrayOutput() ProjectSettingsShippingRateCartClassificationValueArrayOutput
+	ToProjectSettingsShippingRateCartClassificationValueArrayOutputWithContext(context.Context) ProjectSettingsShippingRateCartClassificationValueArrayOutput
+}
+
+type ProjectSettingsShippingRateCartClassificationValueArray []ProjectSettingsShippingRateCartClassificationValueInput
+
+func (ProjectSettingsShippingRateCartClassificationValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectSettingsShippingRateCartClassificationValue)(nil)).Elem()
+}
+
+func (i ProjectSettingsShippingRateCartClassificationValueArray) ToProjectSettingsShippingRateCartClassificationValueArrayOutput() ProjectSettingsShippingRateCartClassificationValueArrayOutput {
+	return i.ToProjectSettingsShippingRateCartClassificationValueArrayOutputWithContext(context.Background())
+}
+
+func (i ProjectSettingsShippingRateCartClassificationValueArray) ToProjectSettingsShippingRateCartClassificationValueArrayOutputWithContext(ctx context.Context) ProjectSettingsShippingRateCartClassificationValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectSettingsShippingRateCartClassificationValueArrayOutput)
+}
+
+type ProjectSettingsShippingRateCartClassificationValueOutput struct{ *pulumi.OutputState }
+
+func (ProjectSettingsShippingRateCartClassificationValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectSettingsShippingRateCartClassificationValue)(nil)).Elem()
+}
+
+func (o ProjectSettingsShippingRateCartClassificationValueOutput) ToProjectSettingsShippingRateCartClassificationValueOutput() ProjectSettingsShippingRateCartClassificationValueOutput {
+	return o
+}
+
+func (o ProjectSettingsShippingRateCartClassificationValueOutput) ToProjectSettingsShippingRateCartClassificationValueOutputWithContext(ctx context.Context) ProjectSettingsShippingRateCartClassificationValueOutput {
+	return o
+}
+
+func (o ProjectSettingsShippingRateCartClassificationValueOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ProjectSettingsShippingRateCartClassificationValue) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o ProjectSettingsShippingRateCartClassificationValueOutput) Label() pulumi.MapOutput {
+	return o.ApplyT(func(v ProjectSettingsShippingRateCartClassificationValue) map[string]interface{} { return v.Label }).(pulumi.MapOutput)
+}
+
+type ProjectSettingsShippingRateCartClassificationValueArrayOutput struct{ *pulumi.OutputState }
+
+func (ProjectSettingsShippingRateCartClassificationValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectSettingsShippingRateCartClassificationValue)(nil)).Elem()
+}
+
+func (o ProjectSettingsShippingRateCartClassificationValueArrayOutput) ToProjectSettingsShippingRateCartClassificationValueArrayOutput() ProjectSettingsShippingRateCartClassificationValueArrayOutput {
+	return o
+}
+
+func (o ProjectSettingsShippingRateCartClassificationValueArrayOutput) ToProjectSettingsShippingRateCartClassificationValueArrayOutputWithContext(ctx context.Context) ProjectSettingsShippingRateCartClassificationValueArrayOutput {
+	return o
+}
+
+func (o ProjectSettingsShippingRateCartClassificationValueArrayOutput) Index(i pulumi.IntInput) ProjectSettingsShippingRateCartClassificationValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectSettingsShippingRateCartClassificationValue {
+		return vs[0].([]ProjectSettingsShippingRateCartClassificationValue)[vs[1].(int)]
+	}).(ProjectSettingsShippingRateCartClassificationValueOutput)
 }
 
 type ShippingZoneLocation struct {
@@ -2033,6 +2274,181 @@ func (o ShippingZoneRatePricePtrOutput) CurrencyCode() pulumi.StringPtrOutput {
 		}
 		return &v.CurrencyCode
 	}).(pulumi.StringPtrOutput)
+}
+
+type ShippingZoneRateShippingRatePriceTier struct {
+	MinimumCentAmount *int                                       `pulumi:"minimumCentAmount"`
+	Price             ShippingZoneRateShippingRatePriceTierPrice `pulumi:"price"`
+	Score             *float64                                   `pulumi:"score"`
+	Type              string                                     `pulumi:"type"`
+	Value             *string                                    `pulumi:"value"`
+}
+
+// ShippingZoneRateShippingRatePriceTierInput is an input type that accepts ShippingZoneRateShippingRatePriceTierArgs and ShippingZoneRateShippingRatePriceTierOutput values.
+// You can construct a concrete instance of `ShippingZoneRateShippingRatePriceTierInput` via:
+//
+//          ShippingZoneRateShippingRatePriceTierArgs{...}
+type ShippingZoneRateShippingRatePriceTierInput interface {
+	pulumi.Input
+
+	ToShippingZoneRateShippingRatePriceTierOutput() ShippingZoneRateShippingRatePriceTierOutput
+	ToShippingZoneRateShippingRatePriceTierOutputWithContext(context.Context) ShippingZoneRateShippingRatePriceTierOutput
+}
+
+type ShippingZoneRateShippingRatePriceTierArgs struct {
+	MinimumCentAmount pulumi.IntPtrInput                              `pulumi:"minimumCentAmount"`
+	Price             ShippingZoneRateShippingRatePriceTierPriceInput `pulumi:"price"`
+	Score             pulumi.Float64PtrInput                          `pulumi:"score"`
+	Type              pulumi.StringInput                              `pulumi:"type"`
+	Value             pulumi.StringPtrInput                           `pulumi:"value"`
+}
+
+func (ShippingZoneRateShippingRatePriceTierArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippingZoneRateShippingRatePriceTier)(nil)).Elem()
+}
+
+func (i ShippingZoneRateShippingRatePriceTierArgs) ToShippingZoneRateShippingRatePriceTierOutput() ShippingZoneRateShippingRatePriceTierOutput {
+	return i.ToShippingZoneRateShippingRatePriceTierOutputWithContext(context.Background())
+}
+
+func (i ShippingZoneRateShippingRatePriceTierArgs) ToShippingZoneRateShippingRatePriceTierOutputWithContext(ctx context.Context) ShippingZoneRateShippingRatePriceTierOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneRateShippingRatePriceTierOutput)
+}
+
+// ShippingZoneRateShippingRatePriceTierArrayInput is an input type that accepts ShippingZoneRateShippingRatePriceTierArray and ShippingZoneRateShippingRatePriceTierArrayOutput values.
+// You can construct a concrete instance of `ShippingZoneRateShippingRatePriceTierArrayInput` via:
+//
+//          ShippingZoneRateShippingRatePriceTierArray{ ShippingZoneRateShippingRatePriceTierArgs{...} }
+type ShippingZoneRateShippingRatePriceTierArrayInput interface {
+	pulumi.Input
+
+	ToShippingZoneRateShippingRatePriceTierArrayOutput() ShippingZoneRateShippingRatePriceTierArrayOutput
+	ToShippingZoneRateShippingRatePriceTierArrayOutputWithContext(context.Context) ShippingZoneRateShippingRatePriceTierArrayOutput
+}
+
+type ShippingZoneRateShippingRatePriceTierArray []ShippingZoneRateShippingRatePriceTierInput
+
+func (ShippingZoneRateShippingRatePriceTierArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ShippingZoneRateShippingRatePriceTier)(nil)).Elem()
+}
+
+func (i ShippingZoneRateShippingRatePriceTierArray) ToShippingZoneRateShippingRatePriceTierArrayOutput() ShippingZoneRateShippingRatePriceTierArrayOutput {
+	return i.ToShippingZoneRateShippingRatePriceTierArrayOutputWithContext(context.Background())
+}
+
+func (i ShippingZoneRateShippingRatePriceTierArray) ToShippingZoneRateShippingRatePriceTierArrayOutputWithContext(ctx context.Context) ShippingZoneRateShippingRatePriceTierArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneRateShippingRatePriceTierArrayOutput)
+}
+
+type ShippingZoneRateShippingRatePriceTierOutput struct{ *pulumi.OutputState }
+
+func (ShippingZoneRateShippingRatePriceTierOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippingZoneRateShippingRatePriceTier)(nil)).Elem()
+}
+
+func (o ShippingZoneRateShippingRatePriceTierOutput) ToShippingZoneRateShippingRatePriceTierOutput() ShippingZoneRateShippingRatePriceTierOutput {
+	return o
+}
+
+func (o ShippingZoneRateShippingRatePriceTierOutput) ToShippingZoneRateShippingRatePriceTierOutputWithContext(ctx context.Context) ShippingZoneRateShippingRatePriceTierOutput {
+	return o
+}
+
+func (o ShippingZoneRateShippingRatePriceTierOutput) MinimumCentAmount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) *int { return v.MinimumCentAmount }).(pulumi.IntPtrOutput)
+}
+
+func (o ShippingZoneRateShippingRatePriceTierOutput) Price() ShippingZoneRateShippingRatePriceTierPriceOutput {
+	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) ShippingZoneRateShippingRatePriceTierPrice {
+		return v.Price
+	}).(ShippingZoneRateShippingRatePriceTierPriceOutput)
+}
+
+func (o ShippingZoneRateShippingRatePriceTierOutput) Score() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) *float64 { return v.Score }).(pulumi.Float64PtrOutput)
+}
+
+func (o ShippingZoneRateShippingRatePriceTierOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o ShippingZoneRateShippingRatePriceTierOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type ShippingZoneRateShippingRatePriceTierArrayOutput struct{ *pulumi.OutputState }
+
+func (ShippingZoneRateShippingRatePriceTierArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ShippingZoneRateShippingRatePriceTier)(nil)).Elem()
+}
+
+func (o ShippingZoneRateShippingRatePriceTierArrayOutput) ToShippingZoneRateShippingRatePriceTierArrayOutput() ShippingZoneRateShippingRatePriceTierArrayOutput {
+	return o
+}
+
+func (o ShippingZoneRateShippingRatePriceTierArrayOutput) ToShippingZoneRateShippingRatePriceTierArrayOutputWithContext(ctx context.Context) ShippingZoneRateShippingRatePriceTierArrayOutput {
+	return o
+}
+
+func (o ShippingZoneRateShippingRatePriceTierArrayOutput) Index(i pulumi.IntInput) ShippingZoneRateShippingRatePriceTierOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ShippingZoneRateShippingRatePriceTier {
+		return vs[0].([]ShippingZoneRateShippingRatePriceTier)[vs[1].(int)]
+	}).(ShippingZoneRateShippingRatePriceTierOutput)
+}
+
+type ShippingZoneRateShippingRatePriceTierPrice struct {
+	CentAmount   int    `pulumi:"centAmount"`
+	CurrencyCode string `pulumi:"currencyCode"`
+}
+
+// ShippingZoneRateShippingRatePriceTierPriceInput is an input type that accepts ShippingZoneRateShippingRatePriceTierPriceArgs and ShippingZoneRateShippingRatePriceTierPriceOutput values.
+// You can construct a concrete instance of `ShippingZoneRateShippingRatePriceTierPriceInput` via:
+//
+//          ShippingZoneRateShippingRatePriceTierPriceArgs{...}
+type ShippingZoneRateShippingRatePriceTierPriceInput interface {
+	pulumi.Input
+
+	ToShippingZoneRateShippingRatePriceTierPriceOutput() ShippingZoneRateShippingRatePriceTierPriceOutput
+	ToShippingZoneRateShippingRatePriceTierPriceOutputWithContext(context.Context) ShippingZoneRateShippingRatePriceTierPriceOutput
+}
+
+type ShippingZoneRateShippingRatePriceTierPriceArgs struct {
+	CentAmount   pulumi.IntInput    `pulumi:"centAmount"`
+	CurrencyCode pulumi.StringInput `pulumi:"currencyCode"`
+}
+
+func (ShippingZoneRateShippingRatePriceTierPriceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippingZoneRateShippingRatePriceTierPrice)(nil)).Elem()
+}
+
+func (i ShippingZoneRateShippingRatePriceTierPriceArgs) ToShippingZoneRateShippingRatePriceTierPriceOutput() ShippingZoneRateShippingRatePriceTierPriceOutput {
+	return i.ToShippingZoneRateShippingRatePriceTierPriceOutputWithContext(context.Background())
+}
+
+func (i ShippingZoneRateShippingRatePriceTierPriceArgs) ToShippingZoneRateShippingRatePriceTierPriceOutputWithContext(ctx context.Context) ShippingZoneRateShippingRatePriceTierPriceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneRateShippingRatePriceTierPriceOutput)
+}
+
+type ShippingZoneRateShippingRatePriceTierPriceOutput struct{ *pulumi.OutputState }
+
+func (ShippingZoneRateShippingRatePriceTierPriceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippingZoneRateShippingRatePriceTierPrice)(nil)).Elem()
+}
+
+func (o ShippingZoneRateShippingRatePriceTierPriceOutput) ToShippingZoneRateShippingRatePriceTierPriceOutput() ShippingZoneRateShippingRatePriceTierPriceOutput {
+	return o
+}
+
+func (o ShippingZoneRateShippingRatePriceTierPriceOutput) ToShippingZoneRateShippingRatePriceTierPriceOutputWithContext(ctx context.Context) ShippingZoneRateShippingRatePriceTierPriceOutput {
+	return o
+}
+
+func (o ShippingZoneRateShippingRatePriceTierPriceOutput) CentAmount() pulumi.IntOutput {
+	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTierPrice) int { return v.CentAmount }).(pulumi.IntOutput)
+}
+
+func (o ShippingZoneRateShippingRatePriceTierPriceOutput) CurrencyCode() pulumi.StringOutput {
+	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTierPrice) string { return v.CurrencyCode }).(pulumi.StringOutput)
 }
 
 type SubscriptionChange struct {
@@ -3313,16 +3729,23 @@ func init() {
 	pulumi.RegisterOutputType(ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput{})
 	pulumi.RegisterOutputType(ProductTypeAttributeTypeLocalizedValueOutput{})
 	pulumi.RegisterOutputType(ProductTypeAttributeTypeLocalizedValueArrayOutput{})
+	pulumi.RegisterOutputType(ProjectSettingsCartsOutput{})
+	pulumi.RegisterOutputType(ProjectSettingsCartsPtrOutput{})
 	pulumi.RegisterOutputType(ProjectSettingsExternalOauthOutput{})
 	pulumi.RegisterOutputType(ProjectSettingsExternalOauthPtrOutput{})
 	pulumi.RegisterOutputType(ProjectSettingsMessagesOutput{})
 	pulumi.RegisterOutputType(ProjectSettingsMessagesPtrOutput{})
+	pulumi.RegisterOutputType(ProjectSettingsShippingRateCartClassificationValueOutput{})
+	pulumi.RegisterOutputType(ProjectSettingsShippingRateCartClassificationValueArrayOutput{})
 	pulumi.RegisterOutputType(ShippingZoneLocationOutput{})
 	pulumi.RegisterOutputType(ShippingZoneLocationArrayOutput{})
 	pulumi.RegisterOutputType(ShippingZoneRateFreeAboveOutput{})
 	pulumi.RegisterOutputType(ShippingZoneRateFreeAbovePtrOutput{})
 	pulumi.RegisterOutputType(ShippingZoneRatePriceOutput{})
 	pulumi.RegisterOutputType(ShippingZoneRatePricePtrOutput{})
+	pulumi.RegisterOutputType(ShippingZoneRateShippingRatePriceTierOutput{})
+	pulumi.RegisterOutputType(ShippingZoneRateShippingRatePriceTierArrayOutput{})
+	pulumi.RegisterOutputType(ShippingZoneRateShippingRatePriceTierPriceOutput{})
 	pulumi.RegisterOutputType(SubscriptionChangeOutput{})
 	pulumi.RegisterOutputType(SubscriptionChangeArrayOutput{})
 	pulumi.RegisterOutputType(SubscriptionDestinationOutput{})

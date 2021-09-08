@@ -9,8 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/shippingZoneRate:ShippingZoneRate")]
     public partial class ShippingZoneRate : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+        /// </summary>
         [Output("freeAbove")]
         public Output<Outputs.ShippingZoneRateFreeAbove?> FreeAbove { get; private set; } = null!;
 
@@ -19,6 +23,14 @@ namespace Pulumi.Commercetools
 
         [Output("shippingMethodId")]
         public Output<string> ShippingMethodId { get; private set; } = null!;
+
+        /// <summary>
+        /// A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+        /// tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+        /// API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+        /// </summary>
+        [Output("shippingRatePriceTiers")]
+        public Output<ImmutableArray<Outputs.ShippingZoneRateShippingRatePriceTier>> ShippingRatePriceTiers { get; private set; } = null!;
 
         [Output("shippingZoneId")]
         public Output<string> ShippingZoneId { get; private set; } = null!;
@@ -69,6 +81,9 @@ namespace Pulumi.Commercetools
 
     public sealed class ShippingZoneRateArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+        /// </summary>
         [Input("freeAbove")]
         public Input<Inputs.ShippingZoneRateFreeAboveArgs>? FreeAbove { get; set; }
 
@@ -77,6 +92,20 @@ namespace Pulumi.Commercetools
 
         [Input("shippingMethodId", required: true)]
         public Input<string> ShippingMethodId { get; set; } = null!;
+
+        [Input("shippingRatePriceTiers")]
+        private InputList<Inputs.ShippingZoneRateShippingRatePriceTierArgs>? _shippingRatePriceTiers;
+
+        /// <summary>
+        /// A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+        /// tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+        /// API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+        /// </summary>
+        public InputList<Inputs.ShippingZoneRateShippingRatePriceTierArgs> ShippingRatePriceTiers
+        {
+            get => _shippingRatePriceTiers ?? (_shippingRatePriceTiers = new InputList<Inputs.ShippingZoneRateShippingRatePriceTierArgs>());
+            set => _shippingRatePriceTiers = value;
+        }
 
         [Input("shippingZoneId", required: true)]
         public Input<string> ShippingZoneId { get; set; } = null!;
@@ -88,6 +117,9 @@ namespace Pulumi.Commercetools
 
     public sealed class ShippingZoneRateState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+        /// </summary>
         [Input("freeAbove")]
         public Input<Inputs.ShippingZoneRateFreeAboveGetArgs>? FreeAbove { get; set; }
 
@@ -96,6 +128,20 @@ namespace Pulumi.Commercetools
 
         [Input("shippingMethodId")]
         public Input<string>? ShippingMethodId { get; set; }
+
+        [Input("shippingRatePriceTiers")]
+        private InputList<Inputs.ShippingZoneRateShippingRatePriceTierGetArgs>? _shippingRatePriceTiers;
+
+        /// <summary>
+        /// A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+        /// tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+        /// API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+        /// </summary>
+        public InputList<Inputs.ShippingZoneRateShippingRatePriceTierGetArgs> ShippingRatePriceTiers
+        {
+            get => _shippingRatePriceTiers ?? (_shippingRatePriceTiers = new InputList<Inputs.ShippingZoneRateShippingRatePriceTierGetArgs>());
+            set => _shippingRatePriceTiers = value;
+        }
 
         [Input("shippingZoneId")]
         public Input<string>? ShippingZoneId { get; set; }

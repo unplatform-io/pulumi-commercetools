@@ -5,36 +5,219 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['ShippingZoneRate']
+__all__ = ['ShippingZoneRateArgs', 'ShippingZoneRate']
+
+@pulumi.input_type
+class ShippingZoneRateArgs:
+    def __init__(__self__, *,
+                 price: pulumi.Input['ShippingZoneRatePriceArgs'],
+                 shipping_method_id: pulumi.Input[str],
+                 shipping_zone_id: pulumi.Input[str],
+                 free_above: Optional[pulumi.Input['ShippingZoneRateFreeAboveArgs']] = None,
+                 shipping_rate_price_tiers: Optional[pulumi.Input[Sequence[pulumi.Input['ShippingZoneRateShippingRatePriceTierArgs']]]] = None):
+        """
+        The set of arguments for constructing a ShippingZoneRate resource.
+        :param pulumi.Input['ShippingZoneRateFreeAboveArgs'] free_above: The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+        :param pulumi.Input[Sequence[pulumi.Input['ShippingZoneRateShippingRatePriceTierArgs']]] shipping_rate_price_tiers: A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+               tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+               API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+        """
+        pulumi.set(__self__, "price", price)
+        pulumi.set(__self__, "shipping_method_id", shipping_method_id)
+        pulumi.set(__self__, "shipping_zone_id", shipping_zone_id)
+        if free_above is not None:
+            pulumi.set(__self__, "free_above", free_above)
+        if shipping_rate_price_tiers is not None:
+            pulumi.set(__self__, "shipping_rate_price_tiers", shipping_rate_price_tiers)
+
+    @property
+    @pulumi.getter
+    def price(self) -> pulumi.Input['ShippingZoneRatePriceArgs']:
+        return pulumi.get(self, "price")
+
+    @price.setter
+    def price(self, value: pulumi.Input['ShippingZoneRatePriceArgs']):
+        pulumi.set(self, "price", value)
+
+    @property
+    @pulumi.getter(name="shippingMethodId")
+    def shipping_method_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "shipping_method_id")
+
+    @shipping_method_id.setter
+    def shipping_method_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "shipping_method_id", value)
+
+    @property
+    @pulumi.getter(name="shippingZoneId")
+    def shipping_zone_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "shipping_zone_id")
+
+    @shipping_zone_id.setter
+    def shipping_zone_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "shipping_zone_id", value)
+
+    @property
+    @pulumi.getter(name="freeAbove")
+    def free_above(self) -> Optional[pulumi.Input['ShippingZoneRateFreeAboveArgs']]:
+        """
+        The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+        """
+        return pulumi.get(self, "free_above")
+
+    @free_above.setter
+    def free_above(self, value: Optional[pulumi.Input['ShippingZoneRateFreeAboveArgs']]):
+        pulumi.set(self, "free_above", value)
+
+    @property
+    @pulumi.getter(name="shippingRatePriceTiers")
+    def shipping_rate_price_tiers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShippingZoneRateShippingRatePriceTierArgs']]]]:
+        """
+        A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+        tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+        API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+        """
+        return pulumi.get(self, "shipping_rate_price_tiers")
+
+    @shipping_rate_price_tiers.setter
+    def shipping_rate_price_tiers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ShippingZoneRateShippingRatePriceTierArgs']]]]):
+        pulumi.set(self, "shipping_rate_price_tiers", value)
+
+
+@pulumi.input_type
+class _ShippingZoneRateState:
+    def __init__(__self__, *,
+                 free_above: Optional[pulumi.Input['ShippingZoneRateFreeAboveArgs']] = None,
+                 price: Optional[pulumi.Input['ShippingZoneRatePriceArgs']] = None,
+                 shipping_method_id: Optional[pulumi.Input[str]] = None,
+                 shipping_rate_price_tiers: Optional[pulumi.Input[Sequence[pulumi.Input['ShippingZoneRateShippingRatePriceTierArgs']]]] = None,
+                 shipping_zone_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering ShippingZoneRate resources.
+        :param pulumi.Input['ShippingZoneRateFreeAboveArgs'] free_above: The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+        :param pulumi.Input[Sequence[pulumi.Input['ShippingZoneRateShippingRatePriceTierArgs']]] shipping_rate_price_tiers: A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+               tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+               API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+        """
+        if free_above is not None:
+            pulumi.set(__self__, "free_above", free_above)
+        if price is not None:
+            pulumi.set(__self__, "price", price)
+        if shipping_method_id is not None:
+            pulumi.set(__self__, "shipping_method_id", shipping_method_id)
+        if shipping_rate_price_tiers is not None:
+            pulumi.set(__self__, "shipping_rate_price_tiers", shipping_rate_price_tiers)
+        if shipping_zone_id is not None:
+            pulumi.set(__self__, "shipping_zone_id", shipping_zone_id)
+
+    @property
+    @pulumi.getter(name="freeAbove")
+    def free_above(self) -> Optional[pulumi.Input['ShippingZoneRateFreeAboveArgs']]:
+        """
+        The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+        """
+        return pulumi.get(self, "free_above")
+
+    @free_above.setter
+    def free_above(self, value: Optional[pulumi.Input['ShippingZoneRateFreeAboveArgs']]):
+        pulumi.set(self, "free_above", value)
+
+    @property
+    @pulumi.getter
+    def price(self) -> Optional[pulumi.Input['ShippingZoneRatePriceArgs']]:
+        return pulumi.get(self, "price")
+
+    @price.setter
+    def price(self, value: Optional[pulumi.Input['ShippingZoneRatePriceArgs']]):
+        pulumi.set(self, "price", value)
+
+    @property
+    @pulumi.getter(name="shippingMethodId")
+    def shipping_method_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "shipping_method_id")
+
+    @shipping_method_id.setter
+    def shipping_method_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shipping_method_id", value)
+
+    @property
+    @pulumi.getter(name="shippingRatePriceTiers")
+    def shipping_rate_price_tiers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShippingZoneRateShippingRatePriceTierArgs']]]]:
+        """
+        A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+        tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+        API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+        """
+        return pulumi.get(self, "shipping_rate_price_tiers")
+
+    @shipping_rate_price_tiers.setter
+    def shipping_rate_price_tiers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ShippingZoneRateShippingRatePriceTierArgs']]]]):
+        pulumi.set(self, "shipping_rate_price_tiers", value)
+
+    @property
+    @pulumi.getter(name="shippingZoneId")
+    def shipping_zone_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "shipping_zone_id")
+
+    @shipping_zone_id.setter
+    def shipping_zone_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shipping_zone_id", value)
 
 
 class ShippingZoneRate(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  free_above: Optional[pulumi.Input[pulumi.InputType['ShippingZoneRateFreeAboveArgs']]] = None,
                  price: Optional[pulumi.Input[pulumi.InputType['ShippingZoneRatePriceArgs']]] = None,
                  shipping_method_id: Optional[pulumi.Input[str]] = None,
+                 shipping_rate_price_tiers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShippingZoneRateShippingRatePriceTierArgs']]]]] = None,
                  shipping_zone_id: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Create a ShippingZoneRate resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ShippingZoneRateFreeAboveArgs']] free_above: The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShippingZoneRateShippingRatePriceTierArgs']]]] shipping_rate_price_tiers: A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+               tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+               API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ShippingZoneRateArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a ShippingZoneRate resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param ShippingZoneRateArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ShippingZoneRateArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 free_above: Optional[pulumi.Input[pulumi.InputType['ShippingZoneRateFreeAboveArgs']]] = None,
+                 price: Optional[pulumi.Input[pulumi.InputType['ShippingZoneRatePriceArgs']]] = None,
+                 shipping_method_id: Optional[pulumi.Input[str]] = None,
+                 shipping_rate_price_tiers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShippingZoneRateShippingRatePriceTierArgs']]]]] = None,
+                 shipping_zone_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -44,18 +227,19 @@ class ShippingZoneRate(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ShippingZoneRateArgs.__new__(ShippingZoneRateArgs)
 
-            __props__['free_above'] = free_above
-            if price is None:
+            __props__.__dict__["free_above"] = free_above
+            if price is None and not opts.urn:
                 raise TypeError("Missing required property 'price'")
-            __props__['price'] = price
-            if shipping_method_id is None:
+            __props__.__dict__["price"] = price
+            if shipping_method_id is None and not opts.urn:
                 raise TypeError("Missing required property 'shipping_method_id'")
-            __props__['shipping_method_id'] = shipping_method_id
-            if shipping_zone_id is None:
+            __props__.__dict__["shipping_method_id"] = shipping_method_id
+            __props__.__dict__["shipping_rate_price_tiers"] = shipping_rate_price_tiers
+            if shipping_zone_id is None and not opts.urn:
                 raise TypeError("Missing required property 'shipping_zone_id'")
-            __props__['shipping_zone_id'] = shipping_zone_id
+            __props__.__dict__["shipping_zone_id"] = shipping_zone_id
         super(ShippingZoneRate, __self__).__init__(
             'commercetools:index/shippingZoneRate:ShippingZoneRate',
             resource_name,
@@ -69,6 +253,7 @@ class ShippingZoneRate(pulumi.CustomResource):
             free_above: Optional[pulumi.Input[pulumi.InputType['ShippingZoneRateFreeAboveArgs']]] = None,
             price: Optional[pulumi.Input[pulumi.InputType['ShippingZoneRatePriceArgs']]] = None,
             shipping_method_id: Optional[pulumi.Input[str]] = None,
+            shipping_rate_price_tiers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShippingZoneRateShippingRatePriceTierArgs']]]]] = None,
             shipping_zone_id: Optional[pulumi.Input[str]] = None) -> 'ShippingZoneRate':
         """
         Get an existing ShippingZoneRate resource's state with the given name, id, and optional extra
@@ -77,20 +262,28 @@ class ShippingZoneRate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ShippingZoneRateFreeAboveArgs']] free_above: The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShippingZoneRateShippingRatePriceTierArgs']]]] shipping_rate_price_tiers: A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+               tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+               API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ShippingZoneRateState.__new__(_ShippingZoneRateState)
 
-        __props__["free_above"] = free_above
-        __props__["price"] = price
-        __props__["shipping_method_id"] = shipping_method_id
-        __props__["shipping_zone_id"] = shipping_zone_id
+        __props__.__dict__["free_above"] = free_above
+        __props__.__dict__["price"] = price
+        __props__.__dict__["shipping_method_id"] = shipping_method_id
+        __props__.__dict__["shipping_rate_price_tiers"] = shipping_rate_price_tiers
+        __props__.__dict__["shipping_zone_id"] = shipping_zone_id
         return ShippingZoneRate(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="freeAbove")
     def free_above(self) -> pulumi.Output[Optional['outputs.ShippingZoneRateFreeAbove']]:
+        """
+        The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
+        """
         return pulumi.get(self, "free_above")
 
     @property
@@ -104,13 +297,17 @@ class ShippingZoneRate(pulumi.CustomResource):
         return pulumi.get(self, "shipping_method_id")
 
     @property
+    @pulumi.getter(name="shippingRatePriceTiers")
+    def shipping_rate_price_tiers(self) -> pulumi.Output[Optional[Sequence['outputs.ShippingZoneRateShippingRatePriceTier']]]:
+        """
+        A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+        tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+        API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+        """
+        return pulumi.get(self, "shipping_rate_price_tiers")
+
+    @property
     @pulumi.getter(name="shippingZoneId")
     def shipping_zone_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "shipping_zone_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

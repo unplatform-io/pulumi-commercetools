@@ -9,20 +9,37 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/type:Type")]
     public partial class Type : Pulumi.CustomResource
     {
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("description")]
         public Output<ImmutableDictionary<string, object>?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+        /// </summary>
         [Output("fields")]
         public Output<ImmutableArray<Outputs.TypeField>> Fields { get; private set; } = null!;
 
+        /// <summary>
+        /// Identifier for the type (max. 256 characters)
+        /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("name")]
         public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+        /// is valid
+        /// </summary>
         [Output("resourceTypeIds")]
         public Output<ImmutableArray<string>> ResourceTypeIds { get; private set; } = null!;
 
@@ -77,6 +94,10 @@ namespace Pulumi.Commercetools
     {
         [Input("description")]
         private InputMap<object>? _description;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Description
         {
             get => _description ?? (_description = new InputMap<object>());
@@ -85,17 +106,28 @@ namespace Pulumi.Commercetools
 
         [Input("fields")]
         private InputList<Inputs.TypeFieldArgs>? _fields;
+
+        /// <summary>
+        /// [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+        /// </summary>
         public InputList<Inputs.TypeFieldArgs> Fields
         {
             get => _fields ?? (_fields = new InputList<Inputs.TypeFieldArgs>());
             set => _fields = value;
         }
 
+        /// <summary>
+        /// Identifier for the type (max. 256 characters)
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
@@ -104,6 +136,11 @@ namespace Pulumi.Commercetools
 
         [Input("resourceTypeIds", required: true)]
         private InputList<string>? _resourceTypeIds;
+
+        /// <summary>
+        /// Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+        /// is valid
+        /// </summary>
         public InputList<string> ResourceTypeIds
         {
             get => _resourceTypeIds ?? (_resourceTypeIds = new InputList<string>());
@@ -119,6 +156,10 @@ namespace Pulumi.Commercetools
     {
         [Input("description")]
         private InputMap<object>? _description;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Description
         {
             get => _description ?? (_description = new InputMap<object>());
@@ -127,17 +168,28 @@ namespace Pulumi.Commercetools
 
         [Input("fields")]
         private InputList<Inputs.TypeFieldGetArgs>? _fields;
+
+        /// <summary>
+        /// [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
+        /// </summary>
         public InputList<Inputs.TypeFieldGetArgs> Fields
         {
             get => _fields ?? (_fields = new InputList<Inputs.TypeFieldGetArgs>());
             set => _fields = value;
         }
 
+        /// <summary>
+        /// Identifier for the type (max. 256 characters)
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
@@ -146,6 +198,11 @@ namespace Pulumi.Commercetools
 
         [Input("resourceTypeIds")]
         private InputList<string>? _resourceTypeIds;
+
+        /// <summary>
+        /// Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
+        /// is valid
+        /// </summary>
         public InputList<string> ResourceTypeIds
         {
             get => _resourceTypeIds ?? (_resourceTypeIds = new InputList<string>());
