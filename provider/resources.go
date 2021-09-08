@@ -16,16 +16,16 @@ package commercetools
 
 import (
 	"fmt"
-	"path/filepath"
-	"unicode"
-	"github.com/unplatform-io/pulumi-commercetools/provider/pkg/version"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/labd/terraform-provider-commercetools/commercetools"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/labd/terraform-provider-commercetools/commercetools"
+	"github.com/unplatform-io/pulumi-commercetools/provider/pkg/version"
+	"path/filepath"
+	"unicode"
 )
 
 // all of the token components used below.
