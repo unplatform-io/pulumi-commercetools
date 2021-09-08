@@ -195,7 +195,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "3.*",
+				"Pulumi": "3.*",
 			},
 		},
 	}
