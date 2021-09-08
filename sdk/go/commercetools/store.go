@@ -4,31 +4,38 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type Store struct {
 	pulumi.CustomResourceState
 
+	// Set of ResourceIdentifier to a Channel with ProductDistribution
 	DistributionChannels pulumi.StringArrayOutput `pulumi:"distributionChannels"`
-	Key                  pulumi.StringOutput      `pulumi:"key"`
-	Languages            pulumi.StringArrayOutput `pulumi:"languages"`
-	Name                 pulumi.MapOutput         `pulumi:"name"`
-	SupplyChannels       pulumi.StringArrayOutput `pulumi:"supplyChannels"`
-	Version              pulumi.IntOutput         `pulumi:"version"`
+	// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+	Key pulumi.StringOutput `pulumi:"key"`
+	// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+	Languages pulumi.StringArrayOutput `pulumi:"languages"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapOutput `pulumi:"name"`
+	// Set of ResourceIdentifier of Channels with InventorySupply
+	SupplyChannels pulumi.StringArrayOutput `pulumi:"supplyChannels"`
+	Version        pulumi.IntOutput         `pulumi:"version"`
 }
 
 // NewStore registers a new resource with the given unique name, arguments, and options.
 func NewStore(ctx *pulumi.Context,
 	name string, args *StoreArgs, opts ...pulumi.ResourceOption) (*Store, error) {
-	if args == nil || args.Key == nil {
-		return nil, errors.New("missing required argument 'Key'")
-	}
 	if args == nil {
-		args = &StoreArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Key == nil {
+		return nil, errors.New("invalid value for required argument 'Key'")
 	}
 	var resource Store
 	err := ctx.RegisterResource("commercetools:index/store:Store", name, args, &resource, opts...)
@@ -52,21 +59,31 @@ func GetStore(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Store resources.
 type storeState struct {
-	DistributionChannels []string               `pulumi:"distributionChannels"`
-	Key                  *string                `pulumi:"key"`
-	Languages            []string               `pulumi:"languages"`
-	Name                 map[string]interface{} `pulumi:"name"`
-	SupplyChannels       []string               `pulumi:"supplyChannels"`
-	Version              *int                   `pulumi:"version"`
+	// Set of ResourceIdentifier to a Channel with ProductDistribution
+	DistributionChannels []string `pulumi:"distributionChannels"`
+	// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+	Key *string `pulumi:"key"`
+	// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+	Languages []string `pulumi:"languages"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name map[string]interface{} `pulumi:"name"`
+	// Set of ResourceIdentifier of Channels with InventorySupply
+	SupplyChannels []string `pulumi:"supplyChannels"`
+	Version        *int     `pulumi:"version"`
 }
 
 type StoreState struct {
+	// Set of ResourceIdentifier to a Channel with ProductDistribution
 	DistributionChannels pulumi.StringArrayInput
-	Key                  pulumi.StringPtrInput
-	Languages            pulumi.StringArrayInput
-	Name                 pulumi.MapInput
-	SupplyChannels       pulumi.StringArrayInput
-	Version              pulumi.IntPtrInput
+	// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+	Key pulumi.StringPtrInput
+	// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+	Languages pulumi.StringArrayInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapInput
+	// Set of ResourceIdentifier of Channels with InventorySupply
+	SupplyChannels pulumi.StringArrayInput
+	Version        pulumi.IntPtrInput
 }
 
 func (StoreState) ElementType() reflect.Type {
@@ -74,22 +91,219 @@ func (StoreState) ElementType() reflect.Type {
 }
 
 type storeArgs struct {
-	DistributionChannels []string               `pulumi:"distributionChannels"`
-	Key                  string                 `pulumi:"key"`
-	Languages            []string               `pulumi:"languages"`
-	Name                 map[string]interface{} `pulumi:"name"`
-	SupplyChannels       []string               `pulumi:"supplyChannels"`
+	// Set of ResourceIdentifier to a Channel with ProductDistribution
+	DistributionChannels []string `pulumi:"distributionChannels"`
+	// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+	Key string `pulumi:"key"`
+	// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+	Languages []string `pulumi:"languages"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name map[string]interface{} `pulumi:"name"`
+	// Set of ResourceIdentifier of Channels with InventorySupply
+	SupplyChannels []string `pulumi:"supplyChannels"`
 }
 
 // The set of arguments for constructing a Store resource.
 type StoreArgs struct {
+	// Set of ResourceIdentifier to a Channel with ProductDistribution
 	DistributionChannels pulumi.StringArrayInput
-	Key                  pulumi.StringInput
-	Languages            pulumi.StringArrayInput
-	Name                 pulumi.MapInput
-	SupplyChannels       pulumi.StringArrayInput
+	// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+	Key pulumi.StringInput
+	// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+	Languages pulumi.StringArrayInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	Name pulumi.MapInput
+	// Set of ResourceIdentifier of Channels with InventorySupply
+	SupplyChannels pulumi.StringArrayInput
 }
 
 func (StoreArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*storeArgs)(nil)).Elem()
+}
+
+type StoreInput interface {
+	pulumi.Input
+
+	ToStoreOutput() StoreOutput
+	ToStoreOutputWithContext(ctx context.Context) StoreOutput
+}
+
+func (*Store) ElementType() reflect.Type {
+	return reflect.TypeOf((*Store)(nil))
+}
+
+func (i *Store) ToStoreOutput() StoreOutput {
+	return i.ToStoreOutputWithContext(context.Background())
+}
+
+func (i *Store) ToStoreOutputWithContext(ctx context.Context) StoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StoreOutput)
+}
+
+func (i *Store) ToStorePtrOutput() StorePtrOutput {
+	return i.ToStorePtrOutputWithContext(context.Background())
+}
+
+func (i *Store) ToStorePtrOutputWithContext(ctx context.Context) StorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StorePtrOutput)
+}
+
+type StorePtrInput interface {
+	pulumi.Input
+
+	ToStorePtrOutput() StorePtrOutput
+	ToStorePtrOutputWithContext(ctx context.Context) StorePtrOutput
+}
+
+type storePtrType StoreArgs
+
+func (*storePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Store)(nil))
+}
+
+func (i *storePtrType) ToStorePtrOutput() StorePtrOutput {
+	return i.ToStorePtrOutputWithContext(context.Background())
+}
+
+func (i *storePtrType) ToStorePtrOutputWithContext(ctx context.Context) StorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StorePtrOutput)
+}
+
+// StoreArrayInput is an input type that accepts StoreArray and StoreArrayOutput values.
+// You can construct a concrete instance of `StoreArrayInput` via:
+//
+//          StoreArray{ StoreArgs{...} }
+type StoreArrayInput interface {
+	pulumi.Input
+
+	ToStoreArrayOutput() StoreArrayOutput
+	ToStoreArrayOutputWithContext(context.Context) StoreArrayOutput
+}
+
+type StoreArray []StoreInput
+
+func (StoreArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*Store)(nil))
+}
+
+func (i StoreArray) ToStoreArrayOutput() StoreArrayOutput {
+	return i.ToStoreArrayOutputWithContext(context.Background())
+}
+
+func (i StoreArray) ToStoreArrayOutputWithContext(ctx context.Context) StoreArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StoreArrayOutput)
+}
+
+// StoreMapInput is an input type that accepts StoreMap and StoreMapOutput values.
+// You can construct a concrete instance of `StoreMapInput` via:
+//
+//          StoreMap{ "key": StoreArgs{...} }
+type StoreMapInput interface {
+	pulumi.Input
+
+	ToStoreMapOutput() StoreMapOutput
+	ToStoreMapOutputWithContext(context.Context) StoreMapOutput
+}
+
+type StoreMap map[string]StoreInput
+
+func (StoreMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*Store)(nil))
+}
+
+func (i StoreMap) ToStoreMapOutput() StoreMapOutput {
+	return i.ToStoreMapOutputWithContext(context.Background())
+}
+
+func (i StoreMap) ToStoreMapOutputWithContext(ctx context.Context) StoreMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StoreMapOutput)
+}
+
+type StoreOutput struct {
+	*pulumi.OutputState
+}
+
+func (StoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Store)(nil))
+}
+
+func (o StoreOutput) ToStoreOutput() StoreOutput {
+	return o
+}
+
+func (o StoreOutput) ToStoreOutputWithContext(ctx context.Context) StoreOutput {
+	return o
+}
+
+func (o StoreOutput) ToStorePtrOutput() StorePtrOutput {
+	return o.ToStorePtrOutputWithContext(context.Background())
+}
+
+func (o StoreOutput) ToStorePtrOutputWithContext(ctx context.Context) StorePtrOutput {
+	return o.ApplyT(func(v Store) *Store {
+		return &v
+	}).(StorePtrOutput)
+}
+
+type StorePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (StorePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Store)(nil))
+}
+
+func (o StorePtrOutput) ToStorePtrOutput() StorePtrOutput {
+	return o
+}
+
+func (o StorePtrOutput) ToStorePtrOutputWithContext(ctx context.Context) StorePtrOutput {
+	return o
+}
+
+type StoreArrayOutput struct{ *pulumi.OutputState }
+
+func (StoreArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Store)(nil))
+}
+
+func (o StoreArrayOutput) ToStoreArrayOutput() StoreArrayOutput {
+	return o
+}
+
+func (o StoreArrayOutput) ToStoreArrayOutputWithContext(ctx context.Context) StoreArrayOutput {
+	return o
+}
+
+func (o StoreArrayOutput) Index(i pulumi.IntInput) StoreOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Store {
+		return vs[0].([]Store)[vs[1].(int)]
+	}).(StoreOutput)
+}
+
+type StoreMapOutput struct{ *pulumi.OutputState }
+
+func (StoreMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]Store)(nil))
+}
+
+func (o StoreMapOutput) ToStoreMapOutput() StoreMapOutput {
+	return o
+}
+
+func (o StoreMapOutput) ToStoreMapOutputWithContext(ctx context.Context) StoreMapOutput {
+	return o
+}
+
+func (o StoreMapOutput) MapIndex(k pulumi.StringInput) StoreOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Store {
+		return vs[0].(map[string]Store)[vs[1].(string)]
+	}).(StoreOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(StoreOutput{})
+	pulumi.RegisterOutputType(StorePtrOutput{})
+	pulumi.RegisterOutputType(StoreArrayOutput{})
+	pulumi.RegisterOutputType(StoreMapOutput{})
 }

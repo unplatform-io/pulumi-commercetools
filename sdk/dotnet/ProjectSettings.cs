@@ -9,28 +9,71 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/projectSettings:ProjectSettings")]
     public partial class ProjectSettings : Pulumi.CustomResource
     {
+        /// <summary>
+        /// [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+        /// </summary>
+        [Output("carts")]
+        public Output<Outputs.ProjectSettingsCarts?> Carts { get; private set; } = null!;
+
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
         [Output("countries")]
         public Output<ImmutableArray<string>> Countries { get; private set; } = null!;
 
+        /// <summary>
+        /// A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        /// </summary>
         [Output("currencies")]
         public Output<ImmutableArray<string>> Currencies { get; private set; } = null!;
 
+        /// <summary>
+        /// [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+        /// </summary>
         [Output("externalOauth")]
         public Output<Outputs.ProjectSettingsExternalOauth?> ExternalOauth { get; private set; } = null!;
 
+        /// <summary>
+        /// The unique key of the project
+        /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        /// </summary>
         [Output("languages")]
         public Output<ImmutableArray<string>> Languages { get; private set; } = null!;
 
+        /// <summary>
+        /// [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        /// </summary>
         [Output("messages")]
         public Output<Outputs.ProjectSettingsMessages?> Messages { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the project
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+        /// inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+        /// are checked for uniqueness and the request is rejected if keys are not unique
+        /// </summary>
+        [Output("shippingRateCartClassificationValues")]
+        public Output<ImmutableArray<Outputs.ProjectSettingsShippingRateCartClassificationValue>> ShippingRateCartClassificationValues { get; private set; } = null!;
+
+        /// <summary>
+        /// Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+        /// whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+        /// </summary>
+        [Output("shippingRateInputType")]
+        public Output<string?> ShippingRateInputType { get; private set; } = null!;
 
         [Output("version")]
         public Output<int> Version { get; private set; } = null!;
@@ -81,8 +124,18 @@ namespace Pulumi.Commercetools
 
     public sealed class ProjectSettingsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+        /// </summary>
+        [Input("carts")]
+        public Input<Inputs.ProjectSettingsCartsArgs>? Carts { get; set; }
+
         [Input("countries")]
         private InputList<string>? _countries;
+
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
         public InputList<string> Countries
         {
             get => _countries ?? (_countries = new InputList<string>());
@@ -91,28 +144,66 @@ namespace Pulumi.Commercetools
 
         [Input("currencies")]
         private InputList<string>? _currencies;
+
+        /// <summary>
+        /// A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        /// </summary>
         public InputList<string> Currencies
         {
             get => _currencies ?? (_currencies = new InputList<string>());
             set => _currencies = value;
         }
 
+        /// <summary>
+        /// [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+        /// </summary>
         [Input("externalOauth")]
         public Input<Inputs.ProjectSettingsExternalOauthArgs>? ExternalOauth { get; set; }
 
         [Input("languages")]
         private InputList<string>? _languages;
+
+        /// <summary>
+        /// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        /// </summary>
         public InputList<string> Languages
         {
             get => _languages ?? (_languages = new InputList<string>());
             set => _languages = value;
         }
 
+        /// <summary>
+        /// [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        /// </summary>
         [Input("messages")]
         public Input<Inputs.ProjectSettingsMessagesArgs>? Messages { get; set; }
 
+        /// <summary>
+        /// The name of the project
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("shippingRateCartClassificationValues")]
+        private InputList<Inputs.ProjectSettingsShippingRateCartClassificationValueArgs>? _shippingRateCartClassificationValues;
+
+        /// <summary>
+        /// If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+        /// inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+        /// are checked for uniqueness and the request is rejected if keys are not unique
+        /// </summary>
+        public InputList<Inputs.ProjectSettingsShippingRateCartClassificationValueArgs> ShippingRateCartClassificationValues
+        {
+            get => _shippingRateCartClassificationValues ?? (_shippingRateCartClassificationValues = new InputList<Inputs.ProjectSettingsShippingRateCartClassificationValueArgs>());
+            set => _shippingRateCartClassificationValues = value;
+        }
+
+        /// <summary>
+        /// Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+        /// whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+        /// </summary>
+        [Input("shippingRateInputType")]
+        public Input<string>? ShippingRateInputType { get; set; }
 
         public ProjectSettingsArgs()
         {
@@ -121,8 +212,18 @@ namespace Pulumi.Commercetools
 
     public sealed class ProjectSettingsState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
+        /// </summary>
+        [Input("carts")]
+        public Input<Inputs.ProjectSettingsCartsGetArgs>? Carts { get; set; }
+
         [Input("countries")]
         private InputList<string>? _countries;
+
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
         public InputList<string> Countries
         {
             get => _countries ?? (_countries = new InputList<string>());
@@ -131,31 +232,72 @@ namespace Pulumi.Commercetools
 
         [Input("currencies")]
         private InputList<string>? _currencies;
+
+        /// <summary>
+        /// A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        /// </summary>
         public InputList<string> Currencies
         {
             get => _currencies ?? (_currencies = new InputList<string>());
             set => _currencies = value;
         }
 
+        /// <summary>
+        /// [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
+        /// </summary>
         [Input("externalOauth")]
         public Input<Inputs.ProjectSettingsExternalOauthGetArgs>? ExternalOauth { get; set; }
 
+        /// <summary>
+        /// The unique key of the project
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("languages")]
         private InputList<string>? _languages;
+
+        /// <summary>
+        /// [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
+        /// </summary>
         public InputList<string> Languages
         {
             get => _languages ?? (_languages = new InputList<string>());
             set => _languages = value;
         }
 
+        /// <summary>
+        /// [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        /// </summary>
         [Input("messages")]
         public Input<Inputs.ProjectSettingsMessagesGetArgs>? Messages { get; set; }
 
+        /// <summary>
+        /// The name of the project
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("shippingRateCartClassificationValues")]
+        private InputList<Inputs.ProjectSettingsShippingRateCartClassificationValueGetArgs>? _shippingRateCartClassificationValues;
+
+        /// <summary>
+        /// If shipping_rate_input_type is set to CartClassification these values are used to create tiers . Only a key defined
+        /// inside the values array can be used to create a tier, or to set a value for the shippingRateInput on the cart. The keys
+        /// are checked for uniqueness and the request is rejected if keys are not unique
+        /// </summary>
+        public InputList<Inputs.ProjectSettingsShippingRateCartClassificationValueGetArgs> ShippingRateCartClassificationValues
+        {
+            get => _shippingRateCartClassificationValues ?? (_shippingRateCartClassificationValues = new InputList<Inputs.ProjectSettingsShippingRateCartClassificationValueGetArgs>());
+            set => _shippingRateCartClassificationValues = value;
+        }
+
+        /// <summary>
+        /// Three ways to dynamically select a ShippingRatePriceTier exist. The CartValue type uses the sum of all line item prices,
+        /// whereas CartClassification and CartScore use the shippingRateInput field on the cart to select a tier
+        /// </summary>
+        [Input("shippingRateInputType")]
+        public Input<string>? ShippingRateInputType { get; set; }
 
         [Input("version")]
         public Input<int>? Version { get; set; }

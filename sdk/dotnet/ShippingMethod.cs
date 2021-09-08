@@ -9,23 +9,42 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/shippingMethod:ShippingMethod")]
     public partial class ShippingMethod : Pulumi.CustomResource
     {
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// One shipping method in a project can be default
+        /// </summary>
         [Output("isDefault")]
         public Output<bool?> IsDefault { get; private set; } = null!;
 
+        /// <summary>
+        /// User-specific unique identifier for the shipping method
+        /// </summary>
         [Output("key")]
         public Output<string?> Key { get; private set; } = null!;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
+        [Output("localizedDescription")]
+        public Output<ImmutableDictionary<string, object>?> LocalizedDescription { get; private set; } = null!;
 
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// A Cart predicate which can be used to more precisely select a shipping method for a cart
+        /// </summary>
         [Output("predicate")]
         public Output<string?> Predicate { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
+        /// </summary>
         [Output("taxCategoryId")]
         public Output<string?> TaxCategoryId { get; private set; } = null!;
 
@@ -81,18 +100,42 @@ namespace Pulumi.Commercetools
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// One shipping method in a project can be default
+        /// </summary>
         [Input("isDefault")]
         public Input<bool>? IsDefault { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for the shipping method
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
+
+        [Input("localizedDescription")]
+        private InputMap<object>? _localizedDescription;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
+        public InputMap<object> LocalizedDescription
+        {
+            get => _localizedDescription ?? (_localizedDescription = new InputMap<object>());
+            set => _localizedDescription = value;
+        }
 
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// A Cart predicate which can be used to more precisely select a shipping method for a cart
+        /// </summary>
         [Input("predicate")]
         public Input<string>? Predicate { get; set; }
 
+        /// <summary>
+        /// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
+        /// </summary>
         [Input("taxCategoryId")]
         public Input<string>? TaxCategoryId { get; set; }
 
@@ -106,18 +149,42 @@ namespace Pulumi.Commercetools
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// One shipping method in a project can be default
+        /// </summary>
         [Input("isDefault")]
         public Input<bool>? IsDefault { get; set; }
 
+        /// <summary>
+        /// User-specific unique identifier for the shipping method
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
+
+        [Input("localizedDescription")]
+        private InputMap<object>? _localizedDescription;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
+        public InputMap<object> LocalizedDescription
+        {
+            get => _localizedDescription ?? (_localizedDescription = new InputMap<object>());
+            set => _localizedDescription = value;
+        }
 
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// A Cart predicate which can be used to more precisely select a shipping method for a cart
+        /// </summary>
         [Input("predicate")]
         public Input<string>? Predicate { get; set; }
 
+        /// <summary>
+        /// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
+        /// </summary>
         [Input("taxCategoryId")]
         public Input<string>? TaxCategoryId { get; set; }
 

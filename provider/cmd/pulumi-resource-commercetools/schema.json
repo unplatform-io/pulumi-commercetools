@@ -2946,7 +2946,7 @@
         },
         "go": {
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com\\pulumi\\pulumi-commercetools\\sdk\\go\\commercetools"
+            "importBasePath": "github.com/pulumi/pulumi-commercetools/sdk/go/commercetools"
         },
         "nodejs": {
             "compatibility": "tfbridge20",

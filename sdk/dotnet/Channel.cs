@@ -9,17 +9,31 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/channel:Channel")]
     public partial class Channel : Pulumi.CustomResource
     {
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("description")]
         public Output<ImmutableDictionary<string, object>?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Any arbitrary string key that uniquely identifies this channel within the project
+        /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("name")]
         public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must
+        /// have at least one role
+        /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<string>> Roles { get; private set; } = null!;
 
@@ -74,17 +88,28 @@ namespace Pulumi.Commercetools
     {
         [Input("description")]
         private InputMap<object>? _description;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Description
         {
             get => _description ?? (_description = new InputMap<object>());
             set => _description = value;
         }
 
+        /// <summary>
+        /// Any arbitrary string key that uniquely identifies this channel within the project
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
@@ -93,6 +118,11 @@ namespace Pulumi.Commercetools
 
         [Input("roles", required: true)]
         private InputList<string>? _roles;
+
+        /// <summary>
+        /// The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must
+        /// have at least one role
+        /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());
@@ -108,17 +138,28 @@ namespace Pulumi.Commercetools
     {
         [Input("description")]
         private InputMap<object>? _description;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Description
         {
             get => _description ?? (_description = new InputMap<object>());
             set => _description = value;
         }
 
+        /// <summary>
+        /// Any arbitrary string key that uniquely identifies this channel within the project
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
@@ -127,6 +168,11 @@ namespace Pulumi.Commercetools
 
         [Input("roles")]
         private InputList<string>? _roles;
+
+        /// <summary>
+        /// The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must
+        /// have at least one role
+        /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());

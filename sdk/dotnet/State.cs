@@ -9,26 +9,53 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/state:State")]
     public partial class State : Pulumi.CustomResource
     {
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("description")]
         public Output<ImmutableDictionary<string, object>?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+        /// initial state
+        /// </summary>
         [Output("initial")]
         public Output<bool?> Initial { get; private set; } = null!;
 
+        /// <summary>
+        /// A unique identifier for the state
+        /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         [Output("name")]
         public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+        /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<string>> Roles { get; private set; } = null!;
 
+        /// <summary>
+        /// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+        /// example: Initial -&gt; Shipped). When performing a transitionState update action and transitions is set, the currently
+        /// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+        /// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+        /// performing a transitionState update action, any other state of the same type can be transitioned to
+        /// </summary>
         [Output("transitions")]
         public Output<ImmutableArray<string>> Transitions { get; private set; } = null!;
 
+        /// <summary>
+        /// [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+        /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
@@ -83,20 +110,35 @@ namespace Pulumi.Commercetools
     {
         [Input("description")]
         private InputMap<object>? _description;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Description
         {
             get => _description ?? (_description = new InputMap<object>());
             set => _description = value;
         }
 
+        /// <summary>
+        /// A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+        /// initial state
+        /// </summary>
         [Input("initial")]
         public Input<bool>? Initial { get; set; }
 
+        /// <summary>
+        /// A unique identifier for the state
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
@@ -105,6 +147,10 @@ namespace Pulumi.Commercetools
 
         [Input("roles")]
         private InputList<string>? _roles;
+
+        /// <summary>
+        /// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+        /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());
@@ -113,12 +159,23 @@ namespace Pulumi.Commercetools
 
         [Input("transitions")]
         private InputList<string>? _transitions;
+
+        /// <summary>
+        /// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+        /// example: Initial -&gt; Shipped). When performing a transitionState update action and transitions is set, the currently
+        /// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+        /// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+        /// performing a transitionState update action, any other state of the same type can be transitioned to
+        /// </summary>
         public InputList<string> Transitions
         {
             get => _transitions ?? (_transitions = new InputList<string>());
             set => _transitions = value;
         }
 
+        /// <summary>
+        /// [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -131,20 +188,35 @@ namespace Pulumi.Commercetools
     {
         [Input("description")]
         private InputMap<object>? _description;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Description
         {
             get => _description ?? (_description = new InputMap<object>());
             set => _description = value;
         }
 
+        /// <summary>
+        /// A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
+        /// initial state
+        /// </summary>
         [Input("initial")]
         public Input<bool>? Initial { get; set; }
 
+        /// <summary>
+        /// A unique identifier for the state
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("name")]
         private InputMap<object>? _name;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
         public InputMap<object> Name
         {
             get => _name ?? (_name = new InputMap<object>());
@@ -153,6 +225,10 @@ namespace Pulumi.Commercetools
 
         [Input("roles")]
         private InputList<string>? _roles;
+
+        /// <summary>
+        /// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+        /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());
@@ -161,12 +237,23 @@ namespace Pulumi.Commercetools
 
         [Input("transitions")]
         private InputList<string>? _transitions;
+
+        /// <summary>
+        /// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
+        /// example: Initial -&gt; Shipped). When performing a transitionState update action and transitions is set, the currently
+        /// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
+        /// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
+        /// performing a transitionState update action, any other state of the same type can be transitioned to
+        /// </summary>
         public InputList<string> Transitions
         {
             get => _transitions ?? (_transitions = new InputList<string>());
             set => _transitions = value;
         }
 
+        /// <summary>
+        /// [StateType](https://docs.commercetools.com/api/projects/states#statetype)
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

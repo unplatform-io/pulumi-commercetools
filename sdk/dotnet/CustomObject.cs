@@ -9,14 +9,24 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Commercetools
 {
+    [CommercetoolsResourceType("commercetools:index/customObject:CustomObject")]
     public partial class CustomObject : Pulumi.CustomResource
     {
+        /// <summary>
+        /// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+        /// </summary>
         [Output("container")]
         public Output<string> Container { get; private set; } = null!;
 
+        /// <summary>
+        /// String matching the pattern '[-_~.a-zA-Z0-9]+'
+        /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// JSON types Number, String, Boolean, Array, Object
+        /// </summary>
         [Output("value")]
         public Output<string> Value { get; private set; } = null!;
 
@@ -69,12 +79,21 @@ namespace Pulumi.Commercetools
 
     public sealed class CustomObjectArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+        /// </summary>
         [Input("container", required: true)]
         public Input<string> Container { get; set; } = null!;
 
+        /// <summary>
+        /// String matching the pattern '[-_~.a-zA-Z0-9]+'
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// JSON types Number, String, Boolean, Array, Object
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
@@ -85,12 +104,21 @@ namespace Pulumi.Commercetools
 
     public sealed class CustomObjectState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
+        /// </summary>
         [Input("container")]
         public Input<string>? Container { get; set; }
 
+        /// <summary>
+        /// String matching the pattern '[-_~.a-zA-Z0-9]+'
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
+        /// <summary>
+        /// JSON types Number, String, Boolean, Array, Object
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 

@@ -4,33 +4,41 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type ApiExtension struct {
 	pulumi.CustomResourceState
 
-	Destination ApiExtensionDestinationOutput  `pulumi:"destination"`
-	Key         pulumi.StringPtrOutput         `pulumi:"key"`
-	TimeoutInMs pulumi.IntPtrOutput            `pulumi:"timeoutInMs"`
-	Triggers    ApiExtensionTriggerArrayOutput `pulumi:"triggers"`
-	Version     pulumi.IntOutput               `pulumi:"version"`
+	// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+	// reached
+	Destination ApiExtensionDestinationOutput `pulumi:"destination"`
+	// User-specific unique identifier for the extension
+	Key pulumi.StringPtrOutput `pulumi:"key"`
+	// Extension timeout in milliseconds
+	TimeoutInMs pulumi.IntPtrOutput `pulumi:"timeoutInMs"`
+	// Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+	// extension
+	Triggers ApiExtensionTriggerArrayOutput `pulumi:"triggers"`
+	Version  pulumi.IntOutput               `pulumi:"version"`
 }
 
 // NewApiExtension registers a new resource with the given unique name, arguments, and options.
 func NewApiExtension(ctx *pulumi.Context,
 	name string, args *ApiExtensionArgs, opts ...pulumi.ResourceOption) (*ApiExtension, error) {
-	if args == nil || args.Destination == nil {
-		return nil, errors.New("missing required argument 'Destination'")
-	}
-	if args == nil || args.Triggers == nil {
-		return nil, errors.New("missing required argument 'Triggers'")
-	}
 	if args == nil {
-		args = &ApiExtensionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Destination == nil {
+		return nil, errors.New("invalid value for required argument 'Destination'")
+	}
+	if args.Triggers == nil {
+		return nil, errors.New("invalid value for required argument 'Triggers'")
 	}
 	var resource ApiExtension
 	err := ctx.RegisterResource("commercetools:index/apiExtension:ApiExtension", name, args, &resource, opts...)
@@ -54,19 +62,31 @@ func GetApiExtension(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApiExtension resources.
 type apiExtensionState struct {
+	// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+	// reached
 	Destination *ApiExtensionDestination `pulumi:"destination"`
-	Key         *string                  `pulumi:"key"`
-	TimeoutInMs *int                     `pulumi:"timeoutInMs"`
-	Triggers    []ApiExtensionTrigger    `pulumi:"triggers"`
-	Version     *int                     `pulumi:"version"`
+	// User-specific unique identifier for the extension
+	Key *string `pulumi:"key"`
+	// Extension timeout in milliseconds
+	TimeoutInMs *int `pulumi:"timeoutInMs"`
+	// Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+	// extension
+	Triggers []ApiExtensionTrigger `pulumi:"triggers"`
+	Version  *int                  `pulumi:"version"`
 }
 
 type ApiExtensionState struct {
+	// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+	// reached
 	Destination ApiExtensionDestinationPtrInput
-	Key         pulumi.StringPtrInput
+	// User-specific unique identifier for the extension
+	Key pulumi.StringPtrInput
+	// Extension timeout in milliseconds
 	TimeoutInMs pulumi.IntPtrInput
-	Triggers    ApiExtensionTriggerArrayInput
-	Version     pulumi.IntPtrInput
+	// Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+	// extension
+	Triggers ApiExtensionTriggerArrayInput
+	Version  pulumi.IntPtrInput
 }
 
 func (ApiExtensionState) ElementType() reflect.Type {
@@ -74,20 +94,219 @@ func (ApiExtensionState) ElementType() reflect.Type {
 }
 
 type apiExtensionArgs struct {
+	// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+	// reached
 	Destination ApiExtensionDestination `pulumi:"destination"`
-	Key         *string                 `pulumi:"key"`
-	TimeoutInMs *int                    `pulumi:"timeoutInMs"`
-	Triggers    []ApiExtensionTrigger   `pulumi:"triggers"`
+	// User-specific unique identifier for the extension
+	Key *string `pulumi:"key"`
+	// Extension timeout in milliseconds
+	TimeoutInMs *int `pulumi:"timeoutInMs"`
+	// Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+	// extension
+	Triggers []ApiExtensionTrigger `pulumi:"triggers"`
 }
 
 // The set of arguments for constructing a ApiExtension resource.
 type ApiExtensionArgs struct {
+	// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
+	// reached
 	Destination ApiExtensionDestinationInput
-	Key         pulumi.StringPtrInput
+	// User-specific unique identifier for the extension
+	Key pulumi.StringPtrInput
+	// Extension timeout in milliseconds
 	TimeoutInMs pulumi.IntPtrInput
-	Triggers    ApiExtensionTriggerArrayInput
+	// Array of [Trigger](https://docs.commercetools.com/api/projects/api-extensions#trigger) Describes what triggers the
+	// extension
+	Triggers ApiExtensionTriggerArrayInput
 }
 
 func (ApiExtensionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiExtensionArgs)(nil)).Elem()
+}
+
+type ApiExtensionInput interface {
+	pulumi.Input
+
+	ToApiExtensionOutput() ApiExtensionOutput
+	ToApiExtensionOutputWithContext(ctx context.Context) ApiExtensionOutput
+}
+
+func (*ApiExtension) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiExtension)(nil))
+}
+
+func (i *ApiExtension) ToApiExtensionOutput() ApiExtensionOutput {
+	return i.ToApiExtensionOutputWithContext(context.Background())
+}
+
+func (i *ApiExtension) ToApiExtensionOutputWithContext(ctx context.Context) ApiExtensionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiExtensionOutput)
+}
+
+func (i *ApiExtension) ToApiExtensionPtrOutput() ApiExtensionPtrOutput {
+	return i.ToApiExtensionPtrOutputWithContext(context.Background())
+}
+
+func (i *ApiExtension) ToApiExtensionPtrOutputWithContext(ctx context.Context) ApiExtensionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiExtensionPtrOutput)
+}
+
+type ApiExtensionPtrInput interface {
+	pulumi.Input
+
+	ToApiExtensionPtrOutput() ApiExtensionPtrOutput
+	ToApiExtensionPtrOutputWithContext(ctx context.Context) ApiExtensionPtrOutput
+}
+
+type apiExtensionPtrType ApiExtensionArgs
+
+func (*apiExtensionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiExtension)(nil))
+}
+
+func (i *apiExtensionPtrType) ToApiExtensionPtrOutput() ApiExtensionPtrOutput {
+	return i.ToApiExtensionPtrOutputWithContext(context.Background())
+}
+
+func (i *apiExtensionPtrType) ToApiExtensionPtrOutputWithContext(ctx context.Context) ApiExtensionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiExtensionPtrOutput)
+}
+
+// ApiExtensionArrayInput is an input type that accepts ApiExtensionArray and ApiExtensionArrayOutput values.
+// You can construct a concrete instance of `ApiExtensionArrayInput` via:
+//
+//          ApiExtensionArray{ ApiExtensionArgs{...} }
+type ApiExtensionArrayInput interface {
+	pulumi.Input
+
+	ToApiExtensionArrayOutput() ApiExtensionArrayOutput
+	ToApiExtensionArrayOutputWithContext(context.Context) ApiExtensionArrayOutput
+}
+
+type ApiExtensionArray []ApiExtensionInput
+
+func (ApiExtensionArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ApiExtension)(nil))
+}
+
+func (i ApiExtensionArray) ToApiExtensionArrayOutput() ApiExtensionArrayOutput {
+	return i.ToApiExtensionArrayOutputWithContext(context.Background())
+}
+
+func (i ApiExtensionArray) ToApiExtensionArrayOutputWithContext(ctx context.Context) ApiExtensionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiExtensionArrayOutput)
+}
+
+// ApiExtensionMapInput is an input type that accepts ApiExtensionMap and ApiExtensionMapOutput values.
+// You can construct a concrete instance of `ApiExtensionMapInput` via:
+//
+//          ApiExtensionMap{ "key": ApiExtensionArgs{...} }
+type ApiExtensionMapInput interface {
+	pulumi.Input
+
+	ToApiExtensionMapOutput() ApiExtensionMapOutput
+	ToApiExtensionMapOutputWithContext(context.Context) ApiExtensionMapOutput
+}
+
+type ApiExtensionMap map[string]ApiExtensionInput
+
+func (ApiExtensionMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ApiExtension)(nil))
+}
+
+func (i ApiExtensionMap) ToApiExtensionMapOutput() ApiExtensionMapOutput {
+	return i.ToApiExtensionMapOutputWithContext(context.Background())
+}
+
+func (i ApiExtensionMap) ToApiExtensionMapOutputWithContext(ctx context.Context) ApiExtensionMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiExtensionMapOutput)
+}
+
+type ApiExtensionOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiExtensionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ApiExtension)(nil))
+}
+
+func (o ApiExtensionOutput) ToApiExtensionOutput() ApiExtensionOutput {
+	return o
+}
+
+func (o ApiExtensionOutput) ToApiExtensionOutputWithContext(ctx context.Context) ApiExtensionOutput {
+	return o
+}
+
+func (o ApiExtensionOutput) ToApiExtensionPtrOutput() ApiExtensionPtrOutput {
+	return o.ToApiExtensionPtrOutputWithContext(context.Background())
+}
+
+func (o ApiExtensionOutput) ToApiExtensionPtrOutputWithContext(ctx context.Context) ApiExtensionPtrOutput {
+	return o.ApplyT(func(v ApiExtension) *ApiExtension {
+		return &v
+	}).(ApiExtensionPtrOutput)
+}
+
+type ApiExtensionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ApiExtensionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiExtension)(nil))
+}
+
+func (o ApiExtensionPtrOutput) ToApiExtensionPtrOutput() ApiExtensionPtrOutput {
+	return o
+}
+
+func (o ApiExtensionPtrOutput) ToApiExtensionPtrOutputWithContext(ctx context.Context) ApiExtensionPtrOutput {
+	return o
+}
+
+type ApiExtensionArrayOutput struct{ *pulumi.OutputState }
+
+func (ApiExtensionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ApiExtension)(nil))
+}
+
+func (o ApiExtensionArrayOutput) ToApiExtensionArrayOutput() ApiExtensionArrayOutput {
+	return o
+}
+
+func (o ApiExtensionArrayOutput) ToApiExtensionArrayOutputWithContext(ctx context.Context) ApiExtensionArrayOutput {
+	return o
+}
+
+func (o ApiExtensionArrayOutput) Index(i pulumi.IntInput) ApiExtensionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ApiExtension {
+		return vs[0].([]ApiExtension)[vs[1].(int)]
+	}).(ApiExtensionOutput)
+}
+
+type ApiExtensionMapOutput struct{ *pulumi.OutputState }
+
+func (ApiExtensionMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ApiExtension)(nil))
+}
+
+func (o ApiExtensionMapOutput) ToApiExtensionMapOutput() ApiExtensionMapOutput {
+	return o
+}
+
+func (o ApiExtensionMapOutput) ToApiExtensionMapOutputWithContext(ctx context.Context) ApiExtensionMapOutput {
+	return o
+}
+
+func (o ApiExtensionMapOutput) MapIndex(k pulumi.StringInput) ApiExtensionOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ApiExtension {
+		return vs[0].(map[string]ApiExtension)[vs[1].(string)]
+	}).(ApiExtensionOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(ApiExtensionOutput{})
+	pulumi.RegisterOutputType(ApiExtensionPtrOutput{})
+	pulumi.RegisterOutputType(ApiExtensionArrayOutput{})
+	pulumi.RegisterOutputType(ApiExtensionMapOutput{})
 }

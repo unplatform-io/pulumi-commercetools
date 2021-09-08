@@ -4,35 +4,42 @@
 package commercetools
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type ShippingZoneRate struct {
 	pulumi.CustomResourceState
 
+	// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
 	FreeAbove        ShippingZoneRateFreeAbovePtrOutput `pulumi:"freeAbove"`
 	Price            ShippingZoneRatePriceOutput        `pulumi:"price"`
 	ShippingMethodId pulumi.StringOutput                `pulumi:"shippingMethodId"`
-	ShippingZoneId   pulumi.StringOutput                `pulumi:"shippingZoneId"`
+	// A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+	// tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+	// API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+	ShippingRatePriceTiers ShippingZoneRateShippingRatePriceTierArrayOutput `pulumi:"shippingRatePriceTiers"`
+	ShippingZoneId         pulumi.StringOutput                              `pulumi:"shippingZoneId"`
 }
 
 // NewShippingZoneRate registers a new resource with the given unique name, arguments, and options.
 func NewShippingZoneRate(ctx *pulumi.Context,
 	name string, args *ShippingZoneRateArgs, opts ...pulumi.ResourceOption) (*ShippingZoneRate, error) {
-	if args == nil || args.Price == nil {
-		return nil, errors.New("missing required argument 'Price'")
-	}
-	if args == nil || args.ShippingMethodId == nil {
-		return nil, errors.New("missing required argument 'ShippingMethodId'")
-	}
-	if args == nil || args.ShippingZoneId == nil {
-		return nil, errors.New("missing required argument 'ShippingZoneId'")
-	}
 	if args == nil {
-		args = &ShippingZoneRateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Price == nil {
+		return nil, errors.New("invalid value for required argument 'Price'")
+	}
+	if args.ShippingMethodId == nil {
+		return nil, errors.New("invalid value for required argument 'ShippingMethodId'")
+	}
+	if args.ShippingZoneId == nil {
+		return nil, errors.New("invalid value for required argument 'ShippingZoneId'")
 	}
 	var resource ShippingZoneRate
 	err := ctx.RegisterResource("commercetools:index/shippingZoneRate:ShippingZoneRate", name, args, &resource, opts...)
@@ -56,17 +63,27 @@ func GetShippingZoneRate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ShippingZoneRate resources.
 type shippingZoneRateState struct {
+	// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
 	FreeAbove        *ShippingZoneRateFreeAbove `pulumi:"freeAbove"`
 	Price            *ShippingZoneRatePrice     `pulumi:"price"`
 	ShippingMethodId *string                    `pulumi:"shippingMethodId"`
-	ShippingZoneId   *string                    `pulumi:"shippingZoneId"`
+	// A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+	// tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+	// API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+	ShippingRatePriceTiers []ShippingZoneRateShippingRatePriceTier `pulumi:"shippingRatePriceTiers"`
+	ShippingZoneId         *string                                 `pulumi:"shippingZoneId"`
 }
 
 type ShippingZoneRateState struct {
+	// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
 	FreeAbove        ShippingZoneRateFreeAbovePtrInput
 	Price            ShippingZoneRatePricePtrInput
 	ShippingMethodId pulumi.StringPtrInput
-	ShippingZoneId   pulumi.StringPtrInput
+	// A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+	// tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+	// API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+	ShippingRatePriceTiers ShippingZoneRateShippingRatePriceTierArrayInput
+	ShippingZoneId         pulumi.StringPtrInput
 }
 
 func (ShippingZoneRateState) ElementType() reflect.Type {
@@ -74,20 +91,217 @@ func (ShippingZoneRateState) ElementType() reflect.Type {
 }
 
 type shippingZoneRateArgs struct {
+	// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
 	FreeAbove        *ShippingZoneRateFreeAbove `pulumi:"freeAbove"`
 	Price            ShippingZoneRatePrice      `pulumi:"price"`
 	ShippingMethodId string                     `pulumi:"shippingMethodId"`
-	ShippingZoneId   string                     `pulumi:"shippingZoneId"`
+	// A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+	// tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+	// API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+	ShippingRatePriceTiers []ShippingZoneRateShippingRatePriceTier `pulumi:"shippingRatePriceTiers"`
+	ShippingZoneId         string                                  `pulumi:"shippingZoneId"`
 }
 
 // The set of arguments for constructing a ShippingZoneRate resource.
 type ShippingZoneRateArgs struct {
+	// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
 	FreeAbove        ShippingZoneRateFreeAbovePtrInput
 	Price            ShippingZoneRatePriceInput
 	ShippingMethodId pulumi.StringInput
-	ShippingZoneId   pulumi.StringInput
+	// A price tier is selected instead of the default price when a certain threshold or specific cart value is reached. If no
+	// tiered price is suitable for the cart, the base price of the shipping rate is used . See also [Shipping Rate Price Tier
+	// API Docs](https://docs.commercetools.com/api/projects/shippingMethods#shippingratepricetier)
+	ShippingRatePriceTiers ShippingZoneRateShippingRatePriceTierArrayInput
+	ShippingZoneId         pulumi.StringInput
 }
 
 func (ShippingZoneRateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*shippingZoneRateArgs)(nil)).Elem()
+}
+
+type ShippingZoneRateInput interface {
+	pulumi.Input
+
+	ToShippingZoneRateOutput() ShippingZoneRateOutput
+	ToShippingZoneRateOutputWithContext(ctx context.Context) ShippingZoneRateOutput
+}
+
+func (*ShippingZoneRate) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippingZoneRate)(nil))
+}
+
+func (i *ShippingZoneRate) ToShippingZoneRateOutput() ShippingZoneRateOutput {
+	return i.ToShippingZoneRateOutputWithContext(context.Background())
+}
+
+func (i *ShippingZoneRate) ToShippingZoneRateOutputWithContext(ctx context.Context) ShippingZoneRateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneRateOutput)
+}
+
+func (i *ShippingZoneRate) ToShippingZoneRatePtrOutput() ShippingZoneRatePtrOutput {
+	return i.ToShippingZoneRatePtrOutputWithContext(context.Background())
+}
+
+func (i *ShippingZoneRate) ToShippingZoneRatePtrOutputWithContext(ctx context.Context) ShippingZoneRatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneRatePtrOutput)
+}
+
+type ShippingZoneRatePtrInput interface {
+	pulumi.Input
+
+	ToShippingZoneRatePtrOutput() ShippingZoneRatePtrOutput
+	ToShippingZoneRatePtrOutputWithContext(ctx context.Context) ShippingZoneRatePtrOutput
+}
+
+type shippingZoneRatePtrType ShippingZoneRateArgs
+
+func (*shippingZoneRatePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShippingZoneRate)(nil))
+}
+
+func (i *shippingZoneRatePtrType) ToShippingZoneRatePtrOutput() ShippingZoneRatePtrOutput {
+	return i.ToShippingZoneRatePtrOutputWithContext(context.Background())
+}
+
+func (i *shippingZoneRatePtrType) ToShippingZoneRatePtrOutputWithContext(ctx context.Context) ShippingZoneRatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneRatePtrOutput)
+}
+
+// ShippingZoneRateArrayInput is an input type that accepts ShippingZoneRateArray and ShippingZoneRateArrayOutput values.
+// You can construct a concrete instance of `ShippingZoneRateArrayInput` via:
+//
+//          ShippingZoneRateArray{ ShippingZoneRateArgs{...} }
+type ShippingZoneRateArrayInput interface {
+	pulumi.Input
+
+	ToShippingZoneRateArrayOutput() ShippingZoneRateArrayOutput
+	ToShippingZoneRateArrayOutputWithContext(context.Context) ShippingZoneRateArrayOutput
+}
+
+type ShippingZoneRateArray []ShippingZoneRateInput
+
+func (ShippingZoneRateArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ShippingZoneRate)(nil))
+}
+
+func (i ShippingZoneRateArray) ToShippingZoneRateArrayOutput() ShippingZoneRateArrayOutput {
+	return i.ToShippingZoneRateArrayOutputWithContext(context.Background())
+}
+
+func (i ShippingZoneRateArray) ToShippingZoneRateArrayOutputWithContext(ctx context.Context) ShippingZoneRateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneRateArrayOutput)
+}
+
+// ShippingZoneRateMapInput is an input type that accepts ShippingZoneRateMap and ShippingZoneRateMapOutput values.
+// You can construct a concrete instance of `ShippingZoneRateMapInput` via:
+//
+//          ShippingZoneRateMap{ "key": ShippingZoneRateArgs{...} }
+type ShippingZoneRateMapInput interface {
+	pulumi.Input
+
+	ToShippingZoneRateMapOutput() ShippingZoneRateMapOutput
+	ToShippingZoneRateMapOutputWithContext(context.Context) ShippingZoneRateMapOutput
+}
+
+type ShippingZoneRateMap map[string]ShippingZoneRateInput
+
+func (ShippingZoneRateMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ShippingZoneRate)(nil))
+}
+
+func (i ShippingZoneRateMap) ToShippingZoneRateMapOutput() ShippingZoneRateMapOutput {
+	return i.ToShippingZoneRateMapOutputWithContext(context.Background())
+}
+
+func (i ShippingZoneRateMap) ToShippingZoneRateMapOutputWithContext(ctx context.Context) ShippingZoneRateMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ShippingZoneRateMapOutput)
+}
+
+type ShippingZoneRateOutput struct {
+	*pulumi.OutputState
+}
+
+func (ShippingZoneRateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ShippingZoneRate)(nil))
+}
+
+func (o ShippingZoneRateOutput) ToShippingZoneRateOutput() ShippingZoneRateOutput {
+	return o
+}
+
+func (o ShippingZoneRateOutput) ToShippingZoneRateOutputWithContext(ctx context.Context) ShippingZoneRateOutput {
+	return o
+}
+
+func (o ShippingZoneRateOutput) ToShippingZoneRatePtrOutput() ShippingZoneRatePtrOutput {
+	return o.ToShippingZoneRatePtrOutputWithContext(context.Background())
+}
+
+func (o ShippingZoneRateOutput) ToShippingZoneRatePtrOutputWithContext(ctx context.Context) ShippingZoneRatePtrOutput {
+	return o.ApplyT(func(v ShippingZoneRate) *ShippingZoneRate {
+		return &v
+	}).(ShippingZoneRatePtrOutput)
+}
+
+type ShippingZoneRatePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ShippingZoneRatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ShippingZoneRate)(nil))
+}
+
+func (o ShippingZoneRatePtrOutput) ToShippingZoneRatePtrOutput() ShippingZoneRatePtrOutput {
+	return o
+}
+
+func (o ShippingZoneRatePtrOutput) ToShippingZoneRatePtrOutputWithContext(ctx context.Context) ShippingZoneRatePtrOutput {
+	return o
+}
+
+type ShippingZoneRateArrayOutput struct{ *pulumi.OutputState }
+
+func (ShippingZoneRateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ShippingZoneRate)(nil))
+}
+
+func (o ShippingZoneRateArrayOutput) ToShippingZoneRateArrayOutput() ShippingZoneRateArrayOutput {
+	return o
+}
+
+func (o ShippingZoneRateArrayOutput) ToShippingZoneRateArrayOutputWithContext(ctx context.Context) ShippingZoneRateArrayOutput {
+	return o
+}
+
+func (o ShippingZoneRateArrayOutput) Index(i pulumi.IntInput) ShippingZoneRateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ShippingZoneRate {
+		return vs[0].([]ShippingZoneRate)[vs[1].(int)]
+	}).(ShippingZoneRateOutput)
+}
+
+type ShippingZoneRateMapOutput struct{ *pulumi.OutputState }
+
+func (ShippingZoneRateMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ShippingZoneRate)(nil))
+}
+
+func (o ShippingZoneRateMapOutput) ToShippingZoneRateMapOutput() ShippingZoneRateMapOutput {
+	return o
+}
+
+func (o ShippingZoneRateMapOutput) ToShippingZoneRateMapOutputWithContext(ctx context.Context) ShippingZoneRateMapOutput {
+	return o
+}
+
+func (o ShippingZoneRateMapOutput) MapIndex(k pulumi.StringInput) ShippingZoneRateOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ShippingZoneRate {
+		return vs[0].(map[string]ShippingZoneRate)[vs[1].(string)]
+	}).(ShippingZoneRateOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(ShippingZoneRateOutput{})
+	pulumi.RegisterOutputType(ShippingZoneRatePtrOutput{})
+	pulumi.RegisterOutputType(ShippingZoneRateArrayOutput{})
+	pulumi.RegisterOutputType(ShippingZoneRateMapOutput{})
 }
