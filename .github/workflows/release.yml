@@ -160,6 +160,8 @@ jobs:
       with:
         path: ci-scripts
         repository: pulumi/scripts
+    - name: Install Pulumi CLI
+      uses: pulumi/action-install-pulumi-cli@v1.0.1        
     - name: Setup Go
       uses: actions/setup-go@v2
       with:
