@@ -9,7 +9,7 @@ The CommerceTools resource provider for Pulumi lets you provision [CommerceTools
 
 This provider is a [bridge](https://github.com/pulumi/pulumi-terraform-bridge) to the excellent [CommerceTools Terraform Provider](https://github.com/labd/terraform-provider-commercetools) from the Labd folks.
 
-To use this package, please [install the Pulumi CLI first](https://pulumi.io/).] 
+To use this package, please [install the Pulumi CLI first](https://pulumi.io/).
 
 ## Installing
 
