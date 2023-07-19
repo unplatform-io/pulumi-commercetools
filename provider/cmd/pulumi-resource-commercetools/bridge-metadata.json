@@ -1,0 +1,290 @@
+{
+    "mux": {
+        "resources": {
+            "commercetools:index/apiClient:ApiClient": 0,
+            "commercetools:index/apiExtension:ApiExtension": 0,
+            "commercetools:index/cartDiscount:CartDiscount": 0,
+            "commercetools:index/category:Category": 0,
+            "commercetools:index/channel:Channel": 0,
+            "commercetools:index/customObject:CustomObject": 0,
+            "commercetools:index/customerGroup:CustomerGroup": 0,
+            "commercetools:index/discountCode:DiscountCode": 0,
+            "commercetools:index/productDiscount:ProductDiscount": 0,
+            "commercetools:index/productType:ProductType": 0,
+            "commercetools:index/projectSettings:ProjectSettings": 1,
+            "commercetools:index/shippingMethod:ShippingMethod": 0,
+            "commercetools:index/shippingZone:ShippingZone": 0,
+            "commercetools:index/shippingZoneRate:ShippingZoneRate": 0,
+            "commercetools:index/state:State": 1,
+            "commercetools:index/stateTransitions:StateTransitions": 1,
+            "commercetools:index/store:Store": 0,
+            "commercetools:index/subscription:Subscription": 1,
+            "commercetools:index/taxCategory:TaxCategory": 0,
+            "commercetools:index/taxCategoryRate:TaxCategoryRate": 0,
+            "commercetools:index/type:Type": 0
+        },
+        "functions": {
+            "commercetools:index/getType:getType": 1
+        }
+    },
+    "renames": {
+        "resources": {
+            "commercetools:index/apiClient:ApiClient": "commercetools_api_client",
+            "commercetools:index/apiExtension:ApiExtension": "commercetools_api_extension",
+            "commercetools:index/cartDiscount:CartDiscount": "commercetools_cart_discount",
+            "commercetools:index/category:Category": "commercetools_category",
+            "commercetools:index/channel:Channel": "commercetools_channel",
+            "commercetools:index/customObject:CustomObject": "commercetools_custom_object",
+            "commercetools:index/customerGroup:CustomerGroup": "commercetools_customer_group",
+            "commercetools:index/discountCode:DiscountCode": "commercetools_discount_code",
+            "commercetools:index/productDiscount:ProductDiscount": "commercetools_product_discount",
+            "commercetools:index/productType:ProductType": "commercetools_product_type",
+            "commercetools:index/projectSettings:ProjectSettings": "commercetools_project_settings",
+            "commercetools:index/shippingMethod:ShippingMethod": "commercetools_shipping_method",
+            "commercetools:index/shippingZone:ShippingZone": "commercetools_shipping_zone",
+            "commercetools:index/shippingZoneRate:ShippingZoneRate": "commercetools_shipping_zone_rate",
+            "commercetools:index/state:State": "commercetools_state",
+            "commercetools:index/stateTransitions:StateTransitions": "commercetools_state_transitions",
+            "commercetools:index/store:Store": "commercetools_store",
+            "commercetools:index/subscription:Subscription": "commercetools_subscription",
+            "commercetools:index/taxCategory:TaxCategory": "commercetools_tax_category",
+            "commercetools:index/taxCategoryRate:TaxCategoryRate": "commercetools_tax_category_rate",
+            "commercetools:index/type:Type": "commercetools_type"
+        },
+        "functions": {
+            "commercetools:index/getType:getType": "commercetools_type"
+        },
+        "renamedProperties": {
+            "commercetools:index/ApiExtensionDestination:ApiExtensionDestination": {
+                "accessKey": "access_key",
+                "accessSecret": "access_secret",
+                "authorizationHeader": "authorization_header",
+                "azureAuthentication": "azure_authentication"
+            },
+            "commercetools:index/ApiExtensionTrigger:ApiExtensionTrigger": {
+                "resourceTypeId": "resource_type_id"
+            },
+            "commercetools:index/CartDiscountValue:CartDiscountValue": {
+                "distributionChannelId": "distribution_channel_id",
+                "monies": "money",
+                "productId": "product_id",
+                "supplyChannelId": "supply_channel_id"
+            },
+            "commercetools:index/CartDiscountValueMoney:CartDiscountValueMoney": {
+                "centAmount": "cent_amount",
+                "currencyCode": "currency_code"
+            },
+            "commercetools:index/CategoryAssetSource:CategoryAssetSource": {
+                "contentType": "content_type"
+            },
+            "commercetools:index/CategoryCustom:CategoryCustom": {
+                "typeId": "type_id"
+            },
+            "commercetools:index/ChannelAddress:ChannelAddress": {
+                "additionalAddressInfo": "additional_address_info",
+                "additionalStreetInfo": "additional_street_info",
+                "externalId": "external_id",
+                "firstName": "first_name",
+                "lastName": "last_name",
+                "poBox": "po_box",
+                "postalCode": "postal_code",
+                "streetName": "street_name",
+                "streetNumber": "street_number"
+            },
+            "commercetools:index/ChannelCustom:ChannelCustom": {
+                "typeId": "type_id"
+            },
+            "commercetools:index/CustomerGroupCustom:CustomerGroupCustom": {
+                "typeId": "type_id"
+            },
+            "commercetools:index/DiscountCodeCustom:DiscountCodeCustom": {
+                "typeId": "type_id"
+            },
+            "commercetools:index/ProductDiscountValue:ProductDiscountValue": {
+                "monies": "money"
+            },
+            "commercetools:index/ProductDiscountValueMoney:ProductDiscountValueMoney": {
+                "centAmount": "cent_amount",
+                "currencyCode": "currency_code",
+                "fractionDigits": "fraction_digits"
+            },
+            "commercetools:index/ProductTypeAttribute:ProductTypeAttribute": {
+                "inputHint": "input_hint",
+                "inputTip": "input_tip"
+            },
+            "commercetools:index/ProductTypeAttributeType:ProductTypeAttributeType": {
+                "ElementType2": "element_type",
+                "localizedValues": "localized_value",
+                "referenceTypeId": "reference_type_id",
+                "typeReference": "type_reference",
+                "values": "value"
+            },
+            "commercetools:index/ProductTypeAttributeTypeElementType2:ProductTypeAttributeTypeElementType2": {
+                "localizedValues": "localized_value",
+                "referenceTypeId": "reference_type_id",
+                "typeReference": "type_reference",
+                "values": "value"
+            },
+            "commercetools:index/ProjectSettingsCarts:ProjectSettingsCarts": {
+                "countryTaxRateFallbackEnabled": "country_tax_rate_fallback_enabled",
+                "deleteDaysAfterLastModification": "delete_days_after_last_modification"
+            },
+            "commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth": {
+                "authorizationHeader": "authorization_header"
+            },
+            "commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages": {
+                "deleteDaysAfterCreation": "delete_days_after_creation"
+            },
+            "commercetools:index/ShippingMethodCustom:ShippingMethodCustom": {
+                "typeId": "type_id"
+            },
+            "commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove": {
+                "centAmount": "cent_amount",
+                "currencyCode": "currency_code"
+            },
+            "commercetools:index/ShippingZoneRatePrice:ShippingZoneRatePrice": {
+                "centAmount": "cent_amount",
+                "currencyCode": "currency_code"
+            },
+            "commercetools:index/ShippingZoneRateShippingRatePriceTier:ShippingZoneRateShippingRatePriceTier": {
+                "minimumCentAmount": "minimum_cent_amount",
+                "priceFunction": "price_function"
+            },
+            "commercetools:index/ShippingZoneRateShippingRatePriceTierPrice:ShippingZoneRateShippingRatePriceTierPrice": {
+                "centAmount": "cent_amount",
+                "currencyCode": "currency_code"
+            },
+            "commercetools:index/ShippingZoneRateShippingRatePriceTierPriceFunction:ShippingZoneRateShippingRatePriceTierPriceFunction": {
+                "currencyCode": "currency_code"
+            },
+            "commercetools:index/StoreCustom:StoreCustom": {
+                "typeId": "type_id"
+            },
+            "commercetools:index/SubscriptionChange:SubscriptionChange": {
+                "resourceTypeIds": "resource_type_ids"
+            },
+            "commercetools:index/SubscriptionDestination:SubscriptionDestination": {
+                "accessKey": "access_key",
+                "accessSecret": "access_secret",
+                "accountId": "account_id",
+                "connectionString": "connection_string",
+                "projectId": "project_id",
+                "queueUrl": "queue_url",
+                "topicArn": "topic_arn"
+            },
+            "commercetools:index/SubscriptionFormat:SubscriptionFormat": {
+                "cloudEventsVersion": "cloud_events_version"
+            },
+            "commercetools:index/SubscriptionMessage:SubscriptionMessage": {
+                "resourceTypeId": "resource_type_id"
+            },
+            "commercetools:index/TypeField:TypeField": {
+                "inputHint": "input_hint"
+            },
+            "commercetools:index/TypeFieldType:TypeFieldType": {
+                "ElementType2": "element_type",
+                "localizedValues": "localized_value",
+                "referenceTypeId": "reference_type_id",
+                "values": "value"
+            },
+            "commercetools:index/TypeFieldTypeElementType2:TypeFieldTypeElementType2": {
+                "localizedValues": "localized_value",
+                "referenceTypeId": "reference_type_id",
+                "values": "value"
+            },
+            "commercetools:index/apiClient:ApiClient": {
+                "scopes": "scope"
+            },
+            "commercetools:index/apiExtension:ApiExtension": {
+                "timeoutInMs": "timeout_in_ms",
+                "triggers": "trigger"
+            },
+            "commercetools:index/cartDiscount:CartDiscount": {
+                "isActive": "is_active",
+                "requiresDiscountCode": "requires_discount_code",
+                "sortOrder": "sort_order",
+                "stackingMode": "stacking_mode",
+                "validFrom": "valid_from",
+                "validUntil": "valid_until"
+            },
+            "commercetools:index/category:Category": {
+                "externalId": "external_id",
+                "metaDescription": "meta_description",
+                "metaKeywords": "meta_keywords",
+                "metaTitle": "meta_title",
+                "orderHint": "order_hint"
+            },
+            "commercetools:index/discountCode:DiscountCode": {
+                "cartDiscounts": "cart_discounts",
+                "isActive": "is_active",
+                "maxApplications": "max_applications",
+                "maxApplicationsPerCustomer": "max_applications_per_customer",
+                "validFrom": "valid_from",
+                "validUntil": "valid_until"
+            },
+            "commercetools:index/productDiscount:ProductDiscount": {
+                "isActive": "is_active",
+                "sortOrder": "sort_order",
+                "validFrom": "valid_from",
+                "validUntil": "valid_until"
+            },
+            "commercetools:index/productType:ProductType": {
+                "attributes": "attribute"
+            },
+            "commercetools:index/projectSettings:ProjectSettings": {
+                "enableSearchIndexOrders": "enable_search_index_orders",
+                "enableSearchIndexProducts": "enable_search_index_products",
+                "externalOauth": "external_oauth",
+                "shippingRateCartClassificationValues": "shipping_rate_cart_classification_value",
+                "shippingRateInputType": "shipping_rate_input_type"
+            },
+            "commercetools:index/shippingMethod:ShippingMethod": {
+                "isDefault": "is_default",
+                "localizedDescription": "localized_description",
+                "taxCategoryId": "tax_category_id"
+            },
+            "commercetools:index/shippingZone:ShippingZone": {
+                "locations": "location"
+            },
+            "commercetools:index/shippingZoneRate:ShippingZoneRate": {
+                "freeAbove": "free_above",
+                "shippingMethodId": "shipping_method_id",
+                "shippingRatePriceTiers": "shipping_rate_price_tier",
+                "shippingZoneId": "shipping_zone_id"
+            },
+            "commercetools:index/stateTransitions:StateTransitions": {
+                "tos": "to"
+            },
+            "commercetools:index/store:Store": {
+                "distributionChannels": "distribution_channels",
+                "supplyChannels": "supply_channels"
+            },
+            "commercetools:index/subscription:Subscription": {
+                "messages": "message"
+            },
+            "commercetools:index/taxCategoryRate:TaxCategoryRate": {
+                "includedInPrice": "included_in_price",
+                "subRates": "sub_rate",
+                "taxCategoryId": "tax_category_id"
+            },
+            "commercetools:index/type:Type": {
+                "fields": "field",
+                "resourceTypeIds": "resource_type_ids"
+            },
+            "commercetools:index:Provider": {
+                "apiUrl": "api_url",
+                "clientId": "client_id",
+                "clientSecret": "client_secret",
+                "projectKey": "project_key",
+                "tokenUrl": "token_url"
+            }
+        },
+        "renamedConfigProperties": {
+            "apiUrl": "api_url",
+            "clientId": "client_id",
+            "clientSecret": "client_secret",
+            "projectKey": "project_key",
+            "tokenUrl": "token_url"
+        }
+    }
+}

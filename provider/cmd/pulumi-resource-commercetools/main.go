@@ -16,13 +16,18 @@
 
 package main
 
+
+//go:embed schema.json
+var schema []byte
+
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	_ "embed"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pf/tfbridge"
 	commercetools "github.com/unplatform-io/pulumi-commercetools/provider"
 	"github.com/unplatform-io/pulumi-commercetools/provider/pkg/version"
 )
 
 func main() {
-	// Modify the path to point to the new provider
-	tfbridge.Main("commercetools", version.Version, commercetools.Provider(), pulumiSchema)
+    meta := tfbridge.ProviderMetadata{PackageSchema: schema}
+	tfbridge.MainWithMuxer(context.Background(), "commercetools", commercetools.Provider(), meta)
 }
