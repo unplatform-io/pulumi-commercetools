@@ -1,6 +1,6 @@
 {
     "name": "commercetools",
-    "displayName": "Commerce tools",
+    "displayName": "commercetools",
     "description": "A Pulumi package for creating and managing commercetools cloud resources.",
     "keywords": [
         "pulumi",
@@ -10,7 +10,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`commercetools` Terraform Provider](https://github.com/unplatform-io/terraform-provider-commercetools).",
     "repository": "https://github.com/unplatform-io/pulumi-commercetools",
-    "publisher": "Aviva solutions",
+    "publisher": "Aviva Solutions",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },

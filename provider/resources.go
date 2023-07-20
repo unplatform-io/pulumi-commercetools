@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"context"
-	_ "embed"
+	_ "embed"	
 	provShim "github.com/labd/terraform-provider-commercetools/shim"
     pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
     "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
@@ -60,8 +60,8 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:                 p,
 		Name:              "commercetools",
-		DisplayName:       "Commerce tools",
-		Publisher:         "Aviva solutions",
+		DisplayName:       "commercetools",
+		Publisher:         "Aviva Solutions",
 		LogoURL:           "",
 		PluginDownloadURL: "",
 		Description:       "A Pulumi package for creating and managing commercetools cloud resources.",
@@ -70,6 +70,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:          "https://pulumi.io",
 		Repository:        "https://github.com/unplatform-io/pulumi-commercetools",
 		GitHubOrg:         "unplatform-io",
+		Version:		   version.Version,
 		Config:            map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
