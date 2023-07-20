@@ -15,8 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
-      submodules: recursive
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
     - name: Checkout Scripts Repo
       uses: actions/checkout@v2
       with:
