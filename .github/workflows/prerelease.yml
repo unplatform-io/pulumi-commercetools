@@ -16,6 +16,7 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v2
+      submodules: recursive
     - name: Checkout Scripts Repo
       uses: actions/checkout@v2
       with:
@@ -26,7 +27,7 @@ jobs:
     - name: Install Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.16.x
+        go-version: 1.18.x
     - name: Install pulumictl
       uses: jaxxstorm/action-install-gh-release@v1.1.0
       with:
@@ -34,16 +35,16 @@ jobs:
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v1.0.1
     - name: Setup Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{matrix.nodeversion}}
         registry-url: https://registry.npmjs.org
     - name: Setup DotNet
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{matrix.dotnetverson}}
+        dotnet-version: ${{matrix.dotnetversion}}
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{matrix.pythonversion}}
     - name: Download provider + tfgen binaries
@@ -73,9 +74,9 @@ jobs:
       fail-fast: true
       matrix:
         dotnetversion:
-        - 3.1.301
+        - 6
         goversion:
-        - 1.16.x
+        - 1.18.x
         language:
         - nodejs
         - python
@@ -84,7 +85,7 @@ jobs:
         nodeversion:
         - 13.x
         pythonversion:
-        - "3.7"
+        - "3.11.4"
   prerequisites:
     name: prerequisites
     runs-on: ubuntu-latest
@@ -101,7 +102,7 @@ jobs:
     - name: Install Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.16.x
+        go-version: 1.18.x
     - name: Install pulumictl
       uses: jaxxstorm/action-install-gh-release@v1.1.0
       with:
@@ -138,7 +139,7 @@ jobs:
     - name: Install Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.16.x
+        go-version: 1.18.x
     - name: Install pulumictl
       uses: jaxxstorm/action-install-gh-release@v1.1.0
       with:
@@ -186,7 +187,7 @@ jobs:
     - name: Install Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.16.x
+        go-version: 1.18.x
     - name: Install pulumictl
       uses: jaxxstorm/action-install-gh-release@v1.1.0
       with:
@@ -194,14 +195,14 @@ jobs:
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v1.0.1
     - name: Setup Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         always-auth: true
         registry-url: https://registry.npmjs.org
     - name: Setup DotNet
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
     - name: Download Python SDK
       uses: actions/download-artifact@v2
       with:
