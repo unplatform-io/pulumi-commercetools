@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Pulumi.Commercetools" Version="0.1.11-alpha.1689673421" />
+    <PackageReference Include="Pulumi.Commercetools" Version="*-*" />
   </ItemGroup>
 
 </Project>
