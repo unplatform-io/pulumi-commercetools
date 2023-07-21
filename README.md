@@ -65,3 +65,18 @@ The following configuration points are available for the `commercetools` provide
 For detailed reference documentation, please visit [the docs of the commerce tools terraform provider][1].
 
 [1]: https://commercetools-terraform-provider.readthedocs.io/en/latest/
+
+
+## Upgrading the pulumi plugin
+To upgrade the plugin to a never version of the upstream terraform client the following steps should be taken:
+- Update the submodule: `git submodule update --remote --merge`
+- Validate if the patches in `upstream_patches/` are still valid e.g.
+  - They might reference the wrong line of code
+  - They might be unneeded
+- Validate if there are new mappings / changed mappings in `provider/resources.go`
+  - You can check if there are new items by reading the console output of `make tfgen`
+- If upstream has stopped using terraform SDK and now fully uses terraform plugin framework:
+  - Remove the muxer in `provider/resources.go`, `provider/cmd/pulumi-*-commercetools/main.go` and the `provider/shim/shim.go`
+  - Validate the current implementation with the documentation on [How to Bridge a Provider](https://github.com/pulumi/pulumi-terraform-bridge/blob/master/pf/README.md)
+- Rebuild the SDK's using `make build_sdks`
+- Validate the functionality using the sample project, make sure to fill in valid credentials in `Pulumi.commercetools-test.yml`
