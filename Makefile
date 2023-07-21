@@ -46,6 +46,7 @@ build:: install_plugins provider build_sdks install_sdks
 only_build:: build
 
 tfgen:: install_plugins patch
+	touch $(WORKING_DIR)/provider/cmd/pulumi-resource-commercetools/schema-embed.json
 	(cd provider && go build -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
 	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
 	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
