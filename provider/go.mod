@@ -1,6 +1,6 @@
 module github.com/unplatform-io/pulumi-commercetools/provider
 
-go 1.18
+go 1.20
 
 replace (
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230710100801-03a71d0fca3d
@@ -12,7 +12,7 @@ require (
 	github.com/labd/terraform-provider-commercetools/shim v0.0.0-00010101000000-000000000000
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.14.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.53.0
-	github.com/pulumi/pulumi/sdk/v3 v3.75.0
+	github.com/pulumi/pulumi/sdk/v3 v3.76.0
 )
 
 require (
