@@ -133,6 +133,10 @@ jobs:
       with:
         path: ci-scripts
         repository: pulumi/scripts
+    - name: Unshallow clone for tags
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
     - name: Install Go
       uses: actions/setup-go@v4
       with:
