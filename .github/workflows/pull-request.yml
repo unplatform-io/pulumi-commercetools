@@ -78,7 +78,7 @@ jobs:
         - dotnet
         - go
         nodeversion:
-        - 13.x
+        - 18.x
         pythonversion:
         - "3.11.4"
   prerequisites:
