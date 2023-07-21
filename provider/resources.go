@@ -15,18 +15,19 @@
 package commercetools
 
 import (
-	"fmt"
-	"path/filepath"
 	"context"
-	_ "embed"	
+	// embed is indirectly required
+	_ "embed"
+	"fmt"
 	provShim "github.com/labd/terraform-provider-commercetools/shim"
-    pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
-    "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+	"path/filepath"
 
-	"github.com/unplatform-io/pulumi-commercetools/provider/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/unplatform-io/pulumi-commercetools/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -70,7 +71,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:          "https://pulumi.io",
 		Repository:        "https://github.com/unplatform-io/pulumi-commercetools",
 		GitHubOrg:         "unplatform-io",
-		Version:		   version.Version,
+		Version:           version.Version,
 		Config:            map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
@@ -83,15 +84,15 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"commercetools_subscription":  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Subscription")},
-			"commercetools_api_client":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ApiClient")},
-			"commercetools_api_extension": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ApiExtension")},
-			"commercetools_cart_discount": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CartDiscount")},
-			"commercetools_category": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Category")},
-			"commercetools_channel":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Channel")},
-			"commercetools_custom_object": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CustomObject")},
-			"commercetools_customer_group": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CustomerGroup")},
-			"commercetools_discount_code": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DiscountCode")},
+			"commercetools_subscription":     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Subscription")},
+			"commercetools_api_client":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ApiClient")},
+			"commercetools_api_extension":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ApiExtension")},
+			"commercetools_cart_discount":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CartDiscount")},
+			"commercetools_category":         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Category")},
+			"commercetools_channel":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Channel")},
+			"commercetools_custom_object":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CustomObject")},
+			"commercetools_customer_group":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CustomerGroup")},
+			"commercetools_discount_code":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DiscountCode")},
 			"commercetools_product_discount": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ProductDiscount")},
 			"commercetools_product_type": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ProductType"),

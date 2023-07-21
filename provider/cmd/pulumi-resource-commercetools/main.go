@@ -19,7 +19,7 @@ package main
 import (
 	"context"
 	_ "embed"
-    pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	commercetools "github.com/unplatform-io/pulumi-commercetools/provider"
 )
 
