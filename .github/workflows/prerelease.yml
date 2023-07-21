@@ -19,7 +19,7 @@ jobs:
       with:
         submodules: recursive
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: pulumi/scripts
@@ -96,7 +96,7 @@ jobs:
       with:
         submodules: recursive
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: pulumi/scripts
@@ -135,7 +135,7 @@ jobs:
       with:
         submodules: recursive
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: pulumi/scripts
@@ -164,7 +164,7 @@ jobs:
       with:
         submodules: recursive
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: pulumi/scripts
@@ -187,7 +187,7 @@ jobs:
       with:
         submodules: recursive
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: pulumi/scripts
