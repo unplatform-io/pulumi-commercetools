@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class Subscription extends pulumi.CustomResource {
@@ -37,17 +38,13 @@ export class Subscription extends pulumi.CustomResource {
      * The change notifications subscribed to
      */
     public readonly changes!: pulumi.Output<outputs.SubscriptionChange[] | undefined>;
-    /**
-     * The Message Queue into which the notifications are to be sentSee also the [Destination API
-     * Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
-     */
     public readonly destination!: pulumi.Output<outputs.SubscriptionDestination | undefined>;
     /**
      * The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
      */
     public readonly format!: pulumi.Output<outputs.SubscriptionFormat | undefined>;
     /**
-     * User-specific unique identifier for the subscription
+     * Timestamp of the last Terraform update of the order.
      */
     public readonly key!: pulumi.Output<string | undefined>;
     /**
@@ -65,29 +62,27 @@ export class Subscription extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SubscriptionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SubscriptionArgs | SubscriptionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SubscriptionState | undefined;
-            inputs["changes"] = state ? state.changes : undefined;
-            inputs["destination"] = state ? state.destination : undefined;
-            inputs["format"] = state ? state.format : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["messages"] = state ? state.messages : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["changes"] = state ? state.changes : undefined;
+            resourceInputs["destination"] = state ? state.destination : undefined;
+            resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["messages"] = state ? state.messages : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as SubscriptionArgs | undefined;
-            inputs["changes"] = args ? args.changes : undefined;
-            inputs["destination"] = args ? args.destination : undefined;
-            inputs["format"] = args ? args.format : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["messages"] = args ? args.messages : undefined;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["changes"] = args ? args.changes : undefined;
+            resourceInputs["destination"] = args ? args.destination : undefined;
+            resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["messages"] = args ? args.messages : undefined;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Subscription.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Subscription.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -99,17 +94,13 @@ export interface SubscriptionState {
      * The change notifications subscribed to
      */
     changes?: pulumi.Input<pulumi.Input<inputs.SubscriptionChange>[]>;
-    /**
-     * The Message Queue into which the notifications are to be sentSee also the [Destination API
-     * Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
-     */
     destination?: pulumi.Input<inputs.SubscriptionDestination>;
     /**
      * The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
      */
     format?: pulumi.Input<inputs.SubscriptionFormat>;
     /**
-     * User-specific unique identifier for the subscription
+     * Timestamp of the last Terraform update of the order.
      */
     key?: pulumi.Input<string>;
     /**
@@ -127,17 +118,13 @@ export interface SubscriptionArgs {
      * The change notifications subscribed to
      */
     changes?: pulumi.Input<pulumi.Input<inputs.SubscriptionChange>[]>;
-    /**
-     * The Message Queue into which the notifications are to be sentSee also the [Destination API
-     * Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
-     */
     destination?: pulumi.Input<inputs.SubscriptionDestination>;
     /**
      * The [format](https://docs.commercetools.com/api/projects/subscriptions#format) in which the payload is delivered
      */
     format?: pulumi.Input<inputs.SubscriptionFormat>;
     /**
-     * User-specific unique identifier for the subscription
+     * Timestamp of the last Terraform update of the order.
      */
     key?: pulumi.Input<string>;
     /**

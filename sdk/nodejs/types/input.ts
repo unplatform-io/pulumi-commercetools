@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface ApiExtensionDestination {
     accessKey?: pulumi.Input<string>;
@@ -16,6 +17,7 @@ export interface ApiExtensionDestination {
 
 export interface ApiExtensionTrigger {
     actions: pulumi.Input<pulumi.Input<string>[]>;
+    condition?: pulumi.Input<string>;
     resourceTypeId: pulumi.Input<string>;
 }
 
@@ -39,6 +41,91 @@ export interface CartDiscountValueMoney {
     currencyCode: pulumi.Input<string>;
 }
 
+export interface CategoryAsset {
+    description?: pulumi.Input<{[key: string]: any}>;
+    id?: pulumi.Input<string>;
+    key?: pulumi.Input<string>;
+    name: pulumi.Input<{[key: string]: any}>;
+    sources?: pulumi.Input<pulumi.Input<inputs.CategoryAssetSource>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface CategoryAssetSource {
+    contentType?: pulumi.Input<string>;
+    dimensions?: pulumi.Input<inputs.CategoryAssetSourceDimensions>;
+    key?: pulumi.Input<string>;
+    uri: pulumi.Input<string>;
+}
+
+export interface CategoryAssetSourceDimensions {
+    h: pulumi.Input<number>;
+    w: pulumi.Input<number>;
+}
+
+export interface CategoryCustom {
+    fields?: pulumi.Input<{[key: string]: any}>;
+    typeId: pulumi.Input<string>;
+}
+
+export interface ChannelAddress {
+    additionalAddressInfo?: pulumi.Input<string>;
+    additionalStreetInfo?: pulumi.Input<string>;
+    apartment?: pulumi.Input<string>;
+    building?: pulumi.Input<string>;
+    city?: pulumi.Input<string>;
+    company?: pulumi.Input<string>;
+    country: pulumi.Input<string>;
+    department?: pulumi.Input<string>;
+    email?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string>;
+    fax?: pulumi.Input<string>;
+    firstName?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    key?: pulumi.Input<string>;
+    lastName?: pulumi.Input<string>;
+    mobile?: pulumi.Input<string>;
+    phone?: pulumi.Input<string>;
+    poBox?: pulumi.Input<string>;
+    postalCode?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    salutation?: pulumi.Input<string>;
+    state?: pulumi.Input<string>;
+    streetName?: pulumi.Input<string>;
+    streetNumber?: pulumi.Input<string>;
+    title?: pulumi.Input<string>;
+}
+
+export interface ChannelCustom {
+    fields?: pulumi.Input<{[key: string]: any}>;
+    typeId: pulumi.Input<string>;
+}
+
+export interface ChannelGeolocation {
+    coordinates: pulumi.Input<pulumi.Input<number>[]>;
+}
+
+export interface CustomerGroupCustom {
+    fields?: pulumi.Input<{[key: string]: any}>;
+    typeId: pulumi.Input<string>;
+}
+
+export interface DiscountCodeCustom {
+    fields?: pulumi.Input<{[key: string]: any}>;
+    typeId: pulumi.Input<string>;
+}
+
+export interface ProductDiscountValue {
+    monies?: pulumi.Input<pulumi.Input<inputs.ProductDiscountValueMoney>[]>;
+    permyriad?: pulumi.Input<number>;
+    type: pulumi.Input<string>;
+}
+
+export interface ProductDiscountValueMoney {
+    centAmount: pulumi.Input<number>;
+    currencyCode: pulumi.Input<string>;
+    fractionDigits?: pulumi.Input<number>;
+}
+
 export interface ProductTypeAttribute {
     constraint?: pulumi.Input<string>;
     inputHint?: pulumi.Input<string>;
@@ -56,7 +143,7 @@ export interface ProductTypeAttributeType {
     name: pulumi.Input<string>;
     referenceTypeId?: pulumi.Input<string>;
     typeReference?: pulumi.Input<string>;
-    values?: pulumi.Input<{[key: string]: any}>;
+    values?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttributeTypeValue>[]>;
 }
 
 export interface ProductTypeAttributeTypeElementType2 {
@@ -64,7 +151,7 @@ export interface ProductTypeAttributeTypeElementType2 {
     name: pulumi.Input<string>;
     referenceTypeId?: pulumi.Input<string>;
     typeReference?: pulumi.Input<string>;
-    values?: pulumi.Input<{[key: string]: any}>;
+    values?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttributeTypeElementType2Value>[]>;
 }
 
 export interface ProductTypeAttributeTypeElementType2LocalizedValue {
@@ -72,28 +159,44 @@ export interface ProductTypeAttributeTypeElementType2LocalizedValue {
     label: pulumi.Input<{[key: string]: any}>;
 }
 
+export interface ProductTypeAttributeTypeElementType2Value {
+    key: pulumi.Input<string>;
+    label: pulumi.Input<string>;
+}
+
 export interface ProductTypeAttributeTypeLocalizedValue {
     key: pulumi.Input<string>;
     label: pulumi.Input<{[key: string]: any}>;
 }
 
+export interface ProductTypeAttributeTypeValue {
+    key: pulumi.Input<string>;
+    label: pulumi.Input<string>;
+}
+
 export interface ProjectSettingsCarts {
-    countryTaxRateFallbackEnabled: pulumi.Input<boolean>;
+    countryTaxRateFallbackEnabled?: pulumi.Input<boolean>;
     deleteDaysAfterLastModification?: pulumi.Input<number>;
 }
 
 export interface ProjectSettingsExternalOauth {
-    authorizationHeader: pulumi.Input<string>;
-    url: pulumi.Input<string>;
+    authorizationHeader?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
 }
 
 export interface ProjectSettingsMessages {
-    enabled: pulumi.Input<boolean>;
+    deleteDaysAfterCreation?: pulumi.Input<number>;
+    enabled?: pulumi.Input<boolean>;
 }
 
 export interface ProjectSettingsShippingRateCartClassificationValue {
     key: pulumi.Input<string>;
-    label?: pulumi.Input<{[key: string]: any}>;
+    label?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface ShippingMethodCustom {
+    fields?: pulumi.Input<{[key: string]: any}>;
+    typeId: pulumi.Input<string>;
 }
 
 export interface ShippingZoneLocation {
@@ -113,7 +216,8 @@ export interface ShippingZoneRatePrice {
 
 export interface ShippingZoneRateShippingRatePriceTier {
     minimumCentAmount?: pulumi.Input<number>;
-    price: pulumi.Input<inputs.ShippingZoneRateShippingRatePriceTierPrice>;
+    price?: pulumi.Input<inputs.ShippingZoneRateShippingRatePriceTierPrice>;
+    priceFunction?: pulumi.Input<inputs.ShippingZoneRateShippingRatePriceTierPriceFunction>;
     score?: pulumi.Input<number>;
     type: pulumi.Input<string>;
     value?: pulumi.Input<string>;
@@ -124,31 +228,42 @@ export interface ShippingZoneRateShippingRatePriceTierPrice {
     currencyCode: pulumi.Input<string>;
 }
 
+export interface ShippingZoneRateShippingRatePriceTierPriceFunction {
+    currencyCode: pulumi.Input<string>;
+    function: pulumi.Input<string>;
+}
+
+export interface StoreCustom {
+    fields?: pulumi.Input<{[key: string]: any}>;
+    typeId: pulumi.Input<string>;
+}
+
 export interface SubscriptionChange {
-    resourceTypeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    resourceTypeIds: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface SubscriptionDestination {
     accessKey?: pulumi.Input<string>;
     accessSecret?: pulumi.Input<string>;
+    accountId?: pulumi.Input<string>;
     connectionString?: pulumi.Input<string>;
     projectId?: pulumi.Input<string>;
     queueUrl?: pulumi.Input<string>;
-    region: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     topic?: pulumi.Input<string>;
     topicArn?: pulumi.Input<string>;
     type: pulumi.Input<string>;
-    uri: pulumi.Input<string>;
+    uri?: pulumi.Input<string>;
 }
 
 export interface SubscriptionFormat {
     cloudEventsVersion?: pulumi.Input<string>;
-    type: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 export interface SubscriptionMessage {
-    resourceTypeId?: pulumi.Input<string>;
-    types?: pulumi.Input<pulumi.Input<string>[]>;
+    resourceTypeId: pulumi.Input<string>;
+    types: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface TaxCategoryRateSubRate {
@@ -169,14 +284,14 @@ export interface TypeFieldType {
     localizedValues?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeLocalizedValue>[]>;
     name: pulumi.Input<string>;
     referenceTypeId?: pulumi.Input<string>;
-    values?: pulumi.Input<{[key: string]: any}>;
+    values?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeValue>[]>;
 }
 
 export interface TypeFieldTypeElementType2 {
     localizedValues?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeElementType2LocalizedValue>[]>;
     name: pulumi.Input<string>;
     referenceTypeId?: pulumi.Input<string>;
-    values?: pulumi.Input<{[key: string]: any}>;
+    values?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeElementType2Value>[]>;
 }
 
 export interface TypeFieldTypeElementType2LocalizedValue {
@@ -184,7 +299,17 @@ export interface TypeFieldTypeElementType2LocalizedValue {
     label: pulumi.Input<{[key: string]: any}>;
 }
 
+export interface TypeFieldTypeElementType2Value {
+    key: pulumi.Input<string>;
+    label: pulumi.Input<string>;
+}
+
 export interface TypeFieldTypeLocalizedValue {
     key: pulumi.Input<string>;
     label: pulumi.Input<{[key: string]: any}>;
+}
+
+export interface TypeFieldTypeValue {
+    key: pulumi.Input<string>;
+    label: pulumi.Input<string>;
 }

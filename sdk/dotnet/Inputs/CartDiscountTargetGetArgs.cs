@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class CartDiscountTargetGetArgs : Pulumi.ResourceArgs
+    public sealed class CartDiscountTargetGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("predicate")]
         public Input<string>? Predicate { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Commercetools.Inputs
         public CartDiscountTargetGetArgs()
         {
         }
+        public static new CartDiscountTargetGetArgs Empty => new CartDiscountTargetGetArgs();
     }
 }

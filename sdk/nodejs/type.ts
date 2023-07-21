@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class Type extends pulumi.CustomResource {
@@ -65,16 +66,16 @@ export class Type extends pulumi.CustomResource {
      */
     constructor(name: string, args: TypeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TypeArgs | TypeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TypeState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["fields"] = state ? state.fields : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["resourceTypeIds"] = state ? state.resourceTypeIds : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["fields"] = state ? state.fields : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["resourceTypeIds"] = state ? state.resourceTypeIds : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as TypeArgs | undefined;
             if ((!args || args.key === undefined) && !opts.urn) {
@@ -83,17 +84,15 @@ export class Type extends pulumi.CustomResource {
             if ((!args || args.resourceTypeIds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceTypeIds'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["fields"] = args ? args.fields : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["resourceTypeIds"] = args ? args.resourceTypeIds : undefined;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["fields"] = args ? args.fields : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["resourceTypeIds"] = args ? args.resourceTypeIds : undefined;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Type.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Type.__pulumiType, name, resourceInputs, opts);
     }
 }
 

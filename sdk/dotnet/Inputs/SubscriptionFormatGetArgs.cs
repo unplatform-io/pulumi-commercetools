@@ -10,16 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class SubscriptionFormatGetArgs : Pulumi.ResourceArgs
+    public sealed class SubscriptionFormatGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("cloudEventsVersion")]
         public Input<string>? CloudEventsVersion { get; set; }
 
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         public SubscriptionFormatGetArgs()
         {
         }
+        public static new SubscriptionFormatGetArgs Empty => new SubscriptionFormatGetArgs();
     }
 }

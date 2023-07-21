@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class TypeFieldTypeGetArgs : Pulumi.ResourceArgs
+    public sealed class TypeFieldTypeGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("ElementType2")]
         public Input<Inputs.TypeFieldTypeElementType2GetArgs>? ElementType2 { get; set; }
@@ -30,15 +30,16 @@ namespace Pulumi.Commercetools.Inputs
         public Input<string>? ReferenceTypeId { get; set; }
 
         [Input("values")]
-        private InputMap<object>? _values;
-        public InputMap<object> Values
+        private InputList<Inputs.TypeFieldTypeValueGetArgs>? _values;
+        public InputList<Inputs.TypeFieldTypeValueGetArgs> Values
         {
-            get => _values ?? (_values = new InputMap<object>());
+            get => _values ?? (_values = new InputList<Inputs.TypeFieldTypeValueGetArgs>());
             set => _values = value;
         }
 
         public TypeFieldTypeGetArgs()
         {
         }
+        public static new TypeFieldTypeGetArgs Empty => new TypeFieldTypeGetArgs();
     }
 }

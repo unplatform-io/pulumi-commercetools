@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class CartDiscountValueMoneyGetArgs : Pulumi.ResourceArgs
+    public sealed class CartDiscountValueMoneyGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("centAmount", required: true)]
         public Input<int> CentAmount { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Commercetools.Inputs
         public CartDiscountValueMoneyGetArgs()
         {
         }
+        public static new CartDiscountValueMoneyGetArgs Empty => new CartDiscountValueMoneyGetArgs();
     }
 }

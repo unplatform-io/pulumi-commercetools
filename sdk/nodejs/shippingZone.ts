@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class ShippingZone extends pulumi.CustomResource {
@@ -39,7 +40,7 @@ export class ShippingZone extends pulumi.CustomResource {
      */
     public readonly key!: pulumi.Output<string | undefined>;
     /**
-     * [Location](https://docs.commercetools.com/api/projects/zones#location)
+     * [Location](https://docs.commercetoolstools.pi/projects/zones#location)
      */
     public readonly locations!: pulumi.Output<outputs.ShippingZoneLocation[] | undefined>;
     public readonly name!: pulumi.Output<string>;
@@ -54,27 +55,25 @@ export class ShippingZone extends pulumi.CustomResource {
      */
     constructor(name: string, args?: ShippingZoneArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ShippingZoneArgs | ShippingZoneState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ShippingZoneState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["locations"] = state ? state.locations : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["locations"] = state ? state.locations : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ShippingZoneArgs | undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["locations"] = args ? args.locations : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["locations"] = args ? args.locations : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ShippingZone.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ShippingZone.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -88,7 +87,7 @@ export interface ShippingZoneState {
      */
     key?: pulumi.Input<string>;
     /**
-     * [Location](https://docs.commercetools.com/api/projects/zones#location)
+     * [Location](https://docs.commercetoolstools.pi/projects/zones#location)
      */
     locations?: pulumi.Input<pulumi.Input<inputs.ShippingZoneLocation>[]>;
     name?: pulumi.Input<string>;
@@ -105,7 +104,7 @@ export interface ShippingZoneArgs {
      */
     key?: pulumi.Input<string>;
     /**
-     * [Location](https://docs.commercetools.com/api/projects/zones#location)
+     * [Location](https://docs.commercetoolstools.pi/projects/zones#location)
      */
     locations?: pulumi.Input<pulumi.Input<inputs.ShippingZoneLocation>[]>;
     name?: pulumi.Input<string>;

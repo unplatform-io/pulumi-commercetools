@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class TypeFieldTypeLocalizedValueArgs : Pulumi.ResourceArgs
+    public sealed class TypeFieldTypeLocalizedValueArgs : global::Pulumi.ResourceArgs
     {
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
@@ -26,5 +26,6 @@ namespace Pulumi.Commercetools.Inputs
         public TypeFieldTypeLocalizedValueArgs()
         {
         }
+        public static new TypeFieldTypeLocalizedValueArgs Empty => new TypeFieldTypeLocalizedValueArgs();
     }
 }

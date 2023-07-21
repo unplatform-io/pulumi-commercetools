@@ -10,13 +10,34 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class SubscriptionDestinationGetArgs : Pulumi.ResourceArgs
+    public sealed class SubscriptionDestinationGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("accessKey")]
-        public Input<string>? AccessKey { get; set; }
+        private Input<string>? _accessKey;
+        public Input<string>? AccessKey
+        {
+            get => _accessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("accessSecret")]
-        public Input<string>? AccessSecret { get; set; }
+        private Input<string>? _accessSecret;
+        public Input<string>? AccessSecret
+        {
+            get => _accessSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("accountId")]
+        public Input<string>? AccountId { get; set; }
 
         [Input("connectionString")]
         public Input<string>? ConnectionString { get; set; }
@@ -27,8 +48,8 @@ namespace Pulumi.Commercetools.Inputs
         [Input("queueUrl")]
         public Input<string>? QueueUrl { get; set; }
 
-        [Input("region", required: true)]
-        public Input<string> Region { get; set; } = null!;
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         [Input("topic")]
         public Input<string>? Topic { get; set; }
@@ -39,11 +60,12 @@ namespace Pulumi.Commercetools.Inputs
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        [Input("uri", required: true)]
-        public Input<string> Uri { get; set; } = null!;
+        [Input("uri")]
+        public Input<string>? Uri { get; set; }
 
         public SubscriptionDestinationGetArgs()
         {
         }
+        public static new SubscriptionDestinationGetArgs Empty => new SubscriptionDestinationGetArgs();
     }
 }

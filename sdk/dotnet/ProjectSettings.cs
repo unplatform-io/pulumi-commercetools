@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/projectSettings:ProjectSettings")]
-    public partial class ProjectSettings : Pulumi.CustomResource
+    public partial class ProjectSettings : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
@@ -31,6 +31,18 @@ namespace Pulumi.Commercetools
         public Output<ImmutableArray<string>> Currencies { get; private set; } = null!;
 
         /// <summary>
+        /// Enable the Search Indexing of orders
+        /// </summary>
+        [Output("enableSearchIndexOrders")]
+        public Output<bool> EnableSearchIndexOrders { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable the Search Indexing of products
+        /// </summary>
+        [Output("enableSearchIndexProducts")]
+        public Output<bool> EnableSearchIndexProducts { get; private set; } = null!;
+
+        /// <summary>
         /// [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
         /// </summary>
         [Output("externalOauth")]
@@ -49,7 +61,7 @@ namespace Pulumi.Commercetools
         public Output<ImmutableArray<string>> Languages { get; private set; } = null!;
 
         /// <summary>
-        /// [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        /// The change notifications subscribed to
         /// </summary>
         [Output("messages")]
         public Output<Outputs.ProjectSettingsMessages?> Messages { get; private set; } = null!;
@@ -122,7 +134,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class ProjectSettingsArgs : Pulumi.ResourceArgs
+    public sealed class ProjectSettingsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
@@ -155,6 +167,18 @@ namespace Pulumi.Commercetools
         }
 
         /// <summary>
+        /// Enable the Search Indexing of orders
+        /// </summary>
+        [Input("enableSearchIndexOrders")]
+        public Input<bool>? EnableSearchIndexOrders { get; set; }
+
+        /// <summary>
+        /// Enable the Search Indexing of products
+        /// </summary>
+        [Input("enableSearchIndexProducts")]
+        public Input<bool>? EnableSearchIndexProducts { get; set; }
+
+        /// <summary>
         /// [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
         /// </summary>
         [Input("externalOauth")]
@@ -173,7 +197,7 @@ namespace Pulumi.Commercetools
         }
 
         /// <summary>
-        /// [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        /// The change notifications subscribed to
         /// </summary>
         [Input("messages")]
         public Input<Inputs.ProjectSettingsMessagesArgs>? Messages { get; set; }
@@ -208,9 +232,10 @@ namespace Pulumi.Commercetools
         public ProjectSettingsArgs()
         {
         }
+        public static new ProjectSettingsArgs Empty => new ProjectSettingsArgs();
     }
 
-    public sealed class ProjectSettingsState : Pulumi.ResourceArgs
+    public sealed class ProjectSettingsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [Carts Configuration](https://docs.commercetools.com/api/projects/project#carts-configuration)
@@ -243,6 +268,18 @@ namespace Pulumi.Commercetools
         }
 
         /// <summary>
+        /// Enable the Search Indexing of orders
+        /// </summary>
+        [Input("enableSearchIndexOrders")]
+        public Input<bool>? EnableSearchIndexOrders { get; set; }
+
+        /// <summary>
+        /// Enable the Search Indexing of products
+        /// </summary>
+        [Input("enableSearchIndexProducts")]
+        public Input<bool>? EnableSearchIndexProducts { get; set; }
+
+        /// <summary>
         /// [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
         /// </summary>
         [Input("externalOauth")]
@@ -267,7 +304,7 @@ namespace Pulumi.Commercetools
         }
 
         /// <summary>
-        /// [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+        /// The change notifications subscribed to
         /// </summary>
         [Input("messages")]
         public Input<Inputs.ProjectSettingsMessagesGetArgs>? Messages { get; set; }
@@ -305,5 +342,6 @@ namespace Pulumi.Commercetools
         public ProjectSettingsState()
         {
         }
+        public static new ProjectSettingsState Empty => new ProjectSettingsState();
     }
 }

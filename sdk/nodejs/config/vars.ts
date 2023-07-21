@@ -4,30 +4,73 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("commercetools");
+declare var exports: any;
+const __config = new pulumi.Config("commercetools");
 
 /**
  * The API URL of the commercetools platform. https://docs.commercetools.com/http-api
  */
-export let apiUrl: string | undefined = __config.get("apiUrl");
+export declare const apiUrl: string | undefined;
+Object.defineProperty(exports, "apiUrl", {
+    get() {
+        return __config.get("apiUrl");
+    },
+    enumerable: true,
+});
+
 /**
  * The OAuth Client ID for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
  */
-export let clientId: string | undefined = __config.get("clientId");
+export declare const clientId: string | undefined;
+Object.defineProperty(exports, "clientId", {
+    get() {
+        return __config.get("clientId");
+    },
+    enumerable: true,
+});
+
 /**
  * The OAuth Client Secret for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
  */
-export let clientSecret: string | undefined = __config.get("clientSecret");
+export declare const clientSecret: string | undefined;
+Object.defineProperty(exports, "clientSecret", {
+    get() {
+        return __config.get("clientSecret");
+    },
+    enumerable: true,
+});
+
 /**
  * The project key of commercetools platform project. https://docs.commercetools.com/getting-started
  */
-export let projectKey: string | undefined = __config.get("projectKey");
+export declare const projectKey: string | undefined;
+Object.defineProperty(exports, "projectKey", {
+    get() {
+        return __config.get("projectKey");
+    },
+    enumerable: true,
+});
+
 /**
  * A list as string of OAuth scopes assigned to a project key, to access resources in a commercetools platform project.
  * https://docs.commercetools.com/http-api-authorization
  */
-export let scopes: string | undefined = __config.get("scopes");
+export declare const scopes: string | undefined;
+Object.defineProperty(exports, "scopes", {
+    get() {
+        return __config.get("scopes");
+    },
+    enumerable: true,
+});
+
 /**
  * The authentication URL of the commercetools platform. https://docs.commercetools.com/http-api-authorization
  */
-export let tokenUrl: string | undefined = __config.get("tokenUrl");
+export declare const tokenUrl: string | undefined;
+Object.defineProperty(exports, "tokenUrl", {
+    get() {
+        return __config.get("tokenUrl");
+    },
+    enumerable: true,
+});
+

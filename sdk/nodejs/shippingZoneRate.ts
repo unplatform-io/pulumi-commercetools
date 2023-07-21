@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class ShippingZoneRate extends pulumi.CustomResource {
@@ -56,15 +57,15 @@ export class ShippingZoneRate extends pulumi.CustomResource {
      */
     constructor(name: string, args: ShippingZoneRateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ShippingZoneRateArgs | ShippingZoneRateState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ShippingZoneRateState | undefined;
-            inputs["freeAbove"] = state ? state.freeAbove : undefined;
-            inputs["price"] = state ? state.price : undefined;
-            inputs["shippingMethodId"] = state ? state.shippingMethodId : undefined;
-            inputs["shippingRatePriceTiers"] = state ? state.shippingRatePriceTiers : undefined;
-            inputs["shippingZoneId"] = state ? state.shippingZoneId : undefined;
+            resourceInputs["freeAbove"] = state ? state.freeAbove : undefined;
+            resourceInputs["price"] = state ? state.price : undefined;
+            resourceInputs["shippingMethodId"] = state ? state.shippingMethodId : undefined;
+            resourceInputs["shippingRatePriceTiers"] = state ? state.shippingRatePriceTiers : undefined;
+            resourceInputs["shippingZoneId"] = state ? state.shippingZoneId : undefined;
         } else {
             const args = argsOrState as ShippingZoneRateArgs | undefined;
             if ((!args || args.price === undefined) && !opts.urn) {
@@ -76,16 +77,14 @@ export class ShippingZoneRate extends pulumi.CustomResource {
             if ((!args || args.shippingZoneId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'shippingZoneId'");
             }
-            inputs["freeAbove"] = args ? args.freeAbove : undefined;
-            inputs["price"] = args ? args.price : undefined;
-            inputs["shippingMethodId"] = args ? args.shippingMethodId : undefined;
-            inputs["shippingRatePriceTiers"] = args ? args.shippingRatePriceTiers : undefined;
-            inputs["shippingZoneId"] = args ? args.shippingZoneId : undefined;
+            resourceInputs["freeAbove"] = args ? args.freeAbove : undefined;
+            resourceInputs["price"] = args ? args.price : undefined;
+            resourceInputs["shippingMethodId"] = args ? args.shippingMethodId : undefined;
+            resourceInputs["shippingRatePriceTiers"] = args ? args.shippingRatePriceTiers : undefined;
+            resourceInputs["shippingZoneId"] = args ? args.shippingZoneId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ShippingZoneRate.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ShippingZoneRate.__pulumiType, name, resourceInputs, opts);
     }
 }
 

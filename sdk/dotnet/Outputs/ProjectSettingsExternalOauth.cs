@@ -13,14 +13,14 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ProjectSettingsExternalOauth
     {
-        public readonly string AuthorizationHeader;
-        public readonly string Url;
+        public readonly string? AuthorizationHeader;
+        public readonly string? Url;
 
         [OutputConstructor]
         private ProjectSettingsExternalOauth(
-            string authorizationHeader,
+            string? authorizationHeader,
 
-            string url)
+            string? url)
         {
             AuthorizationHeader = authorizationHeader;
             Url = url;

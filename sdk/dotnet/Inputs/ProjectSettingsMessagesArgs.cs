@@ -10,13 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class ProjectSettingsMessagesArgs : Pulumi.ResourceArgs
+    public sealed class ProjectSettingsMessagesArgs : global::Pulumi.ResourceArgs
     {
-        [Input("enabled", required: true)]
-        public Input<bool> Enabled { get; set; } = null!;
+        [Input("deleteDaysAfterCreation")]
+        public Input<int>? DeleteDaysAfterCreation { get; set; }
+
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
 
         public ProjectSettingsMessagesArgs()
         {
         }
+        public static new ProjectSettingsMessagesArgs Empty => new ProjectSettingsMessagesArgs();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/apiClient:ApiClient")]
-    public partial class ApiClient : Pulumi.CustomResource
+    public partial class ApiClient : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Name of the API client
@@ -50,6 +50,10 @@ namespace Pulumi.Commercetools
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "secret",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -71,7 +75,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class ApiClientArgs : Pulumi.ResourceArgs
+    public sealed class ApiClientArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the API client
@@ -94,9 +98,10 @@ namespace Pulumi.Commercetools
         public ApiClientArgs()
         {
         }
+        public static new ApiClientArgs Empty => new ApiClientArgs();
     }
 
-    public sealed class ApiClientState : Pulumi.ResourceArgs
+    public sealed class ApiClientState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the API client
@@ -117,10 +122,20 @@ namespace Pulumi.Commercetools
         }
 
         [Input("secret")]
-        public Input<string>? Secret { get; set; }
+        private Input<string>? _secret;
+        public Input<string>? Secret
+        {
+            get => _secret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public ApiClientState()
         {
         }
+        public static new ApiClientState Empty => new ApiClientState();
     }
 }

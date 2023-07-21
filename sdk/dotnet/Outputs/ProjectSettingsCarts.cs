@@ -13,12 +13,12 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ProjectSettingsCarts
     {
-        public readonly bool CountryTaxRateFallbackEnabled;
+        public readonly bool? CountryTaxRateFallbackEnabled;
         public readonly int? DeleteDaysAfterLastModification;
 
         [OutputConstructor]
         private ProjectSettingsCarts(
-            bool countryTaxRateFallbackEnabled,
+            bool? countryTaxRateFallbackEnabled,
 
             int? deleteDaysAfterLastModification)
         {

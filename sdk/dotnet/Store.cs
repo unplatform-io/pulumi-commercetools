@@ -10,8 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/store:Store")]
-    public partial class Store : Pulumi.CustomResource
+    public partial class Store : global::Pulumi.CustomResource
     {
+        [Output("custom")]
+        public Output<Outputs.StoreCustom?> Custom { get; private set; } = null!;
+
         /// <summary>
         /// Set of ResourceIdentifier to a Channel with ProductDistribution
         /// </summary>
@@ -89,8 +92,11 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class StoreArgs : Pulumi.ResourceArgs
+    public sealed class StoreArgs : global::Pulumi.ResourceArgs
     {
+        [Input("custom")]
+        public Input<Inputs.StoreCustomArgs>? Custom { get; set; }
+
         [Input("distributionChannels")]
         private InputList<string>? _distributionChannels;
 
@@ -148,10 +154,14 @@ namespace Pulumi.Commercetools
         public StoreArgs()
         {
         }
+        public static new StoreArgs Empty => new StoreArgs();
     }
 
-    public sealed class StoreState : Pulumi.ResourceArgs
+    public sealed class StoreState : global::Pulumi.ResourceArgs
     {
+        [Input("custom")]
+        public Input<Inputs.StoreCustomGetArgs>? Custom { get; set; }
+
         [Input("distributionChannels")]
         private InputList<string>? _distributionChannels;
 
@@ -212,5 +222,6 @@ namespace Pulumi.Commercetools
         public StoreState()
         {
         }
+        public static new StoreState Empty => new StoreState();
     }
 }

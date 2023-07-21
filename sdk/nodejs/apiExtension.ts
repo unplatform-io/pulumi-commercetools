@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class ApiExtension extends pulumi.CustomResource {
@@ -62,15 +63,15 @@ export class ApiExtension extends pulumi.CustomResource {
      */
     constructor(name: string, args: ApiExtensionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ApiExtensionArgs | ApiExtensionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApiExtensionState | undefined;
-            inputs["destination"] = state ? state.destination : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["timeoutInMs"] = state ? state.timeoutInMs : undefined;
-            inputs["triggers"] = state ? state.triggers : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["destination"] = state ? state.destination : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["timeoutInMs"] = state ? state.timeoutInMs : undefined;
+            resourceInputs["triggers"] = state ? state.triggers : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ApiExtensionArgs | undefined;
             if ((!args || args.destination === undefined) && !opts.urn) {
@@ -79,16 +80,14 @@ export class ApiExtension extends pulumi.CustomResource {
             if ((!args || args.triggers === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'triggers'");
             }
-            inputs["destination"] = args ? args.destination : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["timeoutInMs"] = args ? args.timeoutInMs : undefined;
-            inputs["triggers"] = args ? args.triggers : undefined;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["destination"] = args ? args.destination : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["timeoutInMs"] = args ? args.timeoutInMs : undefined;
+            resourceInputs["triggers"] = args ? args.triggers : undefined;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ApiExtension.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ApiExtension.__pulumiType, name, resourceInputs, opts);
     }
 }
 

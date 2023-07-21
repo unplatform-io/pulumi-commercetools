@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class ProductTypeAttributeArgs : Pulumi.ResourceArgs
+    public sealed class ProductTypeAttributeArgs : global::Pulumi.ResourceArgs
     {
         [Input("constraint")]
         public Input<string>? Constraint { get; set; }
@@ -49,5 +49,6 @@ namespace Pulumi.Commercetools.Inputs
         public ProductTypeAttributeArgs()
         {
         }
+        public static new ProductTypeAttributeArgs Empty => new ProductTypeAttributeArgs();
     }
 }

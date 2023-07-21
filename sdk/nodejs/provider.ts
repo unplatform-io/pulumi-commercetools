@@ -22,34 +22,34 @@ export class Provider extends pulumi.ProviderResource {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Provider.__pulumiType;
+        return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
     /**
      * The API URL of the commercetools platform. https://docs.commercetools.com/http-api
      */
-    public readonly apiUrl!: pulumi.Output<string>;
+    public readonly apiUrl!: pulumi.Output<string | undefined>;
     /**
      * The OAuth Client ID for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
      */
-    public readonly clientId!: pulumi.Output<string>;
+    public readonly clientId!: pulumi.Output<string | undefined>;
     /**
      * The OAuth Client Secret for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
      */
-    public readonly clientSecret!: pulumi.Output<string>;
+    public readonly clientSecret!: pulumi.Output<string | undefined>;
     /**
      * The project key of commercetools platform project. https://docs.commercetools.com/getting-started
      */
-    public readonly projectKey!: pulumi.Output<string>;
+    public readonly projectKey!: pulumi.Output<string | undefined>;
     /**
      * A list as string of OAuth scopes assigned to a project key, to access resources in a commercetools platform project.
      * https://docs.commercetools.com/http-api-authorization
      */
-    public readonly scopes!: pulumi.Output<string>;
+    public readonly scopes!: pulumi.Output<string | undefined>;
     /**
      * The authentication URL of the commercetools platform. https://docs.commercetools.com/http-api-authorization
      */
-    public readonly tokenUrl!: pulumi.Output<string>;
+    public readonly tokenUrl!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -58,39 +58,21 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if ((!args || args.apiUrl === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'apiUrl'");
-            }
-            if ((!args || args.clientId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'clientId'");
-            }
-            if ((!args || args.clientSecret === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'clientSecret'");
-            }
-            if ((!args || args.projectKey === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'projectKey'");
-            }
-            if ((!args || args.scopes === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'scopes'");
-            }
-            if ((!args || args.tokenUrl === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'tokenUrl'");
-            }
-            inputs["apiUrl"] = args ? args.apiUrl : undefined;
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientSecret"] = args ? args.clientSecret : undefined;
-            inputs["projectKey"] = args ? args.projectKey : undefined;
-            inputs["scopes"] = args ? args.scopes : undefined;
-            inputs["tokenUrl"] = args ? args.tokenUrl : undefined;
+            resourceInputs["apiUrl"] = args ? args.apiUrl : undefined;
+            resourceInputs["clientId"] = args?.clientId ? pulumi.secret(args.clientId) : undefined;
+            resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
+            resourceInputs["projectKey"] = args?.projectKey ? pulumi.secret(args.projectKey) : undefined;
+            resourceInputs["scopes"] = args ? args.scopes : undefined;
+            resourceInputs["tokenUrl"] = args ? args.tokenUrl : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Provider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["clientId", "clientSecret", "projectKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -101,26 +83,26 @@ export interface ProviderArgs {
     /**
      * The API URL of the commercetools platform. https://docs.commercetools.com/http-api
      */
-    apiUrl: pulumi.Input<string>;
+    apiUrl?: pulumi.Input<string>;
     /**
      * The OAuth Client ID for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
      */
-    clientId: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The OAuth Client Secret for a commercetools platform project. https://docs.commercetools.com/http-api-authorization
      */
-    clientSecret: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
     /**
      * The project key of commercetools platform project. https://docs.commercetools.com/getting-started
      */
-    projectKey: pulumi.Input<string>;
+    projectKey?: pulumi.Input<string>;
     /**
      * A list as string of OAuth scopes assigned to a project key, to access resources in a commercetools platform project.
      * https://docs.commercetools.com/http-api-authorization
      */
-    scopes: pulumi.Input<string>;
+    scopes?: pulumi.Input<string>;
     /**
      * The authentication URL of the commercetools platform. https://docs.commercetools.com/http-api-authorization
      */
-    tokenUrl: pulumi.Input<string>;
+    tokenUrl?: pulumi.Input<string>;
 }

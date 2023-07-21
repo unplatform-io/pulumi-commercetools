@@ -14,13 +14,13 @@ namespace Pulumi.Commercetools.Outputs
     public sealed class SubscriptionFormat
     {
         public readonly string? CloudEventsVersion;
-        public readonly string Type;
+        public readonly string? Type;
 
         [OutputConstructor]
         private SubscriptionFormat(
             string? cloudEventsVersion,
 
-            string type)
+            string? type)
         {
             CloudEventsVersion = cloudEventsVersion;
             Type = type;

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface ApiExtensionDestination {
     accessKey?: string;
@@ -16,6 +17,7 @@ export interface ApiExtensionDestination {
 
 export interface ApiExtensionTrigger {
     actions: string[];
+    condition?: string;
     resourceTypeId: string;
 }
 
@@ -39,6 +41,91 @@ export interface CartDiscountValueMoney {
     currencyCode: string;
 }
 
+export interface CategoryAsset {
+    description?: {[key: string]: any};
+    id: string;
+    key?: string;
+    name: {[key: string]: any};
+    sources?: outputs.CategoryAssetSource[];
+    tags?: string[];
+}
+
+export interface CategoryAssetSource {
+    contentType?: string;
+    dimensions?: outputs.CategoryAssetSourceDimensions;
+    key?: string;
+    uri: string;
+}
+
+export interface CategoryAssetSourceDimensions {
+    h: number;
+    w: number;
+}
+
+export interface CategoryCustom {
+    fields?: {[key: string]: any};
+    typeId: string;
+}
+
+export interface ChannelAddress {
+    additionalAddressInfo?: string;
+    additionalStreetInfo?: string;
+    apartment?: string;
+    building?: string;
+    city?: string;
+    company?: string;
+    country: string;
+    department?: string;
+    email?: string;
+    externalId?: string;
+    fax?: string;
+    firstName?: string;
+    id: string;
+    key?: string;
+    lastName?: string;
+    mobile?: string;
+    phone?: string;
+    poBox?: string;
+    postalCode?: string;
+    region?: string;
+    salutation?: string;
+    state?: string;
+    streetName?: string;
+    streetNumber?: string;
+    title?: string;
+}
+
+export interface ChannelCustom {
+    fields?: {[key: string]: any};
+    typeId: string;
+}
+
+export interface ChannelGeolocation {
+    coordinates: number[];
+}
+
+export interface CustomerGroupCustom {
+    fields?: {[key: string]: any};
+    typeId: string;
+}
+
+export interface DiscountCodeCustom {
+    fields?: {[key: string]: any};
+    typeId: string;
+}
+
+export interface ProductDiscountValue {
+    monies?: outputs.ProductDiscountValueMoney[];
+    permyriad?: number;
+    type: string;
+}
+
+export interface ProductDiscountValueMoney {
+    centAmount: number;
+    currencyCode: string;
+    fractionDigits: number;
+}
+
 export interface ProductTypeAttribute {
     constraint?: string;
     inputHint?: string;
@@ -56,7 +143,7 @@ export interface ProductTypeAttributeType {
     name: string;
     referenceTypeId?: string;
     typeReference?: string;
-    values?: {[key: string]: any};
+    values?: outputs.ProductTypeAttributeTypeValue[];
 }
 
 export interface ProductTypeAttributeTypeElementType2 {
@@ -64,7 +151,7 @@ export interface ProductTypeAttributeTypeElementType2 {
     name: string;
     referenceTypeId?: string;
     typeReference?: string;
-    values?: {[key: string]: any};
+    values?: outputs.ProductTypeAttributeTypeElementType2Value[];
 }
 
 export interface ProductTypeAttributeTypeElementType2LocalizedValue {
@@ -72,28 +159,44 @@ export interface ProductTypeAttributeTypeElementType2LocalizedValue {
     label: {[key: string]: any};
 }
 
+export interface ProductTypeAttributeTypeElementType2Value {
+    key: string;
+    label: string;
+}
+
 export interface ProductTypeAttributeTypeLocalizedValue {
     key: string;
     label: {[key: string]: any};
 }
 
+export interface ProductTypeAttributeTypeValue {
+    key: string;
+    label: string;
+}
+
 export interface ProjectSettingsCarts {
-    countryTaxRateFallbackEnabled: boolean;
+    countryTaxRateFallbackEnabled?: boolean;
     deleteDaysAfterLastModification?: number;
 }
 
 export interface ProjectSettingsExternalOauth {
-    authorizationHeader: string;
-    url: string;
+    authorizationHeader?: string;
+    url?: string;
 }
 
 export interface ProjectSettingsMessages {
-    enabled: boolean;
+    deleteDaysAfterCreation?: number;
+    enabled?: boolean;
 }
 
 export interface ProjectSettingsShippingRateCartClassificationValue {
     key: string;
-    label?: {[key: string]: any};
+    label?: {[key: string]: string};
+}
+
+export interface ShippingMethodCustom {
+    fields?: {[key: string]: any};
+    typeId: string;
 }
 
 export interface ShippingZoneLocation {
@@ -113,7 +216,8 @@ export interface ShippingZoneRatePrice {
 
 export interface ShippingZoneRateShippingRatePriceTier {
     minimumCentAmount?: number;
-    price: outputs.ShippingZoneRateShippingRatePriceTierPrice;
+    price?: outputs.ShippingZoneRateShippingRatePriceTierPrice;
+    priceFunction?: outputs.ShippingZoneRateShippingRatePriceTierPriceFunction;
     score?: number;
     type: string;
     value?: string;
@@ -124,31 +228,42 @@ export interface ShippingZoneRateShippingRatePriceTierPrice {
     currencyCode: string;
 }
 
+export interface ShippingZoneRateShippingRatePriceTierPriceFunction {
+    currencyCode: string;
+    function: string;
+}
+
+export interface StoreCustom {
+    fields?: {[key: string]: any};
+    typeId: string;
+}
+
 export interface SubscriptionChange {
-    resourceTypeIds?: string[];
+    resourceTypeIds: string[];
 }
 
 export interface SubscriptionDestination {
     accessKey?: string;
     accessSecret?: string;
+    accountId?: string;
     connectionString?: string;
     projectId?: string;
     queueUrl?: string;
-    region: string;
+    region?: string;
     topic?: string;
     topicArn?: string;
     type: string;
-    uri: string;
+    uri?: string;
 }
 
 export interface SubscriptionFormat {
     cloudEventsVersion?: string;
-    type: string;
+    type?: string;
 }
 
 export interface SubscriptionMessage {
-    resourceTypeId?: string;
-    types?: string[];
+    resourceTypeId: string;
+    types: string[];
 }
 
 export interface TaxCategoryRateSubRate {
@@ -169,14 +284,14 @@ export interface TypeFieldType {
     localizedValues?: outputs.TypeFieldTypeLocalizedValue[];
     name: string;
     referenceTypeId?: string;
-    values?: {[key: string]: any};
+    values?: outputs.TypeFieldTypeValue[];
 }
 
 export interface TypeFieldTypeElementType2 {
     localizedValues?: outputs.TypeFieldTypeElementType2LocalizedValue[];
     name: string;
     referenceTypeId?: string;
-    values?: {[key: string]: any};
+    values?: outputs.TypeFieldTypeElementType2Value[];
 }
 
 export interface TypeFieldTypeElementType2LocalizedValue {
@@ -184,7 +299,18 @@ export interface TypeFieldTypeElementType2LocalizedValue {
     label: {[key: string]: any};
 }
 
+export interface TypeFieldTypeElementType2Value {
+    key: string;
+    label: string;
+}
+
 export interface TypeFieldTypeLocalizedValue {
     key: string;
     label: {[key: string]: any};
 }
+
+export interface TypeFieldTypeValue {
+    key: string;
+    label: string;
+}
+

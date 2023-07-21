@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class ShippingZoneRateShippingRatePriceTierPriceArgs : Pulumi.ResourceArgs
+    public sealed class ShippingZoneRateShippingRatePriceTierPriceArgs : global::Pulumi.ResourceArgs
     {
         [Input("centAmount", required: true)]
         public Input<int> CentAmount { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Commercetools.Inputs
         public ShippingZoneRateShippingRatePriceTierPriceArgs()
         {
         }
+        public static new ShippingZoneRateShippingRatePriceTierPriceArgs Empty => new ShippingZoneRateShippingRatePriceTierPriceArgs();
     }
 }

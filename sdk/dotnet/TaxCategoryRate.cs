@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/taxCategoryRate:TaxCategoryRate")]
-    public partial class TaxCategoryRate : Pulumi.CustomResource
+    public partial class TaxCategoryRate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
@@ -90,7 +90,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class TaxCategoryRateArgs : Pulumi.ResourceArgs
+    public sealed class TaxCategoryRateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
@@ -135,9 +135,10 @@ namespace Pulumi.Commercetools
         public TaxCategoryRateArgs()
         {
         }
+        public static new TaxCategoryRateArgs Empty => new TaxCategoryRateArgs();
     }
 
-    public sealed class TaxCategoryRateState : Pulumi.ResourceArgs
+    public sealed class TaxCategoryRateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Number Percentage in the range of [0..1]. The sum of the amounts of all subRates, if there are any
@@ -182,5 +183,6 @@ namespace Pulumi.Commercetools
         public TaxCategoryRateState()
         {
         }
+        public static new TaxCategoryRateState Empty => new TaxCategoryRateState();
     }
 }

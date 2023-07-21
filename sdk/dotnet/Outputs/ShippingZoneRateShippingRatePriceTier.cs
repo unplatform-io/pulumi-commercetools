@@ -14,8 +14,9 @@ namespace Pulumi.Commercetools.Outputs
     public sealed class ShippingZoneRateShippingRatePriceTier
     {
         public readonly int? MinimumCentAmount;
-        public readonly Outputs.ShippingZoneRateShippingRatePriceTierPrice Price;
-        public readonly double? Score;
+        public readonly Outputs.ShippingZoneRateShippingRatePriceTierPrice? Price;
+        public readonly Outputs.ShippingZoneRateShippingRatePriceTierPriceFunction? PriceFunction;
+        public readonly int? Score;
         public readonly string Type;
         public readonly string? Value;
 
@@ -23,9 +24,11 @@ namespace Pulumi.Commercetools.Outputs
         private ShippingZoneRateShippingRatePriceTier(
             int? minimumCentAmount,
 
-            Outputs.ShippingZoneRateShippingRatePriceTierPrice price,
+            Outputs.ShippingZoneRateShippingRatePriceTierPrice? price,
 
-            double? score,
+            Outputs.ShippingZoneRateShippingRatePriceTierPriceFunction? priceFunction,
+
+            int? score,
 
             string type,
 
@@ -33,6 +36,7 @@ namespace Pulumi.Commercetools.Outputs
         {
             MinimumCentAmount = minimumCentAmount;
             Price = price;
+            PriceFunction = priceFunction;
             Score = score;
             Type = type;
             Value = value;

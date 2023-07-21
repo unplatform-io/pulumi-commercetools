@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class Channel extends pulumi.CustomResource {
@@ -32,10 +34,13 @@ export class Channel extends pulumi.CustomResource {
         return obj['__pulumiType'] === Channel.__pulumiType;
     }
 
+    public readonly address!: pulumi.Output<outputs.ChannelAddress | undefined>;
+    public readonly custom!: pulumi.Output<outputs.ChannelCustom | undefined>;
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
     public readonly description!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly geolocation!: pulumi.Output<outputs.ChannelGeolocation | undefined>;
     /**
      * Any arbitrary string key that uniquely identifies this channel within the project
      */
@@ -60,15 +65,18 @@ export class Channel extends pulumi.CustomResource {
      */
     constructor(name: string, args: ChannelArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ChannelArgs | ChannelState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ChannelState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["roles"] = state ? state.roles : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["custom"] = state ? state.custom : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["geolocation"] = state ? state.geolocation : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["roles"] = state ? state.roles : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ChannelArgs | undefined;
             if ((!args || args.key === undefined) && !opts.urn) {
@@ -77,16 +85,17 @@ export class Channel extends pulumi.CustomResource {
             if ((!args || args.roles === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roles'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["roles"] = args ? args.roles : undefined;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["custom"] = args ? args.custom : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["geolocation"] = args ? args.geolocation : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["roles"] = args ? args.roles : undefined;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Channel.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Channel.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -94,10 +103,13 @@ export class Channel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Channel resources.
  */
 export interface ChannelState {
+    address?: pulumi.Input<inputs.ChannelAddress>;
+    custom?: pulumi.Input<inputs.ChannelCustom>;
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
     description?: pulumi.Input<{[key: string]: any}>;
+    geolocation?: pulumi.Input<inputs.ChannelGeolocation>;
     /**
      * Any arbitrary string key that uniquely identifies this channel within the project
      */
@@ -118,10 +130,13 @@ export interface ChannelState {
  * The set of arguments for constructing a Channel resource.
  */
 export interface ChannelArgs {
+    address?: pulumi.Input<inputs.ChannelAddress>;
+    custom?: pulumi.Input<inputs.ChannelCustom>;
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
     description?: pulumi.Input<{[key: string]: any}>;
+    geolocation?: pulumi.Input<inputs.ChannelGeolocation>;
     /**
      * Any arbitrary string key that uniquely identifies this channel within the project
      */

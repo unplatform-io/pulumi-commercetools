@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class CartDiscount extends pulumi.CustomResource {
@@ -91,23 +92,23 @@ export class CartDiscount extends pulumi.CustomResource {
      */
     constructor(name: string, args: CartDiscountArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CartDiscountArgs | CartDiscountState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CartDiscountState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["isActive"] = state ? state.isActive : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["predicate"] = state ? state.predicate : undefined;
-            inputs["requiresDiscountCode"] = state ? state.requiresDiscountCode : undefined;
-            inputs["sortOrder"] = state ? state.sortOrder : undefined;
-            inputs["stackingMode"] = state ? state.stackingMode : undefined;
-            inputs["target"] = state ? state.target : undefined;
-            inputs["validFrom"] = state ? state.validFrom : undefined;
-            inputs["validUntil"] = state ? state.validUntil : undefined;
-            inputs["value"] = state ? state.value : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["isActive"] = state ? state.isActive : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["predicate"] = state ? state.predicate : undefined;
+            resourceInputs["requiresDiscountCode"] = state ? state.requiresDiscountCode : undefined;
+            resourceInputs["sortOrder"] = state ? state.sortOrder : undefined;
+            resourceInputs["stackingMode"] = state ? state.stackingMode : undefined;
+            resourceInputs["target"] = state ? state.target : undefined;
+            resourceInputs["validFrom"] = state ? state.validFrom : undefined;
+            resourceInputs["validUntil"] = state ? state.validUntil : undefined;
+            resourceInputs["value"] = state ? state.value : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as CartDiscountArgs | undefined;
             if ((!args || args.predicate === undefined) && !opts.urn) {
@@ -119,24 +120,22 @@ export class CartDiscount extends pulumi.CustomResource {
             if ((!args || args.value === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["isActive"] = args ? args.isActive : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["predicate"] = args ? args.predicate : undefined;
-            inputs["requiresDiscountCode"] = args ? args.requiresDiscountCode : undefined;
-            inputs["sortOrder"] = args ? args.sortOrder : undefined;
-            inputs["stackingMode"] = args ? args.stackingMode : undefined;
-            inputs["target"] = args ? args.target : undefined;
-            inputs["validFrom"] = args ? args.validFrom : undefined;
-            inputs["validUntil"] = args ? args.validUntil : undefined;
-            inputs["value"] = args ? args.value : undefined;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["isActive"] = args ? args.isActive : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["predicate"] = args ? args.predicate : undefined;
+            resourceInputs["requiresDiscountCode"] = args ? args.requiresDiscountCode : undefined;
+            resourceInputs["sortOrder"] = args ? args.sortOrder : undefined;
+            resourceInputs["stackingMode"] = args ? args.stackingMode : undefined;
+            resourceInputs["target"] = args ? args.target : undefined;
+            resourceInputs["validFrom"] = args ? args.validFrom : undefined;
+            resourceInputs["validUntil"] = args ? args.validUntil : undefined;
+            resourceInputs["value"] = args ? args.value : undefined;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(CartDiscount.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(CartDiscount.__pulumiType, name, resourceInputs, opts);
     }
 }
 

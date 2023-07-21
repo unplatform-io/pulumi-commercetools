@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/shippingZoneRate:ShippingZoneRate")]
-    public partial class ShippingZoneRate : Pulumi.CustomResource
+    public partial class ShippingZoneRate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
@@ -79,7 +79,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class ShippingZoneRateArgs : Pulumi.ResourceArgs
+    public sealed class ShippingZoneRateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
@@ -113,9 +113,10 @@ namespace Pulumi.Commercetools
         public ShippingZoneRateArgs()
         {
         }
+        public static new ShippingZoneRateArgs Empty => new ShippingZoneRateArgs();
     }
 
-    public sealed class ShippingZoneRateState : Pulumi.ResourceArgs
+    public sealed class ShippingZoneRateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The shipping is free if the sum of the (custom) line item prices reaches the freeAbove value
@@ -149,5 +150,6 @@ namespace Pulumi.Commercetools
         public ShippingZoneRateState()
         {
         }
+        public static new ShippingZoneRateState Empty => new ShippingZoneRateState();
     }
 }

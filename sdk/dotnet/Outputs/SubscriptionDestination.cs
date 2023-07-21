@@ -15,14 +15,15 @@ namespace Pulumi.Commercetools.Outputs
     {
         public readonly string? AccessKey;
         public readonly string? AccessSecret;
+        public readonly string? AccountId;
         public readonly string? ConnectionString;
         public readonly string? ProjectId;
         public readonly string? QueueUrl;
-        public readonly string Region;
+        public readonly string? Region;
         public readonly string? Topic;
         public readonly string? TopicArn;
         public readonly string Type;
-        public readonly string Uri;
+        public readonly string? Uri;
 
         [OutputConstructor]
         private SubscriptionDestination(
@@ -30,13 +31,15 @@ namespace Pulumi.Commercetools.Outputs
 
             string? accessSecret,
 
+            string? accountId,
+
             string? connectionString,
 
             string? projectId,
 
             string? queueUrl,
 
-            string region,
+            string? region,
 
             string? topic,
 
@@ -44,10 +47,11 @@ namespace Pulumi.Commercetools.Outputs
 
             string type,
 
-            string uri)
+            string? uri)
         {
             AccessKey = accessKey;
             AccessSecret = accessSecret;
+            AccountId = accountId;
             ConnectionString = connectionString;
             ProjectId = projectId;
             QueueUrl = queueUrl;

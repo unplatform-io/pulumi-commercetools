@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/shippingZone:ShippingZone")]
-    public partial class ShippingZone : Pulumi.CustomResource
+    public partial class ShippingZone : global::Pulumi.CustomResource
     {
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -22,7 +22,7 @@ namespace Pulumi.Commercetools
         public Output<string?> Key { get; private set; } = null!;
 
         /// <summary>
-        /// [Location](https://docs.commercetools.com/api/projects/zones#location)
+        /// [Location](https://docs.commercetoolstools.pi/projects/zones#location)
         /// </summary>
         [Output("locations")]
         public Output<ImmutableArray<Outputs.ShippingZoneLocation>> Locations { get; private set; } = null!;
@@ -77,7 +77,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class ShippingZoneArgs : Pulumi.ResourceArgs
+    public sealed class ShippingZoneArgs : global::Pulumi.ResourceArgs
     {
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -92,7 +92,7 @@ namespace Pulumi.Commercetools
         private InputList<Inputs.ShippingZoneLocationArgs>? _locations;
 
         /// <summary>
-        /// [Location](https://docs.commercetools.com/api/projects/zones#location)
+        /// [Location](https://docs.commercetoolstools.pi/projects/zones#location)
         /// </summary>
         public InputList<Inputs.ShippingZoneLocationArgs> Locations
         {
@@ -106,9 +106,10 @@ namespace Pulumi.Commercetools
         public ShippingZoneArgs()
         {
         }
+        public static new ShippingZoneArgs Empty => new ShippingZoneArgs();
     }
 
-    public sealed class ShippingZoneState : Pulumi.ResourceArgs
+    public sealed class ShippingZoneState : global::Pulumi.ResourceArgs
     {
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -123,7 +124,7 @@ namespace Pulumi.Commercetools
         private InputList<Inputs.ShippingZoneLocationGetArgs>? _locations;
 
         /// <summary>
-        /// [Location](https://docs.commercetools.com/api/projects/zones#location)
+        /// [Location](https://docs.commercetoolstools.pi/projects/zones#location)
         /// </summary>
         public InputList<Inputs.ShippingZoneLocationGetArgs> Locations
         {
@@ -140,5 +141,6 @@ namespace Pulumi.Commercetools
         public ShippingZoneState()
         {
         }
+        public static new ShippingZoneState Empty => new ShippingZoneState();
     }
 }

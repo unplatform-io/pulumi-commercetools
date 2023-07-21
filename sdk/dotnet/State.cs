@@ -10,48 +10,38 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/state:State")]
-    public partial class State : Pulumi.CustomResource
+    public partial class State : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// Description of the State as localized string.
         /// </summary>
         [Output("description")]
-        public Output<ImmutableDictionary<string, object>?> Description { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Description { get; private set; } = null!;
 
         /// <summary>
         /// A state can be declared as an initial state for any state machine. When a workflow starts, this first state must be an
         /// initial state
         /// </summary>
         [Output("initial")]
-        public Output<bool?> Initial { get; private set; } = null!;
+        public Output<bool> Initial { get; private set; } = null!;
 
         /// <summary>
-        /// A unique identifier for the state
+        /// Timestamp of the last Terraform update of the order.
         /// </summary>
         [Output("key")]
-        public Output<string> Key { get; private set; } = null!;
+        public Output<string?> Key { get; private set; } = null!;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// Name of the State as localized string.
         /// </summary>
         [Output("name")]
-        public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+        /// [State Role](https://docs.commercetools.com/api/projects/states#staterole)
         /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<string>> Roles { get; private set; } = null!;
-
-        /// <summary>
-        /// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
-        /// example: Initial -&gt; Shipped). When performing a transitionState update action and transitions is set, the currently
-        /// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
-        /// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
-        /// performing a transitionState update action, any other state of the same type can be transitioned to
-        /// </summary>
-        [Output("transitions")]
-        public Output<ImmutableArray<string>> Transitions { get; private set; } = null!;
 
         /// <summary>
         /// [StateType](https://docs.commercetools.com/api/projects/states#statetype)
@@ -106,17 +96,17 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class StateArgs : Pulumi.ResourceArgs
+    public sealed class StateArgs : global::Pulumi.ResourceArgs
     {
         [Input("description")]
-        private InputMap<object>? _description;
+        private InputMap<string>? _description;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// Description of the State as localized string.
         /// </summary>
-        public InputMap<object> Description
+        public InputMap<string> Description
         {
-            get => _description ?? (_description = new InputMap<object>());
+            get => _description ?? (_description = new InputMap<string>());
             set => _description = value;
         }
 
@@ -128,20 +118,20 @@ namespace Pulumi.Commercetools
         public Input<bool>? Initial { get; set; }
 
         /// <summary>
-        /// A unique identifier for the state
+        /// Timestamp of the last Terraform update of the order.
         /// </summary>
-        [Input("key", required: true)]
-        public Input<string> Key { get; set; } = null!;
+        [Input("key")]
+        public Input<string>? Key { get; set; }
 
         [Input("name")]
-        private InputMap<object>? _name;
+        private InputMap<string>? _name;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// Name of the State as localized string.
         /// </summary>
-        public InputMap<object> Name
+        public InputMap<string> Name
         {
-            get => _name ?? (_name = new InputMap<object>());
+            get => _name ?? (_name = new InputMap<string>());
             set => _name = value;
         }
 
@@ -149,28 +139,12 @@ namespace Pulumi.Commercetools
         private InputList<string>? _roles;
 
         /// <summary>
-        /// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+        /// [State Role](https://docs.commercetools.com/api/projects/states#staterole)
         /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());
             set => _roles = value;
-        }
-
-        [Input("transitions")]
-        private InputList<string>? _transitions;
-
-        /// <summary>
-        /// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
-        /// example: Initial -&gt; Shipped). When performing a transitionState update action and transitions is set, the currently
-        /// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
-        /// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
-        /// performing a transitionState update action, any other state of the same type can be transitioned to
-        /// </summary>
-        public InputList<string> Transitions
-        {
-            get => _transitions ?? (_transitions = new InputList<string>());
-            set => _transitions = value;
         }
 
         /// <summary>
@@ -182,19 +156,20 @@ namespace Pulumi.Commercetools
         public StateArgs()
         {
         }
+        public static new StateArgs Empty => new StateArgs();
     }
 
-    public sealed class StateState : Pulumi.ResourceArgs
+    public sealed class StateState : global::Pulumi.ResourceArgs
     {
         [Input("description")]
-        private InputMap<object>? _description;
+        private InputMap<string>? _description;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// Description of the State as localized string.
         /// </summary>
-        public InputMap<object> Description
+        public InputMap<string> Description
         {
-            get => _description ?? (_description = new InputMap<object>());
+            get => _description ?? (_description = new InputMap<string>());
             set => _description = value;
         }
 
@@ -206,20 +181,20 @@ namespace Pulumi.Commercetools
         public Input<bool>? Initial { get; set; }
 
         /// <summary>
-        /// A unique identifier for the state
+        /// Timestamp of the last Terraform update of the order.
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         [Input("name")]
-        private InputMap<object>? _name;
+        private InputMap<string>? _name;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// Name of the State as localized string.
         /// </summary>
-        public InputMap<object> Name
+        public InputMap<string> Name
         {
-            get => _name ?? (_name = new InputMap<object>());
+            get => _name ?? (_name = new InputMap<string>());
             set => _name = value;
         }
 
@@ -227,28 +202,12 @@ namespace Pulumi.Commercetools
         private InputList<string>? _roles;
 
         /// <summary>
-        /// Array of [State Role](https://docs.commercetools.com/api/projects/states#staterole)
+        /// [State Role](https://docs.commercetools.com/api/projects/states#staterole)
         /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());
             set => _roles = value;
-        }
-
-        [Input("transitions")]
-        private InputList<string>? _transitions;
-
-        /// <summary>
-        /// Transitions are a way to describe possible transformations of the current state to other states of the same type (for
-        /// example: Initial -&gt; Shipped). When performing a transitionState update action and transitions is set, the currently
-        /// referenced state must have a transition to the new state. If transitions is an empty list, it means the current state is
-        /// a final state and no further transitions are allowed. If transitions is not set, the validation is turned off. When
-        /// performing a transitionState update action, any other state of the same type can be transitioned to
-        /// </summary>
-        public InputList<string> Transitions
-        {
-            get => _transitions ?? (_transitions = new InputList<string>());
-            set => _transitions = value;
         }
 
         /// <summary>
@@ -263,5 +222,6 @@ namespace Pulumi.Commercetools
         public StateState()
         {
         }
+        public static new StateState Empty => new StateState();
     }
 }

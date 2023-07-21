@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/discountCode:DiscountCode")]
-    public partial class DiscountCode : Pulumi.CustomResource
+    public partial class DiscountCode : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The referenced matching cart discounts can be applied to the cart once the DiscountCode is added
@@ -24,6 +24,9 @@ namespace Pulumi.Commercetools
         /// </summary>
         [Output("code")]
         public Output<string> Code { get; private set; } = null!;
+
+        [Output("custom")]
+        public Output<Outputs.DiscountCodeCustom?> Custom { get; private set; } = null!;
 
         /// <summary>
         /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
@@ -123,7 +126,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class DiscountCodeArgs : Pulumi.ResourceArgs
+    public sealed class DiscountCodeArgs : global::Pulumi.ResourceArgs
     {
         [Input("cartDiscounts", required: true)]
         private InputList<string>? _cartDiscounts;
@@ -143,6 +146,9 @@ namespace Pulumi.Commercetools
         /// </summary>
         [Input("code", required: true)]
         public Input<string> Code { get; set; } = null!;
+
+        [Input("custom")]
+        public Input<Inputs.DiscountCodeCustomArgs>? Custom { get; set; }
 
         [Input("description")]
         private InputMap<object>? _description;
@@ -216,9 +222,10 @@ namespace Pulumi.Commercetools
         public DiscountCodeArgs()
         {
         }
+        public static new DiscountCodeArgs Empty => new DiscountCodeArgs();
     }
 
-    public sealed class DiscountCodeState : Pulumi.ResourceArgs
+    public sealed class DiscountCodeState : global::Pulumi.ResourceArgs
     {
         [Input("cartDiscounts")]
         private InputList<string>? _cartDiscounts;
@@ -238,6 +245,9 @@ namespace Pulumi.Commercetools
         /// </summary>
         [Input("code")]
         public Input<string>? Code { get; set; }
+
+        [Input("custom")]
+        public Input<Inputs.DiscountCodeCustomGetArgs>? Custom { get; set; }
 
         [Input("description")]
         private InputMap<object>? _description;
@@ -314,5 +324,6 @@ namespace Pulumi.Commercetools
         public DiscountCodeState()
         {
         }
+        public static new DiscountCodeState Empty => new DiscountCodeState();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/productType:ProductType")]
-    public partial class ProductType : Pulumi.CustomResource
+    public partial class ProductType : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
@@ -77,7 +77,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class ProductTypeArgs : Pulumi.ResourceArgs
+    public sealed class ProductTypeArgs : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
         private InputList<Inputs.ProductTypeAttributeArgs>? _attributes;
@@ -106,9 +106,10 @@ namespace Pulumi.Commercetools
         public ProductTypeArgs()
         {
         }
+        public static new ProductTypeArgs Empty => new ProductTypeArgs();
     }
 
-    public sealed class ProductTypeState : Pulumi.ResourceArgs
+    public sealed class ProductTypeState : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
         private InputList<Inputs.ProductTypeAttributeGetArgs>? _attributes;
@@ -140,5 +141,6 @@ namespace Pulumi.Commercetools
         public ProductTypeState()
         {
         }
+        public static new ProductTypeState Empty => new ProductTypeState();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/customObject:CustomObject")]
-    public partial class CustomObject : Pulumi.CustomResource
+    public partial class CustomObject : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
@@ -77,7 +77,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class CustomObjectArgs : Pulumi.ResourceArgs
+    public sealed class CustomObjectArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
@@ -100,9 +100,10 @@ namespace Pulumi.Commercetools
         public CustomObjectArgs()
         {
         }
+        public static new CustomObjectArgs Empty => new CustomObjectArgs();
     }
 
-    public sealed class CustomObjectState : Pulumi.ResourceArgs
+    public sealed class CustomObjectState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A namespace to group custom objects matching the pattern '[-_~.a-zA-Z0-9]+'
@@ -128,5 +129,6 @@ namespace Pulumi.Commercetools
         public CustomObjectState()
         {
         }
+        public static new CustomObjectState Empty => new CustomObjectState();
     }
 }
