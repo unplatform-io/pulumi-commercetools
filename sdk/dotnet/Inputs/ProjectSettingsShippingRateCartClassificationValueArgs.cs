@@ -10,21 +10,22 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class ProjectSettingsShippingRateCartClassificationValueArgs : Pulumi.ResourceArgs
+    public sealed class ProjectSettingsShippingRateCartClassificationValueArgs : global::Pulumi.ResourceArgs
     {
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         [Input("label")]
-        private InputMap<object>? _label;
-        public InputMap<object> Label
+        private InputMap<string>? _label;
+        public InputMap<string> Label
         {
-            get => _label ?? (_label = new InputMap<object>());
+            get => _label ?? (_label = new InputMap<string>());
             set => _label = value;
         }
 
         public ProjectSettingsShippingRateCartClassificationValueArgs()
         {
         }
+        public static new ProjectSettingsShippingRateCartClassificationValueArgs Empty => new ProjectSettingsShippingRateCartClassificationValueArgs();
     }
 }

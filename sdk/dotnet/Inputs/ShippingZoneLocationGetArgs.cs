@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class ShippingZoneLocationGetArgs : Pulumi.ResourceArgs
+    public sealed class ShippingZoneLocationGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("country", required: true)]
         public Input<string> Country { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Commercetools.Inputs
         public ShippingZoneLocationGetArgs()
         {
         }
+        public static new ShippingZoneLocationGetArgs Empty => new ShippingZoneLocationGetArgs();
     }
 }

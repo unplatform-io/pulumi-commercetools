@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/cartDiscount:CartDiscount")]
-    public partial class CartDiscount : Pulumi.CustomResource
+    public partial class CartDiscount : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
@@ -130,7 +130,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class CartDiscountArgs : Pulumi.ResourceArgs
+    public sealed class CartDiscountArgs : global::Pulumi.ResourceArgs
     {
         [Input("description")]
         private InputMap<object>? _description;
@@ -218,9 +218,10 @@ namespace Pulumi.Commercetools
         public CartDiscountArgs()
         {
         }
+        public static new CartDiscountArgs Empty => new CartDiscountArgs();
     }
 
-    public sealed class CartDiscountState : Pulumi.ResourceArgs
+    public sealed class CartDiscountState : global::Pulumi.ResourceArgs
     {
         [Input("description")]
         private InputMap<object>? _description;
@@ -311,5 +312,6 @@ namespace Pulumi.Commercetools
         public CartDiscountState()
         {
         }
+        public static new CartDiscountState Empty => new CartDiscountState();
     }
 }

@@ -8,9 +8,13 @@ import typing
 from .api_client import *
 from .api_extension import *
 from .cart_discount import *
+from .category import *
 from .channel import *
 from .custom_object import *
+from .customer_group import *
 from .discount_code import *
+from .get_type import *
+from .product_discount import *
 from .product_type import *
 from .project_settings import *
 from .provider import *
@@ -18,6 +22,7 @@ from .shipping_method import *
 from .shipping_zone import *
 from .shipping_zone_rate import *
 from .state import *
+from .state_transitions import *
 from .store import *
 from .subscription import *
 from .tax_category import *
@@ -28,7 +33,8 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import pulumi_commercetools.config as config
+    import pulumi_commercetools.config as __config
+    config = __config
 else:
     config = _utilities.lazy_import('pulumi_commercetools.config')
 
@@ -61,6 +67,14 @@ _utilities.register(
  },
  {
   "pkg": "commercetools",
+  "mod": "index/category",
+  "fqn": "pulumi_commercetools",
+  "classes": {
+   "commercetools:index/category:Category": "Category"
+  }
+ },
+ {
+  "pkg": "commercetools",
   "mod": "index/channel",
   "fqn": "pulumi_commercetools",
   "classes": {
@@ -77,10 +91,26 @@ _utilities.register(
  },
  {
   "pkg": "commercetools",
+  "mod": "index/customerGroup",
+  "fqn": "pulumi_commercetools",
+  "classes": {
+   "commercetools:index/customerGroup:CustomerGroup": "CustomerGroup"
+  }
+ },
+ {
+  "pkg": "commercetools",
   "mod": "index/discountCode",
   "fqn": "pulumi_commercetools",
   "classes": {
    "commercetools:index/discountCode:DiscountCode": "DiscountCode"
+  }
+ },
+ {
+  "pkg": "commercetools",
+  "mod": "index/productDiscount",
+  "fqn": "pulumi_commercetools",
+  "classes": {
+   "commercetools:index/productDiscount:ProductDiscount": "ProductDiscount"
   }
  },
  {
@@ -129,6 +159,14 @@ _utilities.register(
   "fqn": "pulumi_commercetools",
   "classes": {
    "commercetools:index/state:State": "State"
+  }
+ },
+ {
+  "pkg": "commercetools",
+  "mod": "index/stateTransitions",
+  "fqn": "pulumi_commercetools",
+  "classes": {
+   "commercetools:index/stateTransitions:StateTransitions": "StateTransitions"
   }
  },
  {

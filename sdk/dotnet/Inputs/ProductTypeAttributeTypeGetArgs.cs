@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class ProductTypeAttributeTypeGetArgs : Pulumi.ResourceArgs
+    public sealed class ProductTypeAttributeTypeGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("ElementType2")]
         public Input<Inputs.ProductTypeAttributeTypeElementType2GetArgs>? ElementType2 { get; set; }
@@ -33,15 +33,16 @@ namespace Pulumi.Commercetools.Inputs
         public Input<string>? TypeReference { get; set; }
 
         [Input("values")]
-        private InputMap<object>? _values;
-        public InputMap<object> Values
+        private InputList<Inputs.ProductTypeAttributeTypeValueGetArgs>? _values;
+        public InputList<Inputs.ProductTypeAttributeTypeValueGetArgs> Values
         {
-            get => _values ?? (_values = new InputMap<object>());
+            get => _values ?? (_values = new InputList<Inputs.ProductTypeAttributeTypeValueGetArgs>());
             set => _values = value;
         }
 
         public ProductTypeAttributeTypeGetArgs()
         {
         }
+        public static new ProductTypeAttributeTypeGetArgs Empty => new ProductTypeAttributeTypeGetArgs();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/apiExtension:ApiExtension")]
-    public partial class ApiExtension : Pulumi.CustomResource
+    public partial class ApiExtension : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
@@ -85,7 +85,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class ApiExtensionArgs : Pulumi.ResourceArgs
+    public sealed class ApiExtensionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
@@ -122,9 +122,10 @@ namespace Pulumi.Commercetools
         public ApiExtensionArgs()
         {
         }
+        public static new ApiExtensionArgs Empty => new ApiExtensionArgs();
     }
 
-    public sealed class ApiExtensionState : Pulumi.ResourceArgs
+    public sealed class ApiExtensionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [Destination](https://docs.commercetools.com/api/projects/api-extensions#destination) Details where the extension can be
@@ -164,5 +165,6 @@ namespace Pulumi.Commercetools
         public ApiExtensionState()
         {
         }
+        public static new ApiExtensionState Empty => new ApiExtensionState();
     }
 }

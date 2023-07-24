@@ -10,16 +10,19 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class ShippingZoneRateShippingRatePriceTierGetArgs : Pulumi.ResourceArgs
+    public sealed class ShippingZoneRateShippingRatePriceTierGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("minimumCentAmount")]
         public Input<int>? MinimumCentAmount { get; set; }
 
-        [Input("price", required: true)]
-        public Input<Inputs.ShippingZoneRateShippingRatePriceTierPriceGetArgs> Price { get; set; } = null!;
+        [Input("price")]
+        public Input<Inputs.ShippingZoneRateShippingRatePriceTierPriceGetArgs>? Price { get; set; }
+
+        [Input("priceFunction")]
+        public Input<Inputs.ShippingZoneRateShippingRatePriceTierPriceFunctionGetArgs>? PriceFunction { get; set; }
 
         [Input("score")]
-        public Input<double>? Score { get; set; }
+        public Input<int>? Score { get; set; }
 
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -30,5 +33,6 @@ namespace Pulumi.Commercetools.Inputs
         public ShippingZoneRateShippingRatePriceTierGetArgs()
         {
         }
+        public static new ShippingZoneRateShippingRatePriceTierGetArgs Empty => new ShippingZoneRateShippingRatePriceTierGetArgs();
     }
 }

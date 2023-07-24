@@ -13,12 +13,12 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class SubscriptionMessage
     {
-        public readonly string? ResourceTypeId;
+        public readonly string ResourceTypeId;
         public readonly ImmutableArray<string> Types;
 
         [OutputConstructor]
         private SubscriptionMessage(
-            string? resourceTypeId,
+            string resourceTypeId,
 
             ImmutableArray<string> types)
         {

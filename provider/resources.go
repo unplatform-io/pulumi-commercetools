@@ -15,17 +15,19 @@
 package commercetools
 
 import (
+	"context"
+	// embed is indirectly required
+	_ "embed"
 	"fmt"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/labd/terraform-provider-commercetools/commercetools"
+	provShim "github.com/labd/terraform-provider-commercetools/shim"
+	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/unplatform-io/pulumi-commercetools/provider/pkg/version"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"path/filepath"
-	"unicode"
+
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/unplatform-io/pulumi-commercetools/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -36,23 +38,8 @@ const (
 	mainMod = "index" // the y module
 )
 
-// makeMember manufactures a type token for the package and the given module and type.
-func makeMember(mod string, mem string) tokens.ModuleMember {
-	return tokens.ModuleMember(mainPkg + ":" + mod + ":" + mem)
-}
-
-// makeType manufactures a type token for the package and the given module and type.
-func makeType(mod string, typ string) tokens.Type {
-	return tokens.Type(makeMember(mod, typ))
-}
-
-// makeResource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the resource's
-// first character.
-func makeResource(mod string, res string) tokens.Type {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeType(mod+"/"+fn, res)
-}
+//go:embed cmd/pulumi-resource-commercetools/bridge-metadata.json
+var bridgeMetadata []byte
 
 // preConfigureCallback is called before the providerConfigure function of the underlying provider.
 // It should validate that the provider can be configured, and provide actionable errors in the case
@@ -65,19 +52,27 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(commercetools.Provider().(*schema.Provider))
-
+	// p := shimv2.NewProvider(commercetools.New(version.Version)())
+	p := pf.MuxShimWithPF(context.Background(),
+		shimv2.NewProvider(provShim.SDKProvider()),
+		provShim.PFProvider(),
+	)
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "commercetools",
-		Description: "A Pulumi package for creating and managing commercetools cloud resources.",
-		Keywords:    []string{"pulumi", "commercetools"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/unplatform-io/pulumi-commercetools",
-		Version:     version.Version,
-		Config:      map[string]*tfbridge.SchemaInfo{
+		P:                 p,
+		Name:              "commercetools",
+		DisplayName:       "commercetools",
+		Publisher:         "Aviva Solutions",
+		LogoURL:           "",
+		PluginDownloadURL: "",
+		Description:       "A Pulumi package for creating and managing commercetools cloud resources.",
+		Keywords:          []string{"pulumi", "commercetools"},
+		License:           "Apache-2.0",
+		Homepage:          "https://pulumi.io",
+		Repository:        "https://github.com/unplatform-io/pulumi-commercetools",
+		GitHubOrg:         "unplatform-io",
+		Version:           version.Version,
+		Config:            map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -89,15 +84,18 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"commercetools_subscription":  {Tok: makeResource(mainMod, "Subscription")},
-			"commercetools_api_client":    {Tok: makeResource(mainMod, "ApiClient")},
-			"commercetools_api_extension": {Tok: makeResource(mainMod, "ApiExtension")},
-			"commercetools_cart_discount": {Tok: makeResource(mainMod, "CartDiscount")},
-			"commercetools_channel":       {Tok: makeResource(mainMod, "Channel")},
-			"commercetools_custom_object": {Tok: makeResource(mainMod, "CustomObject")},
-			"commercetools_discount_code": {Tok: makeResource(mainMod, "DiscountCode")},
+			"commercetools_subscription":     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Subscription")},
+			"commercetools_api_client":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ApiClient")},
+			"commercetools_api_extension":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ApiExtension")},
+			"commercetools_cart_discount":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CartDiscount")},
+			"commercetools_category":         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Category")},
+			"commercetools_channel":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Channel")},
+			"commercetools_custom_object":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CustomObject")},
+			"commercetools_customer_group":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CustomerGroup")},
+			"commercetools_discount_code":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "DiscountCode")},
+			"commercetools_product_discount": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ProductDiscount")},
 			"commercetools_product_type": {
-				Tok: makeResource(mainMod, "ProductType"),
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ProductType"),
 				// Rename ElementType, because a property with that name already exists in the GO SDK
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"attribute": {
@@ -117,17 +115,18 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"commercetools_project_settings":   {Tok: makeResource(mainMod, "ProjectSettings")},
-			"commercetools_shipping_method":    {Tok: makeResource(mainMod, "ShippingMethod")},
-			"commercetools_shipping_zone":      {Tok: makeResource(mainMod, "ShippingZone")},
-			"commercetools_shipping_zone_rate": {Tok: makeResource(mainMod, "ShippingZoneRate")},
-			"commercetools_state":              {Tok: makeResource(mainMod, "State")},
-			"commercetools_store":              {Tok: makeResource(mainMod, "Store")},
-			"commercetools_tax_category":       {Tok: makeResource(mainMod, "TaxCategory")},
-			"commercetools_tax_category_rate":  {Tok: makeResource(mainMod, "TaxCategoryRate")},
+			"commercetools_project_settings":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ProjectSettings")},
+			"commercetools_shipping_method":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ShippingMethod")},
+			"commercetools_shipping_zone":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ShippingZone")},
+			"commercetools_shipping_zone_rate": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ShippingZoneRate")},
+			"commercetools_state":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "State")},
+			"commercetools_state_transitions":  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "StateTransitions")},
+			"commercetools_store":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Store")},
+			"commercetools_tax_category":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "TaxCategory")},
+			"commercetools_tax_category_rate":  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "TaxCategoryRate")},
 			"commercetools_type": {
-				Tok: makeResource(mainMod, "Type"),
-				// Rename ElementType, because a property with that name already exists in the GO SDK
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Type"),
+				// // Rename ElementType, because a property with that name already exists in the GO SDK
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"field": {
 						Elem: &tfbridge.SchemaInfo{
@@ -163,7 +162,9 @@ func Provider() tfbridge.ProviderInfo {
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
 			// "aws_ami": {Tok: makeDataSource(mainMod, "getAmi")},
+			"commercetools_type": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getType")},
 		},
+		MetadataInfo: tfbridge.NewProviderMetadata(bridgeMetadata),
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
@@ -200,7 +201,6 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 	}
-
 	prov.SetAutonaming(255, "-")
 
 	return prov

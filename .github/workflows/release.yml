@@ -15,39 +15,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: pulumi/scripts
-    - name: Unshallow clone for tags
-      run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v4
       with:
-        go-version: 1.16.x
+        go-version: 1.20.5
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.1.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1.0.1
+      uses: pulumi/actions@v4
     - name: Setup Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{matrix.nodeversion}}
         registry-url: https://registry.npmjs.org
     - name: Setup DotNet
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{matrix.dotnetverson}}
+        dotnet-version: ${{matrix.dotnetversion}}
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{matrix.pythonversion}}
     - name: Download provider + tfgen binaries
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: ${{ env.PROVIDER }}-provider.tar.gz
         path: ${{ github.workspace }}/bin
@@ -60,12 +60,12 @@ jobs:
     - name: Build SDK
       run: make build_${{ matrix.language }}
     - name: Check worktree clean
-      run: ./ci-scripts/ci/check-worktree-is-clean
+      run: ${{ github.workspace }}/ci-scripts/ci/check-worktree-is-clean
     - name: Compress SDK folder
       run: tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }}
         .
     - name: Upload artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.language  }}-sdk.tar.gz
         path: ${{ github.workspace}}/sdk/${{ matrix.language }}.tar.gz
@@ -73,41 +73,41 @@ jobs:
       fail-fast: true
       matrix:
         dotnetversion:
-        - 3.1.301
+        - 6
         goversion:
-        - 1.16.x
+        - 1.20.5
         language:
         - nodejs
         - python
         - dotnet
         - go
         nodeversion:
-        - 13.x
+        - 18.x
         pythonversion:
-        - "3.7"
+        - "3.11.4"
   prerequisites:
     name: prerequisites
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: pulumi/scripts
-    - name: Unshallow clone for tags
-      run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v4
       with:
-        go-version: 1.16.x
+        go-version: 1.20.5
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.1.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1.0.1
+      uses: pulumi/actions@v4
     - name: Build tfgen & provider binaries
       run: make provider
     - name: Tar provider binaries
@@ -115,7 +115,7 @@ jobs:
         }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER
         }}
     - name: Upload artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.PROVIDER }}-provider.tar.gz
         path: ${{ github.workspace }}/bin/provider.tar.gz
@@ -127,24 +127,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: pulumi/scripts
     - name: Unshallow clone for tags
-      run: git fetch --prune --unshallow --tags
-    - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/checkout@v3
       with:
-        go-version: 1.16.x
+        fetch-depth: 0
+    - name: Install Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: 1.20.5
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.1.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1.0.1
+      uses: pulumi/actions@v4
     - name: Run golangci
       run: make lint_provider
     strategy:
@@ -154,9 +156,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: pulumi/scripts
@@ -165,9 +169,9 @@ jobs:
       with:
         repo: pulumi/pulumictl
     - name: Setup Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v4
       with:
-        go-version: 1.16.x
+        go-version: 1.20.5
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v2
       with:
@@ -179,24 +183,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
     - name: Checkout Scripts Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: ci-scripts
         repository: pulumi/scripts
-    - name: Unshallow clone for tags
-      run: git fetch --prune --unshallow --tags
     - name: Install Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v4
       with:
-        go-version: 1.16.x
+        go-version: 1.20.5
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.1.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
-      uses: pulumi/action-install-pulumi-cli@v1.0.1
+      uses: pulumi/actions@v4
     - name: Setup Node
       uses: actions/setup-node@v1
       with:
@@ -207,7 +211,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v2
     - name: Download Python SDK
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: python-sdk.tar.gz
         path: ${{ github.workspace}}/sdk
@@ -216,14 +220,14 @@ jobs:
     - name: Install Twine
       run: python -m pip install pip twine
     - name: Download NodeJS SDK
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: nodejs-sdk.tar.gz
         path: ${{ github.workspace}}/sdk
     - name: Unzip NodeJS SDK
       run: tar -zxf ${{ github.workspace}}/sdk/nodejs.tar.gz -C ${{ github.workspace}}/sdk/nodejs
     - name: Download DotNet SDK
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: dotnet-sdk.tar.gz
         path: ${{ github.workspace}}/sdk

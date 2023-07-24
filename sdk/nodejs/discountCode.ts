@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class DiscountCode extends pulumi.CustomResource {
@@ -41,6 +43,7 @@ export class DiscountCode extends pulumi.CustomResource {
      * cart
      */
     public readonly code!: pulumi.Output<string>;
+    public readonly custom!: pulumi.Output<outputs.DiscountCodeCustom | undefined>;
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
@@ -85,22 +88,23 @@ export class DiscountCode extends pulumi.CustomResource {
      */
     constructor(name: string, args: DiscountCodeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DiscountCodeArgs | DiscountCodeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DiscountCodeState | undefined;
-            inputs["cartDiscounts"] = state ? state.cartDiscounts : undefined;
-            inputs["code"] = state ? state.code : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["groups"] = state ? state.groups : undefined;
-            inputs["isActive"] = state ? state.isActive : undefined;
-            inputs["maxApplications"] = state ? state.maxApplications : undefined;
-            inputs["maxApplicationsPerCustomer"] = state ? state.maxApplicationsPerCustomer : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["predicate"] = state ? state.predicate : undefined;
-            inputs["validFrom"] = state ? state.validFrom : undefined;
-            inputs["validUntil"] = state ? state.validUntil : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["cartDiscounts"] = state ? state.cartDiscounts : undefined;
+            resourceInputs["code"] = state ? state.code : undefined;
+            resourceInputs["custom"] = state ? state.custom : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["groups"] = state ? state.groups : undefined;
+            resourceInputs["isActive"] = state ? state.isActive : undefined;
+            resourceInputs["maxApplications"] = state ? state.maxApplications : undefined;
+            resourceInputs["maxApplicationsPerCustomer"] = state ? state.maxApplicationsPerCustomer : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["predicate"] = state ? state.predicate : undefined;
+            resourceInputs["validFrom"] = state ? state.validFrom : undefined;
+            resourceInputs["validUntil"] = state ? state.validUntil : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as DiscountCodeArgs | undefined;
             if ((!args || args.cartDiscounts === undefined) && !opts.urn) {
@@ -109,23 +113,22 @@ export class DiscountCode extends pulumi.CustomResource {
             if ((!args || args.code === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'code'");
             }
-            inputs["cartDiscounts"] = args ? args.cartDiscounts : undefined;
-            inputs["code"] = args ? args.code : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["groups"] = args ? args.groups : undefined;
-            inputs["isActive"] = args ? args.isActive : undefined;
-            inputs["maxApplications"] = args ? args.maxApplications : undefined;
-            inputs["maxApplicationsPerCustomer"] = args ? args.maxApplicationsPerCustomer : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["predicate"] = args ? args.predicate : undefined;
-            inputs["validFrom"] = args ? args.validFrom : undefined;
-            inputs["validUntil"] = args ? args.validUntil : undefined;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["cartDiscounts"] = args ? args.cartDiscounts : undefined;
+            resourceInputs["code"] = args ? args.code : undefined;
+            resourceInputs["custom"] = args ? args.custom : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["groups"] = args ? args.groups : undefined;
+            resourceInputs["isActive"] = args ? args.isActive : undefined;
+            resourceInputs["maxApplications"] = args ? args.maxApplications : undefined;
+            resourceInputs["maxApplicationsPerCustomer"] = args ? args.maxApplicationsPerCustomer : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["predicate"] = args ? args.predicate : undefined;
+            resourceInputs["validFrom"] = args ? args.validFrom : undefined;
+            resourceInputs["validUntil"] = args ? args.validUntil : undefined;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DiscountCode.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DiscountCode.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -142,6 +145,7 @@ export interface DiscountCodeState {
      * cart
      */
     code?: pulumi.Input<string>;
+    custom?: pulumi.Input<inputs.DiscountCodeCustom>;
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
@@ -191,6 +195,7 @@ export interface DiscountCodeArgs {
      * cart
      */
     code: pulumi.Input<string>;
+    custom?: pulumi.Input<inputs.DiscountCodeCustom>;
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */

@@ -10,12 +10,12 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class SubscriptionMessageGetArgs : Pulumi.ResourceArgs
+    public sealed class SubscriptionMessageGetArgs : global::Pulumi.ResourceArgs
     {
-        [Input("resourceTypeId")]
-        public Input<string>? ResourceTypeId { get; set; }
+        [Input("resourceTypeId", required: true)]
+        public Input<string> ResourceTypeId { get; set; } = null!;
 
-        [Input("types")]
+        [Input("types", required: true)]
         private InputList<string>? _types;
         public InputList<string> Types
         {
@@ -26,5 +26,6 @@ namespace Pulumi.Commercetools.Inputs
         public SubscriptionMessageGetArgs()
         {
         }
+        public static new SubscriptionMessageGetArgs Empty => new SubscriptionMessageGetArgs();
     }
 }

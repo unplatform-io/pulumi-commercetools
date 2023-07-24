@@ -17,7 +17,7 @@ namespace Pulumi.Commercetools.Outputs
         public readonly string Name;
         public readonly string? ReferenceTypeId;
         public readonly string? TypeReference;
-        public readonly ImmutableDictionary<string, object>? Values;
+        public readonly ImmutableArray<Outputs.ProductTypeAttributeTypeElementType2Value> Values;
 
         [OutputConstructor]
         private ProductTypeAttributeTypeElementType2(
@@ -29,7 +29,7 @@ namespace Pulumi.Commercetools.Outputs
 
             string? typeReference,
 
-            ImmutableDictionary<string, object>? values)
+            ImmutableArray<Outputs.ProductTypeAttributeTypeElementType2Value> values)
         {
             LocalizedValues = localizedValues;
             Name = name;

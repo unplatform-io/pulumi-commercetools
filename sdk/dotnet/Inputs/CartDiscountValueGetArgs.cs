@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class CartDiscountValueGetArgs : Pulumi.ResourceArgs
+    public sealed class CartDiscountValueGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("distributionChannelId")]
         public Input<string>? DistributionChannelId { get; set; }
@@ -41,5 +41,6 @@ namespace Pulumi.Commercetools.Inputs
         public CartDiscountValueGetArgs()
         {
         }
+        public static new CartDiscountValueGetArgs Empty => new CartDiscountValueGetArgs();
     }
 }

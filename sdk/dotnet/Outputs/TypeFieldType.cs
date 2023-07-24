@@ -17,7 +17,7 @@ namespace Pulumi.Commercetools.Outputs
         public readonly ImmutableArray<Outputs.TypeFieldTypeLocalizedValue> LocalizedValues;
         public readonly string Name;
         public readonly string? ReferenceTypeId;
-        public readonly ImmutableDictionary<string, object>? Values;
+        public readonly ImmutableArray<Outputs.TypeFieldTypeValue> Values;
 
         [OutputConstructor]
         private TypeFieldType(
@@ -29,7 +29,7 @@ namespace Pulumi.Commercetools.Outputs
 
             string? referenceTypeId,
 
-            ImmutableDictionary<string, object>? values)
+            ImmutableArray<Outputs.TypeFieldTypeValue> values)
         {
             this.ElementType2 = ElementType2;
             LocalizedValues = localizedValues;

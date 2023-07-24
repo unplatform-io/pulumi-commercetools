@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class TaxCategoryRate extends pulumi.CustomResource {
@@ -63,17 +64,17 @@ export class TaxCategoryRate extends pulumi.CustomResource {
      */
     constructor(name: string, args: TaxCategoryRateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TaxCategoryRateArgs | TaxCategoryRateState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TaxCategoryRateState | undefined;
-            inputs["amount"] = state ? state.amount : undefined;
-            inputs["country"] = state ? state.country : undefined;
-            inputs["includedInPrice"] = state ? state.includedInPrice : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["state"] = state ? state.state : undefined;
-            inputs["subRates"] = state ? state.subRates : undefined;
-            inputs["taxCategoryId"] = state ? state.taxCategoryId : undefined;
+            resourceInputs["amount"] = state ? state.amount : undefined;
+            resourceInputs["country"] = state ? state.country : undefined;
+            resourceInputs["includedInPrice"] = state ? state.includedInPrice : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["subRates"] = state ? state.subRates : undefined;
+            resourceInputs["taxCategoryId"] = state ? state.taxCategoryId : undefined;
         } else {
             const args = argsOrState as TaxCategoryRateArgs | undefined;
             if ((!args || args.country === undefined) && !opts.urn) {
@@ -85,18 +86,16 @@ export class TaxCategoryRate extends pulumi.CustomResource {
             if ((!args || args.taxCategoryId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'taxCategoryId'");
             }
-            inputs["amount"] = args ? args.amount : undefined;
-            inputs["country"] = args ? args.country : undefined;
-            inputs["includedInPrice"] = args ? args.includedInPrice : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["state"] = args ? args.state : undefined;
-            inputs["subRates"] = args ? args.subRates : undefined;
-            inputs["taxCategoryId"] = args ? args.taxCategoryId : undefined;
+            resourceInputs["amount"] = args ? args.amount : undefined;
+            resourceInputs["country"] = args ? args.country : undefined;
+            resourceInputs["includedInPrice"] = args ? args.includedInPrice : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["state"] = args ? args.state : undefined;
+            resourceInputs["subRates"] = args ? args.subRates : undefined;
+            resourceInputs["taxCategoryId"] = args ? args.taxCategoryId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(TaxCategoryRate.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(TaxCategoryRate.__pulumiType, name, resourceInputs, opts);
     }
 }
 

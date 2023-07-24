@@ -55,14 +55,14 @@ export class CustomObject extends pulumi.CustomResource {
      */
     constructor(name: string, args: CustomObjectArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CustomObjectArgs | CustomObjectState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomObjectState | undefined;
-            inputs["container"] = state ? state.container : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["value"] = state ? state.value : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["container"] = state ? state.container : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["value"] = state ? state.value : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as CustomObjectArgs | undefined;
             if ((!args || args.container === undefined) && !opts.urn) {
@@ -74,15 +74,13 @@ export class CustomObject extends pulumi.CustomResource {
             if ((!args || args.value === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
-            inputs["container"] = args ? args.container : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["value"] = args ? args.value : undefined;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["container"] = args ? args.container : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["value"] = args ? args.value : undefined;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(CustomObject.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(CustomObject.__pulumiType, name, resourceInputs, opts);
     }
 }
 

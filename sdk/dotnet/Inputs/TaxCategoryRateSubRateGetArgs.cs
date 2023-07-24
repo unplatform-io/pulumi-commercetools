@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class TaxCategoryRateSubRateGetArgs : Pulumi.ResourceArgs
+    public sealed class TaxCategoryRateSubRateGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("amount", required: true)]
         public Input<double> Amount { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Commercetools.Inputs
         public TaxCategoryRateSubRateGetArgs()
         {
         }
+        public static new TaxCategoryRateSubRateGetArgs Empty => new TaxCategoryRateSubRateGetArgs();
     }
 }

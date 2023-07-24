@@ -10,9 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class SubscriptionChangeArgs : Pulumi.ResourceArgs
+    public sealed class SubscriptionChangeArgs : global::Pulumi.ResourceArgs
     {
-        [Input("resourceTypeIds")]
+        [Input("resourceTypeIds", required: true)]
         private InputList<string>? _resourceTypeIds;
         public InputList<string> ResourceTypeIds
         {
@@ -23,5 +23,6 @@ namespace Pulumi.Commercetools.Inputs
         public SubscriptionChangeArgs()
         {
         }
+        public static new SubscriptionChangeArgs Empty => new SubscriptionChangeArgs();
     }
 }

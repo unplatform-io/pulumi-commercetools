@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/taxCategory:TaxCategory")]
-    public partial class TaxCategory : Pulumi.CustomResource
+    public partial class TaxCategory : global::Pulumi.CustomResource
     {
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -71,7 +71,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class TaxCategoryArgs : Pulumi.ResourceArgs
+    public sealed class TaxCategoryArgs : global::Pulumi.ResourceArgs
     {
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -88,9 +88,10 @@ namespace Pulumi.Commercetools
         public TaxCategoryArgs()
         {
         }
+        public static new TaxCategoryArgs Empty => new TaxCategoryArgs();
     }
 
-    public sealed class TaxCategoryState : Pulumi.ResourceArgs
+    public sealed class TaxCategoryState : global::Pulumi.ResourceArgs
     {
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -110,5 +111,6 @@ namespace Pulumi.Commercetools
         public TaxCategoryState()
         {
         }
+        public static new TaxCategoryState Empty => new TaxCategoryState();
     }
 }

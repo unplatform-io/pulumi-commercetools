@@ -13,11 +13,16 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ProjectSettingsMessages
     {
-        public readonly bool Enabled;
+        public readonly int? DeleteDaysAfterCreation;
+        public readonly bool? Enabled;
 
         [OutputConstructor]
-        private ProjectSettingsMessages(bool enabled)
+        private ProjectSettingsMessages(
+            int? deleteDaysAfterCreation,
+
+            bool? enabled)
         {
+            DeleteDaysAfterCreation = deleteDaysAfterCreation;
             Enabled = enabled;
         }
     }

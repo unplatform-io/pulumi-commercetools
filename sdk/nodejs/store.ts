@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class Store extends pulumi.CustomResource {
@@ -32,6 +34,7 @@ export class Store extends pulumi.CustomResource {
         return obj['__pulumiType'] === Store.__pulumiType;
     }
 
+    public readonly custom!: pulumi.Output<outputs.StoreCustom | undefined>;
     /**
      * Set of ResourceIdentifier to a Channel with ProductDistribution
      */
@@ -63,32 +66,32 @@ export class Store extends pulumi.CustomResource {
      */
     constructor(name: string, args: StoreArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: StoreArgs | StoreState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StoreState | undefined;
-            inputs["distributionChannels"] = state ? state.distributionChannels : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["languages"] = state ? state.languages : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["supplyChannels"] = state ? state.supplyChannels : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["custom"] = state ? state.custom : undefined;
+            resourceInputs["distributionChannels"] = state ? state.distributionChannels : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["languages"] = state ? state.languages : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["supplyChannels"] = state ? state.supplyChannels : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as StoreArgs | undefined;
             if ((!args || args.key === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
-            inputs["distributionChannels"] = args ? args.distributionChannels : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["languages"] = args ? args.languages : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["supplyChannels"] = args ? args.supplyChannels : undefined;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["custom"] = args ? args.custom : undefined;
+            resourceInputs["distributionChannels"] = args ? args.distributionChannels : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["languages"] = args ? args.languages : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["supplyChannels"] = args ? args.supplyChannels : undefined;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Store.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Store.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -96,6 +99,7 @@ export class Store extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Store resources.
  */
 export interface StoreState {
+    custom?: pulumi.Input<inputs.StoreCustom>;
     /**
      * Set of ResourceIdentifier to a Channel with ProductDistribution
      */
@@ -123,6 +127,7 @@ export interface StoreState {
  * The set of arguments for constructing a Store resource.
  */
 export interface StoreArgs {
+    custom?: pulumi.Input<inputs.StoreCustom>;
     /**
      * Set of ResourceIdentifier to a Channel with ProductDistribution
      */

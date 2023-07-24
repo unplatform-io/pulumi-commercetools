@@ -1,0 +1,27 @@
+diff --git a/internal/customtypes/localized_string.go b/internal/customtypes/localized_string.go
+index 37dc32c..47874c4 100644
+--- a/internal/customtypes/localized_string.go
++++ b/internal/customtypes/localized_string.go
+@@ -44,3 +44,3 @@ func LocalizedString(opts LocalizedStringOpts) schema.MapAttribute {
+ 		Optional:   opts.Optional,
+-		CustomType: NewLocalizedStringType(),
++		ElementType: types.StringType,
+ 		Validators: []validator.Map{
+diff --git a/internal/resources/state/resource.go b/internal/resources/state/resource.go
+index a290ef0..c0a637e 100644
+--- a/internal/resources/state/resource.go
++++ b/internal/resources/state/resource.go
+@@ -20,3 +20,2 @@ import (
+ 
+-	"github.com/labd/terraform-provider-commercetools/internal/customtypes"
+ 	"github.com/labd/terraform-provider-commercetools/internal/utils"
+@@ -64,3 +63,3 @@ func (r *stateResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
+ 			"name": schema.MapAttribute{
+-				CustomType:          customtypes.NewLocalizedStringType(),
++				ElementType: 		 types.StringType,
+ 				Description:         "Name of the State as localized string.",
+@@ -70,3 +69,3 @@ func (r *stateResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
+ 			"description": schema.MapAttribute{
+-				CustomType:          customtypes.NewLocalizedStringType(),
++				ElementType: 		 types.StringType,
+ 				Description:         "Description of the State as localized string.",

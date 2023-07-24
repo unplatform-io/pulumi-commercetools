@@ -10,13 +10,22 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class ApiExtensionDestinationGetArgs : Pulumi.ResourceArgs
+    public sealed class ApiExtensionDestinationGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
         [Input("accessSecret")]
-        public Input<string>? AccessSecret { get; set; }
+        private Input<string>? _accessSecret;
+        public Input<string>? AccessSecret
+        {
+            get => _accessSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("arn")]
         public Input<string>? Arn { get; set; }
@@ -36,5 +45,6 @@ namespace Pulumi.Commercetools.Inputs
         public ApiExtensionDestinationGetArgs()
         {
         }
+        public static new ApiExtensionDestinationGetArgs Empty => new ApiExtensionDestinationGetArgs();
     }
 }

@@ -1,0 +1,13 @@
+config:
+  Provision:CommerceToolsApiBaseAddress: https://api.europe-west1.gcp.commercetools.com/
+  Provision:CommerceToolsAuthUrl: https://auth.europe-west1.gcp.commercetools.com/
+  Provision:CommerceToolsClientId: nhID3utCN5zsBnUv0rEI0VJM
+  Provision:CommerceToolsProjectKey: unplatform-new-bridge-demo
+  Provision:CommerceToolsScope: manage_project:unplatform-new-bridge-demo
+  Provision:CommerceToolsSecret: IKYQZ8sq2Bb3Xqk4J-uBngqyKcJeD8cZ
+  commercetools:apiUrl: "https://api.europe-west1.gcp.commercetools.com"
+  commercetools:clientId: "nhID3utCN5zsBnUv0rEI0VJM"
+  commercetools:clientSecret: "IKYQZ8sq2Bb3Xqk4J-uBngqyKcJeD8cZ"
+  commercetools:projectKey: "unplatform-new-bridge-demo"
+  commercetools:scopes: "manage_project:unplatform-new-bridge-demo"
+  commercetools:tokenUrl: "https://auth.europe-west1.gcp.commercetools.com"

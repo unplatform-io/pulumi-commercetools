@@ -14,15 +14,19 @@ namespace Pulumi.Commercetools.Outputs
     public sealed class ApiExtensionTrigger
     {
         public readonly ImmutableArray<string> Actions;
+        public readonly string? Condition;
         public readonly string ResourceTypeId;
 
         [OutputConstructor]
         private ApiExtensionTrigger(
             ImmutableArray<string> actions,
 
+            string? condition,
+
             string resourceTypeId)
         {
             Actions = actions;
+            Condition = condition;
             ResourceTypeId = resourceTypeId;
         }
     }

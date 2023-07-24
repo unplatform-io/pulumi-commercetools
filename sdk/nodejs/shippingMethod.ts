@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class ShippingMethod extends pulumi.CustomResource {
@@ -32,6 +34,7 @@ export class ShippingMethod extends pulumi.CustomResource {
         return obj['__pulumiType'] === ShippingMethod.__pulumiType;
     }
 
+    public readonly custom!: pulumi.Output<outputs.ShippingMethodCustom | undefined>;
     public readonly description!: pulumi.Output<string | undefined>;
     /**
      * One shipping method in a project can be default
@@ -42,7 +45,7 @@ export class ShippingMethod extends pulumi.CustomResource {
      */
     public readonly key!: pulumi.Output<string | undefined>;
     /**
-     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     * [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
      */
     public readonly localizedDescription!: pulumi.Output<{[key: string]: any} | undefined>;
     public readonly name!: pulumi.Output<string>;
@@ -51,9 +54,9 @@ export class ShippingMethod extends pulumi.CustomResource {
      */
     public readonly predicate!: pulumi.Output<string | undefined>;
     /**
-     * ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
+     * ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
      */
-    public readonly taxCategoryId!: pulumi.Output<string | undefined>;
+    public readonly taxCategoryId!: pulumi.Output<string>;
     public /*out*/ readonly version!: pulumi.Output<number>;
 
     /**
@@ -63,35 +66,38 @@ export class ShippingMethod extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ShippingMethodArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: ShippingMethodArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ShippingMethodArgs | ShippingMethodState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ShippingMethodState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["isDefault"] = state ? state.isDefault : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["localizedDescription"] = state ? state.localizedDescription : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["predicate"] = state ? state.predicate : undefined;
-            inputs["taxCategoryId"] = state ? state.taxCategoryId : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["custom"] = state ? state.custom : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["isDefault"] = state ? state.isDefault : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["localizedDescription"] = state ? state.localizedDescription : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["predicate"] = state ? state.predicate : undefined;
+            resourceInputs["taxCategoryId"] = state ? state.taxCategoryId : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ShippingMethodArgs | undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["isDefault"] = args ? args.isDefault : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["localizedDescription"] = args ? args.localizedDescription : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["predicate"] = args ? args.predicate : undefined;
-            inputs["taxCategoryId"] = args ? args.taxCategoryId : undefined;
-            inputs["version"] = undefined /*out*/;
+            if ((!args || args.taxCategoryId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'taxCategoryId'");
+            }
+            resourceInputs["custom"] = args ? args.custom : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["isDefault"] = args ? args.isDefault : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["localizedDescription"] = args ? args.localizedDescription : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["predicate"] = args ? args.predicate : undefined;
+            resourceInputs["taxCategoryId"] = args ? args.taxCategoryId : undefined;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ShippingMethod.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ShippingMethod.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -99,6 +105,7 @@ export class ShippingMethod extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ShippingMethod resources.
  */
 export interface ShippingMethodState {
+    custom?: pulumi.Input<inputs.ShippingMethodCustom>;
     description?: pulumi.Input<string>;
     /**
      * One shipping method in a project can be default
@@ -109,7 +116,7 @@ export interface ShippingMethodState {
      */
     key?: pulumi.Input<string>;
     /**
-     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     * [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
      */
     localizedDescription?: pulumi.Input<{[key: string]: any}>;
     name?: pulumi.Input<string>;
@@ -118,7 +125,7 @@ export interface ShippingMethodState {
      */
     predicate?: pulumi.Input<string>;
     /**
-     * ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
+     * ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
      */
     taxCategoryId?: pulumi.Input<string>;
     version?: pulumi.Input<number>;
@@ -128,6 +135,7 @@ export interface ShippingMethodState {
  * The set of arguments for constructing a ShippingMethod resource.
  */
 export interface ShippingMethodArgs {
+    custom?: pulumi.Input<inputs.ShippingMethodCustom>;
     description?: pulumi.Input<string>;
     /**
      * One shipping method in a project can be default
@@ -138,7 +146,7 @@ export interface ShippingMethodArgs {
      */
     key?: pulumi.Input<string>;
     /**
-     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     * [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
      */
     localizedDescription?: pulumi.Input<{[key: string]: any}>;
     name?: pulumi.Input<string>;
@@ -147,7 +155,7 @@ export interface ShippingMethodArgs {
      */
     predicate?: pulumi.Input<string>;
     /**
-     * ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
+     * ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
      */
-    taxCategoryId?: pulumi.Input<string>;
+    taxCategoryId: pulumi.Input<string>;
 }

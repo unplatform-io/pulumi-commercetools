@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class ProjectSettings extends pulumi.CustomResource {
@@ -40,11 +41,19 @@ export class ProjectSettings extends pulumi.CustomResource {
     /**
      * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
      */
-    public readonly countries!: pulumi.Output<string[] | undefined>;
+    public readonly countries!: pulumi.Output<string[]>;
     /**
      * A three-digit currency code as per [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
      */
-    public readonly currencies!: pulumi.Output<string[] | undefined>;
+    public readonly currencies!: pulumi.Output<string[]>;
+    /**
+     * Enable the Search Indexing of orders
+     */
+    public readonly enableSearchIndexOrders!: pulumi.Output<boolean>;
+    /**
+     * Enable the Search Indexing of products
+     */
+    public readonly enableSearchIndexProducts!: pulumi.Output<boolean>;
     /**
      * [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
      */
@@ -56,9 +65,9 @@ export class ProjectSettings extends pulumi.CustomResource {
     /**
      * [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
      */
-    public readonly languages!: pulumi.Output<string[] | undefined>;
+    public readonly languages!: pulumi.Output<string[]>;
     /**
-     * [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+     * The change notifications subscribed to
      */
     public readonly messages!: pulumi.Output<outputs.ProjectSettingsMessages | undefined>;
     /**
@@ -87,39 +96,41 @@ export class ProjectSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: ProjectSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ProjectSettingsArgs | ProjectSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectSettingsState | undefined;
-            inputs["carts"] = state ? state.carts : undefined;
-            inputs["countries"] = state ? state.countries : undefined;
-            inputs["currencies"] = state ? state.currencies : undefined;
-            inputs["externalOauth"] = state ? state.externalOauth : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["languages"] = state ? state.languages : undefined;
-            inputs["messages"] = state ? state.messages : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["shippingRateCartClassificationValues"] = state ? state.shippingRateCartClassificationValues : undefined;
-            inputs["shippingRateInputType"] = state ? state.shippingRateInputType : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["carts"] = state ? state.carts : undefined;
+            resourceInputs["countries"] = state ? state.countries : undefined;
+            resourceInputs["currencies"] = state ? state.currencies : undefined;
+            resourceInputs["enableSearchIndexOrders"] = state ? state.enableSearchIndexOrders : undefined;
+            resourceInputs["enableSearchIndexProducts"] = state ? state.enableSearchIndexProducts : undefined;
+            resourceInputs["externalOauth"] = state ? state.externalOauth : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["languages"] = state ? state.languages : undefined;
+            resourceInputs["messages"] = state ? state.messages : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["shippingRateCartClassificationValues"] = state ? state.shippingRateCartClassificationValues : undefined;
+            resourceInputs["shippingRateInputType"] = state ? state.shippingRateInputType : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ProjectSettingsArgs | undefined;
-            inputs["carts"] = args ? args.carts : undefined;
-            inputs["countries"] = args ? args.countries : undefined;
-            inputs["currencies"] = args ? args.currencies : undefined;
-            inputs["externalOauth"] = args ? args.externalOauth : undefined;
-            inputs["languages"] = args ? args.languages : undefined;
-            inputs["messages"] = args ? args.messages : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["shippingRateCartClassificationValues"] = args ? args.shippingRateCartClassificationValues : undefined;
-            inputs["shippingRateInputType"] = args ? args.shippingRateInputType : undefined;
-            inputs["key"] = undefined /*out*/;
-            inputs["version"] = undefined /*out*/;
+            resourceInputs["carts"] = args ? args.carts : undefined;
+            resourceInputs["countries"] = args ? args.countries : undefined;
+            resourceInputs["currencies"] = args ? args.currencies : undefined;
+            resourceInputs["enableSearchIndexOrders"] = args ? args.enableSearchIndexOrders : undefined;
+            resourceInputs["enableSearchIndexProducts"] = args ? args.enableSearchIndexProducts : undefined;
+            resourceInputs["externalOauth"] = args ? args.externalOauth : undefined;
+            resourceInputs["languages"] = args ? args.languages : undefined;
+            resourceInputs["messages"] = args ? args.messages : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["shippingRateCartClassificationValues"] = args ? args.shippingRateCartClassificationValues : undefined;
+            resourceInputs["shippingRateInputType"] = args ? args.shippingRateInputType : undefined;
+            resourceInputs["key"] = undefined /*out*/;
+            resourceInputs["version"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ProjectSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ProjectSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -140,6 +151,14 @@ export interface ProjectSettingsState {
      */
     currencies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Enable the Search Indexing of orders
+     */
+    enableSearchIndexOrders?: pulumi.Input<boolean>;
+    /**
+     * Enable the Search Indexing of products
+     */
+    enableSearchIndexProducts?: pulumi.Input<boolean>;
+    /**
      * [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
      */
     externalOauth?: pulumi.Input<inputs.ProjectSettingsExternalOauth>;
@@ -152,7 +171,7 @@ export interface ProjectSettingsState {
      */
     languages?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+     * The change notifications subscribed to
      */
     messages?: pulumi.Input<inputs.ProjectSettingsMessages>;
     /**
@@ -190,6 +209,14 @@ export interface ProjectSettingsArgs {
      */
     currencies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Enable the Search Indexing of orders
+     */
+    enableSearchIndexOrders?: pulumi.Input<boolean>;
+    /**
+     * Enable the Search Indexing of products
+     */
+    enableSearchIndexProducts?: pulumi.Input<boolean>;
+    /**
      * [External OAUTH](https://docs.commercetools.com/api/projects/project#externaloauth)
      */
     externalOauth?: pulumi.Input<inputs.ProjectSettingsExternalOauth>;
@@ -198,7 +225,7 @@ export interface ProjectSettingsArgs {
      */
     languages?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [Messages Configuration](https://docs.commercetools.com/api/projects/project#messages-configuration)
+     * The change notifications subscribed to
      */
     messages?: pulumi.Input<inputs.ProjectSettingsMessages>;
     /**

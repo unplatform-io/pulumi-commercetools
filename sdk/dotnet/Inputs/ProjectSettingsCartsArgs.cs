@@ -10,10 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class ProjectSettingsCartsArgs : Pulumi.ResourceArgs
+    public sealed class ProjectSettingsCartsArgs : global::Pulumi.ResourceArgs
     {
-        [Input("countryTaxRateFallbackEnabled", required: true)]
-        public Input<bool> CountryTaxRateFallbackEnabled { get; set; } = null!;
+        [Input("countryTaxRateFallbackEnabled")]
+        public Input<bool>? CountryTaxRateFallbackEnabled { get; set; }
 
         [Input("deleteDaysAfterLastModification")]
         public Input<int>? DeleteDaysAfterLastModification { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Commercetools.Inputs
         public ProjectSettingsCartsArgs()
         {
         }
+        public static new ProjectSettingsCartsArgs Empty => new ProjectSettingsCartsArgs();
     }
 }

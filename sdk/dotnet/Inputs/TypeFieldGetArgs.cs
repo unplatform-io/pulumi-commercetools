@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class TypeFieldGetArgs : Pulumi.ResourceArgs
+    public sealed class TypeFieldGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("inputHint")]
         public Input<string>? InputHint { get; set; }
@@ -35,5 +35,6 @@ namespace Pulumi.Commercetools.Inputs
         public TypeFieldGetArgs()
         {
         }
+        public static new TypeFieldGetArgs Empty => new TypeFieldGetArgs();
     }
 }

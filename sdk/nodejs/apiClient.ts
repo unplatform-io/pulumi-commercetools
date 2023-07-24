@@ -51,26 +51,26 @@ export class ApiClient extends pulumi.CustomResource {
      */
     constructor(name: string, args: ApiClientArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ApiClientArgs | ApiClientState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApiClientState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["scopes"] = state ? state.scopes : undefined;
-            inputs["secret"] = state ? state.secret : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["scopes"] = state ? state.scopes : undefined;
+            resourceInputs["secret"] = state ? state.secret : undefined;
         } else {
             const args = argsOrState as ApiClientArgs | undefined;
             if ((!args || args.scopes === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'scopes'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["scopes"] = args ? args.scopes : undefined;
-            inputs["secret"] = undefined /*out*/;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["scopes"] = args ? args.scopes : undefined;
+            resourceInputs["secret"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ApiClient.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secret"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
+        super(ApiClient.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/type:Type")]
-    public partial class Type : Pulumi.CustomResource
+    public partial class Type : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
@@ -90,7 +90,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class TypeArgs : Pulumi.ResourceArgs
+    public sealed class TypeArgs : global::Pulumi.ResourceArgs
     {
         [Input("description")]
         private InputMap<object>? _description;
@@ -150,9 +150,10 @@ namespace Pulumi.Commercetools
         public TypeArgs()
         {
         }
+        public static new TypeArgs Empty => new TypeArgs();
     }
 
-    public sealed class TypeState : Pulumi.ResourceArgs
+    public sealed class TypeState : global::Pulumi.ResourceArgs
     {
         [Input("description")]
         private InputMap<object>? _description;
@@ -215,5 +216,6 @@ namespace Pulumi.Commercetools
         public TypeState()
         {
         }
+        public static new TypeState Empty => new TypeState();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools.Inputs
 {
 
-    public sealed class ApiExtensionTriggerArgs : Pulumi.ResourceArgs
+    public sealed class ApiExtensionTriggerArgs : global::Pulumi.ResourceArgs
     {
         [Input("actions", required: true)]
         private InputList<string>? _actions;
@@ -20,11 +20,15 @@ namespace Pulumi.Commercetools.Inputs
             set => _actions = value;
         }
 
+        [Input("condition")]
+        public Input<string>? Condition { get; set; }
+
         [Input("resourceTypeId", required: true)]
         public Input<string> ResourceTypeId { get; set; } = null!;
 
         public ApiExtensionTriggerArgs()
         {
         }
+        public static new ApiExtensionTriggerArgs Empty => new ApiExtensionTriggerArgs();
     }
 }

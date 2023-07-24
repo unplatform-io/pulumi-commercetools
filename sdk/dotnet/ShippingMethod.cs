@@ -10,8 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/shippingMethod:ShippingMethod")]
-    public partial class ShippingMethod : Pulumi.CustomResource
+    public partial class ShippingMethod : global::Pulumi.CustomResource
     {
+        [Output("custom")]
+        public Output<Outputs.ShippingMethodCustom?> Custom { get; private set; } = null!;
+
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
@@ -28,7 +31,7 @@ namespace Pulumi.Commercetools
         public Output<string?> Key { get; private set; } = null!;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
         /// </summary>
         [Output("localizedDescription")]
         public Output<ImmutableDictionary<string, object>?> LocalizedDescription { get; private set; } = null!;
@@ -43,10 +46,10 @@ namespace Pulumi.Commercetools
         public Output<string?> Predicate { get; private set; } = null!;
 
         /// <summary>
-        /// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
+        /// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
         /// </summary>
         [Output("taxCategoryId")]
-        public Output<string?> TaxCategoryId { get; private set; } = null!;
+        public Output<string> TaxCategoryId { get; private set; } = null!;
 
         [Output("version")]
         public Output<int> Version { get; private set; } = null!;
@@ -59,7 +62,7 @@ namespace Pulumi.Commercetools
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ShippingMethod(string name, ShippingMethodArgs? args = null, CustomResourceOptions? options = null)
+        public ShippingMethod(string name, ShippingMethodArgs args, CustomResourceOptions? options = null)
             : base("commercetools:index/shippingMethod:ShippingMethod", name, args ?? new ShippingMethodArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -95,8 +98,11 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class ShippingMethodArgs : Pulumi.ResourceArgs
+    public sealed class ShippingMethodArgs : global::Pulumi.ResourceArgs
     {
+        [Input("custom")]
+        public Input<Inputs.ShippingMethodCustomArgs>? Custom { get; set; }
+
         [Input("description")]
         public Input<string>? Description { get; set; }
 
@@ -116,7 +122,7 @@ namespace Pulumi.Commercetools
         private InputMap<object>? _localizedDescription;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
         /// </summary>
         public InputMap<object> LocalizedDescription
         {
@@ -134,18 +140,22 @@ namespace Pulumi.Commercetools
         public Input<string>? Predicate { get; set; }
 
         /// <summary>
-        /// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
+        /// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
         /// </summary>
-        [Input("taxCategoryId")]
-        public Input<string>? TaxCategoryId { get; set; }
+        [Input("taxCategoryId", required: true)]
+        public Input<string> TaxCategoryId { get; set; } = null!;
 
         public ShippingMethodArgs()
         {
         }
+        public static new ShippingMethodArgs Empty => new ShippingMethodArgs();
     }
 
-    public sealed class ShippingMethodState : Pulumi.ResourceArgs
+    public sealed class ShippingMethodState : global::Pulumi.ResourceArgs
     {
+        [Input("custom")]
+        public Input<Inputs.ShippingMethodCustomGetArgs>? Custom { get; set; }
+
         [Input("description")]
         public Input<string>? Description { get; set; }
 
@@ -165,7 +175,7 @@ namespace Pulumi.Commercetools
         private InputMap<object>? _localizedDescription;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
         /// </summary>
         public InputMap<object> LocalizedDescription
         {
@@ -183,7 +193,7 @@ namespace Pulumi.Commercetools
         public Input<string>? Predicate { get; set; }
 
         /// <summary>
-        /// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
+        /// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
         /// </summary>
         [Input("taxCategoryId")]
         public Input<string>? TaxCategoryId { get; set; }
@@ -194,5 +204,6 @@ namespace Pulumi.Commercetools
         public ShippingMethodState()
         {
         }
+        public static new ShippingMethodState Empty => new ShippingMethodState();
     }
 }

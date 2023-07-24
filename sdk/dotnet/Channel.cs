@@ -10,13 +10,22 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/channel:Channel")]
-    public partial class Channel : Pulumi.CustomResource
+    public partial class Channel : global::Pulumi.CustomResource
     {
+        [Output("address")]
+        public Output<Outputs.ChannelAddress?> Address { get; private set; } = null!;
+
+        [Output("custom")]
+        public Output<Outputs.ChannelCustom?> Custom { get; private set; } = null!;
+
         /// <summary>
         /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         /// </summary>
         [Output("description")]
         public Output<ImmutableDictionary<string, object>?> Description { get; private set; } = null!;
+
+        [Output("geolocation")]
+        public Output<Outputs.ChannelGeolocation?> Geolocation { get; private set; } = null!;
 
         /// <summary>
         /// Any arbitrary string key that uniquely identifies this channel within the project
@@ -84,8 +93,14 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class ChannelArgs : Pulumi.ResourceArgs
+    public sealed class ChannelArgs : global::Pulumi.ResourceArgs
     {
+        [Input("address")]
+        public Input<Inputs.ChannelAddressArgs>? Address { get; set; }
+
+        [Input("custom")]
+        public Input<Inputs.ChannelCustomArgs>? Custom { get; set; }
+
         [Input("description")]
         private InputMap<object>? _description;
 
@@ -97,6 +112,9 @@ namespace Pulumi.Commercetools
             get => _description ?? (_description = new InputMap<object>());
             set => _description = value;
         }
+
+        [Input("geolocation")]
+        public Input<Inputs.ChannelGeolocationArgs>? Geolocation { get; set; }
 
         /// <summary>
         /// Any arbitrary string key that uniquely identifies this channel within the project
@@ -132,10 +150,17 @@ namespace Pulumi.Commercetools
         public ChannelArgs()
         {
         }
+        public static new ChannelArgs Empty => new ChannelArgs();
     }
 
-    public sealed class ChannelState : Pulumi.ResourceArgs
+    public sealed class ChannelState : global::Pulumi.ResourceArgs
     {
+        [Input("address")]
+        public Input<Inputs.ChannelAddressGetArgs>? Address { get; set; }
+
+        [Input("custom")]
+        public Input<Inputs.ChannelCustomGetArgs>? Custom { get; set; }
+
         [Input("description")]
         private InputMap<object>? _description;
 
@@ -147,6 +172,9 @@ namespace Pulumi.Commercetools
             get => _description ?? (_description = new InputMap<object>());
             set => _description = value;
         }
+
+        [Input("geolocation")]
+        public Input<Inputs.ChannelGeolocationGetArgs>? Geolocation { get; set; }
 
         /// <summary>
         /// Any arbitrary string key that uniquely identifies this channel within the project
@@ -185,5 +213,6 @@ namespace Pulumi.Commercetools
         public ChannelState()
         {
         }
+        public static new ChannelState Empty => new ChannelState();
     }
 }

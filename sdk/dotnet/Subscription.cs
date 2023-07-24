@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Commercetools
 {
     [CommercetoolsResourceType("commercetools:index/subscription:Subscription")]
-    public partial class Subscription : Pulumi.CustomResource
+    public partial class Subscription : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The change notifications subscribed to
@@ -18,10 +18,6 @@ namespace Pulumi.Commercetools
         [Output("changes")]
         public Output<ImmutableArray<Outputs.SubscriptionChange>> Changes { get; private set; } = null!;
 
-        /// <summary>
-        /// The Message Queue into which the notifications are to be sentSee also the [Destination API
-        /// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
-        /// </summary>
         [Output("destination")]
         public Output<Outputs.SubscriptionDestination?> Destination { get; private set; } = null!;
 
@@ -32,7 +28,7 @@ namespace Pulumi.Commercetools
         public Output<Outputs.SubscriptionFormat?> Format { get; private set; } = null!;
 
         /// <summary>
-        /// User-specific unique identifier for the subscription
+        /// Timestamp of the last Terraform update of the order.
         /// </summary>
         [Output("key")]
         public Output<string?> Key { get; private set; } = null!;
@@ -90,7 +86,7 @@ namespace Pulumi.Commercetools
         }
     }
 
-    public sealed class SubscriptionArgs : Pulumi.ResourceArgs
+    public sealed class SubscriptionArgs : global::Pulumi.ResourceArgs
     {
         [Input("changes")]
         private InputList<Inputs.SubscriptionChangeArgs>? _changes;
@@ -104,10 +100,6 @@ namespace Pulumi.Commercetools
             set => _changes = value;
         }
 
-        /// <summary>
-        /// The Message Queue into which the notifications are to be sentSee also the [Destination API
-        /// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
-        /// </summary>
         [Input("destination")]
         public Input<Inputs.SubscriptionDestinationArgs>? Destination { get; set; }
 
@@ -118,7 +110,7 @@ namespace Pulumi.Commercetools
         public Input<Inputs.SubscriptionFormatArgs>? Format { get; set; }
 
         /// <summary>
-        /// User-specific unique identifier for the subscription
+        /// Timestamp of the last Terraform update of the order.
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
@@ -138,9 +130,10 @@ namespace Pulumi.Commercetools
         public SubscriptionArgs()
         {
         }
+        public static new SubscriptionArgs Empty => new SubscriptionArgs();
     }
 
-    public sealed class SubscriptionState : Pulumi.ResourceArgs
+    public sealed class SubscriptionState : global::Pulumi.ResourceArgs
     {
         [Input("changes")]
         private InputList<Inputs.SubscriptionChangeGetArgs>? _changes;
@@ -154,10 +147,6 @@ namespace Pulumi.Commercetools
             set => _changes = value;
         }
 
-        /// <summary>
-        /// The Message Queue into which the notifications are to be sentSee also the [Destination API
-        /// Docs](https://docs.commercetools.com/api/projects/subscriptions#destination)
-        /// </summary>
         [Input("destination")]
         public Input<Inputs.SubscriptionDestinationGetArgs>? Destination { get; set; }
 
@@ -168,7 +157,7 @@ namespace Pulumi.Commercetools
         public Input<Inputs.SubscriptionFormatGetArgs>? Format { get; set; }
 
         /// <summary>
-        /// User-specific unique identifier for the subscription
+        /// Timestamp of the last Terraform update of the order.
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
@@ -191,5 +180,6 @@ namespace Pulumi.Commercetools
         public SubscriptionState()
         {
         }
+        public static new SubscriptionState Empty => new SubscriptionState();
     }
 }

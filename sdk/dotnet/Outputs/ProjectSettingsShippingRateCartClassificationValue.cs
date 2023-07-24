@@ -14,13 +14,13 @@ namespace Pulumi.Commercetools.Outputs
     public sealed class ProjectSettingsShippingRateCartClassificationValue
     {
         public readonly string Key;
-        public readonly ImmutableDictionary<string, object>? Label;
+        public readonly ImmutableDictionary<string, string>? Label;
 
         [OutputConstructor]
         private ProjectSettingsShippingRateCartClassificationValue(
             string key,
 
-            ImmutableDictionary<string, object>? label)
+            ImmutableDictionary<string, string>? label)
         {
             Key = key;
             Label = label;
