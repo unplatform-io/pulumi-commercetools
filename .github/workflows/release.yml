@@ -125,7 +125,7 @@ jobs:
     strategy:
       fail-fast: true        
   lint:
-    container: golangci/golangci-lint:latest
+    container: golangci/golangci-lint:v1.53
     name: lint
     runs-on: ubuntu-latest
     steps:
