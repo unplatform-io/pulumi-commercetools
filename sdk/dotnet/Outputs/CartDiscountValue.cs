@@ -19,7 +19,7 @@ namespace Pulumi.Commercetools.Outputs
         public readonly string? ProductId;
         public readonly string? SupplyChannelId;
         public readonly string Type;
-        public readonly int? Variant;
+        public readonly int? VariantId;
 
         [OutputConstructor]
         private CartDiscountValue(
@@ -35,7 +35,7 @@ namespace Pulumi.Commercetools.Outputs
 
             string type,
 
-            int? variant)
+            int? variantId)
         {
             DistributionChannelId = distributionChannelId;
             Monies = monies;
@@ -43,7 +43,7 @@ namespace Pulumi.Commercetools.Outputs
             ProductId = productId;
             SupplyChannelId = supplyChannelId;
             Type = type;
-            Variant = variant;
+            VariantId = variantId;
         }
     }
 }

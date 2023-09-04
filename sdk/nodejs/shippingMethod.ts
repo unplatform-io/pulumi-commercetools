@@ -45,16 +45,20 @@ export class ShippingMethod extends pulumi.CustomResource {
      */
     public readonly key!: pulumi.Output<string | undefined>;
     /**
-     * [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
     public readonly localizedDescription!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    public readonly localizedName!: pulumi.Output<{[key: string]: any} | undefined>;
     public readonly name!: pulumi.Output<string>;
     /**
      * A Cart predicate which can be used to more precisely select a shipping method for a cart
      */
     public readonly predicate!: pulumi.Output<string | undefined>;
     /**
-     * ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+     * ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
      */
     public readonly taxCategoryId!: pulumi.Output<string>;
     public /*out*/ readonly version!: pulumi.Output<number>;
@@ -77,6 +81,7 @@ export class ShippingMethod extends pulumi.CustomResource {
             resourceInputs["isDefault"] = state ? state.isDefault : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["localizedDescription"] = state ? state.localizedDescription : undefined;
+            resourceInputs["localizedName"] = state ? state.localizedName : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["predicate"] = state ? state.predicate : undefined;
             resourceInputs["taxCategoryId"] = state ? state.taxCategoryId : undefined;
@@ -91,6 +96,7 @@ export class ShippingMethod extends pulumi.CustomResource {
             resourceInputs["isDefault"] = args ? args.isDefault : undefined;
             resourceInputs["key"] = args ? args.key : undefined;
             resourceInputs["localizedDescription"] = args ? args.localizedDescription : undefined;
+            resourceInputs["localizedName"] = args ? args.localizedName : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["predicate"] = args ? args.predicate : undefined;
             resourceInputs["taxCategoryId"] = args ? args.taxCategoryId : undefined;
@@ -116,16 +122,20 @@ export interface ShippingMethodState {
      */
     key?: pulumi.Input<string>;
     /**
-     * [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
     localizedDescription?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    localizedName?: pulumi.Input<{[key: string]: any}>;
     name?: pulumi.Input<string>;
     /**
      * A Cart predicate which can be used to more precisely select a shipping method for a cart
      */
     predicate?: pulumi.Input<string>;
     /**
-     * ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+     * ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
      */
     taxCategoryId?: pulumi.Input<string>;
     version?: pulumi.Input<number>;
@@ -146,16 +156,20 @@ export interface ShippingMethodArgs {
      */
     key?: pulumi.Input<string>;
     /**
-     * [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
     localizedDescription?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+     */
+    localizedName?: pulumi.Input<{[key: string]: any}>;
     name?: pulumi.Input<string>;
     /**
      * A Cart predicate which can be used to more precisely select a shipping method for a cart
      */
     predicate?: pulumi.Input<string>;
     /**
-     * ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+     * ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
      */
     taxCategoryId: pulumi.Input<string>;
 }

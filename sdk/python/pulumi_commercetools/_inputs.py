@@ -12,6 +12,8 @@ from . import _utilities
 __all__ = [
     'ApiExtensionDestinationArgs',
     'ApiExtensionTriggerArgs',
+    'AttributeGroupAttributeArgs',
+    'CartDiscountCustomArgs',
     'CartDiscountTargetArgs',
     'CartDiscountValueArgs',
     'CartDiscountValueMoneyArgs',
@@ -187,13 +189,69 @@ class ApiExtensionTriggerArgs:
 
 
 @pulumi.input_type
+class AttributeGroupAttributeArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+
+@pulumi.input_type
+class CartDiscountCustomArgs:
+    def __init__(__self__, *,
+                 type_id: pulumi.Input[str],
+                 fields: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        pulumi.set(__self__, "type_id", type_id)
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+
+    @property
+    @pulumi.getter(name="typeId")
+    def type_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "type_id")
+
+    @type_id.setter
+    def type_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type_id", value)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "fields")
+
+    @fields.setter
+    def fields(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "fields", value)
+
+
+@pulumi.input_type
 class CartDiscountTargetArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
-                 predicate: Optional[pulumi.Input[str]] = None):
+                 discounted_quantity: Optional[pulumi.Input[int]] = None,
+                 max_occurrence: Optional[pulumi.Input[int]] = None,
+                 predicate: Optional[pulumi.Input[str]] = None,
+                 selection_mode: Optional[pulumi.Input[str]] = None,
+                 trigger_quantity: Optional[pulumi.Input[int]] = None):
         pulumi.set(__self__, "type", type)
+        if discounted_quantity is not None:
+            pulumi.set(__self__, "discounted_quantity", discounted_quantity)
+        if max_occurrence is not None:
+            pulumi.set(__self__, "max_occurrence", max_occurrence)
         if predicate is not None:
             pulumi.set(__self__, "predicate", predicate)
+        if selection_mode is not None:
+            pulumi.set(__self__, "selection_mode", selection_mode)
+        if trigger_quantity is not None:
+            pulumi.set(__self__, "trigger_quantity", trigger_quantity)
 
     @property
     @pulumi.getter
@@ -205,6 +263,24 @@ class CartDiscountTargetArgs:
         pulumi.set(self, "type", value)
 
     @property
+    @pulumi.getter(name="discountedQuantity")
+    def discounted_quantity(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "discounted_quantity")
+
+    @discounted_quantity.setter
+    def discounted_quantity(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "discounted_quantity", value)
+
+    @property
+    @pulumi.getter(name="maxOccurrence")
+    def max_occurrence(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max_occurrence")
+
+    @max_occurrence.setter
+    def max_occurrence(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_occurrence", value)
+
+    @property
     @pulumi.getter
     def predicate(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "predicate")
@@ -212,6 +288,24 @@ class CartDiscountTargetArgs:
     @predicate.setter
     def predicate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "predicate", value)
+
+    @property
+    @pulumi.getter(name="selectionMode")
+    def selection_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "selection_mode")
+
+    @selection_mode.setter
+    def selection_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "selection_mode", value)
+
+    @property
+    @pulumi.getter(name="triggerQuantity")
+    def trigger_quantity(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "trigger_quantity")
+
+    @trigger_quantity.setter
+    def trigger_quantity(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "trigger_quantity", value)
 
 
 @pulumi.input_type
@@ -223,7 +317,7 @@ class CartDiscountValueArgs:
                  permyriad: Optional[pulumi.Input[int]] = None,
                  product_id: Optional[pulumi.Input[str]] = None,
                  supply_channel_id: Optional[pulumi.Input[str]] = None,
-                 variant: Optional[pulumi.Input[int]] = None):
+                 variant_id: Optional[pulumi.Input[int]] = None):
         pulumi.set(__self__, "type", type)
         if distribution_channel_id is not None:
             pulumi.set(__self__, "distribution_channel_id", distribution_channel_id)
@@ -235,8 +329,8 @@ class CartDiscountValueArgs:
             pulumi.set(__self__, "product_id", product_id)
         if supply_channel_id is not None:
             pulumi.set(__self__, "supply_channel_id", supply_channel_id)
-        if variant is not None:
-            pulumi.set(__self__, "variant", variant)
+        if variant_id is not None:
+            pulumi.set(__self__, "variant_id", variant_id)
 
     @property
     @pulumi.getter
@@ -293,13 +387,13 @@ class CartDiscountValueArgs:
         pulumi.set(self, "supply_channel_id", value)
 
     @property
-    @pulumi.getter
-    def variant(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "variant")
+    @pulumi.getter(name="variantId")
+    def variant_id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "variant_id")
 
-    @variant.setter
-    def variant(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "variant", value)
+    @variant_id.setter
+    def variant_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "variant_id", value)
 
 
 @pulumi.input_type

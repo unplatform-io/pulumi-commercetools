@@ -34,6 +34,7 @@ export class CartDiscount extends pulumi.CustomResource {
         return obj['__pulumiType'] === CartDiscount.__pulumiType;
     }
 
+    public readonly custom!: pulumi.Output<outputs.CartDiscountCustom | undefined>;
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
@@ -96,6 +97,7 @@ export class CartDiscount extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CartDiscountState | undefined;
+            resourceInputs["custom"] = state ? state.custom : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["isActive"] = state ? state.isActive : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
@@ -120,6 +122,7 @@ export class CartDiscount extends pulumi.CustomResource {
             if ((!args || args.value === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
+            resourceInputs["custom"] = args ? args.custom : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["isActive"] = args ? args.isActive : undefined;
             resourceInputs["key"] = args ? args.key : undefined;
@@ -143,6 +146,7 @@ export class CartDiscount extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CartDiscount resources.
  */
 export interface CartDiscountState {
+    custom?: pulumi.Input<inputs.CartDiscountCustom>;
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
@@ -197,6 +201,7 @@ export interface CartDiscountState {
  * The set of arguments for constructing a CartDiscount resource.
  */
 export interface CartDiscountArgs {
+    custom?: pulumi.Input<inputs.CartDiscountCustom>;
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */

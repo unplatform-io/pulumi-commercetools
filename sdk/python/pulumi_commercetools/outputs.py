@@ -13,6 +13,8 @@ from . import outputs
 __all__ = [
     'ApiExtensionDestination',
     'ApiExtensionTrigger',
+    'AttributeGroupAttribute',
+    'CartDiscountCustom',
     'CartDiscountTarget',
     'CartDiscountValue',
     'CartDiscountValueMoney',
@@ -188,13 +190,97 @@ class ApiExtensionTrigger(dict):
 
 
 @pulumi.output_type
+class AttributeGroupAttribute(dict):
+    def __init__(__self__, *,
+                 key: str):
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
+class CartDiscountCustom(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "typeId":
+            suggest = "type_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CartDiscountCustom. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CartDiscountCustom.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CartDiscountCustom.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type_id: str,
+                 fields: Optional[Mapping[str, Any]] = None):
+        pulumi.set(__self__, "type_id", type_id)
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+
+    @property
+    @pulumi.getter(name="typeId")
+    def type_id(self) -> str:
+        return pulumi.get(self, "type_id")
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "fields")
+
+
+@pulumi.output_type
 class CartDiscountTarget(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "discountedQuantity":
+            suggest = "discounted_quantity"
+        elif key == "maxOccurrence":
+            suggest = "max_occurrence"
+        elif key == "selectionMode":
+            suggest = "selection_mode"
+        elif key == "triggerQuantity":
+            suggest = "trigger_quantity"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CartDiscountTarget. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CartDiscountTarget.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CartDiscountTarget.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  type: str,
-                 predicate: Optional[str] = None):
+                 discounted_quantity: Optional[int] = None,
+                 max_occurrence: Optional[int] = None,
+                 predicate: Optional[str] = None,
+                 selection_mode: Optional[str] = None,
+                 trigger_quantity: Optional[int] = None):
         pulumi.set(__self__, "type", type)
+        if discounted_quantity is not None:
+            pulumi.set(__self__, "discounted_quantity", discounted_quantity)
+        if max_occurrence is not None:
+            pulumi.set(__self__, "max_occurrence", max_occurrence)
         if predicate is not None:
             pulumi.set(__self__, "predicate", predicate)
+        if selection_mode is not None:
+            pulumi.set(__self__, "selection_mode", selection_mode)
+        if trigger_quantity is not None:
+            pulumi.set(__self__, "trigger_quantity", trigger_quantity)
 
     @property
     @pulumi.getter
@@ -202,9 +288,29 @@ class CartDiscountTarget(dict):
         return pulumi.get(self, "type")
 
     @property
+    @pulumi.getter(name="discountedQuantity")
+    def discounted_quantity(self) -> Optional[int]:
+        return pulumi.get(self, "discounted_quantity")
+
+    @property
+    @pulumi.getter(name="maxOccurrence")
+    def max_occurrence(self) -> Optional[int]:
+        return pulumi.get(self, "max_occurrence")
+
+    @property
     @pulumi.getter
     def predicate(self) -> Optional[str]:
         return pulumi.get(self, "predicate")
+
+    @property
+    @pulumi.getter(name="selectionMode")
+    def selection_mode(self) -> Optional[str]:
+        return pulumi.get(self, "selection_mode")
+
+    @property
+    @pulumi.getter(name="triggerQuantity")
+    def trigger_quantity(self) -> Optional[int]:
+        return pulumi.get(self, "trigger_quantity")
 
 
 @pulumi.output_type
@@ -218,6 +324,8 @@ class CartDiscountValue(dict):
             suggest = "product_id"
         elif key == "supplyChannelId":
             suggest = "supply_channel_id"
+        elif key == "variantId":
+            suggest = "variant_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in CartDiscountValue. Access the value via the '{suggest}' property getter instead.")
@@ -237,7 +345,7 @@ class CartDiscountValue(dict):
                  permyriad: Optional[int] = None,
                  product_id: Optional[str] = None,
                  supply_channel_id: Optional[str] = None,
-                 variant: Optional[int] = None):
+                 variant_id: Optional[int] = None):
         pulumi.set(__self__, "type", type)
         if distribution_channel_id is not None:
             pulumi.set(__self__, "distribution_channel_id", distribution_channel_id)
@@ -249,8 +357,8 @@ class CartDiscountValue(dict):
             pulumi.set(__self__, "product_id", product_id)
         if supply_channel_id is not None:
             pulumi.set(__self__, "supply_channel_id", supply_channel_id)
-        if variant is not None:
-            pulumi.set(__self__, "variant", variant)
+        if variant_id is not None:
+            pulumi.set(__self__, "variant_id", variant_id)
 
     @property
     @pulumi.getter
@@ -283,9 +391,9 @@ class CartDiscountValue(dict):
         return pulumi.get(self, "supply_channel_id")
 
     @property
-    @pulumi.getter
-    def variant(self) -> Optional[int]:
-        return pulumi.get(self, "variant")
+    @pulumi.getter(name="variantId")
+    def variant_id(self) -> Optional[int]:
+        return pulumi.get(self, "variant_id")
 
 
 @pulumi.output_type

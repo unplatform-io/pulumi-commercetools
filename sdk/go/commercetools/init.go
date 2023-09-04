@@ -25,6 +25,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ApiClient{}
 	case "commercetools:index/apiExtension:ApiExtension":
 		r = &ApiExtension{}
+	case "commercetools:index/associateRole:AssociateRole":
+		r = &AssociateRole{}
+	case "commercetools:index/attributeGroup:AttributeGroup":
+		r = &AttributeGroup{}
 	case "commercetools:index/cartDiscount:CartDiscount":
 		r = &CartDiscount{}
 	case "commercetools:index/category:Category":
@@ -102,6 +106,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"commercetools",
 		"index/apiExtension",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"commercetools",
+		"index/associateRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"commercetools",
+		"index/attributeGroup",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

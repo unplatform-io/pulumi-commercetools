@@ -135,10 +135,50 @@
                 "resourceTypeId"
             ]
         },
+        "commercetools:index/AttributeGroupAttribute:AttributeGroupAttribute": {
+            "properties": {
+                "key": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
+            ]
+        },
+        "commercetools:index/CartDiscountCustom:CartDiscountCustom": {
+            "properties": {
+                "fields": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    }
+                },
+                "typeId": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "typeId"
+            ]
+        },
         "commercetools:index/CartDiscountTarget:CartDiscountTarget": {
             "properties": {
+                "discountedQuantity": {
+                    "type": "integer"
+                },
+                "maxOccurrence": {
+                    "type": "integer"
+                },
                 "predicate": {
                     "type": "string"
+                },
+                "selectionMode": {
+                    "type": "string"
+                },
+                "triggerQuantity": {
+                    "type": "integer"
                 },
                 "type": {
                     "type": "string"
@@ -172,7 +212,7 @@
                 "type": {
                     "type": "string"
                 },
-                "variant": {
+                "variantId": {
                     "type": "integer"
                 }
             },
@@ -1311,8 +1351,197 @@
                 "type": "object"
             }
         },
+        "commercetools:index/associateRole:AssociateRole": {
+            "properties": {
+                "buyerAssignable": {
+                    "type": "boolean",
+                    "description": "Whether the AssociateRole can be assigned to an Associate by a buyer. If false, the AssociateRole can only be assigned\nusing the general endpoint.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "User-defined unique identifier of the AssociateRole.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the AssociateRole.\n"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of Permissions for the AssociateRole.\n"
+                },
+                "version": {
+                    "type": "integer",
+                    "description": "Current version of the AssociateRole.\n"
+                }
+            },
+            "required": [
+                "key",
+                "name",
+                "permissions",
+                "version"
+            ],
+            "inputProperties": {
+                "buyerAssignable": {
+                    "type": "boolean",
+                    "description": "Whether the AssociateRole can be assigned to an Associate by a buyer. If false, the AssociateRole can only be assigned\nusing the general endpoint.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "User-defined unique identifier of the AssociateRole.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the AssociateRole.\n"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of Permissions for the AssociateRole.\n"
+                }
+            },
+            "requiredInputs": [
+                "key",
+                "permissions"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AssociateRole resources.\n",
+                "properties": {
+                    "buyerAssignable": {
+                        "type": "boolean",
+                        "description": "Whether the AssociateRole can be assigned to an Associate by a buyer. If false, the AssociateRole can only be assigned\nusing the general endpoint.\n"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "User-defined unique identifier of the AssociateRole.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the AssociateRole.\n"
+                    },
+                    "permissions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of Permissions for the AssociateRole.\n"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "description": "Current version of the AssociateRole.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "commercetools:index/attributeGroup:AttributeGroup": {
+            "properties": {
+                "attributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/AttributeGroupAttribute:AttributeGroupAttribute"
+                    },
+                    "description": "Attributes with unique values.\n"
+                },
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Description of the State as localized string.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "User-defined unique identifier of the AttributeGroup.\n"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Name of the State as localized string.\n"
+                },
+                "version": {
+                    "type": "integer",
+                    "description": "Current version of the AttributeGroup.\n"
+                }
+            },
+            "required": [
+                "name",
+                "version"
+            ],
+            "inputProperties": {
+                "attributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/AttributeGroupAttribute:AttributeGroupAttribute"
+                    },
+                    "description": "Attributes with unique values.\n"
+                },
+                "description": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Description of the State as localized string.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "User-defined unique identifier of the AttributeGroup.\n"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Name of the State as localized string.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AttributeGroup resources.\n",
+                "properties": {
+                    "attributes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/AttributeGroupAttribute:AttributeGroupAttribute"
+                        },
+                        "description": "Attributes with unique values.\n"
+                    },
+                    "description": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Description of the State as localized string.\n"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "User-defined unique identifier of the AttributeGroup.\n"
+                    },
+                    "name": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Name of the State as localized string.\n"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "description": "Current version of the AttributeGroup.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "commercetools:index/cartDiscount:CartDiscount": {
             "properties": {
+                "custom": {
+                    "$ref": "#/types/commercetools:index/CartDiscountCustom:CartDiscountCustom"
+                },
                 "description": {
                     "type": "object",
                     "additionalProperties": {
@@ -1377,6 +1606,9 @@
                 "version"
             ],
             "inputProperties": {
+                "custom": {
+                    "$ref": "#/types/commercetools:index/CartDiscountCustom:CartDiscountCustom"
+                },
                 "description": {
                     "type": "object",
                     "additionalProperties": {
@@ -1438,6 +1670,9 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering CartDiscount resources.\n",
                 "properties": {
+                    "custom": {
+                        "$ref": "#/types/commercetools:index/CartDiscountCustom:CartDiscountCustom"
+                    },
                     "description": {
                         "type": "object",
                         "additionalProperties": {
@@ -1592,8 +1827,7 @@
                 },
                 "key": {
                     "type": "string",
-                    "description": "Category-specific unique identifier. Must be unique across a project\n",
-                    "willReplaceOnChanges": true
+                    "description": "Category-specific unique identifier. Must be unique across a project\n"
                 },
                 "metaDescription": {
                     "type": "object",
@@ -1617,8 +1851,7 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    },
-                    "willReplaceOnChanges": true
+                    }
                 },
                 "orderHint": {
                     "type": "string",
@@ -1663,8 +1896,7 @@
                     },
                     "key": {
                         "type": "string",
-                        "description": "Category-specific unique identifier. Must be unique across a project\n",
-                        "willReplaceOnChanges": true
+                        "description": "Category-specific unique identifier. Must be unique across a project\n"
                     },
                     "metaDescription": {
                         "type": "object",
@@ -1688,8 +1920,7 @@
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        },
-                        "willReplaceOnChanges": true
+                        }
                     },
                     "orderHint": {
                         "type": "string",
@@ -2615,7 +2846,14 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "[LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)\n"
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
+                },
+                "localizedName": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "name": {
                     "type": "string"
@@ -2626,7 +2864,7 @@
                 },
                 "taxCategoryId": {
                     "type": "string",
-                    "description": "ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)\n"
+                    "description": "ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)\n"
                 },
                 "version": {
                     "type": "integer"
@@ -2657,7 +2895,14 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "[LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)\n"
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
+                },
+                "localizedName": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
                 "name": {
                     "type": "string"
@@ -2668,7 +2913,7 @@
                 },
                 "taxCategoryId": {
                     "type": "string",
-                    "description": "ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)\n"
+                    "description": "ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)\n"
                 }
             },
             "requiredInputs": [
@@ -2696,7 +2941,14 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "[LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)\n"
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
+                    },
+                    "localizedName": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                     },
                     "name": {
                         "type": "string"
@@ -2707,7 +2959,7 @@
                     },
                     "taxCategoryId": {
                         "type": "string",
-                        "description": "ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)\n"
+                        "description": "ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)\n"
                     },
                     "version": {
                         "type": "integer"
@@ -3056,6 +3308,13 @@
         },
         "commercetools:index/store:Store": {
             "properties": {
+                "countries": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\n"
+                },
                 "custom": {
                     "$ref": "#/types/commercetools:index/StoreCustom:StoreCustom"
                 },
@@ -3101,6 +3360,13 @@
                 "version"
             ],
             "inputProperties": {
+                "countries": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\n"
+                },
                 "custom": {
                     "$ref": "#/types/commercetools:index/StoreCustom:StoreCustom"
                 },
@@ -3144,6 +3410,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Store resources.\n",
                 "properties": {
+                    "countries": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\n"
+                    },
                     "custom": {
                         "$ref": "#/types/commercetools:index/StoreCustom:StoreCustom"
                     },
@@ -3570,6 +3843,36 @@
         }
     },
     "functions": {
+        "commercetools:index/getState:getState": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getState.\n",
+                "properties": {
+                    "key": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "key"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getState.\n",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "key"
+                ]
+            }
+        },
         "commercetools:index/getType:getType": {
             "inputs": {
                 "description": "A collection of arguments for invoking getType.\n",

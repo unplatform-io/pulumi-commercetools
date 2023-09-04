@@ -15,6 +15,8 @@
     "files": [
         "apiClient.ts",
         "apiExtension.ts",
+        "associateRole.ts",
+        "attributeGroup.ts",
         "cartDiscount.ts",
         "category.ts",
         "channel.ts",
@@ -23,6 +25,7 @@
         "customObject.ts",
         "customerGroup.ts",
         "discountCode.ts",
+        "getState.ts",
         "getType.ts",
         "index.ts",
         "productDiscount.ts",

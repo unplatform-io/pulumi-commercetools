@@ -15,6 +15,16 @@ export type ApiExtension = import("./apiExtension").ApiExtension;
 export const ApiExtension: typeof import("./apiExtension").ApiExtension = null as any;
 utilities.lazyLoad(exports, ["ApiExtension"], () => require("./apiExtension"));
 
+export { AssociateRoleArgs, AssociateRoleState } from "./associateRole";
+export type AssociateRole = import("./associateRole").AssociateRole;
+export const AssociateRole: typeof import("./associateRole").AssociateRole = null as any;
+utilities.lazyLoad(exports, ["AssociateRole"], () => require("./associateRole"));
+
+export { AttributeGroupArgs, AttributeGroupState } from "./attributeGroup";
+export type AttributeGroup = import("./attributeGroup").AttributeGroup;
+export const AttributeGroup: typeof import("./attributeGroup").AttributeGroup = null as any;
+utilities.lazyLoad(exports, ["AttributeGroup"], () => require("./attributeGroup"));
+
 export { CartDiscountArgs, CartDiscountState } from "./cartDiscount";
 export type CartDiscount = import("./cartDiscount").CartDiscount;
 export const CartDiscount: typeof import("./cartDiscount").CartDiscount = null as any;
@@ -44,6 +54,11 @@ export { DiscountCodeArgs, DiscountCodeState } from "./discountCode";
 export type DiscountCode = import("./discountCode").DiscountCode;
 export const DiscountCode: typeof import("./discountCode").DiscountCode = null as any;
 utilities.lazyLoad(exports, ["DiscountCode"], () => require("./discountCode"));
+
+export { GetStateArgs, GetStateResult, GetStateOutputArgs } from "./getState";
+export const getState: typeof import("./getState").getState = null as any;
+export const getStateOutput: typeof import("./getState").getStateOutput = null as any;
+utilities.lazyLoad(exports, ["getState","getStateOutput"], () => require("./getState"));
 
 export { GetTypeArgs, GetTypeResult, GetTypeOutputArgs } from "./getType";
 export const getType: typeof import("./getType").getType = null as any;
@@ -138,6 +153,10 @@ const _module = {
                 return new ApiClient(name, <any>undefined, { urn })
             case "commercetools:index/apiExtension:ApiExtension":
                 return new ApiExtension(name, <any>undefined, { urn })
+            case "commercetools:index/associateRole:AssociateRole":
+                return new AssociateRole(name, <any>undefined, { urn })
+            case "commercetools:index/attributeGroup:AttributeGroup":
+                return new AttributeGroup(name, <any>undefined, { urn })
             case "commercetools:index/cartDiscount:CartDiscount":
                 return new CartDiscount(name, <any>undefined, { urn })
             case "commercetools:index/category:Category":
@@ -183,6 +202,8 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("commercetools", "index/apiClient", _module)
 pulumi.runtime.registerResourceModule("commercetools", "index/apiExtension", _module)
+pulumi.runtime.registerResourceModule("commercetools", "index/associateRole", _module)
+pulumi.runtime.registerResourceModule("commercetools", "index/attributeGroup", _module)
 pulumi.runtime.registerResourceModule("commercetools", "index/cartDiscount", _module)
 pulumi.runtime.registerResourceModule("commercetools", "index/category", _module)
 pulumi.runtime.registerResourceModule("commercetools", "index/channel", _module)

@@ -17,6 +17,7 @@ __all__ = ['StoreArgs', 'Store']
 class StoreArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
+                 countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  custom: Optional[pulumi.Input['StoreCustomArgs']] = None,
                  distribution_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -25,12 +26,15 @@ class StoreArgs:
         """
         The set of arguments for constructing a Store resource.
         :param pulumi.Input[str] key: User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] distribution_channels: Set of ResourceIdentifier to a Channel with ProductDistribution
         :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
         :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supply_channels: Set of ResourceIdentifier of Channels with InventorySupply
         """
         pulumi.set(__self__, "key", key)
+        if countries is not None:
+            pulumi.set(__self__, "countries", countries)
         if custom is not None:
             pulumi.set(__self__, "custom", custom)
         if distribution_channels is not None:
@@ -53,6 +57,18 @@ class StoreArgs:
     @key.setter
     def key(self, value: pulumi.Input[str]):
         pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def countries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
+        return pulumi.get(self, "countries")
+
+    @countries.setter
+    def countries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "countries", value)
 
     @property
     @pulumi.getter
@@ -115,6 +131,7 @@ class StoreArgs:
 @pulumi.input_type
 class _StoreState:
     def __init__(__self__, *,
+                 countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  custom: Optional[pulumi.Input['StoreCustomArgs']] = None,
                  distribution_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -124,12 +141,15 @@ class _StoreState:
                  version: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Store resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] distribution_channels: Set of ResourceIdentifier to a Channel with ProductDistribution
         :param pulumi.Input[str] key: User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
         :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
         :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supply_channels: Set of ResourceIdentifier of Channels with InventorySupply
         """
+        if countries is not None:
+            pulumi.set(__self__, "countries", countries)
         if custom is not None:
             pulumi.set(__self__, "custom", custom)
         if distribution_channels is not None:
@@ -144,6 +164,18 @@ class _StoreState:
             pulumi.set(__self__, "supply_channels", supply_channels)
         if version is not None:
             pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def countries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
+        return pulumi.get(self, "countries")
+
+    @countries.setter
+    def countries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "countries", value)
 
     @property
     @pulumi.getter
@@ -229,6 +261,7 @@ class Store(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  custom: Optional[pulumi.Input[pulumi.InputType['StoreCustomArgs']]] = None,
                  distribution_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -240,6 +273,7 @@ class Store(pulumi.CustomResource):
         Create a Store resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] distribution_channels: Set of ResourceIdentifier to a Channel with ProductDistribution
         :param pulumi.Input[str] key: User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
         :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
@@ -269,6 +303,7 @@ class Store(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  custom: Optional[pulumi.Input[pulumi.InputType['StoreCustomArgs']]] = None,
                  distribution_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -284,6 +319,7 @@ class Store(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = StoreArgs.__new__(StoreArgs)
 
+            __props__.__dict__["countries"] = countries
             __props__.__dict__["custom"] = custom
             __props__.__dict__["distribution_channels"] = distribution_channels
             if key is None and not opts.urn:
@@ -303,6 +339,7 @@ class Store(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             custom: Optional[pulumi.Input[pulumi.InputType['StoreCustomArgs']]] = None,
             distribution_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             key: Optional[pulumi.Input[str]] = None,
@@ -317,6 +354,7 @@ class Store(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] distribution_channels: Set of ResourceIdentifier to a Channel with ProductDistribution
         :param pulumi.Input[str] key: User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
         :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
@@ -327,6 +365,7 @@ class Store(pulumi.CustomResource):
 
         __props__ = _StoreState.__new__(_StoreState)
 
+        __props__.__dict__["countries"] = countries
         __props__.__dict__["custom"] = custom
         __props__.__dict__["distribution_channels"] = distribution_channels
         __props__.__dict__["key"] = key
@@ -335,6 +374,14 @@ class Store(pulumi.CustomResource):
         __props__.__dict__["supply_channels"] = supply_channels
         __props__.__dict__["version"] = version
         return Store(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def countries(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
+        return pulumi.get(self, "countries")
 
     @property
     @pulumi.getter

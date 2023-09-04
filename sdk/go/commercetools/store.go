@@ -15,7 +15,9 @@ import (
 type Store struct {
 	pulumi.CustomResourceState
 
-	Custom StoreCustomPtrOutput `pulumi:"custom"`
+	// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+	Countries pulumi.StringArrayOutput `pulumi:"countries"`
+	Custom    StoreCustomPtrOutput     `pulumi:"custom"`
 	// Set of ResourceIdentifier to a Channel with ProductDistribution
 	DistributionChannels pulumi.StringArrayOutput `pulumi:"distributionChannels"`
 	// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
@@ -62,7 +64,9 @@ func GetStore(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Store resources.
 type storeState struct {
-	Custom *StoreCustom `pulumi:"custom"`
+	// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+	Countries []string     `pulumi:"countries"`
+	Custom    *StoreCustom `pulumi:"custom"`
 	// Set of ResourceIdentifier to a Channel with ProductDistribution
 	DistributionChannels []string `pulumi:"distributionChannels"`
 	// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
@@ -77,7 +81,9 @@ type storeState struct {
 }
 
 type StoreState struct {
-	Custom StoreCustomPtrInput
+	// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+	Countries pulumi.StringArrayInput
+	Custom    StoreCustomPtrInput
 	// Set of ResourceIdentifier to a Channel with ProductDistribution
 	DistributionChannels pulumi.StringArrayInput
 	// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
@@ -96,7 +102,9 @@ func (StoreState) ElementType() reflect.Type {
 }
 
 type storeArgs struct {
-	Custom *StoreCustom `pulumi:"custom"`
+	// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+	Countries []string     `pulumi:"countries"`
+	Custom    *StoreCustom `pulumi:"custom"`
 	// Set of ResourceIdentifier to a Channel with ProductDistribution
 	DistributionChannels []string `pulumi:"distributionChannels"`
 	// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
@@ -111,7 +119,9 @@ type storeArgs struct {
 
 // The set of arguments for constructing a Store resource.
 type StoreArgs struct {
-	Custom StoreCustomPtrInput
+	// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+	Countries pulumi.StringArrayInput
+	Custom    StoreCustomPtrInput
 	// Set of ResourceIdentifier to a Channel with ProductDistribution
 	DistributionChannels pulumi.StringArrayInput
 	// User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
@@ -209,6 +219,11 @@ func (o StoreOutput) ToStoreOutput() StoreOutput {
 
 func (o StoreOutput) ToStoreOutputWithContext(ctx context.Context) StoreOutput {
 	return o
+}
+
+// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+func (o StoreOutput) Countries() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Store) pulumi.StringArrayOutput { return v.Countries }).(pulumi.StringArrayOutput)
 }
 
 func (o StoreOutput) Custom() StoreCustomPtrOutput {

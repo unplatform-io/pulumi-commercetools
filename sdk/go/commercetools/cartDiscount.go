@@ -15,6 +15,7 @@ import (
 type CartDiscount struct {
 	pulumi.CustomResourceState
 
+	Custom CartDiscountCustomPtrOutput `pulumi:"custom"`
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Description pulumi.MapOutput `pulumi:"description"`
 	// Only active discount can be applied to the cart
@@ -84,6 +85,7 @@ func GetCartDiscount(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CartDiscount resources.
 type cartDiscountState struct {
+	Custom *CartDiscountCustom `pulumi:"custom"`
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Description map[string]interface{} `pulumi:"description"`
 	// Only active discount can be applied to the cart
@@ -115,6 +117,7 @@ type cartDiscountState struct {
 }
 
 type CartDiscountState struct {
+	Custom CartDiscountCustomPtrInput
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Description pulumi.MapInput
 	// Only active discount can be applied to the cart
@@ -150,6 +153,7 @@ func (CartDiscountState) ElementType() reflect.Type {
 }
 
 type cartDiscountArgs struct {
+	Custom *CartDiscountCustom `pulumi:"custom"`
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Description map[string]interface{} `pulumi:"description"`
 	// Only active discount can be applied to the cart
@@ -181,6 +185,7 @@ type cartDiscountArgs struct {
 
 // The set of arguments for constructing a CartDiscount resource.
 type CartDiscountArgs struct {
+	Custom CartDiscountCustomPtrInput
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Description pulumi.MapInput
 	// Only active discount can be applied to the cart
@@ -295,6 +300,10 @@ func (o CartDiscountOutput) ToCartDiscountOutput() CartDiscountOutput {
 
 func (o CartDiscountOutput) ToCartDiscountOutputWithContext(ctx context.Context) CartDiscountOutput {
 	return o
+}
+
+func (o CartDiscountOutput) Custom() CartDiscountCustomPtrOutput {
+	return o.ApplyT(func(v *CartDiscount) CartDiscountCustomPtrOutput { return v.Custom }).(CartDiscountCustomPtrOutput)
 }
 
 // [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)

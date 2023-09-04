@@ -7,12 +7,15 @@ import typing
 # Export this package's modules as members:
 from .api_client import *
 from .api_extension import *
+from .associate_role import *
+from .attribute_group import *
 from .cart_discount import *
 from .category import *
 from .channel import *
 from .custom_object import *
 from .customer_group import *
 from .discount_code import *
+from .get_state import *
 from .get_type import *
 from .product_discount import *
 from .product_type import *
@@ -55,6 +58,22 @@ _utilities.register(
   "fqn": "pulumi_commercetools",
   "classes": {
    "commercetools:index/apiExtension:ApiExtension": "ApiExtension"
+  }
+ },
+ {
+  "pkg": "commercetools",
+  "mod": "index/associateRole",
+  "fqn": "pulumi_commercetools",
+  "classes": {
+   "commercetools:index/associateRole:AssociateRole": "AssociateRole"
+  }
+ },
+ {
+  "pkg": "commercetools",
+  "mod": "index/attributeGroup",
+  "fqn": "pulumi_commercetools",
+  "classes": {
+   "commercetools:index/attributeGroup:AttributeGroup": "AttributeGroup"
   }
  },
  {
