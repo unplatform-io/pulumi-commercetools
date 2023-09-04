@@ -21,12 +21,14 @@ type ShippingMethod struct {
 	IsDefault pulumi.BoolPtrOutput `pulumi:"isDefault"`
 	// User-specific unique identifier for the shipping method
 	Key pulumi.StringPtrOutput `pulumi:"key"`
-	// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
-	LocalizedDescription pulumi.MapOutput    `pulumi:"localizedDescription"`
-	Name                 pulumi.StringOutput `pulumi:"name"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedDescription pulumi.MapOutput `pulumi:"localizedDescription"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedName pulumi.MapOutput    `pulumi:"localizedName"`
+	Name          pulumi.StringOutput `pulumi:"name"`
 	// A Cart predicate which can be used to more precisely select a shipping method for a cart
 	Predicate pulumi.StringPtrOutput `pulumi:"predicate"`
-	// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+	// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 	TaxCategoryId pulumi.StringOutput `pulumi:"taxCategoryId"`
 	Version       pulumi.IntOutput    `pulumi:"version"`
 }
@@ -70,12 +72,14 @@ type shippingMethodState struct {
 	IsDefault *bool `pulumi:"isDefault"`
 	// User-specific unique identifier for the shipping method
 	Key *string `pulumi:"key"`
-	// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	LocalizedDescription map[string]interface{} `pulumi:"localizedDescription"`
-	Name                 *string                `pulumi:"name"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedName map[string]interface{} `pulumi:"localizedName"`
+	Name          *string                `pulumi:"name"`
 	// A Cart predicate which can be used to more precisely select a shipping method for a cart
 	Predicate *string `pulumi:"predicate"`
-	// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+	// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 	TaxCategoryId *string `pulumi:"taxCategoryId"`
 	Version       *int    `pulumi:"version"`
 }
@@ -87,12 +91,14 @@ type ShippingMethodState struct {
 	IsDefault pulumi.BoolPtrInput
 	// User-specific unique identifier for the shipping method
 	Key pulumi.StringPtrInput
-	// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	LocalizedDescription pulumi.MapInput
-	Name                 pulumi.StringPtrInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedName pulumi.MapInput
+	Name          pulumi.StringPtrInput
 	// A Cart predicate which can be used to more precisely select a shipping method for a cart
 	Predicate pulumi.StringPtrInput
-	// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+	// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 	TaxCategoryId pulumi.StringPtrInput
 	Version       pulumi.IntPtrInput
 }
@@ -108,12 +114,14 @@ type shippingMethodArgs struct {
 	IsDefault *bool `pulumi:"isDefault"`
 	// User-specific unique identifier for the shipping method
 	Key *string `pulumi:"key"`
-	// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	LocalizedDescription map[string]interface{} `pulumi:"localizedDescription"`
-	Name                 *string                `pulumi:"name"`
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedName map[string]interface{} `pulumi:"localizedName"`
+	Name          *string                `pulumi:"name"`
 	// A Cart predicate which can be used to more precisely select a shipping method for a cart
 	Predicate *string `pulumi:"predicate"`
-	// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+	// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 	TaxCategoryId string `pulumi:"taxCategoryId"`
 }
 
@@ -125,12 +133,14 @@ type ShippingMethodArgs struct {
 	IsDefault pulumi.BoolPtrInput
 	// User-specific unique identifier for the shipping method
 	Key pulumi.StringPtrInput
-	// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	LocalizedDescription pulumi.MapInput
-	Name                 pulumi.StringPtrInput
+	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+	LocalizedName pulumi.MapInput
+	Name          pulumi.StringPtrInput
 	// A Cart predicate which can be used to more precisely select a shipping method for a cart
 	Predicate pulumi.StringPtrInput
-	// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+	// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 	TaxCategoryId pulumi.StringInput
 }
 
@@ -239,9 +249,14 @@ func (o ShippingMethodOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShippingMethod) pulumi.StringPtrOutput { return v.Key }).(pulumi.StringPtrOutput)
 }
 
-// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 func (o ShippingMethodOutput) LocalizedDescription() pulumi.MapOutput {
 	return o.ApplyT(func(v *ShippingMethod) pulumi.MapOutput { return v.LocalizedDescription }).(pulumi.MapOutput)
+}
+
+// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+func (o ShippingMethodOutput) LocalizedName() pulumi.MapOutput {
+	return o.ApplyT(func(v *ShippingMethod) pulumi.MapOutput { return v.LocalizedName }).(pulumi.MapOutput)
 }
 
 func (o ShippingMethodOutput) Name() pulumi.StringOutput {
@@ -253,7 +268,7 @@ func (o ShippingMethodOutput) Predicate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShippingMethod) pulumi.StringPtrOutput { return v.Predicate }).(pulumi.StringPtrOutput)
 }
 
-// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
 func (o ShippingMethodOutput) TaxCategoryId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ShippingMethod) pulumi.StringOutput { return v.TaxCategoryId }).(pulumi.StringOutput)
 }

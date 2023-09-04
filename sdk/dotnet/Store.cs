@@ -12,6 +12,12 @@ namespace Pulumi.Commercetools
     [CommercetoolsResourceType("commercetools:index/store:Store")]
     public partial class Store : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
+        [Output("countries")]
+        public Output<ImmutableArray<string>> Countries { get; private set; } = null!;
+
         [Output("custom")]
         public Output<Outputs.StoreCustom?> Custom { get; private set; } = null!;
 
@@ -94,6 +100,18 @@ namespace Pulumi.Commercetools
 
     public sealed class StoreArgs : global::Pulumi.ResourceArgs
     {
+        [Input("countries")]
+        private InputList<string>? _countries;
+
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
+        public InputList<string> Countries
+        {
+            get => _countries ?? (_countries = new InputList<string>());
+            set => _countries = value;
+        }
+
         [Input("custom")]
         public Input<Inputs.StoreCustomArgs>? Custom { get; set; }
 
@@ -159,6 +177,18 @@ namespace Pulumi.Commercetools
 
     public sealed class StoreState : global::Pulumi.ResourceArgs
     {
+        [Input("countries")]
+        private InputList<string>? _countries;
+
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
+        public InputList<string> Countries
+        {
+            get => _countries ?? (_countries = new InputList<string>());
+            set => _countries = value;
+        }
+
         [Input("custom")]
         public Input<Inputs.StoreCustomGetArgs>? Custom { get; set; }
 

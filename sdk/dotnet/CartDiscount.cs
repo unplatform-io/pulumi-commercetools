@@ -12,6 +12,9 @@ namespace Pulumi.Commercetools
     [CommercetoolsResourceType("commercetools:index/cartDiscount:CartDiscount")]
     public partial class CartDiscount : global::Pulumi.CustomResource
     {
+        [Output("custom")]
+        public Output<Outputs.CartDiscountCustom?> Custom { get; private set; } = null!;
+
         /// <summary>
         /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         /// </summary>
@@ -132,6 +135,9 @@ namespace Pulumi.Commercetools
 
     public sealed class CartDiscountArgs : global::Pulumi.ResourceArgs
     {
+        [Input("custom")]
+        public Input<Inputs.CartDiscountCustomArgs>? Custom { get; set; }
+
         [Input("description")]
         private InputMap<object>? _description;
 
@@ -223,6 +229,9 @@ namespace Pulumi.Commercetools
 
     public sealed class CartDiscountState : global::Pulumi.ResourceArgs
     {
+        [Input("custom")]
+        public Input<Inputs.CartDiscountCustomGetArgs>? Custom { get; set; }
+
         [Input("description")]
         private InputMap<object>? _description;
 

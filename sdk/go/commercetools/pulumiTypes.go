@@ -342,9 +342,255 @@ func (o ApiExtensionTriggerArrayOutput) Index(i pulumi.IntInput) ApiExtensionTri
 	}).(ApiExtensionTriggerOutput)
 }
 
+type AttributeGroupAttribute struct {
+	Key string `pulumi:"key"`
+}
+
+// AttributeGroupAttributeInput is an input type that accepts AttributeGroupAttributeArgs and AttributeGroupAttributeOutput values.
+// You can construct a concrete instance of `AttributeGroupAttributeInput` via:
+//
+//	AttributeGroupAttributeArgs{...}
+type AttributeGroupAttributeInput interface {
+	pulumi.Input
+
+	ToAttributeGroupAttributeOutput() AttributeGroupAttributeOutput
+	ToAttributeGroupAttributeOutputWithContext(context.Context) AttributeGroupAttributeOutput
+}
+
+type AttributeGroupAttributeArgs struct {
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (AttributeGroupAttributeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttributeGroupAttribute)(nil)).Elem()
+}
+
+func (i AttributeGroupAttributeArgs) ToAttributeGroupAttributeOutput() AttributeGroupAttributeOutput {
+	return i.ToAttributeGroupAttributeOutputWithContext(context.Background())
+}
+
+func (i AttributeGroupAttributeArgs) ToAttributeGroupAttributeOutputWithContext(ctx context.Context) AttributeGroupAttributeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttributeGroupAttributeOutput)
+}
+
+// AttributeGroupAttributeArrayInput is an input type that accepts AttributeGroupAttributeArray and AttributeGroupAttributeArrayOutput values.
+// You can construct a concrete instance of `AttributeGroupAttributeArrayInput` via:
+//
+//	AttributeGroupAttributeArray{ AttributeGroupAttributeArgs{...} }
+type AttributeGroupAttributeArrayInput interface {
+	pulumi.Input
+
+	ToAttributeGroupAttributeArrayOutput() AttributeGroupAttributeArrayOutput
+	ToAttributeGroupAttributeArrayOutputWithContext(context.Context) AttributeGroupAttributeArrayOutput
+}
+
+type AttributeGroupAttributeArray []AttributeGroupAttributeInput
+
+func (AttributeGroupAttributeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AttributeGroupAttribute)(nil)).Elem()
+}
+
+func (i AttributeGroupAttributeArray) ToAttributeGroupAttributeArrayOutput() AttributeGroupAttributeArrayOutput {
+	return i.ToAttributeGroupAttributeArrayOutputWithContext(context.Background())
+}
+
+func (i AttributeGroupAttributeArray) ToAttributeGroupAttributeArrayOutputWithContext(ctx context.Context) AttributeGroupAttributeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AttributeGroupAttributeArrayOutput)
+}
+
+type AttributeGroupAttributeOutput struct{ *pulumi.OutputState }
+
+func (AttributeGroupAttributeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AttributeGroupAttribute)(nil)).Elem()
+}
+
+func (o AttributeGroupAttributeOutput) ToAttributeGroupAttributeOutput() AttributeGroupAttributeOutput {
+	return o
+}
+
+func (o AttributeGroupAttributeOutput) ToAttributeGroupAttributeOutputWithContext(ctx context.Context) AttributeGroupAttributeOutput {
+	return o
+}
+
+func (o AttributeGroupAttributeOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AttributeGroupAttribute) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type AttributeGroupAttributeArrayOutput struct{ *pulumi.OutputState }
+
+func (AttributeGroupAttributeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AttributeGroupAttribute)(nil)).Elem()
+}
+
+func (o AttributeGroupAttributeArrayOutput) ToAttributeGroupAttributeArrayOutput() AttributeGroupAttributeArrayOutput {
+	return o
+}
+
+func (o AttributeGroupAttributeArrayOutput) ToAttributeGroupAttributeArrayOutputWithContext(ctx context.Context) AttributeGroupAttributeArrayOutput {
+	return o
+}
+
+func (o AttributeGroupAttributeArrayOutput) Index(i pulumi.IntInput) AttributeGroupAttributeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AttributeGroupAttribute {
+		return vs[0].([]AttributeGroupAttribute)[vs[1].(int)]
+	}).(AttributeGroupAttributeOutput)
+}
+
+type CartDiscountCustom struct {
+	Fields map[string]interface{} `pulumi:"fields"`
+	TypeId string                 `pulumi:"typeId"`
+}
+
+// CartDiscountCustomInput is an input type that accepts CartDiscountCustomArgs and CartDiscountCustomOutput values.
+// You can construct a concrete instance of `CartDiscountCustomInput` via:
+//
+//	CartDiscountCustomArgs{...}
+type CartDiscountCustomInput interface {
+	pulumi.Input
+
+	ToCartDiscountCustomOutput() CartDiscountCustomOutput
+	ToCartDiscountCustomOutputWithContext(context.Context) CartDiscountCustomOutput
+}
+
+type CartDiscountCustomArgs struct {
+	Fields pulumi.MapInput    `pulumi:"fields"`
+	TypeId pulumi.StringInput `pulumi:"typeId"`
+}
+
+func (CartDiscountCustomArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CartDiscountCustom)(nil)).Elem()
+}
+
+func (i CartDiscountCustomArgs) ToCartDiscountCustomOutput() CartDiscountCustomOutput {
+	return i.ToCartDiscountCustomOutputWithContext(context.Background())
+}
+
+func (i CartDiscountCustomArgs) ToCartDiscountCustomOutputWithContext(ctx context.Context) CartDiscountCustomOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CartDiscountCustomOutput)
+}
+
+func (i CartDiscountCustomArgs) ToCartDiscountCustomPtrOutput() CartDiscountCustomPtrOutput {
+	return i.ToCartDiscountCustomPtrOutputWithContext(context.Background())
+}
+
+func (i CartDiscountCustomArgs) ToCartDiscountCustomPtrOutputWithContext(ctx context.Context) CartDiscountCustomPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CartDiscountCustomOutput).ToCartDiscountCustomPtrOutputWithContext(ctx)
+}
+
+// CartDiscountCustomPtrInput is an input type that accepts CartDiscountCustomArgs, CartDiscountCustomPtr and CartDiscountCustomPtrOutput values.
+// You can construct a concrete instance of `CartDiscountCustomPtrInput` via:
+//
+//	        CartDiscountCustomArgs{...}
+//
+//	or:
+//
+//	        nil
+type CartDiscountCustomPtrInput interface {
+	pulumi.Input
+
+	ToCartDiscountCustomPtrOutput() CartDiscountCustomPtrOutput
+	ToCartDiscountCustomPtrOutputWithContext(context.Context) CartDiscountCustomPtrOutput
+}
+
+type cartDiscountCustomPtrType CartDiscountCustomArgs
+
+func CartDiscountCustomPtr(v *CartDiscountCustomArgs) CartDiscountCustomPtrInput {
+	return (*cartDiscountCustomPtrType)(v)
+}
+
+func (*cartDiscountCustomPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CartDiscountCustom)(nil)).Elem()
+}
+
+func (i *cartDiscountCustomPtrType) ToCartDiscountCustomPtrOutput() CartDiscountCustomPtrOutput {
+	return i.ToCartDiscountCustomPtrOutputWithContext(context.Background())
+}
+
+func (i *cartDiscountCustomPtrType) ToCartDiscountCustomPtrOutputWithContext(ctx context.Context) CartDiscountCustomPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CartDiscountCustomPtrOutput)
+}
+
+type CartDiscountCustomOutput struct{ *pulumi.OutputState }
+
+func (CartDiscountCustomOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CartDiscountCustom)(nil)).Elem()
+}
+
+func (o CartDiscountCustomOutput) ToCartDiscountCustomOutput() CartDiscountCustomOutput {
+	return o
+}
+
+func (o CartDiscountCustomOutput) ToCartDiscountCustomOutputWithContext(ctx context.Context) CartDiscountCustomOutput {
+	return o
+}
+
+func (o CartDiscountCustomOutput) ToCartDiscountCustomPtrOutput() CartDiscountCustomPtrOutput {
+	return o.ToCartDiscountCustomPtrOutputWithContext(context.Background())
+}
+
+func (o CartDiscountCustomOutput) ToCartDiscountCustomPtrOutputWithContext(ctx context.Context) CartDiscountCustomPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CartDiscountCustom) *CartDiscountCustom {
+		return &v
+	}).(CartDiscountCustomPtrOutput)
+}
+
+func (o CartDiscountCustomOutput) Fields() pulumi.MapOutput {
+	return o.ApplyT(func(v CartDiscountCustom) map[string]interface{} { return v.Fields }).(pulumi.MapOutput)
+}
+
+func (o CartDiscountCustomOutput) TypeId() pulumi.StringOutput {
+	return o.ApplyT(func(v CartDiscountCustom) string { return v.TypeId }).(pulumi.StringOutput)
+}
+
+type CartDiscountCustomPtrOutput struct{ *pulumi.OutputState }
+
+func (CartDiscountCustomPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CartDiscountCustom)(nil)).Elem()
+}
+
+func (o CartDiscountCustomPtrOutput) ToCartDiscountCustomPtrOutput() CartDiscountCustomPtrOutput {
+	return o
+}
+
+func (o CartDiscountCustomPtrOutput) ToCartDiscountCustomPtrOutputWithContext(ctx context.Context) CartDiscountCustomPtrOutput {
+	return o
+}
+
+func (o CartDiscountCustomPtrOutput) Elem() CartDiscountCustomOutput {
+	return o.ApplyT(func(v *CartDiscountCustom) CartDiscountCustom {
+		if v != nil {
+			return *v
+		}
+		var ret CartDiscountCustom
+		return ret
+	}).(CartDiscountCustomOutput)
+}
+
+func (o CartDiscountCustomPtrOutput) Fields() pulumi.MapOutput {
+	return o.ApplyT(func(v *CartDiscountCustom) map[string]interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.Fields
+	}).(pulumi.MapOutput)
+}
+
+func (o CartDiscountCustomPtrOutput) TypeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CartDiscountCustom) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TypeId
+	}).(pulumi.StringPtrOutput)
+}
+
 type CartDiscountTarget struct {
-	Predicate *string `pulumi:"predicate"`
-	Type      string  `pulumi:"type"`
+	DiscountedQuantity *int    `pulumi:"discountedQuantity"`
+	MaxOccurrence      *int    `pulumi:"maxOccurrence"`
+	Predicate          *string `pulumi:"predicate"`
+	SelectionMode      *string `pulumi:"selectionMode"`
+	TriggerQuantity    *int    `pulumi:"triggerQuantity"`
+	Type               string  `pulumi:"type"`
 }
 
 // CartDiscountTargetInput is an input type that accepts CartDiscountTargetArgs and CartDiscountTargetOutput values.
@@ -359,8 +605,12 @@ type CartDiscountTargetInput interface {
 }
 
 type CartDiscountTargetArgs struct {
-	Predicate pulumi.StringPtrInput `pulumi:"predicate"`
-	Type      pulumi.StringInput    `pulumi:"type"`
+	DiscountedQuantity pulumi.IntPtrInput    `pulumi:"discountedQuantity"`
+	MaxOccurrence      pulumi.IntPtrInput    `pulumi:"maxOccurrence"`
+	Predicate          pulumi.StringPtrInput `pulumi:"predicate"`
+	SelectionMode      pulumi.StringPtrInput `pulumi:"selectionMode"`
+	TriggerQuantity    pulumi.IntPtrInput    `pulumi:"triggerQuantity"`
+	Type               pulumi.StringInput    `pulumi:"type"`
 }
 
 func (CartDiscountTargetArgs) ElementType() reflect.Type {
@@ -440,8 +690,24 @@ func (o CartDiscountTargetOutput) ToCartDiscountTargetPtrOutputWithContext(ctx c
 	}).(CartDiscountTargetPtrOutput)
 }
 
+func (o CartDiscountTargetOutput) DiscountedQuantity() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CartDiscountTarget) *int { return v.DiscountedQuantity }).(pulumi.IntPtrOutput)
+}
+
+func (o CartDiscountTargetOutput) MaxOccurrence() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CartDiscountTarget) *int { return v.MaxOccurrence }).(pulumi.IntPtrOutput)
+}
+
 func (o CartDiscountTargetOutput) Predicate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CartDiscountTarget) *string { return v.Predicate }).(pulumi.StringPtrOutput)
+}
+
+func (o CartDiscountTargetOutput) SelectionMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CartDiscountTarget) *string { return v.SelectionMode }).(pulumi.StringPtrOutput)
+}
+
+func (o CartDiscountTargetOutput) TriggerQuantity() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CartDiscountTarget) *int { return v.TriggerQuantity }).(pulumi.IntPtrOutput)
 }
 
 func (o CartDiscountTargetOutput) Type() pulumi.StringOutput {
@@ -472,6 +738,24 @@ func (o CartDiscountTargetPtrOutput) Elem() CartDiscountTargetOutput {
 	}).(CartDiscountTargetOutput)
 }
 
+func (o CartDiscountTargetPtrOutput) DiscountedQuantity() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CartDiscountTarget) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DiscountedQuantity
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CartDiscountTargetPtrOutput) MaxOccurrence() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CartDiscountTarget) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxOccurrence
+	}).(pulumi.IntPtrOutput)
+}
+
 func (o CartDiscountTargetPtrOutput) Predicate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CartDiscountTarget) *string {
 		if v == nil {
@@ -479,6 +763,24 @@ func (o CartDiscountTargetPtrOutput) Predicate() pulumi.StringPtrOutput {
 		}
 		return v.Predicate
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o CartDiscountTargetPtrOutput) SelectionMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CartDiscountTarget) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SelectionMode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CartDiscountTargetPtrOutput) TriggerQuantity() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CartDiscountTarget) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TriggerQuantity
+	}).(pulumi.IntPtrOutput)
 }
 
 func (o CartDiscountTargetPtrOutput) Type() pulumi.StringPtrOutput {
@@ -497,7 +799,7 @@ type CartDiscountValue struct {
 	ProductId             *string                  `pulumi:"productId"`
 	SupplyChannelId       *string                  `pulumi:"supplyChannelId"`
 	Type                  string                   `pulumi:"type"`
-	Variant               *int                     `pulumi:"variant"`
+	VariantId             *int                     `pulumi:"variantId"`
 }
 
 // CartDiscountValueInput is an input type that accepts CartDiscountValueArgs and CartDiscountValueOutput values.
@@ -518,7 +820,7 @@ type CartDiscountValueArgs struct {
 	ProductId             pulumi.StringPtrInput            `pulumi:"productId"`
 	SupplyChannelId       pulumi.StringPtrInput            `pulumi:"supplyChannelId"`
 	Type                  pulumi.StringInput               `pulumi:"type"`
-	Variant               pulumi.IntPtrInput               `pulumi:"variant"`
+	VariantId             pulumi.IntPtrInput               `pulumi:"variantId"`
 }
 
 func (CartDiscountValueArgs) ElementType() reflect.Type {
@@ -622,8 +924,8 @@ func (o CartDiscountValueOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v CartDiscountValue) string { return v.Type }).(pulumi.StringOutput)
 }
 
-func (o CartDiscountValueOutput) Variant() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v CartDiscountValue) *int { return v.Variant }).(pulumi.IntPtrOutput)
+func (o CartDiscountValueOutput) VariantId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CartDiscountValue) *int { return v.VariantId }).(pulumi.IntPtrOutput)
 }
 
 type CartDiscountValuePtrOutput struct{ *pulumi.OutputState }
@@ -704,12 +1006,12 @@ func (o CartDiscountValuePtrOutput) Type() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o CartDiscountValuePtrOutput) Variant() pulumi.IntPtrOutput {
+func (o CartDiscountValuePtrOutput) VariantId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CartDiscountValue) *int {
 		if v == nil {
 			return nil
 		}
-		return v.Variant
+		return v.VariantId
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -6655,6 +6957,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ApiExtensionDestinationPtrInput)(nil)).Elem(), ApiExtensionDestinationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApiExtensionTriggerInput)(nil)).Elem(), ApiExtensionTriggerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApiExtensionTriggerArrayInput)(nil)).Elem(), ApiExtensionTriggerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AttributeGroupAttributeInput)(nil)).Elem(), AttributeGroupAttributeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AttributeGroupAttributeArrayInput)(nil)).Elem(), AttributeGroupAttributeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CartDiscountCustomInput)(nil)).Elem(), CartDiscountCustomArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CartDiscountCustomPtrInput)(nil)).Elem(), CartDiscountCustomArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CartDiscountTargetInput)(nil)).Elem(), CartDiscountTargetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CartDiscountTargetPtrInput)(nil)).Elem(), CartDiscountTargetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CartDiscountValueInput)(nil)).Elem(), CartDiscountValueArgs{})
@@ -6747,6 +7053,10 @@ func init() {
 	pulumi.RegisterOutputType(ApiExtensionDestinationPtrOutput{})
 	pulumi.RegisterOutputType(ApiExtensionTriggerOutput{})
 	pulumi.RegisterOutputType(ApiExtensionTriggerArrayOutput{})
+	pulumi.RegisterOutputType(AttributeGroupAttributeOutput{})
+	pulumi.RegisterOutputType(AttributeGroupAttributeArrayOutput{})
+	pulumi.RegisterOutputType(CartDiscountCustomOutput{})
+	pulumi.RegisterOutputType(CartDiscountCustomPtrOutput{})
 	pulumi.RegisterOutputType(CartDiscountTargetOutput{})
 	pulumi.RegisterOutputType(CartDiscountTargetPtrOutput{})
 	pulumi.RegisterOutputType(CartDiscountValueOutput{})

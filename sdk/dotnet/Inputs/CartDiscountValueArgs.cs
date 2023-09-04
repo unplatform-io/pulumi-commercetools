@@ -35,8 +35,8 @@ namespace Pulumi.Commercetools.Inputs
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        [Input("variant")]
-        public Input<int>? Variant { get; set; }
+        [Input("variantId")]
+        public Input<int>? VariantId { get; set; }
 
         public CartDiscountValueArgs()
         {

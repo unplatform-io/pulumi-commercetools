@@ -21,8 +21,21 @@ export interface ApiExtensionTrigger {
     resourceTypeId: pulumi.Input<string>;
 }
 
+export interface AttributeGroupAttribute {
+    key: pulumi.Input<string>;
+}
+
+export interface CartDiscountCustom {
+    fields?: pulumi.Input<{[key: string]: any}>;
+    typeId: pulumi.Input<string>;
+}
+
 export interface CartDiscountTarget {
+    discountedQuantity?: pulumi.Input<number>;
+    maxOccurrence?: pulumi.Input<number>;
     predicate?: pulumi.Input<string>;
+    selectionMode?: pulumi.Input<string>;
+    triggerQuantity?: pulumi.Input<number>;
     type: pulumi.Input<string>;
 }
 
@@ -33,7 +46,7 @@ export interface CartDiscountValue {
     productId?: pulumi.Input<string>;
     supplyChannelId?: pulumi.Input<string>;
     type: pulumi.Input<string>;
-    variant?: pulumi.Input<number>;
+    variantId?: pulumi.Input<number>;
 }
 
 export interface CartDiscountValueMoney {

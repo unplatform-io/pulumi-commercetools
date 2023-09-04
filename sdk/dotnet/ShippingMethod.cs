@@ -31,10 +31,16 @@ namespace Pulumi.Commercetools
         public Output<string?> Key { get; private set; } = null!;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         /// </summary>
         [Output("localizedDescription")]
         public Output<ImmutableDictionary<string, object>?> LocalizedDescription { get; private set; } = null!;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
+        [Output("localizedName")]
+        public Output<ImmutableDictionary<string, object>?> LocalizedName { get; private set; } = null!;
 
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -46,7 +52,7 @@ namespace Pulumi.Commercetools
         public Output<string?> Predicate { get; private set; } = null!;
 
         /// <summary>
-        /// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+        /// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
         /// </summary>
         [Output("taxCategoryId")]
         public Output<string> TaxCategoryId { get; private set; } = null!;
@@ -122,12 +128,24 @@ namespace Pulumi.Commercetools
         private InputMap<object>? _localizedDescription;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         /// </summary>
         public InputMap<object> LocalizedDescription
         {
             get => _localizedDescription ?? (_localizedDescription = new InputMap<object>());
             set => _localizedDescription = value;
+        }
+
+        [Input("localizedName")]
+        private InputMap<object>? _localizedName;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
+        public InputMap<object> LocalizedName
+        {
+            get => _localizedName ?? (_localizedName = new InputMap<object>());
+            set => _localizedName = value;
         }
 
         [Input("name")]
@@ -140,7 +158,7 @@ namespace Pulumi.Commercetools
         public Input<string>? Predicate { get; set; }
 
         /// <summary>
-        /// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+        /// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
         /// </summary>
         [Input("taxCategoryId", required: true)]
         public Input<string> TaxCategoryId { get; set; } = null!;
@@ -175,12 +193,24 @@ namespace Pulumi.Commercetools
         private InputMap<object>? _localizedDescription;
 
         /// <summary>
-        /// [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         /// </summary>
         public InputMap<object> LocalizedDescription
         {
             get => _localizedDescription ?? (_localizedDescription = new InputMap<object>());
             set => _localizedDescription = value;
+        }
+
+        [Input("localizedName")]
+        private InputMap<object>? _localizedName;
+
+        /// <summary>
+        /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        /// </summary>
+        public InputMap<object> LocalizedName
+        {
+            get => _localizedName ?? (_localizedName = new InputMap<object>());
+            set => _localizedName = value;
         }
 
         [Input("name")]
@@ -193,7 +223,7 @@ namespace Pulumi.Commercetools
         public Input<string>? Predicate { get; set; }
 
         /// <summary>
-        /// ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+        /// ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
         /// </summary>
         [Input("taxCategoryId")]
         public Input<string>? TaxCategoryId { get; set; }

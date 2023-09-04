@@ -3,6 +3,8 @@
         "resources": {
             "commercetools:index/apiClient:ApiClient": 0,
             "commercetools:index/apiExtension:ApiExtension": 0,
+            "commercetools:index/associateRole:AssociateRole": 1,
+            "commercetools:index/attributeGroup:AttributeGroup": 1,
             "commercetools:index/cartDiscount:CartDiscount": 0,
             "commercetools:index/category:Category": 0,
             "commercetools:index/channel:Channel": 0,
@@ -24,6 +26,7 @@
             "commercetools:index/type:Type": 0
         },
         "functions": {
+            "commercetools:index/getState:getState": 1,
             "commercetools:index/getType:getType": 1
         }
     },
@@ -31,6 +34,8 @@
         "resources": {
             "commercetools:index/apiClient:ApiClient": "commercetools_api_client",
             "commercetools:index/apiExtension:ApiExtension": "commercetools_api_extension",
+            "commercetools:index/associateRole:AssociateRole": "commercetools_associate_role",
+            "commercetools:index/attributeGroup:AttributeGroup": "commercetools_attribute_group",
             "commercetools:index/cartDiscount:CartDiscount": "commercetools_cart_discount",
             "commercetools:index/category:Category": "commercetools_category",
             "commercetools:index/channel:Channel": "commercetools_channel",
@@ -52,6 +57,7 @@
             "commercetools:index/type:Type": "commercetools_type"
         },
         "functions": {
+            "commercetools:index/getState:getState": "commercetools_state",
             "commercetools:index/getType:getType": "commercetools_type"
         },
         "renamedProperties": {
@@ -64,11 +70,21 @@
             "commercetools:index/ApiExtensionTrigger:ApiExtensionTrigger": {
                 "resourceTypeId": "resource_type_id"
             },
+            "commercetools:index/CartDiscountCustom:CartDiscountCustom": {
+                "typeId": "type_id"
+            },
+            "commercetools:index/CartDiscountTarget:CartDiscountTarget": {
+                "discountedQuantity": "discounted_quantity",
+                "maxOccurrence": "max_occurrence",
+                "selectionMode": "selection_mode",
+                "triggerQuantity": "trigger_quantity"
+            },
             "commercetools:index/CartDiscountValue:CartDiscountValue": {
                 "distributionChannelId": "distribution_channel_id",
                 "monies": "money",
                 "productId": "product_id",
-                "supplyChannelId": "supply_channel_id"
+                "supplyChannelId": "supply_channel_id",
+                "variantId": "variant_id"
             },
             "commercetools:index/CartDiscountValueMoney:CartDiscountValueMoney": {
                 "centAmount": "cent_amount",
@@ -199,6 +215,12 @@
                 "timeoutInMs": "timeout_in_ms",
                 "triggers": "trigger"
             },
+            "commercetools:index/associateRole:AssociateRole": {
+                "buyerAssignable": "buyer_assignable"
+            },
+            "commercetools:index/attributeGroup:AttributeGroup": {
+                "attributes": "attribute"
+            },
             "commercetools:index/cartDiscount:CartDiscount": {
                 "isActive": "is_active",
                 "requiresDiscountCode": "requires_discount_code",
@@ -241,6 +263,7 @@
             "commercetools:index/shippingMethod:ShippingMethod": {
                 "isDefault": "is_default",
                 "localizedDescription": "localized_description",
+                "localizedName": "localized_name",
                 "taxCategoryId": "tax_category_id"
             },
             "commercetools:index/shippingZone:ShippingZone": {

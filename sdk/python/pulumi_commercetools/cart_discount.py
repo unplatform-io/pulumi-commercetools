@@ -19,6 +19,7 @@ class CartDiscountArgs:
                  predicate: pulumi.Input[str],
                  sort_order: pulumi.Input[str],
                  value: pulumi.Input['CartDiscountValueArgs'],
+                 custom: Optional[pulumi.Input['CartDiscountCustomArgs']] = None,
                  description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -49,6 +50,8 @@ class CartDiscountArgs:
         pulumi.set(__self__, "predicate", predicate)
         pulumi.set(__self__, "sort_order", sort_order)
         pulumi.set(__self__, "value", value)
+        if custom is not None:
+            pulumi.set(__self__, "custom", custom)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if is_active is not None:
@@ -106,6 +109,15 @@ class CartDiscountArgs:
     @value.setter
     def value(self, value: pulumi.Input['CartDiscountValueArgs']):
         pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def custom(self) -> Optional[pulumi.Input['CartDiscountCustomArgs']]:
+        return pulumi.get(self, "custom")
+
+    @custom.setter
+    def custom(self, value: Optional[pulumi.Input['CartDiscountCustomArgs']]):
+        pulumi.set(self, "custom", value)
 
     @property
     @pulumi.getter
@@ -215,6 +227,7 @@ class CartDiscountArgs:
 @pulumi.input_type
 class _CartDiscountState:
     def __init__(__self__, *,
+                 custom: Optional[pulumi.Input['CartDiscountCustomArgs']] = None,
                  description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -246,6 +259,8 @@ class _CartDiscountState:
         :param pulumi.Input['CartDiscountValueArgs'] value: Defines the effect the discount will have.
                [CartDiscountValue](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscountvalue)
         """
+        if custom is not None:
+            pulumi.set(__self__, "custom", custom)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if is_active is not None:
@@ -272,6 +287,15 @@ class _CartDiscountState:
             pulumi.set(__self__, "value", value)
         if version is not None:
             pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def custom(self) -> Optional[pulumi.Input['CartDiscountCustomArgs']]:
+        return pulumi.get(self, "custom")
+
+    @custom.setter
+    def custom(self, value: Optional[pulumi.Input['CartDiscountCustomArgs']]):
+        pulumi.set(self, "custom", value)
 
     @property
     @pulumi.getter
@@ -431,6 +455,7 @@ class CartDiscount(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 custom: Optional[pulumi.Input[pulumi.InputType['CartDiscountCustomArgs']]] = None,
                  description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -487,6 +512,7 @@ class CartDiscount(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 custom: Optional[pulumi.Input[pulumi.InputType['CartDiscountCustomArgs']]] = None,
                  description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
@@ -508,6 +534,7 @@ class CartDiscount(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CartDiscountArgs.__new__(CartDiscountArgs)
 
+            __props__.__dict__["custom"] = custom
             __props__.__dict__["description"] = description
             __props__.__dict__["is_active"] = is_active
             __props__.__dict__["key"] = key
@@ -537,6 +564,7 @@ class CartDiscount(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            custom: Optional[pulumi.Input[pulumi.InputType['CartDiscountCustomArgs']]] = None,
             description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             is_active: Optional[pulumi.Input[bool]] = None,
             key: Optional[pulumi.Input[str]] = None,
@@ -577,6 +605,7 @@ class CartDiscount(pulumi.CustomResource):
 
         __props__ = _CartDiscountState.__new__(_CartDiscountState)
 
+        __props__.__dict__["custom"] = custom
         __props__.__dict__["description"] = description
         __props__.__dict__["is_active"] = is_active
         __props__.__dict__["key"] = key
@@ -591,6 +620,11 @@ class CartDiscount(pulumi.CustomResource):
         __props__.__dict__["value"] = value
         __props__.__dict__["version"] = version
         return CartDiscount(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def custom(self) -> pulumi.Output[Optional['outputs.CartDiscountCustom']]:
+        return pulumi.get(self, "custom")
 
     @property
     @pulumi.getter

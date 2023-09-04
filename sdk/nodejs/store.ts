@@ -34,6 +34,10 @@ export class Store extends pulumi.CustomResource {
         return obj['__pulumiType'] === Store.__pulumiType;
     }
 
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
+    public readonly countries!: pulumi.Output<string[] | undefined>;
     public readonly custom!: pulumi.Output<outputs.StoreCustom | undefined>;
     /**
      * Set of ResourceIdentifier to a Channel with ProductDistribution
@@ -70,6 +74,7 @@ export class Store extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StoreState | undefined;
+            resourceInputs["countries"] = state ? state.countries : undefined;
             resourceInputs["custom"] = state ? state.custom : undefined;
             resourceInputs["distributionChannels"] = state ? state.distributionChannels : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
@@ -82,6 +87,7 @@ export class Store extends pulumi.CustomResource {
             if ((!args || args.key === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
+            resourceInputs["countries"] = args ? args.countries : undefined;
             resourceInputs["custom"] = args ? args.custom : undefined;
             resourceInputs["distributionChannels"] = args ? args.distributionChannels : undefined;
             resourceInputs["key"] = args ? args.key : undefined;
@@ -99,6 +105,10 @@ export class Store extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Store resources.
  */
 export interface StoreState {
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
+    countries?: pulumi.Input<pulumi.Input<string>[]>;
     custom?: pulumi.Input<inputs.StoreCustom>;
     /**
      * Set of ResourceIdentifier to a Channel with ProductDistribution
@@ -127,6 +137,10 @@ export interface StoreState {
  * The set of arguments for constructing a Store resource.
  */
 export interface StoreArgs {
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
+    countries?: pulumi.Input<pulumi.Input<string>[]>;
     custom?: pulumi.Input<inputs.StoreCustom>;
     /**
      * Set of ResourceIdentifier to a Channel with ProductDistribution

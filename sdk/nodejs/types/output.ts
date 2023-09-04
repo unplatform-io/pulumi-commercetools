@@ -21,8 +21,21 @@ export interface ApiExtensionTrigger {
     resourceTypeId: string;
 }
 
+export interface AttributeGroupAttribute {
+    key: string;
+}
+
+export interface CartDiscountCustom {
+    fields?: {[key: string]: any};
+    typeId: string;
+}
+
 export interface CartDiscountTarget {
+    discountedQuantity?: number;
+    maxOccurrence?: number;
     predicate?: string;
+    selectionMode?: string;
+    triggerQuantity?: number;
     type: string;
 }
 
@@ -33,7 +46,7 @@ export interface CartDiscountValue {
     productId?: string;
     supplyChannelId?: string;
     type: string;
-    variant?: number;
+    variantId?: number;
 }
 
 export interface CartDiscountValueMoney {

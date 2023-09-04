@@ -22,14 +22,16 @@ class ShippingMethodArgs:
                  is_default: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  localized_description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 localized_name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  predicate: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ShippingMethod resource.
-        :param pulumi.Input[str] tax_category_id: ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+        :param pulumi.Input[str] tax_category_id: ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
         :param pulumi.Input[bool] is_default: One shipping method in a project can be default
         :param pulumi.Input[str] key: User-specific unique identifier for the shipping method
-        :param pulumi.Input[Mapping[str, Any]] localized_description: [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+        :param pulumi.Input[Mapping[str, Any]] localized_description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Mapping[str, Any]] localized_name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[str] predicate: A Cart predicate which can be used to more precisely select a shipping method for a cart
         """
         pulumi.set(__self__, "tax_category_id", tax_category_id)
@@ -43,6 +45,8 @@ class ShippingMethodArgs:
             pulumi.set(__self__, "key", key)
         if localized_description is not None:
             pulumi.set(__self__, "localized_description", localized_description)
+        if localized_name is not None:
+            pulumi.set(__self__, "localized_name", localized_name)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if predicate is not None:
@@ -52,7 +56,7 @@ class ShippingMethodArgs:
     @pulumi.getter(name="taxCategoryId")
     def tax_category_id(self) -> pulumi.Input[str]:
         """
-        ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+        ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
         """
         return pulumi.get(self, "tax_category_id")
 
@@ -106,13 +110,25 @@ class ShippingMethodArgs:
     @pulumi.getter(name="localizedDescription")
     def localized_description(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         """
         return pulumi.get(self, "localized_description")
 
     @localized_description.setter
     def localized_description(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "localized_description", value)
+
+    @property
+    @pulumi.getter(name="localizedName")
+    def localized_name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "localized_name")
+
+    @localized_name.setter
+    def localized_name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "localized_name", value)
 
     @property
     @pulumi.getter
@@ -144,6 +160,7 @@ class _ShippingMethodState:
                  is_default: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  localized_description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 localized_name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  predicate: Optional[pulumi.Input[str]] = None,
                  tax_category_id: Optional[pulumi.Input[str]] = None,
@@ -152,9 +169,10 @@ class _ShippingMethodState:
         Input properties used for looking up and filtering ShippingMethod resources.
         :param pulumi.Input[bool] is_default: One shipping method in a project can be default
         :param pulumi.Input[str] key: User-specific unique identifier for the shipping method
-        :param pulumi.Input[Mapping[str, Any]] localized_description: [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+        :param pulumi.Input[Mapping[str, Any]] localized_description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Mapping[str, Any]] localized_name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[str] predicate: A Cart predicate which can be used to more precisely select a shipping method for a cart
-        :param pulumi.Input[str] tax_category_id: ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+        :param pulumi.Input[str] tax_category_id: ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
         """
         if custom is not None:
             pulumi.set(__self__, "custom", custom)
@@ -166,6 +184,8 @@ class _ShippingMethodState:
             pulumi.set(__self__, "key", key)
         if localized_description is not None:
             pulumi.set(__self__, "localized_description", localized_description)
+        if localized_name is not None:
+            pulumi.set(__self__, "localized_name", localized_name)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if predicate is not None:
@@ -221,13 +241,25 @@ class _ShippingMethodState:
     @pulumi.getter(name="localizedDescription")
     def localized_description(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         """
         return pulumi.get(self, "localized_description")
 
     @localized_description.setter
     def localized_description(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "localized_description", value)
+
+    @property
+    @pulumi.getter(name="localizedName")
+    def localized_name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "localized_name")
+
+    @localized_name.setter
+    def localized_name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "localized_name", value)
 
     @property
     @pulumi.getter
@@ -254,7 +286,7 @@ class _ShippingMethodState:
     @pulumi.getter(name="taxCategoryId")
     def tax_category_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+        ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
         """
         return pulumi.get(self, "tax_category_id")
 
@@ -282,6 +314,7 @@ class ShippingMethod(pulumi.CustomResource):
                  is_default: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  localized_description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 localized_name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  predicate: Optional[pulumi.Input[str]] = None,
                  tax_category_id: Optional[pulumi.Input[str]] = None,
@@ -292,9 +325,10 @@ class ShippingMethod(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] is_default: One shipping method in a project can be default
         :param pulumi.Input[str] key: User-specific unique identifier for the shipping method
-        :param pulumi.Input[Mapping[str, Any]] localized_description: [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+        :param pulumi.Input[Mapping[str, Any]] localized_description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Mapping[str, Any]] localized_name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[str] predicate: A Cart predicate which can be used to more precisely select a shipping method for a cart
-        :param pulumi.Input[str] tax_category_id: ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+        :param pulumi.Input[str] tax_category_id: ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
         """
         ...
     @overload
@@ -324,6 +358,7 @@ class ShippingMethod(pulumi.CustomResource):
                  is_default: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  localized_description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 localized_name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  predicate: Optional[pulumi.Input[str]] = None,
                  tax_category_id: Optional[pulumi.Input[str]] = None,
@@ -341,6 +376,7 @@ class ShippingMethod(pulumi.CustomResource):
             __props__.__dict__["is_default"] = is_default
             __props__.__dict__["key"] = key
             __props__.__dict__["localized_description"] = localized_description
+            __props__.__dict__["localized_name"] = localized_name
             __props__.__dict__["name"] = name
             __props__.__dict__["predicate"] = predicate
             if tax_category_id is None and not opts.urn:
@@ -362,6 +398,7 @@ class ShippingMethod(pulumi.CustomResource):
             is_default: Optional[pulumi.Input[bool]] = None,
             key: Optional[pulumi.Input[str]] = None,
             localized_description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            localized_name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             predicate: Optional[pulumi.Input[str]] = None,
             tax_category_id: Optional[pulumi.Input[str]] = None,
@@ -375,9 +412,10 @@ class ShippingMethod(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] is_default: One shipping method in a project can be default
         :param pulumi.Input[str] key: User-specific unique identifier for the shipping method
-        :param pulumi.Input[Mapping[str, Any]] localized_description: [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+        :param pulumi.Input[Mapping[str, Any]] localized_description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Mapping[str, Any]] localized_name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[str] predicate: A Cart predicate which can be used to more precisely select a shipping method for a cart
-        :param pulumi.Input[str] tax_category_id: ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+        :param pulumi.Input[str] tax_category_id: ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -388,6 +426,7 @@ class ShippingMethod(pulumi.CustomResource):
         __props__.__dict__["is_default"] = is_default
         __props__.__dict__["key"] = key
         __props__.__dict__["localized_description"] = localized_description
+        __props__.__dict__["localized_name"] = localized_name
         __props__.__dict__["name"] = name
         __props__.__dict__["predicate"] = predicate
         __props__.__dict__["tax_category_id"] = tax_category_id
@@ -424,9 +463,17 @@ class ShippingMethod(pulumi.CustomResource):
     @pulumi.getter(name="localizedDescription")
     def localized_description(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        [LocalizedString](https://docs.commercetoolstools.com/api/types#localizedstring)
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         """
         return pulumi.get(self, "localized_description")
+
+    @property
+    @pulumi.getter(name="localizedName")
+    def localized_name(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "localized_name")
 
     @property
     @pulumi.getter
@@ -445,7 +492,7 @@ class ShippingMethod(pulumi.CustomResource):
     @pulumi.getter(name="taxCategoryId")
     def tax_category_id(self) -> pulumi.Output[str]:
         """
-        ID of a [Tax Category](https://docs.commercetoolstools.com/api/projects/taxCategories#taxcategory)
+        ID of a [Tax Category](https://docs.commercetools.com/api/projects/taxCategories#taxcategory)
         """
         return pulumi.get(self, "tax_category_id")
 
