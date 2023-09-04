@@ -88,7 +88,7 @@ func Provider() tfbridge.ProviderInfo {
 			"commercetools_api_client":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ApiClient")},
 			"commercetools_api_extension":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ApiExtension")},
 			"commercetools_associate_role":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AssociateRole")},
-			"commercetools_attribute_group":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AttributeGroup")},
+			"commercetools_attribute_group":  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AttributeGroup")},
 			"commercetools_cart_discount":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "CartDiscount")},
 			"commercetools_category":         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Category")},
 			"commercetools_channel":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Channel")},
@@ -164,7 +164,7 @@ func Provider() tfbridge.ProviderInfo {
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
 			// "aws_ami": {Tok: makeDataSource(mainMod, "getAmi")},
-			"commercetools_type": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getType")},
+			"commercetools_type":  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getType")},
 			"commercetools_state": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getState")},
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(bridgeMetadata),
