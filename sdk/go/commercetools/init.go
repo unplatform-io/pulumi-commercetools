@@ -43,6 +43,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DiscountCode{}
 	case "commercetools:index/productDiscount:ProductDiscount":
 		r = &ProductDiscount{}
+	case "commercetools:index/productSelection:ProductSelection":
+		r = &ProductSelection{}
 	case "commercetools:index/productType:ProductType":
 		r = &ProductType{}
 	case "commercetools:index/projectSettings:ProjectSettings":
@@ -151,6 +153,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"commercetools",
 		"index/productDiscount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"commercetools",
+		"index/productSelection",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

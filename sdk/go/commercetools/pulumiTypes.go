@@ -5458,6 +5458,106 @@ func (o StoreCustomPtrOutput) TypeId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type StoreProductSelection struct {
+	Active             bool   `pulumi:"active"`
+	ProductSelectionId string `pulumi:"productSelectionId"`
+}
+
+// StoreProductSelectionInput is an input type that accepts StoreProductSelectionArgs and StoreProductSelectionOutput values.
+// You can construct a concrete instance of `StoreProductSelectionInput` via:
+//
+//	StoreProductSelectionArgs{...}
+type StoreProductSelectionInput interface {
+	pulumi.Input
+
+	ToStoreProductSelectionOutput() StoreProductSelectionOutput
+	ToStoreProductSelectionOutputWithContext(context.Context) StoreProductSelectionOutput
+}
+
+type StoreProductSelectionArgs struct {
+	Active             pulumi.BoolInput   `pulumi:"active"`
+	ProductSelectionId pulumi.StringInput `pulumi:"productSelectionId"`
+}
+
+func (StoreProductSelectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StoreProductSelection)(nil)).Elem()
+}
+
+func (i StoreProductSelectionArgs) ToStoreProductSelectionOutput() StoreProductSelectionOutput {
+	return i.ToStoreProductSelectionOutputWithContext(context.Background())
+}
+
+func (i StoreProductSelectionArgs) ToStoreProductSelectionOutputWithContext(ctx context.Context) StoreProductSelectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StoreProductSelectionOutput)
+}
+
+// StoreProductSelectionArrayInput is an input type that accepts StoreProductSelectionArray and StoreProductSelectionArrayOutput values.
+// You can construct a concrete instance of `StoreProductSelectionArrayInput` via:
+//
+//	StoreProductSelectionArray{ StoreProductSelectionArgs{...} }
+type StoreProductSelectionArrayInput interface {
+	pulumi.Input
+
+	ToStoreProductSelectionArrayOutput() StoreProductSelectionArrayOutput
+	ToStoreProductSelectionArrayOutputWithContext(context.Context) StoreProductSelectionArrayOutput
+}
+
+type StoreProductSelectionArray []StoreProductSelectionInput
+
+func (StoreProductSelectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StoreProductSelection)(nil)).Elem()
+}
+
+func (i StoreProductSelectionArray) ToStoreProductSelectionArrayOutput() StoreProductSelectionArrayOutput {
+	return i.ToStoreProductSelectionArrayOutputWithContext(context.Background())
+}
+
+func (i StoreProductSelectionArray) ToStoreProductSelectionArrayOutputWithContext(ctx context.Context) StoreProductSelectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StoreProductSelectionArrayOutput)
+}
+
+type StoreProductSelectionOutput struct{ *pulumi.OutputState }
+
+func (StoreProductSelectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StoreProductSelection)(nil)).Elem()
+}
+
+func (o StoreProductSelectionOutput) ToStoreProductSelectionOutput() StoreProductSelectionOutput {
+	return o
+}
+
+func (o StoreProductSelectionOutput) ToStoreProductSelectionOutputWithContext(ctx context.Context) StoreProductSelectionOutput {
+	return o
+}
+
+func (o StoreProductSelectionOutput) Active() pulumi.BoolOutput {
+	return o.ApplyT(func(v StoreProductSelection) bool { return v.Active }).(pulumi.BoolOutput)
+}
+
+func (o StoreProductSelectionOutput) ProductSelectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v StoreProductSelection) string { return v.ProductSelectionId }).(pulumi.StringOutput)
+}
+
+type StoreProductSelectionArrayOutput struct{ *pulumi.OutputState }
+
+func (StoreProductSelectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StoreProductSelection)(nil)).Elem()
+}
+
+func (o StoreProductSelectionArrayOutput) ToStoreProductSelectionArrayOutput() StoreProductSelectionArrayOutput {
+	return o
+}
+
+func (o StoreProductSelectionArrayOutput) ToStoreProductSelectionArrayOutputWithContext(ctx context.Context) StoreProductSelectionArrayOutput {
+	return o
+}
+
+func (o StoreProductSelectionArrayOutput) Index(i pulumi.IntInput) StoreProductSelectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) StoreProductSelection {
+		return vs[0].([]StoreProductSelection)[vs[1].(int)]
+	}).(StoreProductSelectionOutput)
+}
+
 type SubscriptionChange struct {
 	ResourceTypeIds []string `pulumi:"resourceTypeIds"`
 }
@@ -7026,6 +7126,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ShippingZoneRateShippingRatePriceTierPriceFunctionPtrInput)(nil)).Elem(), ShippingZoneRateShippingRatePriceTierPriceFunctionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StoreCustomInput)(nil)).Elem(), StoreCustomArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StoreCustomPtrInput)(nil)).Elem(), StoreCustomArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StoreProductSelectionInput)(nil)).Elem(), StoreProductSelectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StoreProductSelectionArrayInput)(nil)).Elem(), StoreProductSelectionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SubscriptionChangeInput)(nil)).Elem(), SubscriptionChangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SubscriptionChangeArrayInput)(nil)).Elem(), SubscriptionChangeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SubscriptionDestinationInput)(nil)).Elem(), SubscriptionDestinationArgs{})
@@ -7122,6 +7224,8 @@ func init() {
 	pulumi.RegisterOutputType(ShippingZoneRateShippingRatePriceTierPriceFunctionPtrOutput{})
 	pulumi.RegisterOutputType(StoreCustomOutput{})
 	pulumi.RegisterOutputType(StoreCustomPtrOutput{})
+	pulumi.RegisterOutputType(StoreProductSelectionOutput{})
+	pulumi.RegisterOutputType(StoreProductSelectionArrayOutput{})
 	pulumi.RegisterOutputType(SubscriptionChangeOutput{})
 	pulumi.RegisterOutputType(SubscriptionChangeArrayOutput{})
 	pulumi.RegisterOutputType(SubscriptionDestinationOutput{})

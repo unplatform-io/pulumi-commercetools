@@ -35,7 +35,7 @@ export class ProductType extends pulumi.CustomResource {
     }
 
     /**
-     * [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+     * [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
      */
     public readonly attributes!: pulumi.Output<outputs.ProductTypeAttribute[] | undefined>;
     public readonly description!: pulumi.Output<string | undefined>;
@@ -82,7 +82,7 @@ export class ProductType extends pulumi.CustomResource {
  */
 export interface ProductTypeState {
     /**
-     * [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+     * [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
      */
     attributes?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttribute>[]>;
     description?: pulumi.Input<string>;
@@ -99,7 +99,7 @@ export interface ProductTypeState {
  */
 export interface ProductTypeArgs {
     /**
-     * [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+     * [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
      */
     attributes?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttribute>[]>;
     description?: pulumi.Input<string>;

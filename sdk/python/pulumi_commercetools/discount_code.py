@@ -35,8 +35,10 @@ class DiscountCodeArgs:
                cart
         :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
-        :param pulumi.Input[int] max_applications: The discount code can only be applied maxApplications times
-        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied maxApplicationsPerCustomer times per customer
+        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+               for this field, so possible values are either larger than 0 or not set
+        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+               be set for this field, so possible values are either larger than 0 or not set
         :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[str] predicate: [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
         :param pulumi.Input[str] valid_from: The time from which the discount can be applied on a cart. Before that time the code is invalid
@@ -136,7 +138,8 @@ class DiscountCodeArgs:
     @pulumi.getter(name="maxApplications")
     def max_applications(self) -> Optional[pulumi.Input[int]]:
         """
-        The discount code can only be applied maxApplications times
+        The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        for this field, so possible values are either larger than 0 or not set
         """
         return pulumi.get(self, "max_applications")
 
@@ -148,7 +151,8 @@ class DiscountCodeArgs:
     @pulumi.getter(name="maxApplicationsPerCustomer")
     def max_applications_per_customer(self) -> Optional[pulumi.Input[int]]:
         """
-        The discount code can only be applied maxApplicationsPerCustomer times per customer
+        The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+        be set for this field, so possible values are either larger than 0 or not set
         """
         return pulumi.get(self, "max_applications_per_customer")
 
@@ -228,8 +232,10 @@ class _DiscountCodeState:
                cart
         :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
-        :param pulumi.Input[int] max_applications: The discount code can only be applied maxApplications times
-        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied maxApplicationsPerCustomer times per customer
+        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+               for this field, so possible values are either larger than 0 or not set
+        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+               be set for this field, so possible values are either larger than 0 or not set
         :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[str] predicate: [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
         :param pulumi.Input[str] valid_from: The time from which the discount can be applied on a cart. Before that time the code is invalid
@@ -333,7 +339,8 @@ class _DiscountCodeState:
     @pulumi.getter(name="maxApplications")
     def max_applications(self) -> Optional[pulumi.Input[int]]:
         """
-        The discount code can only be applied maxApplications times
+        The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        for this field, so possible values are either larger than 0 or not set
         """
         return pulumi.get(self, "max_applications")
 
@@ -345,7 +352,8 @@ class _DiscountCodeState:
     @pulumi.getter(name="maxApplicationsPerCustomer")
     def max_applications_per_customer(self) -> Optional[pulumi.Input[int]]:
         """
-        The discount code can only be applied maxApplicationsPerCustomer times per customer
+        The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+        be set for this field, so possible values are either larger than 0 or not set
         """
         return pulumi.get(self, "max_applications_per_customer")
 
@@ -438,8 +446,10 @@ class DiscountCode(pulumi.CustomResource):
                cart
         :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
-        :param pulumi.Input[int] max_applications: The discount code can only be applied maxApplications times
-        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied maxApplicationsPerCustomer times per customer
+        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+               for this field, so possible values are either larger than 0 or not set
+        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+               be set for this field, so possible values are either larger than 0 or not set
         :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[str] predicate: [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
         :param pulumi.Input[str] valid_from: The time from which the discount can be applied on a cart. Before that time the code is invalid
@@ -541,8 +551,10 @@ class DiscountCode(pulumi.CustomResource):
                cart
         :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
-        :param pulumi.Input[int] max_applications: The discount code can only be applied maxApplications times
-        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied maxApplicationsPerCustomer times per customer
+        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+               for this field, so possible values are either larger than 0 or not set
+        :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+               be set for this field, so possible values are either larger than 0 or not set
         :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[str] predicate: [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
         :param pulumi.Input[str] valid_from: The time from which the discount can be applied on a cart. Before that time the code is invalid
@@ -614,7 +626,8 @@ class DiscountCode(pulumi.CustomResource):
     @pulumi.getter(name="maxApplications")
     def max_applications(self) -> pulumi.Output[Optional[int]]:
         """
-        The discount code can only be applied maxApplications times
+        The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        for this field, so possible values are either larger than 0 or not set
         """
         return pulumi.get(self, "max_applications")
 
@@ -622,7 +635,8 @@ class DiscountCode(pulumi.CustomResource):
     @pulumi.getter(name="maxApplicationsPerCustomer")
     def max_applications_per_customer(self) -> pulumi.Output[Optional[int]]:
         """
-        The discount code can only be applied maxApplicationsPerCustomer times per customer
+        The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+        be set for this field, so possible values are either larger than 0 or not set
         """
         return pulumi.get(self, "max_applications_per_customer")
 

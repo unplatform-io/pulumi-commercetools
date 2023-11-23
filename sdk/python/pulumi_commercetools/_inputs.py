@@ -47,6 +47,7 @@ __all__ = [
     'ShippingZoneRateShippingRatePriceTierPriceArgs',
     'ShippingZoneRateShippingRatePriceTierPriceFunctionArgs',
     'StoreCustomArgs',
+    'StoreProductSelectionArgs',
     'SubscriptionChangeArgs',
     'SubscriptionDestinationArgs',
     'SubscriptionFormatArgs',
@@ -1816,6 +1817,33 @@ class StoreCustomArgs:
     @fields.setter
     def fields(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "fields", value)
+
+
+@pulumi.input_type
+class StoreProductSelectionArgs:
+    def __init__(__self__, *,
+                 active: pulumi.Input[bool],
+                 product_selection_id: pulumi.Input[str]):
+        pulumi.set(__self__, "active", active)
+        pulumi.set(__self__, "product_selection_id", product_selection_id)
+
+    @property
+    @pulumi.getter
+    def active(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "active")
+
+    @active.setter
+    def active(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "active", value)
+
+    @property
+    @pulumi.getter(name="productSelectionId")
+    def product_selection_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "product_selection_id")
+
+    @product_selection_id.setter
+    def product_selection_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "product_selection_id", value)
 
 
 @pulumi.input_type

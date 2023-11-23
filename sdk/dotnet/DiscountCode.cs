@@ -44,13 +44,15 @@ namespace Pulumi.Commercetools
         public Output<bool?> IsActive { get; private set; } = null!;
 
         /// <summary>
-        /// The discount code can only be applied maxApplications times
+        /// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        /// for this field, so possible values are either larger than 0 or not set
         /// </summary>
         [Output("maxApplications")]
         public Output<int?> MaxApplications { get; private set; } = null!;
 
         /// <summary>
-        /// The discount code can only be applied maxApplicationsPerCustomer times per customer
+        /// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+        /// be set for this field, so possible values are either larger than 0 or not set
         /// </summary>
         [Output("maxApplicationsPerCustomer")]
         public Output<int?> MaxApplicationsPerCustomer { get; private set; } = null!;
@@ -178,13 +180,15 @@ namespace Pulumi.Commercetools
         public Input<bool>? IsActive { get; set; }
 
         /// <summary>
-        /// The discount code can only be applied maxApplications times
+        /// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        /// for this field, so possible values are either larger than 0 or not set
         /// </summary>
         [Input("maxApplications")]
         public Input<int>? MaxApplications { get; set; }
 
         /// <summary>
-        /// The discount code can only be applied maxApplicationsPerCustomer times per customer
+        /// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+        /// be set for this field, so possible values are either larger than 0 or not set
         /// </summary>
         [Input("maxApplicationsPerCustomer")]
         public Input<int>? MaxApplicationsPerCustomer { get; set; }
@@ -277,13 +281,15 @@ namespace Pulumi.Commercetools
         public Input<bool>? IsActive { get; set; }
 
         /// <summary>
-        /// The discount code can only be applied maxApplications times
+        /// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        /// for this field, so possible values are either larger than 0 or not set
         /// </summary>
         [Input("maxApplications")]
         public Input<int>? MaxApplications { get; set; }
 
         /// <summary>
-        /// The discount code can only be applied maxApplicationsPerCustomer times per customer
+        /// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+        /// be set for this field, so possible values are either larger than 0 or not set
         /// </summary>
         [Input("maxApplicationsPerCustomer")]
         public Input<int>? MaxApplicationsPerCustomer { get; set; }

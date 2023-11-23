@@ -29,6 +29,7 @@
         "getType.ts",
         "index.ts",
         "productDiscount.ts",
+        "productSelection.ts",
         "productType.ts",
         "projectSettings.ts",
         "provider.ts",
