@@ -1,8 +1,6 @@
 module github.com/unplatform-io/pulumi-commercetools/provider
 
-go 1.21
-
-toolchain go1.21.0
+go 1.20
 
 replace (
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230912190043-e6d96b3b8f7e
