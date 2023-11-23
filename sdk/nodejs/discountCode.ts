@@ -54,11 +54,13 @@ export class DiscountCode extends pulumi.CustomResource {
     public readonly groups!: pulumi.Output<string[] | undefined>;
     public readonly isActive!: pulumi.Output<boolean | undefined>;
     /**
-     * The discount code can only be applied maxApplications times
+     * The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+     * for this field, so possible values are either larger than 0 or not set
      */
     public readonly maxApplications!: pulumi.Output<number | undefined>;
     /**
-     * The discount code can only be applied maxApplicationsPerCustomer times per customer
+     * The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+     * be set for this field, so possible values are either larger than 0 or not set
      */
     public readonly maxApplicationsPerCustomer!: pulumi.Output<number | undefined>;
     /**
@@ -156,11 +158,13 @@ export interface DiscountCodeState {
     groups?: pulumi.Input<pulumi.Input<string>[]>;
     isActive?: pulumi.Input<boolean>;
     /**
-     * The discount code can only be applied maxApplications times
+     * The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+     * for this field, so possible values are either larger than 0 or not set
      */
     maxApplications?: pulumi.Input<number>;
     /**
-     * The discount code can only be applied maxApplicationsPerCustomer times per customer
+     * The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+     * be set for this field, so possible values are either larger than 0 or not set
      */
     maxApplicationsPerCustomer?: pulumi.Input<number>;
     /**
@@ -206,11 +210,13 @@ export interface DiscountCodeArgs {
     groups?: pulumi.Input<pulumi.Input<string>[]>;
     isActive?: pulumi.Input<boolean>;
     /**
-     * The discount code can only be applied maxApplications times
+     * The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+     * for this field, so possible values are either larger than 0 or not set
      */
     maxApplications?: pulumi.Input<number>;
     /**
-     * The discount code can only be applied maxApplicationsPerCustomer times per customer
+     * The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+     * be set for this field, so possible values are either larger than 0 or not set
      */
     maxApplicationsPerCustomer?: pulumi.Input<number>;
     /**

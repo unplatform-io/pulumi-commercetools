@@ -251,6 +251,11 @@ export interface StoreCustom {
     typeId: string;
 }
 
+export interface StoreProductSelection {
+    active: boolean;
+    productSelectionId: string;
+}
+
 export interface SubscriptionChange {
     resourceTypeIds: string[];
 }

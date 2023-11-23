@@ -48,6 +48,7 @@ __all__ = [
     'ShippingZoneRateShippingRatePriceTierPrice',
     'ShippingZoneRateShippingRatePriceTierPriceFunction',
     'StoreCustom',
+    'StoreProductSelection',
     'SubscriptionChange',
     'SubscriptionDestination',
     'SubscriptionFormat',
@@ -1781,6 +1782,42 @@ class StoreCustom(dict):
     @pulumi.getter
     def fields(self) -> Optional[Mapping[str, Any]]:
         return pulumi.get(self, "fields")
+
+
+@pulumi.output_type
+class StoreProductSelection(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "productSelectionId":
+            suggest = "product_selection_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StoreProductSelection. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StoreProductSelection.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StoreProductSelection.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 active: bool,
+                 product_selection_id: str):
+        pulumi.set(__self__, "active", active)
+        pulumi.set(__self__, "product_selection_id", product_selection_id)
+
+    @property
+    @pulumi.getter
+    def active(self) -> bool:
+        return pulumi.get(self, "active")
+
+    @property
+    @pulumi.getter(name="productSelectionId")
+    def product_selection_id(self) -> str:
+        return pulumi.get(self, "product_selection_id")
 
 
 @pulumi.output_type

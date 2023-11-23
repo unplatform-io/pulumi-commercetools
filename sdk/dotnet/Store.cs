@@ -46,6 +46,12 @@ namespace Pulumi.Commercetools
         public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Controls availability of Products for this Store via Product Selections
+        /// </summary>
+        [Output("productSelections")]
+        public Output<ImmutableArray<Outputs.StoreProductSelection>> ProductSelections { get; private set; } = null!;
+
+        /// <summary>
         /// Set of ResourceIdentifier of Channels with InventorySupply
         /// </summary>
         [Output("supplyChannels")]
@@ -157,6 +163,18 @@ namespace Pulumi.Commercetools
             set => _name = value;
         }
 
+        [Input("productSelections")]
+        private InputList<Inputs.StoreProductSelectionArgs>? _productSelections;
+
+        /// <summary>
+        /// Controls availability of Products for this Store via Product Selections
+        /// </summary>
+        public InputList<Inputs.StoreProductSelectionArgs> ProductSelections
+        {
+            get => _productSelections ?? (_productSelections = new InputList<Inputs.StoreProductSelectionArgs>());
+            set => _productSelections = value;
+        }
+
         [Input("supplyChannels")]
         private InputList<string>? _supplyChannels;
 
@@ -232,6 +250,18 @@ namespace Pulumi.Commercetools
         {
             get => _name ?? (_name = new InputMap<object>());
             set => _name = value;
+        }
+
+        [Input("productSelections")]
+        private InputList<Inputs.StoreProductSelectionGetArgs>? _productSelections;
+
+        /// <summary>
+        /// Controls availability of Products for this Store via Product Selections
+        /// </summary>
+        public InputList<Inputs.StoreProductSelectionGetArgs> ProductSelections
+        {
+            get => _productSelections ?? (_productSelections = new InputList<Inputs.StoreProductSelectionGetArgs>());
+            set => _productSelections = value;
         }
 
         [Input("supplyChannels")]

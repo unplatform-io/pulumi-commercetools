@@ -22,6 +22,7 @@ class StoreArgs:
                  distribution_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 product_selections: Optional[pulumi.Input[Sequence[pulumi.Input['StoreProductSelectionArgs']]]] = None,
                  supply_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Store resource.
@@ -30,6 +31,7 @@ class StoreArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] distribution_channels: Set of ResourceIdentifier to a Channel with ProductDistribution
         :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
         :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input['StoreProductSelectionArgs']]] product_selections: Controls availability of Products for this Store via Product Selections
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supply_channels: Set of ResourceIdentifier of Channels with InventorySupply
         """
         pulumi.set(__self__, "key", key)
@@ -43,6 +45,8 @@ class StoreArgs:
             pulumi.set(__self__, "languages", languages)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if product_selections is not None:
+            pulumi.set(__self__, "product_selections", product_selections)
         if supply_channels is not None:
             pulumi.set(__self__, "supply_channels", supply_channels)
 
@@ -116,6 +120,18 @@ class StoreArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="productSelections")
+    def product_selections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StoreProductSelectionArgs']]]]:
+        """
+        Controls availability of Products for this Store via Product Selections
+        """
+        return pulumi.get(self, "product_selections")
+
+    @product_selections.setter
+    def product_selections(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['StoreProductSelectionArgs']]]]):
+        pulumi.set(self, "product_selections", value)
+
+    @property
     @pulumi.getter(name="supplyChannels")
     def supply_channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -137,6 +153,7 @@ class _StoreState:
                  key: Optional[pulumi.Input[str]] = None,
                  languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 product_selections: Optional[pulumi.Input[Sequence[pulumi.Input['StoreProductSelectionArgs']]]] = None,
                  supply_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  version: Optional[pulumi.Input[int]] = None):
         """
@@ -146,6 +163,7 @@ class _StoreState:
         :param pulumi.Input[str] key: User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
         :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
         :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input['StoreProductSelectionArgs']]] product_selections: Controls availability of Products for this Store via Product Selections
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supply_channels: Set of ResourceIdentifier of Channels with InventorySupply
         """
         if countries is not None:
@@ -160,6 +178,8 @@ class _StoreState:
             pulumi.set(__self__, "languages", languages)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if product_selections is not None:
+            pulumi.set(__self__, "product_selections", product_selections)
         if supply_channels is not None:
             pulumi.set(__self__, "supply_channels", supply_channels)
         if version is not None:
@@ -235,6 +255,18 @@ class _StoreState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="productSelections")
+    def product_selections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StoreProductSelectionArgs']]]]:
+        """
+        Controls availability of Products for this Store via Product Selections
+        """
+        return pulumi.get(self, "product_selections")
+
+    @product_selections.setter
+    def product_selections(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['StoreProductSelectionArgs']]]]):
+        pulumi.set(self, "product_selections", value)
+
+    @property
     @pulumi.getter(name="supplyChannels")
     def supply_channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -267,6 +299,7 @@ class Store(pulumi.CustomResource):
                  key: Optional[pulumi.Input[str]] = None,
                  languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 product_selections: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StoreProductSelectionArgs']]]]] = None,
                  supply_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
@@ -278,6 +311,7 @@ class Store(pulumi.CustomResource):
         :param pulumi.Input[str] key: User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
         :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
         :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StoreProductSelectionArgs']]]] product_selections: Controls availability of Products for this Store via Product Selections
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supply_channels: Set of ResourceIdentifier of Channels with InventorySupply
         """
         ...
@@ -309,6 +343,7 @@ class Store(pulumi.CustomResource):
                  key: Optional[pulumi.Input[str]] = None,
                  languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 product_selections: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StoreProductSelectionArgs']]]]] = None,
                  supply_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -327,6 +362,7 @@ class Store(pulumi.CustomResource):
             __props__.__dict__["key"] = key
             __props__.__dict__["languages"] = languages
             __props__.__dict__["name"] = name
+            __props__.__dict__["product_selections"] = product_selections
             __props__.__dict__["supply_channels"] = supply_channels
             __props__.__dict__["version"] = None
         super(Store, __self__).__init__(
@@ -345,6 +381,7 @@ class Store(pulumi.CustomResource):
             key: Optional[pulumi.Input[str]] = None,
             languages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            product_selections: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StoreProductSelectionArgs']]]]] = None,
             supply_channels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             version: Optional[pulumi.Input[int]] = None) -> 'Store':
         """
@@ -359,6 +396,7 @@ class Store(pulumi.CustomResource):
         :param pulumi.Input[str] key: User-specific unique identifier for the store. The key is mandatory and immutable. It is used to reference the store
         :param pulumi.Input[Sequence[pulumi.Input[str]]] languages: [IETF Language Tag](https://en.wikipedia.org/wiki/IETF_language_tag)
         :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StoreProductSelectionArgs']]]] product_selections: Controls availability of Products for this Store via Product Selections
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supply_channels: Set of ResourceIdentifier of Channels with InventorySupply
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -371,6 +409,7 @@ class Store(pulumi.CustomResource):
         __props__.__dict__["key"] = key
         __props__.__dict__["languages"] = languages
         __props__.__dict__["name"] = name
+        __props__.__dict__["product_selections"] = product_selections
         __props__.__dict__["supply_channels"] = supply_channels
         __props__.__dict__["version"] = version
         return Store(resource_name, opts=opts, __props__=__props__)
@@ -419,6 +458,14 @@ class Store(pulumi.CustomResource):
         [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="productSelections")
+    def product_selections(self) -> pulumi.Output[Optional[Sequence['outputs.StoreProductSelection']]]:
+        """
+        Controls availability of Products for this Store via Product Selections
+        """
+        return pulumi.get(self, "product_selections")
 
     @property
     @pulumi.getter(name="supplyChannels")

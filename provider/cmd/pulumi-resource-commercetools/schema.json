@@ -16,19 +16,20 @@
     },
     "language": {
         "csharp": {
-            "compatibility": "tfbridge20",
-            "namespaces": null,
             "packageReferences": {
                 "Pulumi": "3.*"
-            }
+            },
+            "compatibility": "tfbridge20"
         },
         "go": {
-            "generateExtraInputTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-commercetools/sdk/go/commercetools",
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-commercetools/sdk/go/commercetools"
+            "generateExtraInputTypes": true
         },
         "nodejs": {
-            "compatibility": "tfbridge20",
+            "packageName": "@unplatform/commercetools",
+            "packageDescription": "A Pulumi package for creating and managing commercetools cloud resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/unplatform-io/terraform-provider-commercetools)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-commercetools` repo](https://github.com/unplatform-io/pulumi-commercetools/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-commercetools` repo](https://github.com/unplatform-io/terraform-provider-commercetools/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
@@ -36,20 +37,16 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^10.0.0"
             },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing commercetools cloud resources.",
-            "packageName": "@unplatform/commercetools",
-            "pluginName": "",
-            "pluginVersion": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/unplatform-io/terraform-provider-commercetools)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-commercetools` repo](https://github.com/unplatform-io/pulumi-commercetools/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-commercetools` repo](https://github.com/unplatform-io/terraform-provider-commercetools/issues).",
-            "typescriptVersion": ""
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
         },
         "python": {
-            "compatibility": "tfbridge20",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/unplatform-io/terraform-provider-commercetools)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-commercetools` repo](https://github.com/unplatform-io/pulumi-commercetools/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-commercetools` repo](https://github.com/unplatform-io/terraform-provider-commercetools/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
-            }
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/unplatform-io/terraform-provider-commercetools)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-commercetools` repo](https://github.com/unplatform-io/pulumi-commercetools/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-commercetools` repo](https://github.com/unplatform-io/terraform-provider-commercetools/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
         }
     },
     "config": {
@@ -887,6 +884,21 @@
             "type": "object",
             "required": [
                 "typeId"
+            ]
+        },
+        "commercetools:index/StoreProductSelection:StoreProductSelection": {
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "productSelectionId": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "active",
+                "productSelectionId"
             ]
         },
         "commercetools:index/SubscriptionChange:SubscriptionChange": {
@@ -2229,11 +2241,11 @@
                 },
                 "maxApplications": {
                     "type": "integer",
-                    "description": "The discount code can only be applied maxApplications times\n"
+                    "description": "The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set\nfor this field, so possible values are either larger than 0 or not set\n"
                 },
                 "maxApplicationsPerCustomer": {
                     "type": "integer",
-                    "description": "The discount code can only be applied maxApplicationsPerCustomer times per customer\n"
+                    "description": "The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot\nbe set for this field, so possible values are either larger than 0 or not set\n"
                 },
                 "name": {
                     "type": "object",
@@ -2298,11 +2310,11 @@
                 },
                 "maxApplications": {
                     "type": "integer",
-                    "description": "The discount code can only be applied maxApplications times\n"
+                    "description": "The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set\nfor this field, so possible values are either larger than 0 or not set\n"
                 },
                 "maxApplicationsPerCustomer": {
                     "type": "integer",
-                    "description": "The discount code can only be applied maxApplicationsPerCustomer times per customer\n"
+                    "description": "The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot\nbe set for this field, so possible values are either larger than 0 or not set\n"
                 },
                 "name": {
                     "type": "object",
@@ -2364,11 +2376,11 @@
                     },
                     "maxApplications": {
                         "type": "integer",
-                        "description": "The discount code can only be applied maxApplications times\n"
+                        "description": "The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set\nfor this field, so possible values are either larger than 0 or not set\n"
                     },
                     "maxApplicationsPerCustomer": {
                         "type": "integer",
-                        "description": "The discount code can only be applied maxApplicationsPerCustomer times per customer\n"
+                        "description": "The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot\nbe set for this field, so possible values are either larger than 0 or not set\n"
                     },
                     "name": {
                         "type": "object",
@@ -2548,6 +2560,76 @@
                 "type": "object"
             }
         },
+        "commercetools:index/productSelection:ProductSelection": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "description": "User-defined unique identifier of the ProductSelection.\n"
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "Specifies in which way the Products are assigned to the ProductSelection.Currently, the only way of doing this is to\nspecify each Product individually, either by including or excluding them explicitly.Default: Individual\n"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Name of the ProductSelection.\n"
+                },
+                "version": {
+                    "type": "integer",
+                    "description": "Current version of the ProductSelection.\n"
+                }
+            },
+            "required": [
+                "mode",
+                "name",
+                "version"
+            ],
+            "inputProperties": {
+                "key": {
+                    "type": "string",
+                    "description": "User-defined unique identifier of the ProductSelection.\n"
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "Specifies in which way the Products are assigned to the ProductSelection.Currently, the only way of doing this is to\nspecify each Product individually, either by including or excluding them explicitly.Default: Individual\n"
+                },
+                "name": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Name of the ProductSelection.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ProductSelection resources.\n",
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "description": "User-defined unique identifier of the ProductSelection.\n"
+                    },
+                    "mode": {
+                        "type": "string",
+                        "description": "Specifies in which way the Products are assigned to the ProductSelection.Currently, the only way of doing this is to\nspecify each Product individually, either by including or excluding them explicitly.Default: Individual\n"
+                    },
+                    "name": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Name of the ProductSelection.\n"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "description": "Current version of the ProductSelection.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "commercetools:index/productType:ProductType": {
             "properties": {
                 "attributes": {
@@ -2555,7 +2637,7 @@
                     "items": {
                         "$ref": "#/types/commercetools:index/ProductTypeAttribute:ProductTypeAttribute"
                     },
-                    "description": "[Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)\n"
+                    "description": "[Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)\n"
                 },
                 "description": {
                     "type": "string"
@@ -2581,7 +2663,7 @@
                     "items": {
                         "$ref": "#/types/commercetools:index/ProductTypeAttribute:ProductTypeAttribute"
                     },
-                    "description": "[Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)\n"
+                    "description": "[Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)\n"
                 },
                 "description": {
                     "type": "string"
@@ -2602,7 +2684,7 @@
                         "items": {
                             "$ref": "#/types/commercetools:index/ProductTypeAttribute:ProductTypeAttribute"
                         },
-                        "description": "[Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)\n"
+                        "description": "[Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)\n"
                     },
                     "description": {
                         "type": "string"
@@ -3343,6 +3425,13 @@
                     },
                     "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
+                "productSelections": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/StoreProductSelection:StoreProductSelection"
+                    },
+                    "description": "Controls availability of Products for this Store via Product Selections\n"
+                },
                 "supplyChannels": {
                     "type": "array",
                     "items": {
@@ -3396,6 +3485,13 @@
                     },
                     "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
                 },
+                "productSelections": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/commercetools:index/StoreProductSelection:StoreProductSelection"
+                    },
+                    "description": "Controls availability of Products for this Store via Product Selections\n"
+                },
                 "supplyChannels": {
                     "type": "array",
                     "items": {
@@ -3445,6 +3541,13 @@
                             "$ref": "pulumi.json#/Any"
                         },
                         "description": "[LocalizedString](https://docs.commercetools.com/api/types#localizedstring)\n"
+                    },
+                    "productSelections": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/commercetools:index/StoreProductSelection:StoreProductSelection"
+                        },
+                        "description": "Controls availability of Products for this Store via Product Selections\n"
                     },
                     "supplyChannels": {
                         "type": "array",

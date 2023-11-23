@@ -70,6 +70,11 @@ export type ProductDiscount = import("./productDiscount").ProductDiscount;
 export const ProductDiscount: typeof import("./productDiscount").ProductDiscount = null as any;
 utilities.lazyLoad(exports, ["ProductDiscount"], () => require("./productDiscount"));
 
+export { ProductSelectionArgs, ProductSelectionState } from "./productSelection";
+export type ProductSelection = import("./productSelection").ProductSelection;
+export const ProductSelection: typeof import("./productSelection").ProductSelection = null as any;
+utilities.lazyLoad(exports, ["ProductSelection"], () => require("./productSelection"));
+
 export { ProductTypeArgs, ProductTypeState } from "./productType";
 export type ProductType = import("./productType").ProductType;
 export const ProductType: typeof import("./productType").ProductType = null as any;
@@ -171,6 +176,8 @@ const _module = {
                 return new DiscountCode(name, <any>undefined, { urn })
             case "commercetools:index/productDiscount:ProductDiscount":
                 return new ProductDiscount(name, <any>undefined, { urn })
+            case "commercetools:index/productSelection:ProductSelection":
+                return new ProductSelection(name, <any>undefined, { urn })
             case "commercetools:index/productType:ProductType":
                 return new ProductType(name, <any>undefined, { urn })
             case "commercetools:index/projectSettings:ProjectSettings":
@@ -211,6 +218,7 @@ pulumi.runtime.registerResourceModule("commercetools", "index/customObject", _mo
 pulumi.runtime.registerResourceModule("commercetools", "index/customerGroup", _module)
 pulumi.runtime.registerResourceModule("commercetools", "index/discountCode", _module)
 pulumi.runtime.registerResourceModule("commercetools", "index/productDiscount", _module)
+pulumi.runtime.registerResourceModule("commercetools", "index/productSelection", _module)
 pulumi.runtime.registerResourceModule("commercetools", "index/productType", _module)
 pulumi.runtime.registerResourceModule("commercetools", "index/projectSettings", _module)
 pulumi.runtime.registerResourceModule("commercetools", "index/shippingMethod", _module)

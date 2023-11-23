@@ -26,9 +26,11 @@ type DiscountCode struct {
 	// The groups to which this discount code belong
 	Groups   pulumi.StringArrayOutput `pulumi:"groups"`
 	IsActive pulumi.BoolPtrOutput     `pulumi:"isActive"`
-	// The discount code can only be applied maxApplications times
+	// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+	// for this field, so possible values are either larger than 0 or not set
 	MaxApplications pulumi.IntPtrOutput `pulumi:"maxApplications"`
-	// The discount code can only be applied maxApplicationsPerCustomer times per customer
+	// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+	// be set for this field, so possible values are either larger than 0 or not set
 	MaxApplicationsPerCustomer pulumi.IntPtrOutput `pulumi:"maxApplicationsPerCustomer"`
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Name pulumi.MapOutput `pulumi:"name"`
@@ -88,9 +90,11 @@ type discountCodeState struct {
 	// The groups to which this discount code belong
 	Groups   []string `pulumi:"groups"`
 	IsActive *bool    `pulumi:"isActive"`
-	// The discount code can only be applied maxApplications times
+	// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+	// for this field, so possible values are either larger than 0 or not set
 	MaxApplications *int `pulumi:"maxApplications"`
-	// The discount code can only be applied maxApplicationsPerCustomer times per customer
+	// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+	// be set for this field, so possible values are either larger than 0 or not set
 	MaxApplicationsPerCustomer *int `pulumi:"maxApplicationsPerCustomer"`
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Name map[string]interface{} `pulumi:"name"`
@@ -115,9 +119,11 @@ type DiscountCodeState struct {
 	// The groups to which this discount code belong
 	Groups   pulumi.StringArrayInput
 	IsActive pulumi.BoolPtrInput
-	// The discount code can only be applied maxApplications times
+	// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+	// for this field, so possible values are either larger than 0 or not set
 	MaxApplications pulumi.IntPtrInput
-	// The discount code can only be applied maxApplicationsPerCustomer times per customer
+	// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+	// be set for this field, so possible values are either larger than 0 or not set
 	MaxApplicationsPerCustomer pulumi.IntPtrInput
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Name pulumi.MapInput
@@ -146,9 +152,11 @@ type discountCodeArgs struct {
 	// The groups to which this discount code belong
 	Groups   []string `pulumi:"groups"`
 	IsActive *bool    `pulumi:"isActive"`
-	// The discount code can only be applied maxApplications times
+	// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+	// for this field, so possible values are either larger than 0 or not set
 	MaxApplications *int `pulumi:"maxApplications"`
-	// The discount code can only be applied maxApplicationsPerCustomer times per customer
+	// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+	// be set for this field, so possible values are either larger than 0 or not set
 	MaxApplicationsPerCustomer *int `pulumi:"maxApplicationsPerCustomer"`
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Name map[string]interface{} `pulumi:"name"`
@@ -173,9 +181,11 @@ type DiscountCodeArgs struct {
 	// The groups to which this discount code belong
 	Groups   pulumi.StringArrayInput
 	IsActive pulumi.BoolPtrInput
-	// The discount code can only be applied maxApplications times
+	// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+	// for this field, so possible values are either larger than 0 or not set
 	MaxApplications pulumi.IntPtrInput
-	// The discount code can only be applied maxApplicationsPerCustomer times per customer
+	// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+	// be set for this field, so possible values are either larger than 0 or not set
 	MaxApplicationsPerCustomer pulumi.IntPtrInput
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Name pulumi.MapInput
@@ -303,12 +313,14 @@ func (o DiscountCodeOutput) IsActive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DiscountCode) pulumi.BoolPtrOutput { return v.IsActive }).(pulumi.BoolPtrOutput)
 }
 
-// The discount code can only be applied maxApplications times
+// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+// for this field, so possible values are either larger than 0 or not set
 func (o DiscountCodeOutput) MaxApplications() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DiscountCode) pulumi.IntPtrOutput { return v.MaxApplications }).(pulumi.IntPtrOutput)
 }
 
-// The discount code can only be applied maxApplicationsPerCustomer times per customer
+// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
+// be set for this field, so possible values are either larger than 0 or not set
 func (o DiscountCodeOutput) MaxApplicationsPerCustomer() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DiscountCode) pulumi.IntPtrOutput { return v.MaxApplicationsPerCustomer }).(pulumi.IntPtrOutput)
 }

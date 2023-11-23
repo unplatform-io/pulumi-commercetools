@@ -56,6 +56,10 @@ export class Store extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<{[key: string]: any}>;
     /**
+     * Controls availability of Products for this Store via Product Selections
+     */
+    public readonly productSelections!: pulumi.Output<outputs.StoreProductSelection[] | undefined>;
+    /**
      * Set of ResourceIdentifier of Channels with InventorySupply
      */
     public readonly supplyChannels!: pulumi.Output<string[] | undefined>;
@@ -80,6 +84,7 @@ export class Store extends pulumi.CustomResource {
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["languages"] = state ? state.languages : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["productSelections"] = state ? state.productSelections : undefined;
             resourceInputs["supplyChannels"] = state ? state.supplyChannels : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
@@ -93,6 +98,7 @@ export class Store extends pulumi.CustomResource {
             resourceInputs["key"] = args ? args.key : undefined;
             resourceInputs["languages"] = args ? args.languages : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["productSelections"] = args ? args.productSelections : undefined;
             resourceInputs["supplyChannels"] = args ? args.supplyChannels : undefined;
             resourceInputs["version"] = undefined /*out*/;
         }
@@ -127,6 +133,10 @@ export interface StoreState {
      */
     name?: pulumi.Input<{[key: string]: any}>;
     /**
+     * Controls availability of Products for this Store via Product Selections
+     */
+    productSelections?: pulumi.Input<pulumi.Input<inputs.StoreProductSelection>[]>;
+    /**
      * Set of ResourceIdentifier of Channels with InventorySupply
      */
     supplyChannels?: pulumi.Input<pulumi.Input<string>[]>;
@@ -158,6 +168,10 @@ export interface StoreArgs {
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
     name?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Controls availability of Products for this Store via Product Selections
+     */
+    productSelections?: pulumi.Input<pulumi.Input<inputs.StoreProductSelection>[]>;
     /**
      * Set of ResourceIdentifier of Channels with InventorySupply
      */

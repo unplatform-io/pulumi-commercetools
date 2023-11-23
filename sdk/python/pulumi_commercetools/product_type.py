@@ -22,7 +22,7 @@ class ProductTypeArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ProductType resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeArgs']]] attributes: [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        :param pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeArgs']]] attributes: [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
         :param pulumi.Input[str] key: User-specific unique identifier for the product type (max. 256 characters)
         """
         if attributes is not None:
@@ -38,7 +38,7 @@ class ProductTypeArgs:
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeArgs']]]]:
         """
-        [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
         """
         return pulumi.get(self, "attributes")
 
@@ -87,7 +87,7 @@ class _ProductTypeState:
                  version: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering ProductType resources.
-        :param pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeArgs']]] attributes: [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        :param pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeArgs']]] attributes: [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
         :param pulumi.Input[str] key: User-specific unique identifier for the product type (max. 256 characters)
         """
         if attributes is not None:
@@ -105,7 +105,7 @@ class _ProductTypeState:
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeArgs']]]]:
         """
-        [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
         """
         return pulumi.get(self, "attributes")
 
@@ -167,7 +167,7 @@ class ProductType(pulumi.CustomResource):
         Create a ProductType resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProductTypeAttributeArgs']]]] attributes: [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProductTypeAttributeArgs']]]] attributes: [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
         :param pulumi.Input[str] key: User-specific unique identifier for the product type (max. 256 characters)
         """
         ...
@@ -233,7 +233,7 @@ class ProductType(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProductTypeAttributeArgs']]]] attributes: [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProductTypeAttributeArgs']]]] attributes: [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
         :param pulumi.Input[str] key: User-specific unique identifier for the product type (max. 256 characters)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -251,7 +251,7 @@ class ProductType(pulumi.CustomResource):
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Sequence['outputs.ProductTypeAttribute']]]:
         """
-        [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
         """
         return pulumi.get(self, "attributes")
 

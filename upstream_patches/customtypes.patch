@@ -25,6 +25,20 @@ index 2002433..7f7cfc6 100644
 -				CustomType:          customtypes.NewLocalizedStringType(),
 +				ElementType: 		 types.StringType,
  				Description:         "Description of the State as localized string.",
+diff --git a/internal/resources/product_selection/resource.go b/internal/resources/product_selection/resource.go
+index d3b467a..458267d 100644
+--- a/internal/resources/product_selection/resource.go
++++ b/internal/resources/product_selection/resource.go
+@@ -18,3 +18,3 @@ import (
+ 
+-	"github.com/labd/terraform-provider-commercetools/internal/customtypes"
++	"github.com/hashicorp/terraform-plugin-framework/types"
+ 	"github.com/labd/terraform-provider-commercetools/internal/utils"
+@@ -73,3 +73,3 @@ func (*productSelectionResource) Schema(_ context.Context, req resource.SchemaRe
+ 			"name": schema.MapAttribute{
+-				CustomType:          customtypes.NewLocalizedStringType(),
++				ElementType: 		 types.StringType,
+ 				Description:         "Name of the ProductSelection.",
 diff --git a/internal/resources/state/resource.go b/internal/resources/state/resource.go
 index dd28402..f4dfe90 100644
 --- a/internal/resources/state/resource.go

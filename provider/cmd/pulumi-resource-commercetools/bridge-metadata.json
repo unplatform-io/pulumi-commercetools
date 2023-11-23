@@ -12,6 +12,7 @@
             "commercetools:index/customerGroup:CustomerGroup": 0,
             "commercetools:index/discountCode:DiscountCode": 0,
             "commercetools:index/productDiscount:ProductDiscount": 0,
+            "commercetools:index/productSelection:ProductSelection": 1,
             "commercetools:index/productType:ProductType": 0,
             "commercetools:index/projectSettings:ProjectSettings": 1,
             "commercetools:index/shippingMethod:ShippingMethod": 0,
@@ -43,6 +44,7 @@
             "commercetools:index/customerGroup:CustomerGroup": "commercetools_customer_group",
             "commercetools:index/discountCode:DiscountCode": "commercetools_discount_code",
             "commercetools:index/productDiscount:ProductDiscount": "commercetools_product_discount",
+            "commercetools:index/productSelection:ProductSelection": "commercetools_product_selection",
             "commercetools:index/productType:ProductType": "commercetools_product_type",
             "commercetools:index/projectSettings:ProjectSettings": "commercetools_project_settings",
             "commercetools:index/shippingMethod:ShippingMethod": "commercetools_shipping_method",
@@ -176,6 +178,9 @@
             "commercetools:index/StoreCustom:StoreCustom": {
                 "typeId": "type_id"
             },
+            "commercetools:index/StoreProductSelection:StoreProductSelection": {
+                "productSelectionId": "product_selection_id"
+            },
             "commercetools:index/SubscriptionChange:SubscriptionChange": {
                 "resourceTypeIds": "resource_type_ids"
             },
@@ -280,6 +285,7 @@
             },
             "commercetools:index/store:Store": {
                 "distributionChannels": "distribution_channels",
+                "productSelections": "product_selection",
                 "supplyChannels": "supply_channels"
             },
             "commercetools:index/subscription:Subscription": {

@@ -13,7 +13,7 @@ namespace Pulumi.Commercetools
     public partial class ProductType : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        /// [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
         /// </summary>
         [Output("attributes")]
         public Output<ImmutableArray<Outputs.ProductTypeAttribute>> Attributes { get; private set; } = null!;
@@ -83,7 +83,7 @@ namespace Pulumi.Commercetools
         private InputList<Inputs.ProductTypeAttributeArgs>? _attributes;
 
         /// <summary>
-        /// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        /// [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
         /// </summary>
         public InputList<Inputs.ProductTypeAttributeArgs> Attributes
         {
@@ -115,7 +115,7 @@ namespace Pulumi.Commercetools
         private InputList<Inputs.ProductTypeAttributeGetArgs>? _attributes;
 
         /// <summary>
-        /// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+        /// [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
         /// </summary>
         public InputList<Inputs.ProductTypeAttributeGetArgs> Attributes
         {

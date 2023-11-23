@@ -18,6 +18,7 @@ from .discount_code import *
 from .get_state import *
 from .get_type import *
 from .product_discount import *
+from .product_selection import *
 from .product_type import *
 from .project_settings import *
 from .provider import *
@@ -130,6 +131,14 @@ _utilities.register(
   "fqn": "pulumi_commercetools",
   "classes": {
    "commercetools:index/productDiscount:ProductDiscount": "ProductDiscount"
+  }
+ },
+ {
+  "pkg": "commercetools",
+  "mod": "index/productSelection",
+  "fqn": "pulumi_commercetools",
+  "classes": {
+   "commercetools:index/productSelection:ProductSelection": "ProductSelection"
   }
  },
  {

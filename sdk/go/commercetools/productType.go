@@ -14,7 +14,7 @@ import (
 type ProductType struct {
 	pulumi.CustomResourceState
 
-	// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+	// [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
 	Attributes  ProductTypeAttributeArrayOutput `pulumi:"attributes"`
 	Description pulumi.StringPtrOutput          `pulumi:"description"`
 	// User-specific unique identifier for the product type (max. 256 characters)
@@ -53,7 +53,7 @@ func GetProductType(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ProductType resources.
 type productTypeState struct {
-	// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+	// [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
 	Attributes  []ProductTypeAttribute `pulumi:"attributes"`
 	Description *string                `pulumi:"description"`
 	// User-specific unique identifier for the product type (max. 256 characters)
@@ -63,7 +63,7 @@ type productTypeState struct {
 }
 
 type ProductTypeState struct {
-	// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+	// [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
 	Attributes  ProductTypeAttributeArrayInput
 	Description pulumi.StringPtrInput
 	// User-specific unique identifier for the product type (max. 256 characters)
@@ -77,7 +77,7 @@ func (ProductTypeState) ElementType() reflect.Type {
 }
 
 type productTypeArgs struct {
-	// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+	// [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
 	Attributes  []ProductTypeAttribute `pulumi:"attributes"`
 	Description *string                `pulumi:"description"`
 	// User-specific unique identifier for the product type (max. 256 characters)
@@ -87,7 +87,7 @@ type productTypeArgs struct {
 
 // The set of arguments for constructing a ProductType resource.
 type ProductTypeArgs struct {
-	// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+	// [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
 	Attributes  ProductTypeAttributeArrayInput
 	Description pulumi.StringPtrInput
 	// User-specific unique identifier for the product type (max. 256 characters)
@@ -182,7 +182,7 @@ func (o ProductTypeOutput) ToProductTypeOutputWithContext(ctx context.Context) P
 	return o
 }
 
-// [Product attribute fefinition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
+// [Product attribute definition](https://docs.commercetools.com/api/projects/productTypes#attributedefinition)
 func (o ProductTypeOutput) Attributes() ProductTypeAttributeArrayOutput {
 	return o.ApplyT(func(v *ProductType) ProductTypeAttributeArrayOutput { return v.Attributes }).(ProductTypeAttributeArrayOutput)
 }

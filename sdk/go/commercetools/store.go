@@ -26,6 +26,8 @@ type Store struct {
 	Languages pulumi.StringArrayOutput `pulumi:"languages"`
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Name pulumi.MapOutput `pulumi:"name"`
+	// Controls availability of Products for this Store via Product Selections
+	ProductSelections StoreProductSelectionArrayOutput `pulumi:"productSelections"`
 	// Set of ResourceIdentifier of Channels with InventorySupply
 	SupplyChannels pulumi.StringArrayOutput `pulumi:"supplyChannels"`
 	Version        pulumi.IntOutput         `pulumi:"version"`
@@ -75,6 +77,8 @@ type storeState struct {
 	Languages []string `pulumi:"languages"`
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Name map[string]interface{} `pulumi:"name"`
+	// Controls availability of Products for this Store via Product Selections
+	ProductSelections []StoreProductSelection `pulumi:"productSelections"`
 	// Set of ResourceIdentifier of Channels with InventorySupply
 	SupplyChannels []string `pulumi:"supplyChannels"`
 	Version        *int     `pulumi:"version"`
@@ -92,6 +96,8 @@ type StoreState struct {
 	Languages pulumi.StringArrayInput
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Name pulumi.MapInput
+	// Controls availability of Products for this Store via Product Selections
+	ProductSelections StoreProductSelectionArrayInput
 	// Set of ResourceIdentifier of Channels with InventorySupply
 	SupplyChannels pulumi.StringArrayInput
 	Version        pulumi.IntPtrInput
@@ -113,6 +119,8 @@ type storeArgs struct {
 	Languages []string `pulumi:"languages"`
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Name map[string]interface{} `pulumi:"name"`
+	// Controls availability of Products for this Store via Product Selections
+	ProductSelections []StoreProductSelection `pulumi:"productSelections"`
 	// Set of ResourceIdentifier of Channels with InventorySupply
 	SupplyChannels []string `pulumi:"supplyChannels"`
 }
@@ -130,6 +138,8 @@ type StoreArgs struct {
 	Languages pulumi.StringArrayInput
 	// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 	Name pulumi.MapInput
+	// Controls availability of Products for this Store via Product Selections
+	ProductSelections StoreProductSelectionArrayInput
 	// Set of ResourceIdentifier of Channels with InventorySupply
 	SupplyChannels pulumi.StringArrayInput
 }
@@ -248,6 +258,11 @@ func (o StoreOutput) Languages() pulumi.StringArrayOutput {
 // [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
 func (o StoreOutput) Name() pulumi.MapOutput {
 	return o.ApplyT(func(v *Store) pulumi.MapOutput { return v.Name }).(pulumi.MapOutput)
+}
+
+// Controls availability of Products for this Store via Product Selections
+func (o StoreOutput) ProductSelections() StoreProductSelectionArrayOutput {
+	return o.ApplyT(func(v *Store) StoreProductSelectionArrayOutput { return v.ProductSelections }).(StoreProductSelectionArrayOutput)
 }
 
 // Set of ResourceIdentifier of Channels with InventorySupply

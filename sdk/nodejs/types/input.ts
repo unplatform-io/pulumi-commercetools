@@ -251,6 +251,11 @@ export interface StoreCustom {
     typeId: pulumi.Input<string>;
 }
 
+export interface StoreProductSelection {
+    active: pulumi.Input<boolean>;
+    productSelectionId: pulumi.Input<string>;
+}
+
 export interface SubscriptionChange {
     resourceTypeIds: pulumi.Input<pulumi.Input<string>[]>;
 }
