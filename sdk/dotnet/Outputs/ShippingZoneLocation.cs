@@ -13,6 +13,9 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ShippingZoneLocation
     {
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
         public readonly string Country;
         public readonly string? State;
 

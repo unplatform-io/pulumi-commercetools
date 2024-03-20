@@ -12,9 +12,15 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class CategoryAssetSourceDimensionsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The height of the asset source
+        /// </summary>
         [Input("h", required: true)]
         public Input<int> H { get; set; } = null!;
 
+        /// <summary>
+        /// The width of the asset source
+        /// </summary>
         [Input("w", required: true)]
         public Input<int> W { get; set; } = null!;
 

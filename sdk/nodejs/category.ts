@@ -91,6 +91,9 @@ export class Category extends pulumi.CustomResource {
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as CategoryArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.slug === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'slug'");
             }
@@ -165,7 +168,7 @@ export interface CategoryArgs {
     metaDescription?: pulumi.Input<{[key: string]: any}>;
     metaKeywords?: pulumi.Input<{[key: string]: any}>;
     metaTitle?: pulumi.Input<{[key: string]: any}>;
-    name?: pulumi.Input<{[key: string]: any}>;
+    name: pulumi.Input<{[key: string]: any}>;
     /**
      * An attribute as base for a custom category order in one level, filled with random value when left empty
      */

@@ -12,6 +12,9 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class ProjectSettingsExternalOauthGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Partially hidden on retrieval
+        /// </summary>
         [Input("authorizationHeader")]
         public Input<string>? AuthorizationHeader { get; set; }
 

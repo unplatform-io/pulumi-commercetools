@@ -136,7 +136,7 @@ namespace Pulumi.Commercetools
         [Input("key")]
         public Input<string>? Key { get; set; }
 
-        [Input("name")]
+        [Input("name", required: true)]
         private InputMap<object>? _name;
 
         /// <summary>

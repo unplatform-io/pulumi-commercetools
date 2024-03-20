@@ -13,7 +13,13 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class StoreProductSelection
     {
+        /// <summary>
+        /// If true, all Products assigned to this Product Selection are part of the Store's assortment
+        /// </summary>
         public readonly bool Active;
+        /// <summary>
+        /// Resource Identifier of a ProductSelection
+        /// </summary>
         public readonly string ProductSelectionId;
 
         [OutputConstructor]

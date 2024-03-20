@@ -13,6 +13,9 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class AttributeGroupAttribute
     {
+        /// <summary>
+        /// The Attribute's name as given in its AttributeDefinition.
+        /// </summary>
         public readonly string Key;
 
         [OutputConstructor]

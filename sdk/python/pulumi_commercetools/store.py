@@ -453,7 +453,7 @@ class Store(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Output[Mapping[str, Any]]:
+    def name(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         """

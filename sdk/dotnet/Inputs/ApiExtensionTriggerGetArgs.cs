@@ -14,15 +14,25 @@ namespace Pulumi.Commercetools.Inputs
     {
         [Input("actions", required: true)]
         private InputList<string>? _actions;
+
+        /// <summary>
+        /// Currently, Create and Update are supported
+        /// </summary>
         public InputList<string> Actions
         {
             get => _actions ?? (_actions = new InputList<string>());
             set => _actions = value;
         }
 
+        /// <summary>
+        /// Valid predicate that controls the conditions under which the API Extension is called.
+        /// </summary>
         [Input("condition")]
         public Input<string>? Condition { get; set; }
 
+        /// <summary>
+        /// Currently, cart, order, payment, and customer are supported
+        /// </summary>
         [Input("resourceTypeId", required: true)]
         public Input<string> ResourceTypeId { get; set; } = null!;
 

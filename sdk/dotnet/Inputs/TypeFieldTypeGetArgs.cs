@@ -17,20 +17,34 @@ namespace Pulumi.Commercetools.Inputs
 
         [Input("localizedValues")]
         private InputList<Inputs.TypeFieldTypeLocalizedValueGetArgs>? _localizedValues;
+
+        /// <summary>
+        /// Localized values for the `lenum` type.
+        /// </summary>
         public InputList<Inputs.TypeFieldTypeLocalizedValueGetArgs> LocalizedValues
         {
             get => _localizedValues ?? (_localizedValues = new InputList<Inputs.TypeFieldTypeLocalizedValueGetArgs>());
             set => _localizedValues = value;
         }
 
+        /// <summary>
+        /// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Resource type the Custom Field can reference. Required when type is `Reference`
+        /// </summary>
         [Input("referenceTypeId")]
         public Input<string>? ReferenceTypeId { get; set; }
 
         [Input("values")]
         private InputList<Inputs.TypeFieldTypeValueGetArgs>? _values;
+
+        /// <summary>
+        /// Values for the `enum` type.
+        /// </summary>
         public InputList<Inputs.TypeFieldTypeValueGetArgs> Values
         {
             get => _values ?? (_values = new InputList<Inputs.TypeFieldTypeValueGetArgs>());

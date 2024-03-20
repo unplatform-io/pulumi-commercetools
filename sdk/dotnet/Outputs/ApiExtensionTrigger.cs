@@ -13,8 +13,17 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ApiExtensionTrigger
     {
+        /// <summary>
+        /// Currently, Create and Update are supported
+        /// </summary>
         public readonly ImmutableArray<string> Actions;
+        /// <summary>
+        /// Valid predicate that controls the conditions under which the API Extension is called.
+        /// </summary>
         public readonly string? Condition;
+        /// <summary>
+        /// Currently, cart, order, payment, and customer are supported
+        /// </summary>
         public readonly string ResourceTypeId;
 
         [OutputConstructor]

@@ -35,7 +35,7 @@ namespace Pulumi.Commercetools
         /// Name of the State as localized string.
         /// </summary>
         [Output("name")]
-        public Output<ImmutableDictionary<string, string>> Name { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Name { get; private set; } = null!;
 
         /// <summary>
         /// [State Role](https://docs.commercetools.com/api/projects/states#staterole)

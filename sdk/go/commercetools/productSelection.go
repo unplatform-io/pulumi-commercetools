@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-commercetools/sdk/go/commercetools/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -29,9 +30,12 @@ type ProductSelection struct {
 func NewProductSelection(ctx *pulumi.Context,
 	name string, args *ProductSelectionArgs, opts ...pulumi.ResourceOption) (*ProductSelection, error) {
 	if args == nil {
-		args = &ProductSelectionArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ProductSelection
 	err := ctx.RegisterResource("commercetools:index/productSelection:ProductSelection", name, args, &resource, opts...)

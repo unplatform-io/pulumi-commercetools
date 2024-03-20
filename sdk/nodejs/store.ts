@@ -54,7 +54,7 @@ export class Store extends pulumi.CustomResource {
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
-    public readonly name!: pulumi.Output<{[key: string]: any}>;
+    public readonly name!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * Controls availability of Products for this Store via Product Selections
      */

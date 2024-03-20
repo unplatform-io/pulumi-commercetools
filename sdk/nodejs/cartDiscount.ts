@@ -67,7 +67,8 @@ export class CartDiscount extends pulumi.CustomResource {
      */
     public readonly sortOrder!: pulumi.Output<string>;
     /**
-     * Specifies whether the application of this discount causes the following discounts to be ignored
+     * Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+     * or StopAfterThisDiscount
      */
     public readonly stackingMode!: pulumi.Output<string | undefined>;
     /**
@@ -113,6 +114,9 @@ export class CartDiscount extends pulumi.CustomResource {
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as CartDiscountArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.predicate === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'predicate'");
             }
@@ -179,7 +183,8 @@ export interface CartDiscountState {
      */
     sortOrder?: pulumi.Input<string>;
     /**
-     * Specifies whether the application of this discount causes the following discounts to be ignored
+     * Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+     * or StopAfterThisDiscount
      */
     stackingMode?: pulumi.Input<string>;
     /**
@@ -217,7 +222,7 @@ export interface CartDiscountArgs {
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
-    name?: pulumi.Input<{[key: string]: any}>;
+    name: pulumi.Input<{[key: string]: any}>;
     /**
      * A valid [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
      */
@@ -234,7 +239,8 @@ export interface CartDiscountArgs {
      */
     sortOrder: pulumi.Input<string>;
     /**
-     * Specifies whether the application of this discount causes the following discounts to be ignored
+     * Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+     * or StopAfterThisDiscount
      */
     stackingMode?: pulumi.Input<string>;
     /**

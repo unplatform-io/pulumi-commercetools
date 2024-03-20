@@ -13,7 +13,13 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class CategoryAssetSourceDimensions
     {
+        /// <summary>
+        /// The height of the asset source
+        /// </summary>
         public readonly int H;
+        /// <summary>
+        /// The width of the asset source
+        /// </summary>
         public readonly int W;
 
         [OutputConstructor]

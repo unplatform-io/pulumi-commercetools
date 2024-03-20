@@ -16,6 +16,7 @@ __all__ = ['CategoryArgs', 'Category']
 @pulumi.input_type
 class CategoryArgs:
     def __init__(__self__, *,
+                 name: pulumi.Input[Mapping[str, Any]],
                  slug: pulumi.Input[Mapping[str, Any]],
                  assets: Optional[pulumi.Input[Sequence[pulumi.Input['CategoryAssetArgs']]]] = None,
                  custom: Optional[pulumi.Input['CategoryCustomArgs']] = None,
@@ -25,7 +26,6 @@ class CategoryArgs:
                  meta_description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  meta_keywords: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  meta_title: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  order_hint: Optional[pulumi.Input[str]] = None,
                  parent: Optional[pulumi.Input[str]] = None):
         """
@@ -36,6 +36,7 @@ class CategoryArgs:
         :param pulumi.Input[str] order_hint: An attribute as base for a custom category order in one level, filled with random value when left empty
         :param pulumi.Input[str] parent: A category that is the parent of this category in the category tree
         """
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "slug", slug)
         if assets is not None:
             pulumi.set(__self__, "assets", assets)
@@ -53,12 +54,19 @@ class CategoryArgs:
             pulumi.set(__self__, "meta_keywords", meta_keywords)
         if meta_title is not None:
             pulumi.set(__self__, "meta_title", meta_title)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
         if order_hint is not None:
             pulumi.set(__self__, "order_hint", order_hint)
         if parent is not None:
             pulumi.set(__self__, "parent", parent)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Mapping[str, Any]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Mapping[str, Any]]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -149,15 +157,6 @@ class CategoryArgs:
     @meta_title.setter
     def meta_title(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "meta_title", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
-        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="orderHint")
@@ -448,6 +447,8 @@ class Category(pulumi.CustomResource):
             __props__.__dict__["meta_description"] = meta_description
             __props__.__dict__["meta_keywords"] = meta_keywords
             __props__.__dict__["meta_title"] = meta_title
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["order_hint"] = order_hint
             __props__.__dict__["parent"] = parent

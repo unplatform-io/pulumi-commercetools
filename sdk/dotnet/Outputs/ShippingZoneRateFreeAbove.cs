@@ -13,7 +13,13 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ShippingZoneRateFreeAbove
     {
+        /// <summary>
+        /// The amount in cents (the smallest indivisible unit of the currency)
+        /// </summary>
         public readonly int CentAmount;
+        /// <summary>
+        /// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        /// </summary>
         public readonly string CurrencyCode;
 
         [OutputConstructor]

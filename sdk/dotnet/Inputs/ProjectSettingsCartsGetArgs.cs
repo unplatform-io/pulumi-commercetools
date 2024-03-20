@@ -12,9 +12,15 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class ProjectSettingsCartsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Indicates if country - no state tax rate fallback should be used when a shipping address state is not explicitly covered in the rates lists of all tax categories of a cart line items
+        /// </summary>
         [Input("countryTaxRateFallbackEnabled")]
         public Input<bool>? CountryTaxRateFallbackEnabled { get; set; }
 
+        /// <summary>
+        /// Number - Optional The default value for the deleteDaysAfterLastModification parameter of the CartDraft. Initially set to 90 for projects created after December 2019.
+        /// </summary>
         [Input("deleteDaysAfterLastModification")]
         public Input<int>? DeleteDaysAfterLastModification { get; set; }
 

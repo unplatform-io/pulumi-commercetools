@@ -33,7 +33,8 @@ type CartDiscount struct {
 	// by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
 	// order is unambiguous among all cart discounts
 	SortOrder pulumi.StringOutput `pulumi:"sortOrder"`
-	// Specifies whether the application of this discount causes the following discounts to be ignored
+	// Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+	// or StopAfterThisDiscount
 	StackingMode pulumi.StringPtrOutput `pulumi:"stackingMode"`
 	// Empty when the value has type giftLineItem, otherwise a
 	// [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
@@ -53,6 +54,9 @@ func NewCartDiscount(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.Predicate == nil {
 		return nil, errors.New("invalid value for required argument 'Predicate'")
 	}
@@ -103,7 +107,8 @@ type cartDiscountState struct {
 	// by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
 	// order is unambiguous among all cart discounts
 	SortOrder *string `pulumi:"sortOrder"`
-	// Specifies whether the application of this discount causes the following discounts to be ignored
+	// Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+	// or StopAfterThisDiscount
 	StackingMode *string `pulumi:"stackingMode"`
 	// Empty when the value has type giftLineItem, otherwise a
 	// [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
@@ -135,7 +140,8 @@ type CartDiscountState struct {
 	// by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
 	// order is unambiguous among all cart discounts
 	SortOrder pulumi.StringPtrInput
-	// Specifies whether the application of this discount causes the following discounts to be ignored
+	// Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+	// or StopAfterThisDiscount
 	StackingMode pulumi.StringPtrInput
 	// Empty when the value has type giftLineItem, otherwise a
 	// [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
@@ -171,7 +177,8 @@ type cartDiscountArgs struct {
 	// by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
 	// order is unambiguous among all cart discounts
 	SortOrder string `pulumi:"sortOrder"`
-	// Specifies whether the application of this discount causes the following discounts to be ignored
+	// Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+	// or StopAfterThisDiscount
 	StackingMode *string `pulumi:"stackingMode"`
 	// Empty when the value has type giftLineItem, otherwise a
 	// [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
@@ -203,7 +210,8 @@ type CartDiscountArgs struct {
 	// by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order. The sort
 	// order is unambiguous among all cart discounts
 	SortOrder pulumi.StringInput
-	// Specifies whether the application of this discount causes the following discounts to be ignored
+	// Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+	// or StopAfterThisDiscount
 	StackingMode pulumi.StringPtrInput
 	// Empty when the value has type giftLineItem, otherwise a
 	// [CartDiscountTarget](https://docs.commercetools.com/api/projects/cartDiscounts#cartdiscounttarget)
@@ -344,7 +352,8 @@ func (o CartDiscountOutput) SortOrder() pulumi.StringOutput {
 	return o.ApplyT(func(v *CartDiscount) pulumi.StringOutput { return v.SortOrder }).(pulumi.StringOutput)
 }
 
-// Specifies whether the application of this discount causes the following discounts to be ignored
+// Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+// or StopAfterThisDiscount
 func (o CartDiscountOutput) StackingMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CartDiscount) pulumi.StringPtrOutput { return v.StackingMode }).(pulumi.StringPtrOutput)
 }

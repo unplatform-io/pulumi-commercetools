@@ -13,6 +13,9 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class SubscriptionFormat
     {
+        /// <summary>
+        /// For CloudEvents
+        /// </summary>
         public readonly string? CloudEventsVersion;
         public readonly string? Type;
 

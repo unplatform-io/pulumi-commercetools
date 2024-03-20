@@ -50,7 +50,7 @@ namespace Pulumi.Commercetools
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AttributeGroup(string name, AttributeGroupArgs? args = null, CustomResourceOptions? options = null)
+        public AttributeGroup(string name, AttributeGroupArgs args, CustomResourceOptions? options = null)
             : base("commercetools:index/attributeGroup:AttributeGroup", name, args ?? new AttributeGroupArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -118,7 +118,7 @@ namespace Pulumi.Commercetools
         [Input("key")]
         public Input<string>? Key { get; set; }
 
-        [Input("name")]
+        [Input("name", required: true)]
         private InputMap<string>? _name;
 
         /// <summary>

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-commercetools/sdk/go/commercetools/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -30,9 +31,12 @@ type AttributeGroup struct {
 func NewAttributeGroup(ctx *pulumi.Context,
 	name string, args *AttributeGroupArgs, opts ...pulumi.ResourceOption) (*AttributeGroup, error) {
 	if args == nil {
-		args = &AttributeGroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AttributeGroup
 	err := ctx.RegisterResource("commercetools:index/attributeGroup:AttributeGroup", name, args, &resource, opts...)

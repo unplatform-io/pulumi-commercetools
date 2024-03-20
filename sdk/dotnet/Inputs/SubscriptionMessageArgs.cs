@@ -12,11 +12,18 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class SubscriptionMessageArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+        /// </summary>
         [Input("resourceTypeId", required: true)]
         public Input<string> ResourceTypeId { get; set; } = null!;
 
         [Input("types", required: true)]
         private InputList<string>? _types;
+
+        /// <summary>
+        /// types must contain valid message types for this resource, for example for resource type product the message type ProductPublished is valid. If no types of messages are given, the subscription is valid for all messages of this resource
+        /// </summary>
         public InputList<string> Types
         {
             get => _types ?? (_types = new InputList<string>());

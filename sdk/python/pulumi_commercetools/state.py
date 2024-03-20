@@ -377,7 +377,7 @@ class State(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Output[Mapping[str, str]]:
+    def name(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Name of the State as localized string.
         """

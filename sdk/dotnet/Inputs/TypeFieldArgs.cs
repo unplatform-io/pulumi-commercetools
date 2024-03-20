@@ -12,23 +12,41 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class TypeFieldArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [TextInputHint](https://docs.commercetools.com/api/projects/types#textinputhint) Provides a visual representation type for this field. It is only relevant for string-based field types like StringType and LocalizedStringType
+        /// </summary>
         [Input("inputHint")]
         public Input<string>? InputHint { get; set; }
 
         [Input("label", required: true)]
         private InputMap<object>? _label;
+
+        /// <summary>
+        /// A human-readable label for the field
+        /// </summary>
         public InputMap<object> Label
         {
             get => _label ?? (_label = new InputMap<object>());
             set => _label = value;
         }
 
+        /// <summary>
+        /// The name of the field.
+        /// The name must be between two and 36 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+        /// The name must be unique for a given resource type ID. In case there is a field with the same name in another type it has to have the same FieldType also
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Whether the field is required to have a value
+        /// </summary>
         [Input("required")]
         public Input<bool>? Required { get; set; }
 
+        /// <summary>
+        /// Describes the [type](https://docs.commercetools.com/api/projects/types#fieldtype) of the field
+        /// </summary>
         [Input("type", required: true)]
         public Input<Inputs.TypeFieldTypeArgs> Type { get; set; } = null!;
 

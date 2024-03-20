@@ -13,8 +13,17 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ProductDiscountValue
     {
+        /// <summary>
+        /// Absolute discount specific fields
+        /// </summary>
         public readonly ImmutableArray<Outputs.ProductDiscountValueMoney> Monies;
+        /// <summary>
+        /// Relative discount specific fields
+        /// </summary>
         public readonly int? Permyriad;
+        /// <summary>
+        /// Currently supports absolute/relative/external
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

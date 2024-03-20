@@ -16,49 +16,115 @@ export interface ApiExtensionDestination {
 }
 
 export interface ApiExtensionTrigger {
+    /**
+     * Currently, Create and Update are supported
+     */
     actions: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Valid predicate that controls the conditions under which the API Extension is called.
+     */
     condition?: pulumi.Input<string>;
+    /**
+     * Currently, cart, order, payment, and customer are supported
+     */
     resourceTypeId: pulumi.Input<string>;
 }
 
 export interface AttributeGroupAttribute {
+    /**
+     * The Attribute's name as given in its AttributeDefinition.
+     */
     key: pulumi.Input<string>;
 }
 
 export interface CartDiscountCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: pulumi.Input<{[key: string]: any}>;
     typeId: pulumi.Input<string>;
 }
 
 export interface CartDiscountTarget {
+    /**
+     * MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+     */
     discountedQuantity?: pulumi.Input<number>;
+    /**
+     * MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+     */
     maxOccurrence?: pulumi.Input<number>;
+    /**
+     * LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+     */
     predicate?: pulumi.Input<string>;
+    /**
+     * MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored
+     */
     selectionMode?: pulumi.Input<string>;
+    /**
+     * MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+     */
     triggerQuantity?: pulumi.Input<number>;
+    /**
+     * Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice
+     */
     type: pulumi.Input<string>;
 }
 
 export interface CartDiscountValue {
+    /**
+     * Channel must have the role ProductDistribution. Optional when value type is giftLineItem
+     */
     distributionChannelId?: pulumi.Input<string>;
+    /**
+     * Absolute discount specific fields
+     */
     monies?: pulumi.Input<pulumi.Input<inputs.CartDiscountValueMoney>[]>;
+    /**
+     * Relative discount specific fields
+     */
     permyriad?: pulumi.Input<number>;
+    /**
+     * ResourceIdentifier of a Product. Required when value type is giftLineItem
+     */
     productId?: pulumi.Input<string>;
+    /**
+     * Channel must have the role InventorySupply. Optional when value type is giftLineItem
+     */
     supplyChannelId?: pulumi.Input<string>;
+    /**
+     * Currently supports absolute/relative/giftLineItem
+     */
     type: pulumi.Input<string>;
+    /**
+     * ProductVariant of the Product. Required when value type is giftLineItem
+     */
     variantId?: pulumi.Input<number>;
 }
 
 export interface CartDiscountValueMoney {
+    /**
+     * The amount in cents (the smallest indivisible unit of the currency)
+     */
     centAmount: pulumi.Input<number>;
+    /**
+     * The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+     */
     currencyCode: pulumi.Input<string>;
 }
 
 export interface CategoryAsset {
     description?: pulumi.Input<{[key: string]: any}>;
     id?: pulumi.Input<string>;
+    /**
+     * Optional User-defined identifier for the asset. Asset keys are unique inside their container (in this case the category)
+     */
     key?: pulumi.Input<string>;
     name: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Array of AssetSource, Has at least one entry
+     */
     sources?: pulumi.Input<pulumi.Input<inputs.CategoryAssetSource>[]>;
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -66,16 +132,28 @@ export interface CategoryAsset {
 export interface CategoryAssetSource {
     contentType?: pulumi.Input<string>;
     dimensions?: pulumi.Input<inputs.CategoryAssetSourceDimensions>;
+    /**
+     * Unique identifier, must be unique within the Asset
+     */
     key?: pulumi.Input<string>;
     uri: pulumi.Input<string>;
 }
 
 export interface CategoryAssetSourceDimensions {
+    /**
+     * The height of the asset source
+     */
     h: pulumi.Input<number>;
+    /**
+     * The width of the asset source
+     */
     w: pulumi.Input<number>;
 }
 
 export interface CategoryCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: pulumi.Input<{[key: string]: any}>;
     typeId: pulumi.Input<string>;
 }
@@ -109,6 +187,9 @@ export interface ChannelAddress {
 }
 
 export interface ChannelCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: pulumi.Input<{[key: string]: any}>;
     typeId: pulumi.Input<string>;
 }
@@ -118,52 +199,131 @@ export interface ChannelGeolocation {
 }
 
 export interface CustomerGroupCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: pulumi.Input<{[key: string]: any}>;
     typeId: pulumi.Input<string>;
 }
 
 export interface DiscountCodeCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: pulumi.Input<{[key: string]: any}>;
     typeId: pulumi.Input<string>;
 }
 
 export interface ProductDiscountValue {
+    /**
+     * Absolute discount specific fields
+     */
     monies?: pulumi.Input<pulumi.Input<inputs.ProductDiscountValueMoney>[]>;
+    /**
+     * Relative discount specific fields
+     */
     permyriad?: pulumi.Input<number>;
+    /**
+     * Currently supports absolute/relative/external
+     */
     type: pulumi.Input<string>;
 }
 
 export interface ProductDiscountValueMoney {
+    /**
+     * The amount in cents (the smallest indivisible unit of the currency)
+     */
     centAmount: pulumi.Input<number>;
+    /**
+     * The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+     */
     currencyCode: pulumi.Input<string>;
+    /**
+     * The number of default fraction digits for the given currency, like 2 for EUR or 0 for JPY
+     */
     fractionDigits?: pulumi.Input<number>;
 }
 
 export interface ProductTypeAttribute {
+    /**
+     * Describes how an attribute or a set of attributes should be validated across all variants of a product. See also [Attribute Constraint](https://docs.commercetools.com/api/projects/productTypes#attributeconstraint-enum)
+     */
     constraint?: pulumi.Input<string>;
+    /**
+     * Provides a visual representation type for this attribute. only relevant for text-based attribute types like TextType and LocalizableTextType
+     */
     inputHint?: pulumi.Input<string>;
+    /**
+     * Additional information about the attribute that aids content managers when setting product details
+     */
     inputTip?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * A human-readable label for the attribute
+     */
     label: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The unique name of the attribute used in the API. The name must be between two and 256 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+     * When using the same name for an attribute in two or more product types all fields of the AttributeDefinition of this attribute need to be the same across the product types, otherwise an AttributeDefinitionAlreadyExists error code will be returned. An exception to this are the values of an enum or lenum type and sets thereof
+     */
     name: pulumi.Input<string>;
+    /**
+     * Whether the attribute is required to have a value
+     */
     required?: pulumi.Input<boolean>;
+    /**
+     * Whether the attribute's values should generally be activated in product search
+     */
     searchable?: pulumi.Input<boolean>;
+    /**
+     * [AttributeType](https://docs.commercetools.com/api/projects/productTypes#attributetype)
+     */
     type: pulumi.Input<inputs.ProductTypeAttributeType>;
 }
 
 export interface ProductTypeAttributeType {
     ElementType2?: pulumi.Input<inputs.ProductTypeAttributeTypeElementType2>;
+    /**
+     * Localized values for the `lenum` type.
+     */
     localizedValues?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttributeTypeLocalizedValue>[]>;
+    /**
+     * Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+     */
     name: pulumi.Input<string>;
+    /**
+     * Resource type the Custom Field can reference. Required when type is `reference`
+     */
     referenceTypeId?: pulumi.Input<string>;
+    /**
+     * Reference to another product type. Required when type is `nested`.
+     */
     typeReference?: pulumi.Input<string>;
+    /**
+     * Values for the `enum` type.
+     */
     values?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttributeTypeValue>[]>;
 }
 
 export interface ProductTypeAttributeTypeElementType2 {
+    /**
+     * Localized values for the `lenum` type.
+     */
     localizedValues?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttributeTypeElementType2LocalizedValue>[]>;
+    /**
+     * Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+     */
     name: pulumi.Input<string>;
+    /**
+     * Resource type the Custom Field can reference. Required when type is `reference`
+     */
     referenceTypeId?: pulumi.Input<string>;
+    /**
+     * Reference to another product type. Required when type is `nested`.
+     */
     typeReference?: pulumi.Input<string>;
+    /**
+     * Values for the `enum` type.
+     */
     values?: pulumi.Input<pulumi.Input<inputs.ProductTypeAttributeTypeElementType2Value>[]>;
 }
 
@@ -188,37 +348,67 @@ export interface ProductTypeAttributeTypeValue {
 }
 
 export interface ProjectSettingsCarts {
+    /**
+     * Indicates if country - no state tax rate fallback should be used when a shipping address state is not explicitly covered in the rates lists of all tax categories of a cart line items
+     */
     countryTaxRateFallbackEnabled?: pulumi.Input<boolean>;
+    /**
+     * Number - Optional The default value for the deleteDaysAfterLastModification parameter of the CartDraft. Initially set to 90 for projects created after December 2019.
+     */
     deleteDaysAfterLastModification?: pulumi.Input<number>;
 }
 
 export interface ProjectSettingsExternalOauth {
+    /**
+     * Partially hidden on retrieval
+     */
     authorizationHeader?: pulumi.Input<string>;
     url?: pulumi.Input<string>;
 }
 
 export interface ProjectSettingsMessages {
+    /**
+     * Specifies the number of days each Message should be available via the Messages Query API
+     */
     deleteDaysAfterCreation?: pulumi.Input<number>;
+    /**
+     * When true the creation of messages on the Messages Query HTTP API is enabled
+     */
     enabled?: pulumi.Input<boolean>;
 }
 
 export interface ProjectSettingsShippingRateCartClassificationValue {
+    /**
+     * [Resource Type ID](https://docs.commercetools.com/api/projects/Projects#changeProject)
+     */
     key: pulumi.Input<string>;
     label?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface ShippingMethodCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: pulumi.Input<{[key: string]: any}>;
     typeId: pulumi.Input<string>;
 }
 
 export interface ShippingZoneLocation {
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
     country: pulumi.Input<string>;
     state?: pulumi.Input<string>;
 }
 
 export interface ShippingZoneRateFreeAbove {
+    /**
+     * The amount in cents (the smallest indivisible unit of the currency)
+     */
     centAmount: pulumi.Input<number>;
+    /**
+     * The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+     */
     currencyCode: pulumi.Input<string>;
 }
 
@@ -228,11 +418,29 @@ export interface ShippingZoneRatePrice {
 }
 
 export interface ShippingZoneRateShippingRatePriceTier {
+    /**
+     * If type is CartValue this represents the cent amount of the tier
+     */
     minimumCentAmount?: pulumi.Input<number>;
+    /**
+     * The price of the score, value or minimumCentAmount tier
+     */
     price?: pulumi.Input<inputs.ShippingZoneRateShippingRatePriceTierPrice>;
+    /**
+     * If type is CartScore. Allows to calculate a price dynamically for the score.
+     */
     priceFunction?: pulumi.Input<inputs.ShippingZoneRateShippingRatePriceTierPriceFunction>;
+    /**
+     * If type is CartScore. Sets a fixed price for this score value
+     */
     score?: pulumi.Input<number>;
+    /**
+     * CartValue, CartScore or CartClassification
+     */
     type: pulumi.Input<string>;
+    /**
+     * If type is CartClassification, must be a valid key of the CartClassification
+     */
     value?: pulumi.Input<string>;
 }
 
@@ -247,68 +455,186 @@ export interface ShippingZoneRateShippingRatePriceTierPriceFunction {
 }
 
 export interface StoreCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: pulumi.Input<{[key: string]: any}>;
     typeId: pulumi.Input<string>;
 }
 
 export interface StoreProductSelection {
+    /**
+     * If true, all Products assigned to this Product Selection are part of the Store's assortment
+     */
     active: pulumi.Input<boolean>;
+    /**
+     * Resource Identifier of a ProductSelection
+     */
     productSelectionId: pulumi.Input<string>;
 }
 
 export interface SubscriptionChange {
+    /**
+     * [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+     */
     resourceTypeIds: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface SubscriptionDestination {
+    /**
+     * The access key of the SQS queue, SNS topic or EventBridge topic
+     */
     accessKey?: pulumi.Input<string>;
+    /**
+     * The access secret of the SQS queue, SNS topic or EventBridge topic
+     */
     accessSecret?: pulumi.Input<string>;
+    /**
+     * The AWS account ID of the SNS topic or EventBridge topic
+     */
     accountId?: pulumi.Input<string>;
+    /**
+     * The acks value of the Confluent Cloud topic
+     */
+    acks?: pulumi.Input<string>;
+    /**
+     * The API key of the Confluent Cloud topic
+     */
+    apiKey?: pulumi.Input<string>;
+    /**
+     * The API secret of the Confluent Cloud topic
+     */
+    apiSecret?: pulumi.Input<string>;
+    /**
+     * The bootstrap server of the Confluent Cloud topic
+     */
+    bootstrapServer?: pulumi.Input<string>;
+    /**
+     * The connection string of the Azure Service Bus
+     */
     connectionString?: pulumi.Input<string>;
+    /**
+     * The key of the Confluent Cloud topic
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * The project ID of the Google Cloud Pub/Sub
+     */
     projectId?: pulumi.Input<string>;
+    /**
+     * The URL of the SQS queue
+     */
     queueUrl?: pulumi.Input<string>;
+    /**
+     * The region of the SQS queue, SNS topic or EventBridge topic
+     */
     region?: pulumi.Input<string>;
+    /**
+     * The topic of the Google Cloud Pub/Sub or Confluent Cloud topic
+     */
     topic?: pulumi.Input<string>;
+    /**
+     * The ARN of the SNS topic
+     */
     topicArn?: pulumi.Input<string>;
+    /**
+     * The type of the destination. See [Destination](https://docs.commercetools.com/api/projects/subscriptions#destination) for more information
+     */
     type: pulumi.Input<string>;
+    /**
+     * The URI of the EventGrid topic
+     */
     uri?: pulumi.Input<string>;
 }
 
 export interface SubscriptionFormat {
+    /**
+     * For CloudEvents
+     */
     cloudEventsVersion?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
 }
 
 export interface SubscriptionMessage {
+    /**
+     * [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+     */
     resourceTypeId: pulumi.Input<string>;
+    /**
+     * types must contain valid message types for this resource, for example for resource type product the message type ProductPublished is valid. If no types of messages are given, the subscription is valid for all messages of this resource
+     */
     types: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface TaxCategoryRateSubRate {
+    /**
+     * Number Percentage in the range of [0..1]
+     */
     amount: pulumi.Input<number>;
     name: pulumi.Input<string>;
 }
 
 export interface TypeField {
+    /**
+     * [TextInputHint](https://docs.commercetools.com/api/projects/types#textinputhint) Provides a visual representation type for this field. It is only relevant for string-based field types like StringType and LocalizedStringType
+     */
     inputHint?: pulumi.Input<string>;
+    /**
+     * A human-readable label for the field
+     */
     label: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The name of the field.
+     * The name must be between two and 36 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+     * The name must be unique for a given resource type ID. In case there is a field with the same name in another type it has to have the same FieldType also
+     */
     name: pulumi.Input<string>;
+    /**
+     * Whether the field is required to have a value
+     */
     required?: pulumi.Input<boolean>;
+    /**
+     * Describes the [type](https://docs.commercetools.com/api/projects/types#fieldtype) of the field
+     */
     type: pulumi.Input<inputs.TypeFieldType>;
 }
 
 export interface TypeFieldType {
     ElementType2?: pulumi.Input<inputs.TypeFieldTypeElementType2>;
+    /**
+     * Localized values for the `lenum` type.
+     */
     localizedValues?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeLocalizedValue>[]>;
+    /**
+     * Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Resource type the Custom Field can reference. Required when type is `Reference`
+     */
     referenceTypeId?: pulumi.Input<string>;
+    /**
+     * Values for the `enum` type.
+     */
     values?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeValue>[]>;
 }
 
 export interface TypeFieldTypeElementType2 {
+    /**
+     * Localized values for the `lenum` type.
+     */
     localizedValues?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeElementType2LocalizedValue>[]>;
+    /**
+     * Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Resource type the Custom Field can reference. Required when type is `Reference`
+     */
     referenceTypeId?: pulumi.Input<string>;
+    /**
+     * Values for the `enum` type.
+     */
     values?: pulumi.Input<pulumi.Input<inputs.TypeFieldTypeElementType2Value>[]>;
 }
 

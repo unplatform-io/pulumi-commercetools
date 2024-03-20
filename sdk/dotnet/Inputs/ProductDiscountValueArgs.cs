@@ -14,15 +14,25 @@ namespace Pulumi.Commercetools.Inputs
     {
         [Input("monies")]
         private InputList<Inputs.ProductDiscountValueMoneyArgs>? _monies;
+
+        /// <summary>
+        /// Absolute discount specific fields
+        /// </summary>
         public InputList<Inputs.ProductDiscountValueMoneyArgs> Monies
         {
             get => _monies ?? (_monies = new InputList<Inputs.ProductDiscountValueMoneyArgs>());
             set => _monies = value;
         }
 
+        /// <summary>
+        /// Relative discount specific fields
+        /// </summary>
         [Input("permyriad")]
         public Input<int>? Permyriad { get; set; }
 
+        /// <summary>
+        /// Currently supports absolute/relative/external
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 

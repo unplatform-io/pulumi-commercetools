@@ -13,6 +13,9 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ProjectSettingsShippingRateCartClassificationValue
     {
+        /// <summary>
+        /// [Resource Type ID](https://docs.commercetools.com/api/projects/Projects#changeProject)
+        /// </summary>
         public readonly string Key;
         public readonly ImmutableDictionary<string, string>? Label;
 

@@ -43,7 +43,7 @@ namespace Pulumi.Commercetools
         /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         /// </summary>
         [Output("name")]
-        public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, object>?> Name { get; private set; } = null!;
 
         /// <summary>
         /// Controls availability of Products for this Store via Product Selections

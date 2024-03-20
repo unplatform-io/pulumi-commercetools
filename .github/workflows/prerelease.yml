@@ -23,9 +23,9 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
-        go-version: 1.20.5
+        go-version: 1.22.1
     - name: Install pulumictl
       uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
@@ -79,7 +79,7 @@ jobs:
         dotnetversion:
         - 6
         goversion:
-        - 1.20.5
+        - 1.22.1
         language:
         - nodejs
         - python
@@ -102,9 +102,9 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
-        go-version: 1.20.5
+        go-version: 1.22.1
     - name: Install pulumictl
       uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
@@ -125,7 +125,6 @@ jobs:
     strategy:
       fail-fast: true        
   lint:
-    container: golangci/golangci-lint:v1.53
     name: lint
     runs-on: ubuntu-latest
     steps:
@@ -138,17 +137,21 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
-        go-version: 1.20.5
+        go-version: 1.22.1
     - name: Install pulumictl
       uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
       uses: pulumi/actions@v4
-    - name: Run golangci
-      run: make lint_provider
+    - name: golangci-lint
+      uses: golangci/golangci-lint-action@v4
+      with:
+        version: v1.57
+        working-directory: provider
+        args: --config=../.golangci.yml
     strategy:
       fail-fast: true
   publish:
@@ -164,9 +167,9 @@ jobs:
       with:
         repo: pulumi/pulumictl
     - name: Setup Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
-        go-version: 1.20.5
+        go-version: 1.22.1
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v2
       with:
@@ -186,9 +189,9 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
-        go-version: 1.20.5
+        go-version: 1.22.1
     - name: Install pulumictl
       uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:

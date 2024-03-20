@@ -12,6 +12,9 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class TaxCategoryRateSubRateGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Number Percentage in the range of [0..1]
+        /// </summary>
         [Input("amount", required: true)]
         public Input<double> Amount { get; set; } = null!;
 

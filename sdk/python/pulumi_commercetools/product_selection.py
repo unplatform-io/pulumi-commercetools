@@ -14,22 +14,33 @@ __all__ = ['ProductSelectionArgs', 'ProductSelection']
 @pulumi.input_type
 class ProductSelectionArgs:
     def __init__(__self__, *,
+                 name: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  key: Optional[pulumi.Input[str]] = None,
-                 mode: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+                 mode: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ProductSelection resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] name: Name of the ProductSelection.
         :param pulumi.Input[str] key: User-defined unique identifier of the ProductSelection.
         :param pulumi.Input[str] mode: Specifies in which way the Products are assigned to the ProductSelection.Currently, the only way of doing this is to
                specify each Product individually, either by including or excluding them explicitly.Default: Individual
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] name: Name of the ProductSelection.
         """
+        pulumi.set(__self__, "name", name)
         if key is not None:
             pulumi.set(__self__, "key", key)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
+        """
+        Name of the ProductSelection.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -55,18 +66,6 @@ class ProductSelectionArgs:
     @mode.setter
     def mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mode", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        Name of the ProductSelection.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -165,7 +164,7 @@ class ProductSelection(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[ProductSelectionArgs] = None,
+                 args: ProductSelectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ProductSelection resource with the given unique name, props, and options.
@@ -198,6 +197,8 @@ class ProductSelection(pulumi.CustomResource):
 
             __props__.__dict__["key"] = key
             __props__.__dict__["mode"] = mode
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["version"] = None
         super(ProductSelection, __self__).__init__(

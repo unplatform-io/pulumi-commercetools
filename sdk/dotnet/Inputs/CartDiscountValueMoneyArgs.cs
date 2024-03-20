@@ -12,9 +12,15 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class CartDiscountValueMoneyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The amount in cents (the smallest indivisible unit of the currency)
+        /// </summary>
         [Input("centAmount", required: true)]
         public Input<int> CentAmount { get; set; } = null!;
 
+        /// <summary>
+        /// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        /// </summary>
         [Input("currencyCode", required: true)]
         public Input<string> CurrencyCode { get; set; } = null!;
 

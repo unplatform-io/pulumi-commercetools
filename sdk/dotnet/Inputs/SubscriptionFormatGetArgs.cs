@@ -12,6 +12,9 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class SubscriptionFormatGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// For CloudEvents
+        /// </summary>
         [Input("cloudEventsVersion")]
         public Input<string>? CloudEventsVersion { get; set; }
 

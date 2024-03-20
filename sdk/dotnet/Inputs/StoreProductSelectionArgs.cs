@@ -12,9 +12,15 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class StoreProductSelectionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If true, all Products assigned to this Product Selection are part of the Store's assortment
+        /// </summary>
         [Input("active", required: true)]
         public Input<bool> Active { get; set; } = null!;
 
+        /// <summary>
+        /// Resource Identifier of a ProductSelection
+        /// </summary>
         [Input("productSelectionId", required: true)]
         public Input<string> ProductSelectionId { get; set; } = null!;
 

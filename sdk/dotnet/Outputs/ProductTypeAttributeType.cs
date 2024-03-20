@@ -14,10 +14,25 @@ namespace Pulumi.Commercetools.Outputs
     public sealed class ProductTypeAttributeType
     {
         public readonly Outputs.ProductTypeAttributeTypeElementType2? ElementType2;
+        /// <summary>
+        /// Localized values for the `lenum` type.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ProductTypeAttributeTypeLocalizedValue> LocalizedValues;
+        /// <summary>
+        /// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Resource type the Custom Field can reference. Required when type is `reference`
+        /// </summary>
         public readonly string? ReferenceTypeId;
+        /// <summary>
+        /// Reference to another product type. Required when type is `nested`.
+        /// </summary>
         public readonly string? TypeReference;
+        /// <summary>
+        /// Values for the `enum` type.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ProductTypeAttributeTypeValue> Values;
 
         [OutputConstructor]

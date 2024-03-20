@@ -12,9 +12,15 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class ProjectSettingsMessagesGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specifies the number of days each Message should be available via the Messages Query API
+        /// </summary>
         [Input("deleteDaysAfterCreation")]
         public Input<int>? DeleteDaysAfterCreation { get; set; }
 
+        /// <summary>
+        /// When true the creation of messages on the Messages Query HTTP API is enabled
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 

@@ -13,6 +13,9 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ProjectSettingsExternalOauth
     {
+        /// <summary>
+        /// Partially hidden on retrieval
+        /// </summary>
         public readonly string? AuthorizationHeader;
         public readonly string? Url;
 

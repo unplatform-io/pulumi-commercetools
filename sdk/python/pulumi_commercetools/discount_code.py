@@ -35,7 +35,7 @@ class DiscountCodeArgs:
                cart
         :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
-        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
                for this field, so possible values are either larger than 0 or not set
         :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
                be set for this field, so possible values are either larger than 0 or not set
@@ -138,7 +138,7 @@ class DiscountCodeArgs:
     @pulumi.getter(name="maxApplications")
     def max_applications(self) -> Optional[pulumi.Input[int]]:
         """
-        The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
         for this field, so possible values are either larger than 0 or not set
         """
         return pulumi.get(self, "max_applications")
@@ -232,7 +232,7 @@ class _DiscountCodeState:
                cart
         :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
-        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
                for this field, so possible values are either larger than 0 or not set
         :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
                be set for this field, so possible values are either larger than 0 or not set
@@ -339,7 +339,7 @@ class _DiscountCodeState:
     @pulumi.getter(name="maxApplications")
     def max_applications(self) -> Optional[pulumi.Input[int]]:
         """
-        The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
         for this field, so possible values are either larger than 0 or not set
         """
         return pulumi.get(self, "max_applications")
@@ -446,7 +446,7 @@ class DiscountCode(pulumi.CustomResource):
                cart
         :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
-        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
                for this field, so possible values are either larger than 0 or not set
         :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
                be set for this field, so possible values are either larger than 0 or not set
@@ -551,7 +551,7 @@ class DiscountCode(pulumi.CustomResource):
                cart
         :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: The groups to which this discount code belong
-        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        :param pulumi.Input[int] max_applications: The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
                for this field, so possible values are either larger than 0 or not set
         :param pulumi.Input[int] max_applications_per_customer: The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
                be set for this field, so possible values are either larger than 0 or not set
@@ -626,7 +626,7 @@ class DiscountCode(pulumi.CustomResource):
     @pulumi.getter(name="maxApplications")
     def max_applications(self) -> pulumi.Output[Optional[int]]:
         """
-        The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
         for this field, so possible values are either larger than 0 or not set
         """
         return pulumi.get(self, "max_applications")
@@ -642,7 +642,7 @@ class DiscountCode(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Output[Mapping[str, Any]]:
+    def name(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         """

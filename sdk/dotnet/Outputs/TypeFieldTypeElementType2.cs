@@ -13,9 +13,21 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class TypeFieldTypeElementType2
     {
+        /// <summary>
+        /// Localized values for the `lenum` type.
+        /// </summary>
         public readonly ImmutableArray<Outputs.TypeFieldTypeElementType2LocalizedValue> LocalizedValues;
+        /// <summary>
+        /// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Resource type the Custom Field can reference. Required when type is `Reference`
+        /// </summary>
         public readonly string? ReferenceTypeId;
+        /// <summary>
+        /// Values for the `enum` type.
+        /// </summary>
         public readonly ImmutableArray<Outputs.TypeFieldTypeElementType2Value> Values;
 
         [OutputConstructor]

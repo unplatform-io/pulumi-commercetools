@@ -14,6 +14,10 @@ namespace Pulumi.Commercetools.Inputs
     {
         [Input("fields")]
         private InputMap<object>? _fields;
+
+        /// <summary>
+        /// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        /// </summary>
         public InputMap<object> Fields
         {
             get => _fields ?? (_fields = new InputMap<object>());

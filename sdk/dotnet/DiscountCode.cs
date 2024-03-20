@@ -44,7 +44,7 @@ namespace Pulumi.Commercetools
         public Output<bool?> IsActive { get; private set; } = null!;
 
         /// <summary>
-        /// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        /// The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
         /// for this field, so possible values are either larger than 0 or not set
         /// </summary>
         [Output("maxApplications")]
@@ -61,7 +61,7 @@ namespace Pulumi.Commercetools
         /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         /// </summary>
         [Output("name")]
-        public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, object>?> Name { get; private set; } = null!;
 
         /// <summary>
         /// [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
@@ -180,7 +180,7 @@ namespace Pulumi.Commercetools
         public Input<bool>? IsActive { get; set; }
 
         /// <summary>
-        /// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        /// The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
         /// for this field, so possible values are either larger than 0 or not set
         /// </summary>
         [Input("maxApplications")]
@@ -281,7 +281,7 @@ namespace Pulumi.Commercetools
         public Input<bool>? IsActive { get; set; }
 
         /// <summary>
-        /// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+        /// The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
         /// for this field, so possible values are either larger than 0 or not set
         /// </summary>
         [Input("maxApplications")]

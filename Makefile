@@ -45,7 +45,7 @@ development:: install_plugins provider lint_provider build_sdks install_sdks cle
 build:: install_plugins provider build_sdks install_sdks
 only_build:: build
 
-tfgen:: install_plugins patch
+tfgen:: install_plugins
 	touch $(WORKING_DIR)/provider/cmd/pulumi-resource-commercetools/schema-embed.json
 	(cd provider && go build -buildvcs=false -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
 	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
@@ -121,8 +121,3 @@ install_sdks:: install_dotnet_sdk install_python_sdk install_nodejs_sdk
 
 test::
 	cd examples && go test -v -tags=all -parallel ${TESTPARALLELISM} -timeout 2h
-
-patch::
-	cp $(WORKING_DIR)/upstream_patches/* $(WORKING_DIR)/upstream/
-	find $(WORKING_DIR)/upstream/. -name "*.patch" -exec bash -c "cd $(WORKING_DIR)/upstream/ && git apply --whitespace=fix {}" \;
-

@@ -62,7 +62,7 @@ export class AttributeGroup extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: AttributeGroupArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: AttributeGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AttributeGroupArgs | AttributeGroupState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -75,6 +75,9 @@ export class AttributeGroup extends pulumi.CustomResource {
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as AttributeGroupArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             resourceInputs["attributes"] = args ? args.attributes : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["key"] = args ? args.key : undefined;
@@ -131,5 +134,5 @@ export interface AttributeGroupArgs {
     /**
      * Name of the State as localized string.
      */
-    name?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    name: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

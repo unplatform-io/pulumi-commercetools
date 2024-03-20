@@ -13,10 +13,27 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class TypeField
     {
+        /// <summary>
+        /// [TextInputHint](https://docs.commercetools.com/api/projects/types#textinputhint) Provides a visual representation type for this field. It is only relevant for string-based field types like StringType and LocalizedStringType
+        /// </summary>
         public readonly string? InputHint;
+        /// <summary>
+        /// A human-readable label for the field
+        /// </summary>
         public readonly ImmutableDictionary<string, object> Label;
+        /// <summary>
+        /// The name of the field.
+        /// The name must be between two and 36 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+        /// The name must be unique for a given resource type ID. In case there is a field with the same name in another type it has to have the same FieldType also
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Whether the field is required to have a value
+        /// </summary>
         public readonly bool? Required;
+        /// <summary>
+        /// Describes the [type](https://docs.commercetools.com/api/projects/types#fieldtype) of the field
+        /// </summary>
         public readonly Outputs.TypeFieldType Type;
 
         [OutputConstructor]

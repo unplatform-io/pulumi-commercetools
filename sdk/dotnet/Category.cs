@@ -168,7 +168,7 @@ namespace Pulumi.Commercetools
             set => _metaTitle = value;
         }
 
-        [Input("name")]
+        [Input("name", required: true)]
         private InputMap<object>? _name;
         public InputMap<object> Name
         {

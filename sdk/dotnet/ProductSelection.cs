@@ -45,7 +45,7 @@ namespace Pulumi.Commercetools
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ProductSelection(string name, ProductSelectionArgs? args = null, CustomResourceOptions? options = null)
+        public ProductSelection(string name, ProductSelectionArgs args, CustomResourceOptions? options = null)
             : base("commercetools:index/productSelection:ProductSelection", name, args ?? new ProductSelectionArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -96,7 +96,7 @@ namespace Pulumi.Commercetools
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
-        [Input("name")]
+        [Input("name", required: true)]
         private InputMap<string>? _name;
 
         /// <summary>

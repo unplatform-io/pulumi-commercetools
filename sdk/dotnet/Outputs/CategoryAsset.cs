@@ -15,8 +15,14 @@ namespace Pulumi.Commercetools.Outputs
     {
         public readonly ImmutableDictionary<string, object>? Description;
         public readonly string? Id;
+        /// <summary>
+        /// Optional User-defined identifier for the asset. Asset keys are unique inside their container (in this case the category)
+        /// </summary>
         public readonly string? Key;
         public readonly ImmutableDictionary<string, object> Name;
+        /// <summary>
+        /// Array of AssetSource, Has at least one entry
+        /// </summary>
         public readonly ImmutableArray<Outputs.CategoryAssetSource> Sources;
         public readonly ImmutableArray<string> Tags;
 

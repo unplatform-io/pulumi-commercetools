@@ -23,6 +23,9 @@ namespace Pulumi.Commercetools.Inputs
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// Optional User-defined identifier for the asset. Asset keys are unique inside their container (in this case the category)
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
@@ -36,6 +39,10 @@ namespace Pulumi.Commercetools.Inputs
 
         [Input("sources")]
         private InputList<Inputs.CategoryAssetSourceArgs>? _sources;
+
+        /// <summary>
+        /// Array of AssetSource, Has at least one entry
+        /// </summary>
         public InputList<Inputs.CategoryAssetSourceArgs> Sources
         {
             get => _sources ?? (_sources = new InputList<Inputs.CategoryAssetSourceArgs>());
