@@ -1,0 +1,31 @@
+diff --git a/internal/resources/project/resource.go b/internal/resources/project/resource.go
+index 9c5ca44..73dac82 100644
+--- a/internal/resources/project/resource.go
++++ b/internal/resources/project/resource.go
+@@ -361,7 +361,25 @@ func (r *ProjectResource) Update(ctx context.Context, req resource.UpdateRequest
+ 		return
+ 	}
+ 
+-	input := state.updateActions(plan)
++	resState, errState := r.client.Get().Execute(ctx)
++	if errState != nil {
++		resp.Diagnostics.AddError(
++			"Error reading project",
++			"Could not retrieve project, unexpected error: "+errState.Error(),
++		)
++		return
++	}
++	current := NewProjectFromNative(resState)
++	current.setStateData(state)
++
++	// Set refreshed state
++	diags = resp.State.Set(ctx, current)
++	resp.Diagnostics.Append(diags...)
++	if resp.Diagnostics.HasError() {
++		return
++	}
++
++	input := current.updateActions(plan)
+ 
+ 	var res *platform.Project
+ 	err := sdk_resource.RetryContext(ctx, 5*time.Second, func() *sdk_resource.RetryError {
