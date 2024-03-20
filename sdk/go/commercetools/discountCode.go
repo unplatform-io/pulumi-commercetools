@@ -26,7 +26,7 @@ type DiscountCode struct {
 	// The groups to which this discount code belong
 	Groups   pulumi.StringArrayOutput `pulumi:"groups"`
 	IsActive pulumi.BoolPtrOutput     `pulumi:"isActive"`
-	// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+	// The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
 	// for this field, so possible values are either larger than 0 or not set
 	MaxApplications pulumi.IntPtrOutput `pulumi:"maxApplications"`
 	// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
@@ -90,7 +90,7 @@ type discountCodeState struct {
 	// The groups to which this discount code belong
 	Groups   []string `pulumi:"groups"`
 	IsActive *bool    `pulumi:"isActive"`
-	// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+	// The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
 	// for this field, so possible values are either larger than 0 or not set
 	MaxApplications *int `pulumi:"maxApplications"`
 	// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
@@ -119,7 +119,7 @@ type DiscountCodeState struct {
 	// The groups to which this discount code belong
 	Groups   pulumi.StringArrayInput
 	IsActive pulumi.BoolPtrInput
-	// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+	// The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
 	// for this field, so possible values are either larger than 0 or not set
 	MaxApplications pulumi.IntPtrInput
 	// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
@@ -152,7 +152,7 @@ type discountCodeArgs struct {
 	// The groups to which this discount code belong
 	Groups   []string `pulumi:"groups"`
 	IsActive *bool    `pulumi:"isActive"`
-	// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+	// The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
 	// for this field, so possible values are either larger than 0 or not set
 	MaxApplications *int `pulumi:"maxApplications"`
 	// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
@@ -181,7 +181,7 @@ type DiscountCodeArgs struct {
 	// The groups to which this discount code belong
 	Groups   pulumi.StringArrayInput
 	IsActive pulumi.BoolPtrInput
-	// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+	// The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
 	// for this field, so possible values are either larger than 0 or not set
 	MaxApplications pulumi.IntPtrInput
 	// The discount code can only be applied the specified times per customer. Note that due to an engine constraint 0 cannot
@@ -313,7 +313,7 @@ func (o DiscountCodeOutput) IsActive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DiscountCode) pulumi.BoolPtrOutput { return v.IsActive }).(pulumi.BoolPtrOutput)
 }
 
-// The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+// The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
 // for this field, so possible values are either larger than 0 or not set
 func (o DiscountCodeOutput) MaxApplications() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DiscountCode) pulumi.IntPtrOutput { return v.MaxApplications }).(pulumi.IntPtrOutput)

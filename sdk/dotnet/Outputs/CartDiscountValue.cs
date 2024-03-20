@@ -13,12 +13,33 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class CartDiscountValue
     {
+        /// <summary>
+        /// Channel must have the role ProductDistribution. Optional when value type is giftLineItem
+        /// </summary>
         public readonly string? DistributionChannelId;
+        /// <summary>
+        /// Absolute discount specific fields
+        /// </summary>
         public readonly ImmutableArray<Outputs.CartDiscountValueMoney> Monies;
+        /// <summary>
+        /// Relative discount specific fields
+        /// </summary>
         public readonly int? Permyriad;
+        /// <summary>
+        /// ResourceIdentifier of a Product. Required when value type is giftLineItem
+        /// </summary>
         public readonly string? ProductId;
+        /// <summary>
+        /// Channel must have the role InventorySupply. Optional when value type is giftLineItem
+        /// </summary>
         public readonly string? SupplyChannelId;
+        /// <summary>
+        /// Currently supports absolute/relative/giftLineItem
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// ProductVariant of the Product. Required when value type is giftLineItem
+        /// </summary>
         public readonly int? VariantId;
 
         [OutputConstructor]

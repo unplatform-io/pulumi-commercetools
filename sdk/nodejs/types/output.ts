@@ -16,49 +16,115 @@ export interface ApiExtensionDestination {
 }
 
 export interface ApiExtensionTrigger {
+    /**
+     * Currently, Create and Update are supported
+     */
     actions: string[];
+    /**
+     * Valid predicate that controls the conditions under which the API Extension is called.
+     */
     condition?: string;
+    /**
+     * Currently, cart, order, payment, and customer are supported
+     */
     resourceTypeId: string;
 }
 
 export interface AttributeGroupAttribute {
+    /**
+     * The Attribute's name as given in its AttributeDefinition.
+     */
     key: string;
 }
 
 export interface CartDiscountCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: {[key: string]: any};
     typeId: string;
 }
 
 export interface CartDiscountTarget {
+    /**
+     * MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+     */
     discountedQuantity?: number;
+    /**
+     * MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+     */
     maxOccurrence?: number;
+    /**
+     * LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+     */
     predicate?: string;
+    /**
+     * MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored
+     */
     selectionMode?: string;
+    /**
+     * MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+     */
     triggerQuantity?: number;
+    /**
+     * Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice
+     */
     type: string;
 }
 
 export interface CartDiscountValue {
+    /**
+     * Channel must have the role ProductDistribution. Optional when value type is giftLineItem
+     */
     distributionChannelId?: string;
+    /**
+     * Absolute discount specific fields
+     */
     monies?: outputs.CartDiscountValueMoney[];
+    /**
+     * Relative discount specific fields
+     */
     permyriad?: number;
+    /**
+     * ResourceIdentifier of a Product. Required when value type is giftLineItem
+     */
     productId?: string;
+    /**
+     * Channel must have the role InventorySupply. Optional when value type is giftLineItem
+     */
     supplyChannelId?: string;
+    /**
+     * Currently supports absolute/relative/giftLineItem
+     */
     type: string;
+    /**
+     * ProductVariant of the Product. Required when value type is giftLineItem
+     */
     variantId?: number;
 }
 
 export interface CartDiscountValueMoney {
+    /**
+     * The amount in cents (the smallest indivisible unit of the currency)
+     */
     centAmount: number;
+    /**
+     * The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+     */
     currencyCode: string;
 }
 
 export interface CategoryAsset {
     description?: {[key: string]: any};
     id: string;
+    /**
+     * Optional User-defined identifier for the asset. Asset keys are unique inside their container (in this case the category)
+     */
     key?: string;
     name: {[key: string]: any};
+    /**
+     * Array of AssetSource, Has at least one entry
+     */
     sources?: outputs.CategoryAssetSource[];
     tags?: string[];
 }
@@ -66,16 +132,28 @@ export interface CategoryAsset {
 export interface CategoryAssetSource {
     contentType?: string;
     dimensions?: outputs.CategoryAssetSourceDimensions;
+    /**
+     * Unique identifier, must be unique within the Asset
+     */
     key?: string;
     uri: string;
 }
 
 export interface CategoryAssetSourceDimensions {
+    /**
+     * The height of the asset source
+     */
     h: number;
+    /**
+     * The width of the asset source
+     */
     w: number;
 }
 
 export interface CategoryCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: {[key: string]: any};
     typeId: string;
 }
@@ -109,6 +187,9 @@ export interface ChannelAddress {
 }
 
 export interface ChannelCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: {[key: string]: any};
     typeId: string;
 }
@@ -118,52 +199,131 @@ export interface ChannelGeolocation {
 }
 
 export interface CustomerGroupCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: {[key: string]: any};
     typeId: string;
 }
 
 export interface DiscountCodeCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: {[key: string]: any};
     typeId: string;
 }
 
 export interface ProductDiscountValue {
+    /**
+     * Absolute discount specific fields
+     */
     monies?: outputs.ProductDiscountValueMoney[];
+    /**
+     * Relative discount specific fields
+     */
     permyriad?: number;
+    /**
+     * Currently supports absolute/relative/external
+     */
     type: string;
 }
 
 export interface ProductDiscountValueMoney {
+    /**
+     * The amount in cents (the smallest indivisible unit of the currency)
+     */
     centAmount: number;
+    /**
+     * The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+     */
     currencyCode: string;
+    /**
+     * The number of default fraction digits for the given currency, like 2 for EUR or 0 for JPY
+     */
     fractionDigits: number;
 }
 
 export interface ProductTypeAttribute {
+    /**
+     * Describes how an attribute or a set of attributes should be validated across all variants of a product. See also [Attribute Constraint](https://docs.commercetools.com/api/projects/productTypes#attributeconstraint-enum)
+     */
     constraint?: string;
+    /**
+     * Provides a visual representation type for this attribute. only relevant for text-based attribute types like TextType and LocalizableTextType
+     */
     inputHint?: string;
+    /**
+     * Additional information about the attribute that aids content managers when setting product details
+     */
     inputTip?: {[key: string]: any};
+    /**
+     * A human-readable label for the attribute
+     */
     label: {[key: string]: any};
+    /**
+     * The unique name of the attribute used in the API. The name must be between two and 256 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+     * When using the same name for an attribute in two or more product types all fields of the AttributeDefinition of this attribute need to be the same across the product types, otherwise an AttributeDefinitionAlreadyExists error code will be returned. An exception to this are the values of an enum or lenum type and sets thereof
+     */
     name: string;
+    /**
+     * Whether the attribute is required to have a value
+     */
     required?: boolean;
+    /**
+     * Whether the attribute's values should generally be activated in product search
+     */
     searchable?: boolean;
+    /**
+     * [AttributeType](https://docs.commercetools.com/api/projects/productTypes#attributetype)
+     */
     type: outputs.ProductTypeAttributeType;
 }
 
 export interface ProductTypeAttributeType {
     ElementType2?: outputs.ProductTypeAttributeTypeElementType2;
+    /**
+     * Localized values for the `lenum` type.
+     */
     localizedValues?: outputs.ProductTypeAttributeTypeLocalizedValue[];
+    /**
+     * Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+     */
     name: string;
+    /**
+     * Resource type the Custom Field can reference. Required when type is `reference`
+     */
     referenceTypeId?: string;
+    /**
+     * Reference to another product type. Required when type is `nested`.
+     */
     typeReference?: string;
+    /**
+     * Values for the `enum` type.
+     */
     values?: outputs.ProductTypeAttributeTypeValue[];
 }
 
 export interface ProductTypeAttributeTypeElementType2 {
+    /**
+     * Localized values for the `lenum` type.
+     */
     localizedValues?: outputs.ProductTypeAttributeTypeElementType2LocalizedValue[];
+    /**
+     * Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+     */
     name: string;
+    /**
+     * Resource type the Custom Field can reference. Required when type is `reference`
+     */
     referenceTypeId?: string;
+    /**
+     * Reference to another product type. Required when type is `nested`.
+     */
     typeReference?: string;
+    /**
+     * Values for the `enum` type.
+     */
     values?: outputs.ProductTypeAttributeTypeElementType2Value[];
 }
 
@@ -188,37 +348,67 @@ export interface ProductTypeAttributeTypeValue {
 }
 
 export interface ProjectSettingsCarts {
+    /**
+     * Indicates if country - no state tax rate fallback should be used when a shipping address state is not explicitly covered in the rates lists of all tax categories of a cart line items
+     */
     countryTaxRateFallbackEnabled?: boolean;
+    /**
+     * Number - Optional The default value for the deleteDaysAfterLastModification parameter of the CartDraft. Initially set to 90 for projects created after December 2019.
+     */
     deleteDaysAfterLastModification?: number;
 }
 
 export interface ProjectSettingsExternalOauth {
+    /**
+     * Partially hidden on retrieval
+     */
     authorizationHeader?: string;
     url?: string;
 }
 
 export interface ProjectSettingsMessages {
+    /**
+     * Specifies the number of days each Message should be available via the Messages Query API
+     */
     deleteDaysAfterCreation?: number;
+    /**
+     * When true the creation of messages on the Messages Query HTTP API is enabled
+     */
     enabled?: boolean;
 }
 
 export interface ProjectSettingsShippingRateCartClassificationValue {
+    /**
+     * [Resource Type ID](https://docs.commercetools.com/api/projects/Projects#changeProject)
+     */
     key: string;
     label?: {[key: string]: string};
 }
 
 export interface ShippingMethodCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: {[key: string]: any};
     typeId: string;
 }
 
 export interface ShippingZoneLocation {
+    /**
+     * A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+     */
     country: string;
     state?: string;
 }
 
 export interface ShippingZoneRateFreeAbove {
+    /**
+     * The amount in cents (the smallest indivisible unit of the currency)
+     */
     centAmount: number;
+    /**
+     * The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+     */
     currencyCode: string;
 }
 
@@ -228,11 +418,29 @@ export interface ShippingZoneRatePrice {
 }
 
 export interface ShippingZoneRateShippingRatePriceTier {
+    /**
+     * If type is CartValue this represents the cent amount of the tier
+     */
     minimumCentAmount?: number;
+    /**
+     * The price of the score, value or minimumCentAmount tier
+     */
     price?: outputs.ShippingZoneRateShippingRatePriceTierPrice;
+    /**
+     * If type is CartScore. Allows to calculate a price dynamically for the score.
+     */
     priceFunction?: outputs.ShippingZoneRateShippingRatePriceTierPriceFunction;
+    /**
+     * If type is CartScore. Sets a fixed price for this score value
+     */
     score?: number;
+    /**
+     * CartValue, CartScore or CartClassification
+     */
     type: string;
+    /**
+     * If type is CartClassification, must be a valid key of the CartClassification
+     */
     value?: string;
 }
 
@@ -247,68 +455,186 @@ export interface ShippingZoneRateShippingRatePriceTierPriceFunction {
 }
 
 export interface StoreCustom {
+    /**
+     * Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+     */
     fields?: {[key: string]: any};
     typeId: string;
 }
 
 export interface StoreProductSelection {
+    /**
+     * If true, all Products assigned to this Product Selection are part of the Store's assortment
+     */
     active: boolean;
+    /**
+     * Resource Identifier of a ProductSelection
+     */
     productSelectionId: string;
 }
 
 export interface SubscriptionChange {
+    /**
+     * [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+     */
     resourceTypeIds: string[];
 }
 
 export interface SubscriptionDestination {
+    /**
+     * The access key of the SQS queue, SNS topic or EventBridge topic
+     */
     accessKey?: string;
+    /**
+     * The access secret of the SQS queue, SNS topic or EventBridge topic
+     */
     accessSecret?: string;
+    /**
+     * The AWS account ID of the SNS topic or EventBridge topic
+     */
     accountId?: string;
+    /**
+     * The acks value of the Confluent Cloud topic
+     */
+    acks?: string;
+    /**
+     * The API key of the Confluent Cloud topic
+     */
+    apiKey?: string;
+    /**
+     * The API secret of the Confluent Cloud topic
+     */
+    apiSecret?: string;
+    /**
+     * The bootstrap server of the Confluent Cloud topic
+     */
+    bootstrapServer?: string;
+    /**
+     * The connection string of the Azure Service Bus
+     */
     connectionString?: string;
+    /**
+     * The key of the Confluent Cloud topic
+     */
+    key?: string;
+    /**
+     * The project ID of the Google Cloud Pub/Sub
+     */
     projectId?: string;
+    /**
+     * The URL of the SQS queue
+     */
     queueUrl?: string;
+    /**
+     * The region of the SQS queue, SNS topic or EventBridge topic
+     */
     region?: string;
+    /**
+     * The topic of the Google Cloud Pub/Sub or Confluent Cloud topic
+     */
     topic?: string;
+    /**
+     * The ARN of the SNS topic
+     */
     topicArn?: string;
+    /**
+     * The type of the destination. See [Destination](https://docs.commercetools.com/api/projects/subscriptions#destination) for more information
+     */
     type: string;
+    /**
+     * The URI of the EventGrid topic
+     */
     uri?: string;
 }
 
 export interface SubscriptionFormat {
+    /**
+     * For CloudEvents
+     */
     cloudEventsVersion?: string;
     type?: string;
 }
 
 export interface SubscriptionMessage {
+    /**
+     * [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+     */
     resourceTypeId: string;
+    /**
+     * types must contain valid message types for this resource, for example for resource type product the message type ProductPublished is valid. If no types of messages are given, the subscription is valid for all messages of this resource
+     */
     types: string[];
 }
 
 export interface TaxCategoryRateSubRate {
+    /**
+     * Number Percentage in the range of [0..1]
+     */
     amount: number;
     name: string;
 }
 
 export interface TypeField {
+    /**
+     * [TextInputHint](https://docs.commercetools.com/api/projects/types#textinputhint) Provides a visual representation type for this field. It is only relevant for string-based field types like StringType and LocalizedStringType
+     */
     inputHint?: string;
+    /**
+     * A human-readable label for the field
+     */
     label: {[key: string]: any};
+    /**
+     * The name of the field.
+     * The name must be between two and 36 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+     * The name must be unique for a given resource type ID. In case there is a field with the same name in another type it has to have the same FieldType also
+     */
     name: string;
+    /**
+     * Whether the field is required to have a value
+     */
     required?: boolean;
+    /**
+     * Describes the [type](https://docs.commercetools.com/api/projects/types#fieldtype) of the field
+     */
     type: outputs.TypeFieldType;
 }
 
 export interface TypeFieldType {
     ElementType2?: outputs.TypeFieldTypeElementType2;
+    /**
+     * Localized values for the `lenum` type.
+     */
     localizedValues?: outputs.TypeFieldTypeLocalizedValue[];
+    /**
+     * Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+     */
     name: string;
+    /**
+     * Resource type the Custom Field can reference. Required when type is `Reference`
+     */
     referenceTypeId?: string;
+    /**
+     * Values for the `enum` type.
+     */
     values?: outputs.TypeFieldTypeValue[];
 }
 
 export interface TypeFieldTypeElementType2 {
+    /**
+     * Localized values for the `lenum` type.
+     */
     localizedValues?: outputs.TypeFieldTypeElementType2LocalizedValue[];
+    /**
+     * Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+     */
     name: string;
+    /**
+     * Resource type the Custom Field can reference. Required when type is `Reference`
+     */
     referenceTypeId?: string;
+    /**
+     * Values for the `enum` type.
+     */
     values?: outputs.TypeFieldTypeElementType2Value[];
 }
 

@@ -12,6 +12,9 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class ShippingZoneLocationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        /// </summary>
         [Input("country", required: true)]
         public Input<string> Country { get; set; } = null!;
 

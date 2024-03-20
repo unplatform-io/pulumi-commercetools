@@ -48,7 +48,7 @@ export class State extends pulumi.CustomResource {
     /**
      * Name of the State as localized string.
      */
-    public readonly name!: pulumi.Output<{[key: string]: string}>;
+    public readonly name!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * [State Role](https://docs.commercetools.com/api/projects/states#staterole)
      */

@@ -37,7 +37,7 @@ namespace Pulumi.Commercetools
         /// [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         /// </summary>
         [Output("name")]
-        public Output<ImmutableDictionary<string, object>> Name { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, object>?> Name { get; private set; } = null!;
 
         /// <summary>
         /// The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must

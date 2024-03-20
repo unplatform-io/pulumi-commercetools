@@ -12,21 +12,39 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class CartDiscountTargetGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        /// </summary>
         [Input("discountedQuantity")]
         public Input<int>? DiscountedQuantity { get; set; }
 
+        /// <summary>
+        /// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        /// </summary>
         [Input("maxOccurrence")]
         public Input<int>? MaxOccurrence { get; set; }
 
+        /// <summary>
+        /// LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        /// </summary>
         [Input("predicate")]
         public Input<string>? Predicate { get; set; }
 
+        /// <summary>
+        /// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored
+        /// </summary>
         [Input("selectionMode")]
         public Input<string>? SelectionMode { get; set; }
 
+        /// <summary>
+        /// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        /// </summary>
         [Input("triggerQuantity")]
         public Input<int>? TriggerQuantity { get; set; }
 
+        /// <summary>
+        /// Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 

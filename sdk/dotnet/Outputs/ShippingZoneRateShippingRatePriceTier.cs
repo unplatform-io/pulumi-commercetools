@@ -13,11 +13,29 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ShippingZoneRateShippingRatePriceTier
     {
+        /// <summary>
+        /// If type is CartValue this represents the cent amount of the tier
+        /// </summary>
         public readonly int? MinimumCentAmount;
+        /// <summary>
+        /// The price of the score, value or minimum_cent_amount tier
+        /// </summary>
         public readonly Outputs.ShippingZoneRateShippingRatePriceTierPrice? Price;
+        /// <summary>
+        /// If type is CartScore. Allows to calculate a price dynamically for the score.
+        /// </summary>
         public readonly Outputs.ShippingZoneRateShippingRatePriceTierPriceFunction? PriceFunction;
+        /// <summary>
+        /// If type is CartScore. Sets a fixed price for this score value
+        /// </summary>
         public readonly int? Score;
+        /// <summary>
+        /// CartValue, CartScore or CartClassification
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// If type is CartClassification, must be a valid key of the CartClassification
+        /// </summary>
         public readonly string? Value;
 
         [OutputConstructor]

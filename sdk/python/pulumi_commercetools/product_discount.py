@@ -16,17 +16,18 @@ __all__ = ['ProductDiscountArgs', 'ProductDiscount']
 @pulumi.input_type
 class ProductDiscountArgs:
     def __init__(__self__, *,
+                 name: pulumi.Input[Mapping[str, Any]],
                  predicate: pulumi.Input[str],
                  sort_order: pulumi.Input[str],
                  value: pulumi.Input['ProductDiscountValueArgs'],
                  description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  valid_from: Optional[pulumi.Input[str]] = None,
                  valid_until: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ProductDiscount resource.
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[str] predicate: A valid [Product Predicate](https://docs.commercetools.com/api/projects/predicates#product-predicates)
         :param pulumi.Input[str] sort_order: The string must contain a number between 0 and 1. All matching product discounts are applied to a product in the order
                defined by this field. A discount with greater sort order is prioritized higher than a discount with lower sort order.
@@ -36,8 +37,8 @@ class ProductDiscountArgs:
         :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[bool] is_active: When set the product discount is applied to products matching the predicate
         :param pulumi.Input[str] key: User-defined unique identifier for the ProductDiscount. Must be unique across a project
-        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         """
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "predicate", predicate)
         pulumi.set(__self__, "sort_order", sort_order)
         pulumi.set(__self__, "value", value)
@@ -47,12 +48,22 @@ class ProductDiscountArgs:
             pulumi.set(__self__, "is_active", is_active)
         if key is not None:
             pulumi.set(__self__, "key", key)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
         if valid_from is not None:
             pulumi.set(__self__, "valid_from", valid_from)
         if valid_until is not None:
             pulumi.set(__self__, "valid_until", valid_until)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Mapping[str, Any]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Mapping[str, Any]]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -128,18 +139,6 @@ class ProductDiscountArgs:
     @key.setter
     def key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "key", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        """
-        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
-        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="validFrom")
@@ -396,6 +395,8 @@ class ProductDiscount(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["is_active"] = is_active
             __props__.__dict__["key"] = key
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if predicate is None and not opts.urn:
                 raise TypeError("Missing required property 'predicate'")

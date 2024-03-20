@@ -57,7 +57,7 @@ export class ProductSelection extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ProductSelectionArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: ProductSelectionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ProductSelectionArgs | ProductSelectionState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -69,6 +69,9 @@ export class ProductSelection extends pulumi.CustomResource {
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ProductSelectionArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             resourceInputs["key"] = args ? args.key : undefined;
             resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -118,5 +121,5 @@ export interface ProductSelectionArgs {
     /**
      * Name of the ProductSelection.
      */
-    name?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    name: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

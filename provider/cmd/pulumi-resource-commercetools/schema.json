@@ -117,13 +117,16 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Currently, Create and Update are supported\n"
                 },
                 "condition": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Valid predicate that controls the conditions under which the API Extension is called.\n"
                 },
                 "resourceTypeId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Currently, cart, order, payment, and customer are supported\n"
                 }
             },
             "type": "object",
@@ -135,7 +138,8 @@
         "commercetools:index/AttributeGroupAttribute:AttributeGroupAttribute": {
             "properties": {
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Attribute's name as given in its AttributeDefinition.\n"
                 }
             },
             "type": "object",
@@ -149,7 +153,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({\"key\": \"value\"})`\n"
                 },
                 "typeId": {
                     "type": "string"
@@ -163,22 +168,28 @@
         "commercetools:index/CartDiscountTarget:CartDiscountTarget": {
             "properties": {
                 "discountedQuantity": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored\n"
                 },
                 "maxOccurrence": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored\n"
                 },
                 "predicate": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored\n"
                 },
                 "selectionMode": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored\n"
                 },
                 "triggerQuantity": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored\n"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice\n"
                 }
             },
             "type": "object",
@@ -189,28 +200,35 @@
         "commercetools:index/CartDiscountValue:CartDiscountValue": {
             "properties": {
                 "distributionChannelId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Channel must have the role ProductDistribution. Optional when value type is giftLineItem\n"
                 },
                 "monies": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/CartDiscountValueMoney:CartDiscountValueMoney"
-                    }
+                    },
+                    "description": "Absolute discount specific fields\n"
                 },
                 "permyriad": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Relative discount specific fields\n"
                 },
                 "productId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ResourceIdentifier of a Product. Required when value type is giftLineItem\n"
                 },
                 "supplyChannelId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Channel must have the role InventorySupply. Optional when value type is giftLineItem\n"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Currently supports absolute/relative/giftLineItem\n"
                 },
                 "variantId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "ProductVariant of the Product. Required when value type is giftLineItem\n"
                 }
             },
             "type": "object",
@@ -221,10 +239,12 @@
         "commercetools:index/CartDiscountValueMoney:CartDiscountValueMoney": {
             "properties": {
                 "centAmount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The amount in cents (the smallest indivisible unit of the currency)\n"
                 },
                 "currencyCode": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)\n"
                 }
             },
             "type": "object",
@@ -245,7 +265,8 @@
                     "type": "string"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Optional User-defined identifier for the asset. Asset keys are unique inside their container (in this case the category)\n"
                 },
                 "name": {
                     "type": "object",
@@ -257,7 +278,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/CategoryAssetSource:CategoryAssetSource"
-                    }
+                    },
+                    "description": "Array of AssetSource, Has at least one entry\n"
                 },
                 "tags": {
                     "type": "array",
@@ -288,7 +310,8 @@
                     "$ref": "#/types/commercetools:index/CategoryAssetSourceDimensions:CategoryAssetSourceDimensions"
                 },
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique identifier, must be unique within the Asset\n"
                 },
                 "uri": {
                     "type": "string"
@@ -302,10 +325,12 @@
         "commercetools:index/CategoryAssetSourceDimensions:CategoryAssetSourceDimensions": {
             "properties": {
                 "h": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The height of the asset source\n"
                 },
                 "w": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The width of the asset source\n"
                 }
             },
             "type": "object",
@@ -320,7 +345,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({\"key\": \"value\"})`\n"
                 },
                 "typeId": {
                     "type": "string"
@@ -428,7 +454,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({\"key\": \"value\"})`\n"
                 },
                 "typeId": {
                     "type": "string"
@@ -459,7 +486,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({\"key\": \"value\"})`\n"
                 },
                 "typeId": {
                     "type": "string"
@@ -476,7 +504,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({\"key\": \"value\"})`\n"
                 },
                 "typeId": {
                     "type": "string"
@@ -493,13 +522,16 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ProductDiscountValueMoney:ProductDiscountValueMoney"
-                    }
+                    },
+                    "description": "Absolute discount specific fields\n"
                 },
                 "permyriad": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Relative discount specific fields\n"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Currently supports absolute/relative/external\n"
                 }
             },
             "type": "object",
@@ -510,13 +542,16 @@
         "commercetools:index/ProductDiscountValueMoney:ProductDiscountValueMoney": {
             "properties": {
                 "centAmount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The amount in cents (the smallest indivisible unit of the currency)\n"
                 },
                 "currencyCode": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)\n"
                 },
                 "fractionDigits": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The number of default fraction digits for the given currency, like 2 for EUR or 0 for JPY\n"
                 }
             },
             "type": "object",
@@ -537,34 +572,42 @@
         "commercetools:index/ProductTypeAttribute:ProductTypeAttribute": {
             "properties": {
                 "constraint": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Describes how an attribute or a set of attributes should be validated across all variants of a product. See also [Attribute Constraint](https://docs.commercetools.com/api/projects/productTypes#attributeconstraint-enum)\n"
                 },
                 "inputHint": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Provides a visual representation type for this attribute. only relevant for text-based attribute types like TextType and LocalizableTextType\n"
                 },
                 "inputTip": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Additional information about the attribute that aids content managers when setting product details\n"
                 },
                 "label": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "A human-readable label for the attribute\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique name of the attribute used in the API. The name must be between two and 256 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).\nWhen using the same name for an attribute in two or more product types all fields of the AttributeDefinition of this attribute need to be the same across the product types, otherwise an AttributeDefinitionAlreadyExists error code will be returned. An exception to this are the values of an enum or lenum type and sets thereof\n"
                 },
                 "required": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Whether the attribute is required to have a value\n"
                 },
                 "searchable": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Whether the attribute's values should generally be activated in product search\n"
                 },
                 "type": {
-                    "$ref": "#/types/commercetools:index/ProductTypeAttributeType:ProductTypeAttributeType"
+                    "$ref": "#/types/commercetools:index/ProductTypeAttributeType:ProductTypeAttributeType",
+                    "description": "[AttributeType](https://docs.commercetools.com/api/projects/productTypes#attributetype)\n"
                 }
             },
             "type": "object",
@@ -583,22 +626,27 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeLocalizedValue:ProductTypeAttributeTypeLocalizedValue"
-                    }
+                    },
+                    "description": "Localized values for the `lenum` type.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it\n"
                 },
                 "referenceTypeId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Resource type the Custom Field can reference. Required when type is `reference`\n"
                 },
                 "typeReference": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Reference to another product type. Required when type is `nested`.\n"
                 },
                 "values": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeValue:ProductTypeAttributeTypeValue"
-                    }
+                    },
+                    "description": "Values for the `enum` type.\n"
                 }
             },
             "type": "object",
@@ -612,22 +660,27 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeElementType2LocalizedValue:ProductTypeAttributeTypeElementType2LocalizedValue"
-                    }
+                    },
+                    "description": "Localized values for the `lenum` type.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it\n"
                 },
                 "referenceTypeId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Resource type the Custom Field can reference. Required when type is `reference`\n"
                 },
                 "typeReference": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Reference to another product type. Required when type is `nested`.\n"
                 },
                 "values": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/ProductTypeAttributeTypeElementType2Value:ProductTypeAttributeTypeElementType2Value"
-                    }
+                    },
+                    "description": "Values for the `enum` type.\n"
                 }
             },
             "type": "object",
@@ -704,10 +757,12 @@
         "commercetools:index/ProjectSettingsCarts:ProjectSettingsCarts": {
             "properties": {
                 "countryTaxRateFallbackEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Indicates if country - no state tax rate fallback should be used when a shipping address state is not explicitly covered in the rates lists of all tax categories of a cart line items\n"
                 },
                 "deleteDaysAfterLastModification": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Number - Optional The default value for the deleteDaysAfterLastModification parameter of the CartDraft. Initially set to 90 for projects created after December 2019.\n"
                 }
             },
             "type": "object"
@@ -715,7 +770,8 @@
         "commercetools:index/ProjectSettingsExternalOauth:ProjectSettingsExternalOauth": {
             "properties": {
                 "authorizationHeader": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Partially hidden on retrieval\n"
                 },
                 "url": {
                     "type": "string",
@@ -727,10 +783,12 @@
         "commercetools:index/ProjectSettingsMessages:ProjectSettingsMessages": {
             "properties": {
                 "deleteDaysAfterCreation": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Specifies the number of days each Message should be available via the Messages Query API\n"
                 },
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "When true the creation of messages on the Messages Query HTTP API is enabled\n"
                 }
             },
             "type": "object"
@@ -738,7 +796,8 @@
         "commercetools:index/ProjectSettingsShippingRateCartClassificationValue:ProjectSettingsShippingRateCartClassificationValue": {
             "properties": {
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Resource Type ID](https://docs.commercetools.com/api/projects/Projects#changeProject)\n"
                 },
                 "label": {
                     "type": "object",
@@ -758,7 +817,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({\"key\": \"value\"})`\n"
                 },
                 "typeId": {
                     "type": "string"
@@ -772,7 +832,8 @@
         "commercetools:index/ShippingZoneLocation:ShippingZoneLocation": {
             "properties": {
                 "country": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)\n"
                 },
                 "state": {
                     "type": "string"
@@ -786,10 +847,12 @@
         "commercetools:index/ShippingZoneRateFreeAbove:ShippingZoneRateFreeAbove": {
             "properties": {
                 "centAmount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The amount in cents (the smallest indivisible unit of the currency)\n"
                 },
                 "currencyCode": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)\n"
                 }
             },
             "type": "object",
@@ -816,22 +879,28 @@
         "commercetools:index/ShippingZoneRateShippingRatePriceTier:ShippingZoneRateShippingRatePriceTier": {
             "properties": {
                 "minimumCentAmount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "If type is CartValue this represents the cent amount of the tier\n"
                 },
                 "price": {
-                    "$ref": "#/types/commercetools:index/ShippingZoneRateShippingRatePriceTierPrice:ShippingZoneRateShippingRatePriceTierPrice"
+                    "$ref": "#/types/commercetools:index/ShippingZoneRateShippingRatePriceTierPrice:ShippingZoneRateShippingRatePriceTierPrice",
+                    "description": "The price of the score, value or minimum_cent_amount tier\n"
                 },
                 "priceFunction": {
-                    "$ref": "#/types/commercetools:index/ShippingZoneRateShippingRatePriceTierPriceFunction:ShippingZoneRateShippingRatePriceTierPriceFunction"
+                    "$ref": "#/types/commercetools:index/ShippingZoneRateShippingRatePriceTierPriceFunction:ShippingZoneRateShippingRatePriceTierPriceFunction",
+                    "description": "If type is CartScore. Allows to calculate a price dynamically for the score.\n"
                 },
                 "score": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "If type is CartScore. Sets a fixed price for this score value\n"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "CartValue, CartScore or CartClassification\n"
                 },
                 "value": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "If type is CartClassification, must be a valid key of the CartClassification\n"
                 }
             },
             "type": "object",
@@ -875,7 +944,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({\"key\": \"value\"})`\n"
                 },
                 "typeId": {
                     "type": "string"
@@ -889,10 +959,12 @@
         "commercetools:index/StoreProductSelection:StoreProductSelection": {
             "properties": {
                 "active": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "If true, all Products assigned to this Product Selection are part of the Store's assortment\n"
                 },
                 "productSelectionId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Resource Identifier of a ProductSelection\n"
                 }
             },
             "type": "object",
@@ -907,7 +979,8 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "[Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)\n"
                 }
             },
             "type": "object",
@@ -919,38 +992,69 @@
             "properties": {
                 "accessKey": {
                     "type": "string",
+                    "description": "The access key of the SQS queue, SNS topic or EventBridge topic\n",
                     "secret": true
                 },
                 "accessSecret": {
                     "type": "string",
+                    "description": "The access secret of the SQS queue, SNS topic or EventBridge topic\n",
                     "secret": true
                 },
                 "accountId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The AWS account ID of the SNS topic or EventBridge topic\n"
+                },
+                "acks": {
+                    "type": "string",
+                    "description": "The acks value of the Confluent Cloud topic\n"
+                },
+                "apiKey": {
+                    "type": "string",
+                    "description": "The API key of the Confluent Cloud topic\n"
+                },
+                "apiSecret": {
+                    "type": "string",
+                    "description": "The API secret of the Confluent Cloud topic\n"
+                },
+                "bootstrapServer": {
+                    "type": "string",
+                    "description": "The bootstrap server of the Confluent Cloud topic\n"
                 },
                 "connectionString": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The connection string of the Azure Service Bus\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key of the Confluent Cloud topic\n"
                 },
                 "projectId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The project ID of the Google Cloud Pub/Sub\n"
                 },
                 "queueUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The URL of the SQS queue\n"
                 },
                 "region": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The region of the SQS queue, SNS topic or EventBridge topic\n"
                 },
                 "topic": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The topic of the Google Cloud Pub/Sub or Confluent Cloud topic\n"
                 },
                 "topicArn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ARN of the SNS topic\n"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The type of the destination. See [Destination](https://docs.commercetools.com/api/projects/subscriptions#destination) for more information\n"
                 },
                 "uri": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The URI of the EventGrid topic\n"
                 }
             },
             "type": "object",
@@ -961,7 +1065,8 @@
         "commercetools:index/SubscriptionFormat:SubscriptionFormat": {
             "properties": {
                 "cloudEventsVersion": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "For CloudEvents\n"
                 },
                 "type": {
                     "type": "string"
@@ -972,13 +1077,15 @@
         "commercetools:index/SubscriptionMessage:SubscriptionMessage": {
             "properties": {
                 "resourceTypeId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)\n"
                 },
                 "types": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "types must contain valid message types for this resource, for example for resource type product the message type ProductPublished is valid. If no types of messages are given, the subscription is valid for all messages of this resource\n"
                 }
             },
             "type": "object",
@@ -990,7 +1097,8 @@
         "commercetools:index/TaxCategoryRateSubRate:TaxCategoryRateSubRate": {
             "properties": {
                 "amount": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "Number Percentage in the range of [0..1]\n"
                 },
                 "name": {
                     "type": "string"
@@ -1005,22 +1113,27 @@
         "commercetools:index/TypeField:TypeField": {
             "properties": {
                 "inputHint": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[TextInputHint](https://docs.commercetools.com/api/projects/types#textinputhint) Provides a visual representation type for this field. It is only relevant for string-based field types like StringType and LocalizedStringType\n"
                 },
                 "label": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "A human-readable label for the field\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the field.\nThe name must be between two and 36 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).\nThe name must be unique for a given resource type ID. In case there is a field with the same name in another type it has to have the same FieldType also\n"
                 },
                 "required": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Whether the field is required to have a value\n"
                 },
                 "type": {
-                    "$ref": "#/types/commercetools:index/TypeFieldType:TypeFieldType"
+                    "$ref": "#/types/commercetools:index/TypeFieldType:TypeFieldType",
+                    "description": "Describes the [type](https://docs.commercetools.com/api/projects/types#fieldtype) of the field\n"
                 }
             },
             "type": "object",
@@ -1039,19 +1152,23 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/TypeFieldTypeLocalizedValue:TypeFieldTypeLocalizedValue"
-                    }
+                    },
+                    "description": "Localized values for the `lenum` type.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.\n"
                 },
                 "referenceTypeId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Resource type the Custom Field can reference. Required when type is `Reference`\n"
                 },
                 "values": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/TypeFieldTypeValue:TypeFieldTypeValue"
-                    }
+                    },
+                    "description": "Values for the `enum` type.\n"
                 }
             },
             "type": "object",
@@ -1065,19 +1182,23 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/TypeFieldTypeElementType2LocalizedValue:TypeFieldTypeElementType2LocalizedValue"
-                    }
+                    },
+                    "description": "Localized values for the `lenum` type.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.\n"
                 },
                 "referenceTypeId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Resource type the Custom Field can reference. Required when type is `Reference`\n"
                 },
                 "values": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/commercetools:index/TypeFieldTypeElementType2Value:TypeFieldTypeElementType2Value"
-                    }
+                    },
+                    "description": "Values for the `enum` type.\n"
                 }
             },
             "type": "object",
@@ -1513,6 +1634,9 @@
                     "description": "Name of the State as localized string.\n"
                 }
             },
+            "requiredInputs": [
+                "name"
+            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AttributeGroup resources.\n",
                 "properties": {
@@ -1590,7 +1714,7 @@
                 },
                 "stackingMode": {
                     "type": "string",
-                    "description": "Specifies whether the application of this discount causes the following discounts to be ignored\n"
+                    "description": "Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking\nor StopAfterThisDiscount\n"
                 },
                 "target": {
                     "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget",
@@ -1657,7 +1781,7 @@
                 },
                 "stackingMode": {
                     "type": "string",
-                    "description": "Specifies whether the application of this discount causes the following discounts to be ignored\n"
+                    "description": "Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking\nor StopAfterThisDiscount\n"
                 },
                 "target": {
                     "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget",
@@ -1675,6 +1799,7 @@
                 }
             },
             "requiredInputs": [
+                "name",
                 "predicate",
                 "sortOrder",
                 "value"
@@ -1721,7 +1846,7 @@
                     },
                     "stackingMode": {
                         "type": "string",
-                        "description": "Specifies whether the application of this discount causes the following discounts to be ignored\n"
+                        "description": "Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking\nor StopAfterThisDiscount\n"
                     },
                     "target": {
                         "$ref": "#/types/commercetools:index/CartDiscountTarget:CartDiscountTarget",
@@ -1882,6 +2007,7 @@
                 }
             },
             "requiredInputs": [
+                "name",
                 "slug"
             ],
             "stateInputs": {
@@ -1998,7 +2124,6 @@
             },
             "required": [
                 "key",
-                "name",
                 "roles",
                 "version"
             ],
@@ -2241,7 +2366,7 @@
                 },
                 "maxApplications": {
                     "type": "integer",
-                    "description": "The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set\nfor this field, so possible values are either larger than 0 or not set\n"
+                    "description": "The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set\nfor this field, so possible values are either larger than 0 or not set\n"
                 },
                 "maxApplicationsPerCustomer": {
                     "type": "integer",
@@ -2273,7 +2398,6 @@
             "required": [
                 "cartDiscounts",
                 "code",
-                "name",
                 "version"
             ],
             "inputProperties": {
@@ -2310,7 +2434,7 @@
                 },
                 "maxApplications": {
                     "type": "integer",
-                    "description": "The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set\nfor this field, so possible values are either larger than 0 or not set\n"
+                    "description": "The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set\nfor this field, so possible values are either larger than 0 or not set\n"
                 },
                 "maxApplicationsPerCustomer": {
                     "type": "integer",
@@ -2376,7 +2500,7 @@
                     },
                     "maxApplications": {
                         "type": "integer",
-                        "description": "The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set\nfor this field, so possible values are either larger than 0 or not set\n"
+                        "description": "The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set\nfor this field, so possible values are either larger than 0 or not set\n"
                     },
                     "maxApplicationsPerCustomer": {
                         "type": "integer",
@@ -2505,6 +2629,7 @@
                 }
             },
             "requiredInputs": [
+                "name",
                 "predicate",
                 "sortOrder",
                 "value"
@@ -2604,6 +2729,9 @@
                     "description": "Name of the ProductSelection.\n"
                 }
             },
+            "requiredInputs": [
+                "name"
+            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ProductSelection resources.\n",
                 "properties": {
@@ -3250,7 +3378,6 @@
             },
             "required": [
                 "initial",
-                "name",
                 "type",
                 "version"
             ],
@@ -3445,7 +3572,6 @@
             },
             "required": [
                 "key",
-                "name",
                 "version"
             ],
             "inputProperties": {
@@ -3899,6 +4025,7 @@
             },
             "requiredInputs": [
                 "key",
+                "name",
                 "resourceTypeIds"
             ],
             "stateInputs": {

@@ -94,6 +94,9 @@ export class ProductDiscount extends pulumi.CustomResource {
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as ProductDiscountArgs | undefined;
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.predicate === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'predicate'");
             }
@@ -178,7 +181,7 @@ export interface ProductDiscountArgs {
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
-    name?: pulumi.Input<{[key: string]: any}>;
+    name: pulumi.Input<{[key: string]: any}>;
     /**
      * A valid [Product Predicate](https://docs.commercetools.com/api/projects/predicates#product-predicates)
      */

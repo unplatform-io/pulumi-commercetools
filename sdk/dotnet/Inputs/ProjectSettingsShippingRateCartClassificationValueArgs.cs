@@ -12,6 +12,9 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class ProjectSettingsShippingRateCartClassificationValueArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [Resource Type ID](https://docs.commercetools.com/api/projects/Projects#changeProject)
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 

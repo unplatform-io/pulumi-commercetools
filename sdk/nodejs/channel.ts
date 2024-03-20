@@ -48,7 +48,7 @@ export class Channel extends pulumi.CustomResource {
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
-    public readonly name!: pulumi.Output<{[key: string]: any}>;
+    public readonly name!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * The [roles](https://docs.commercetools.com/api/projects/channels#channelroleenum) of this channel. Each channel must
      * have at least one role

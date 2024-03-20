@@ -42,6 +42,9 @@ func NewCategory(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.Slug == nil {
 		return nil, errors.New("invalid value for required argument 'Slug'")
 	}

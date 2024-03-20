@@ -13,11 +13,29 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class CartDiscountTarget
     {
+        /// <summary>
+        /// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        /// </summary>
         public readonly int? DiscountedQuantity;
+        /// <summary>
+        /// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        /// </summary>
         public readonly int? MaxOccurrence;
+        /// <summary>
+        /// LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        /// </summary>
         public readonly string? Predicate;
+        /// <summary>
+        /// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored
+        /// </summary>
         public readonly string? SelectionMode;
+        /// <summary>
+        /// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        /// </summary>
         public readonly int? TriggerQuantity;
+        /// <summary>
+        /// Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

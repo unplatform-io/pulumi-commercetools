@@ -81,6 +81,9 @@ export class Type extends pulumi.CustomResource {
             if ((!args || args.key === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
             if ((!args || args.resourceTypeIds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceTypeIds'");
             }
@@ -143,7 +146,7 @@ export interface TypeArgs {
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
-    name?: pulumi.Input<{[key: string]: any}>;
+    name: pulumi.Input<{[key: string]: any}>;
     /**
      * Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
      * is valid

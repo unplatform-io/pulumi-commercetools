@@ -13,6 +13,9 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ShippingMethodCustom
     {
+        /// <summary>
+        /// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        /// </summary>
         public readonly ImmutableDictionary<string, object>? Fields;
         public readonly string TypeId;
 

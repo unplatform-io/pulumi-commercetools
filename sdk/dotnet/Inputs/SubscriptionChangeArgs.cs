@@ -14,6 +14,10 @@ namespace Pulumi.Commercetools.Inputs
     {
         [Input("resourceTypeIds", required: true)]
         private InputList<string>? _resourceTypeIds;
+
+        /// <summary>
+        /// [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+        /// </summary>
         public InputList<string> ResourceTypeIds
         {
             get => _resourceTypeIds ?? (_resourceTypeIds = new InputList<string>());

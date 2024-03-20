@@ -54,7 +54,7 @@ export class DiscountCode extends pulumi.CustomResource {
     public readonly groups!: pulumi.Output<string[] | undefined>;
     public readonly isActive!: pulumi.Output<boolean | undefined>;
     /**
-     * The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+     * The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
      * for this field, so possible values are either larger than 0 or not set
      */
     public readonly maxApplications!: pulumi.Output<number | undefined>;
@@ -66,7 +66,7 @@ export class DiscountCode extends pulumi.CustomResource {
     /**
      * [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
      */
-    public readonly name!: pulumi.Output<{[key: string]: any}>;
+    public readonly name!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * [Cart Predicate](https://docs.commercetools.com/api/projects/predicates#cart-predicates)
      */
@@ -158,7 +158,7 @@ export interface DiscountCodeState {
     groups?: pulumi.Input<pulumi.Input<string>[]>;
     isActive?: pulumi.Input<boolean>;
     /**
-     * The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+     * The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
      * for this field, so possible values are either larger than 0 or not set
      */
     maxApplications?: pulumi.Input<number>;
@@ -210,7 +210,7 @@ export interface DiscountCodeArgs {
     groups?: pulumi.Input<pulumi.Input<string>[]>;
     isActive?: pulumi.Input<boolean>;
     /**
-     * The discount code can only be applied the specified times overallNote that due to an engine constraint 0 cannot be set
+     * The discount code can only be applied the specified times overall. Note that due to an engine constraint 0 cannot be set
      * for this field, so possible values are either larger than 0 or not set
      */
     maxApplications?: pulumi.Input<number>;

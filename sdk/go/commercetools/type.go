@@ -39,6 +39,9 @@ func NewType(ctx *pulumi.Context,
 	if args.Key == nil {
 		return nil, errors.New("invalid value for required argument 'Key'")
 	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
 	if args.ResourceTypeIds == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceTypeIds'")
 	}

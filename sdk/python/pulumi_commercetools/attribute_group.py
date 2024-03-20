@@ -16,25 +16,36 @@ __all__ = ['AttributeGroupArgs', 'AttributeGroup']
 @pulumi.input_type
 class AttributeGroupArgs:
     def __init__(__self__, *,
+                 name: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  attributes: Optional[pulumi.Input[Sequence[pulumi.Input['AttributeGroupAttributeArgs']]]] = None,
                  description: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 key: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+                 key: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AttributeGroup resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] name: Name of the State as localized string.
         :param pulumi.Input[Sequence[pulumi.Input['AttributeGroupAttributeArgs']]] attributes: Attributes with unique values.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] description: Description of the State as localized string.
         :param pulumi.Input[str] key: User-defined unique identifier of the AttributeGroup.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] name: Name of the State as localized string.
         """
+        pulumi.set(__self__, "name", name)
         if attributes is not None:
             pulumi.set(__self__, "attributes", attributes)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if key is not None:
             pulumi.set(__self__, "key", key)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
+        """
+        Name of the State as localized string.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -71,18 +82,6 @@ class AttributeGroupArgs:
     @key.setter
     def key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "key", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        Name of the State as localized string.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -196,7 +195,7 @@ class AttributeGroup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[AttributeGroupArgs] = None,
+                 args: AttributeGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a AttributeGroup resource with the given unique name, props, and options.
@@ -231,6 +230,8 @@ class AttributeGroup(pulumi.CustomResource):
             __props__.__dict__["attributes"] = attributes
             __props__.__dict__["description"] = description
             __props__.__dict__["key"] = key
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["version"] = None
         super(AttributeGroup, __self__).__init__(

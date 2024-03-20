@@ -13,7 +13,13 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ProjectSettingsMessages
     {
+        /// <summary>
+        /// Specifies the number of days each Message should be available via the Messages Query API
+        /// </summary>
         public readonly int? DeleteDaysAfterCreation;
+        /// <summary>
+        /// When true the creation of messages on the Messages Query HTTP API is enabled
+        /// </summary>
         public readonly bool? Enabled;
 
         [OutputConstructor]

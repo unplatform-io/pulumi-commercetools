@@ -61,7 +61,8 @@ namespace Pulumi.Commercetools
         public Output<string> SortOrder { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies whether the application of this discount causes the following discounts to be ignored
+        /// Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+        /// or StopAfterThisDiscount
         /// </summary>
         [Output("stackingMode")]
         public Output<string?> StackingMode { get; private set; } = null!;
@@ -162,7 +163,7 @@ namespace Pulumi.Commercetools
         [Input("key")]
         public Input<string>? Key { get; set; }
 
-        [Input("name")]
+        [Input("name", required: true)]
         private InputMap<object>? _name;
 
         /// <summary>
@@ -196,7 +197,8 @@ namespace Pulumi.Commercetools
         public Input<string> SortOrder { get; set; } = null!;
 
         /// <summary>
-        /// Specifies whether the application of this discount causes the following discounts to be ignored
+        /// Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+        /// or StopAfterThisDiscount
         /// </summary>
         [Input("stackingMode")]
         public Input<string>? StackingMode { get; set; }
@@ -290,7 +292,8 @@ namespace Pulumi.Commercetools
         public Input<string>? SortOrder { get; set; }
 
         /// <summary>
-        /// Specifies whether the application of this discount causes the following discounts to be ignored
+        /// Specifies whether the application of this discount causes the following discounts to be ignored. Can be either Stacking
+        /// or StopAfterThisDiscount
         /// </summary>
         [Input("stackingMode")]
         public Input<string>? StackingMode { get; set; }

@@ -237,9 +237,12 @@ func (o ApiExtensionDestinationPtrOutput) Url() pulumi.StringPtrOutput {
 }
 
 type ApiExtensionTrigger struct {
-	Actions        []string `pulumi:"actions"`
-	Condition      *string  `pulumi:"condition"`
-	ResourceTypeId string   `pulumi:"resourceTypeId"`
+	// Currently, Create and Update are supported
+	Actions []string `pulumi:"actions"`
+	// Valid predicate that controls the conditions under which the API Extension is called.
+	Condition *string `pulumi:"condition"`
+	// Currently, cart, order, payment, and customer are supported
+	ResourceTypeId string `pulumi:"resourceTypeId"`
 }
 
 // ApiExtensionTriggerInput is an input type that accepts ApiExtensionTriggerArgs and ApiExtensionTriggerOutput values.
@@ -254,9 +257,12 @@ type ApiExtensionTriggerInput interface {
 }
 
 type ApiExtensionTriggerArgs struct {
-	Actions        pulumi.StringArrayInput `pulumi:"actions"`
-	Condition      pulumi.StringPtrInput   `pulumi:"condition"`
-	ResourceTypeId pulumi.StringInput      `pulumi:"resourceTypeId"`
+	// Currently, Create and Update are supported
+	Actions pulumi.StringArrayInput `pulumi:"actions"`
+	// Valid predicate that controls the conditions under which the API Extension is called.
+	Condition pulumi.StringPtrInput `pulumi:"condition"`
+	// Currently, cart, order, payment, and customer are supported
+	ResourceTypeId pulumi.StringInput `pulumi:"resourceTypeId"`
 }
 
 func (ApiExtensionTriggerArgs) ElementType() reflect.Type {
@@ -310,14 +316,17 @@ func (o ApiExtensionTriggerOutput) ToApiExtensionTriggerOutputWithContext(ctx co
 	return o
 }
 
+// Currently, Create and Update are supported
 func (o ApiExtensionTriggerOutput) Actions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ApiExtensionTrigger) []string { return v.Actions }).(pulumi.StringArrayOutput)
 }
 
+// Valid predicate that controls the conditions under which the API Extension is called.
 func (o ApiExtensionTriggerOutput) Condition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ApiExtensionTrigger) *string { return v.Condition }).(pulumi.StringPtrOutput)
 }
 
+// Currently, cart, order, payment, and customer are supported
 func (o ApiExtensionTriggerOutput) ResourceTypeId() pulumi.StringOutput {
 	return o.ApplyT(func(v ApiExtensionTrigger) string { return v.ResourceTypeId }).(pulumi.StringOutput)
 }
@@ -343,6 +352,7 @@ func (o ApiExtensionTriggerArrayOutput) Index(i pulumi.IntInput) ApiExtensionTri
 }
 
 type AttributeGroupAttribute struct {
+	// The Attribute's name as given in its AttributeDefinition.
 	Key string `pulumi:"key"`
 }
 
@@ -358,6 +368,7 @@ type AttributeGroupAttributeInput interface {
 }
 
 type AttributeGroupAttributeArgs struct {
+	// The Attribute's name as given in its AttributeDefinition.
 	Key pulumi.StringInput `pulumi:"key"`
 }
 
@@ -412,6 +423,7 @@ func (o AttributeGroupAttributeOutput) ToAttributeGroupAttributeOutputWithContex
 	return o
 }
 
+// The Attribute's name as given in its AttributeDefinition.
 func (o AttributeGroupAttributeOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v AttributeGroupAttribute) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -437,6 +449,7 @@ func (o AttributeGroupAttributeArrayOutput) Index(i pulumi.IntInput) AttributeGr
 }
 
 type CartDiscountCustom struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields map[string]interface{} `pulumi:"fields"`
 	TypeId string                 `pulumi:"typeId"`
 }
@@ -453,6 +466,7 @@ type CartDiscountCustomInput interface {
 }
 
 type CartDiscountCustomArgs struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields pulumi.MapInput    `pulumi:"fields"`
 	TypeId pulumi.StringInput `pulumi:"typeId"`
 }
@@ -534,6 +548,7 @@ func (o CartDiscountCustomOutput) ToCartDiscountCustomPtrOutputWithContext(ctx c
 	}).(CartDiscountCustomPtrOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o CartDiscountCustomOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v CartDiscountCustom) map[string]interface{} { return v.Fields }).(pulumi.MapOutput)
 }
@@ -566,6 +581,7 @@ func (o CartDiscountCustomPtrOutput) Elem() CartDiscountCustomOutput {
 	}).(CartDiscountCustomOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o CartDiscountCustomPtrOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v *CartDiscountCustom) map[string]interface{} {
 		if v == nil {
@@ -585,12 +601,18 @@ func (o CartDiscountCustomPtrOutput) TypeId() pulumi.StringPtrOutput {
 }
 
 type CartDiscountTarget struct {
-	DiscountedQuantity *int    `pulumi:"discountedQuantity"`
-	MaxOccurrence      *int    `pulumi:"maxOccurrence"`
-	Predicate          *string `pulumi:"predicate"`
-	SelectionMode      *string `pulumi:"selectionMode"`
-	TriggerQuantity    *int    `pulumi:"triggerQuantity"`
-	Type               string  `pulumi:"type"`
+	// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+	DiscountedQuantity *int `pulumi:"discountedQuantity"`
+	// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+	MaxOccurrence *int `pulumi:"maxOccurrence"`
+	// LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+	Predicate *string `pulumi:"predicate"`
+	// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored
+	SelectionMode *string `pulumi:"selectionMode"`
+	// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+	TriggerQuantity *int `pulumi:"triggerQuantity"`
+	// Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice
+	Type string `pulumi:"type"`
 }
 
 // CartDiscountTargetInput is an input type that accepts CartDiscountTargetArgs and CartDiscountTargetOutput values.
@@ -605,12 +627,18 @@ type CartDiscountTargetInput interface {
 }
 
 type CartDiscountTargetArgs struct {
-	DiscountedQuantity pulumi.IntPtrInput    `pulumi:"discountedQuantity"`
-	MaxOccurrence      pulumi.IntPtrInput    `pulumi:"maxOccurrence"`
-	Predicate          pulumi.StringPtrInput `pulumi:"predicate"`
-	SelectionMode      pulumi.StringPtrInput `pulumi:"selectionMode"`
-	TriggerQuantity    pulumi.IntPtrInput    `pulumi:"triggerQuantity"`
-	Type               pulumi.StringInput    `pulumi:"type"`
+	// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+	DiscountedQuantity pulumi.IntPtrInput `pulumi:"discountedQuantity"`
+	// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+	MaxOccurrence pulumi.IntPtrInput `pulumi:"maxOccurrence"`
+	// LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+	Predicate pulumi.StringPtrInput `pulumi:"predicate"`
+	// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored
+	SelectionMode pulumi.StringPtrInput `pulumi:"selectionMode"`
+	// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+	TriggerQuantity pulumi.IntPtrInput `pulumi:"triggerQuantity"`
+	// Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (CartDiscountTargetArgs) ElementType() reflect.Type {
@@ -690,26 +718,32 @@ func (o CartDiscountTargetOutput) ToCartDiscountTargetPtrOutputWithContext(ctx c
 	}).(CartDiscountTargetPtrOutput)
 }
 
+// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
 func (o CartDiscountTargetOutput) DiscountedQuantity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CartDiscountTarget) *int { return v.DiscountedQuantity }).(pulumi.IntPtrOutput)
 }
 
+// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
 func (o CartDiscountTargetOutput) MaxOccurrence() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CartDiscountTarget) *int { return v.MaxOccurrence }).(pulumi.IntPtrOutput)
 }
 
+// LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
 func (o CartDiscountTargetOutput) Predicate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CartDiscountTarget) *string { return v.Predicate }).(pulumi.StringPtrOutput)
 }
 
+// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored
 func (o CartDiscountTargetOutput) SelectionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CartDiscountTarget) *string { return v.SelectionMode }).(pulumi.StringPtrOutput)
 }
 
+// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
 func (o CartDiscountTargetOutput) TriggerQuantity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CartDiscountTarget) *int { return v.TriggerQuantity }).(pulumi.IntPtrOutput)
 }
 
+// Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice
 func (o CartDiscountTargetOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v CartDiscountTarget) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -738,6 +772,7 @@ func (o CartDiscountTargetPtrOutput) Elem() CartDiscountTargetOutput {
 	}).(CartDiscountTargetOutput)
 }
 
+// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
 func (o CartDiscountTargetPtrOutput) DiscountedQuantity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CartDiscountTarget) *int {
 		if v == nil {
@@ -747,6 +782,7 @@ func (o CartDiscountTargetPtrOutput) DiscountedQuantity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
 func (o CartDiscountTargetPtrOutput) MaxOccurrence() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CartDiscountTarget) *int {
 		if v == nil {
@@ -756,6 +792,7 @@ func (o CartDiscountTargetPtrOutput) MaxOccurrence() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
 func (o CartDiscountTargetPtrOutput) Predicate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CartDiscountTarget) *string {
 		if v == nil {
@@ -765,6 +802,7 @@ func (o CartDiscountTargetPtrOutput) Predicate() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored
 func (o CartDiscountTargetPtrOutput) SelectionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CartDiscountTarget) *string {
 		if v == nil {
@@ -774,6 +812,7 @@ func (o CartDiscountTargetPtrOutput) SelectionMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
 func (o CartDiscountTargetPtrOutput) TriggerQuantity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CartDiscountTarget) *int {
 		if v == nil {
@@ -783,6 +822,7 @@ func (o CartDiscountTargetPtrOutput) TriggerQuantity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice
 func (o CartDiscountTargetPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CartDiscountTarget) *string {
 		if v == nil {
@@ -793,13 +833,20 @@ func (o CartDiscountTargetPtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 type CartDiscountValue struct {
-	DistributionChannelId *string                  `pulumi:"distributionChannelId"`
-	Monies                []CartDiscountValueMoney `pulumi:"monies"`
-	Permyriad             *int                     `pulumi:"permyriad"`
-	ProductId             *string                  `pulumi:"productId"`
-	SupplyChannelId       *string                  `pulumi:"supplyChannelId"`
-	Type                  string                   `pulumi:"type"`
-	VariantId             *int                     `pulumi:"variantId"`
+	// Channel must have the role ProductDistribution. Optional when value type is giftLineItem
+	DistributionChannelId *string `pulumi:"distributionChannelId"`
+	// Absolute discount specific fields
+	Monies []CartDiscountValueMoney `pulumi:"monies"`
+	// Relative discount specific fields
+	Permyriad *int `pulumi:"permyriad"`
+	// ResourceIdentifier of a Product. Required when value type is giftLineItem
+	ProductId *string `pulumi:"productId"`
+	// Channel must have the role InventorySupply. Optional when value type is giftLineItem
+	SupplyChannelId *string `pulumi:"supplyChannelId"`
+	// Currently supports absolute/relative/giftLineItem
+	Type string `pulumi:"type"`
+	// ProductVariant of the Product. Required when value type is giftLineItem
+	VariantId *int `pulumi:"variantId"`
 }
 
 // CartDiscountValueInput is an input type that accepts CartDiscountValueArgs and CartDiscountValueOutput values.
@@ -814,13 +861,20 @@ type CartDiscountValueInput interface {
 }
 
 type CartDiscountValueArgs struct {
-	DistributionChannelId pulumi.StringPtrInput            `pulumi:"distributionChannelId"`
-	Monies                CartDiscountValueMoneyArrayInput `pulumi:"monies"`
-	Permyriad             pulumi.IntPtrInput               `pulumi:"permyriad"`
-	ProductId             pulumi.StringPtrInput            `pulumi:"productId"`
-	SupplyChannelId       pulumi.StringPtrInput            `pulumi:"supplyChannelId"`
-	Type                  pulumi.StringInput               `pulumi:"type"`
-	VariantId             pulumi.IntPtrInput               `pulumi:"variantId"`
+	// Channel must have the role ProductDistribution. Optional when value type is giftLineItem
+	DistributionChannelId pulumi.StringPtrInput `pulumi:"distributionChannelId"`
+	// Absolute discount specific fields
+	Monies CartDiscountValueMoneyArrayInput `pulumi:"monies"`
+	// Relative discount specific fields
+	Permyriad pulumi.IntPtrInput `pulumi:"permyriad"`
+	// ResourceIdentifier of a Product. Required when value type is giftLineItem
+	ProductId pulumi.StringPtrInput `pulumi:"productId"`
+	// Channel must have the role InventorySupply. Optional when value type is giftLineItem
+	SupplyChannelId pulumi.StringPtrInput `pulumi:"supplyChannelId"`
+	// Currently supports absolute/relative/giftLineItem
+	Type pulumi.StringInput `pulumi:"type"`
+	// ProductVariant of the Product. Required when value type is giftLineItem
+	VariantId pulumi.IntPtrInput `pulumi:"variantId"`
 }
 
 func (CartDiscountValueArgs) ElementType() reflect.Type {
@@ -900,30 +954,37 @@ func (o CartDiscountValueOutput) ToCartDiscountValuePtrOutputWithContext(ctx con
 	}).(CartDiscountValuePtrOutput)
 }
 
+// Channel must have the role ProductDistribution. Optional when value type is giftLineItem
 func (o CartDiscountValueOutput) DistributionChannelId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CartDiscountValue) *string { return v.DistributionChannelId }).(pulumi.StringPtrOutput)
 }
 
+// Absolute discount specific fields
 func (o CartDiscountValueOutput) Monies() CartDiscountValueMoneyArrayOutput {
 	return o.ApplyT(func(v CartDiscountValue) []CartDiscountValueMoney { return v.Monies }).(CartDiscountValueMoneyArrayOutput)
 }
 
+// Relative discount specific fields
 func (o CartDiscountValueOutput) Permyriad() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CartDiscountValue) *int { return v.Permyriad }).(pulumi.IntPtrOutput)
 }
 
+// ResourceIdentifier of a Product. Required when value type is giftLineItem
 func (o CartDiscountValueOutput) ProductId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CartDiscountValue) *string { return v.ProductId }).(pulumi.StringPtrOutput)
 }
 
+// Channel must have the role InventorySupply. Optional when value type is giftLineItem
 func (o CartDiscountValueOutput) SupplyChannelId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CartDiscountValue) *string { return v.SupplyChannelId }).(pulumi.StringPtrOutput)
 }
 
+// Currently supports absolute/relative/giftLineItem
 func (o CartDiscountValueOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v CartDiscountValue) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// ProductVariant of the Product. Required when value type is giftLineItem
 func (o CartDiscountValueOutput) VariantId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CartDiscountValue) *int { return v.VariantId }).(pulumi.IntPtrOutput)
 }
@@ -952,6 +1013,7 @@ func (o CartDiscountValuePtrOutput) Elem() CartDiscountValueOutput {
 	}).(CartDiscountValueOutput)
 }
 
+// Channel must have the role ProductDistribution. Optional when value type is giftLineItem
 func (o CartDiscountValuePtrOutput) DistributionChannelId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CartDiscountValue) *string {
 		if v == nil {
@@ -961,6 +1023,7 @@ func (o CartDiscountValuePtrOutput) DistributionChannelId() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+// Absolute discount specific fields
 func (o CartDiscountValuePtrOutput) Monies() CartDiscountValueMoneyArrayOutput {
 	return o.ApplyT(func(v *CartDiscountValue) []CartDiscountValueMoney {
 		if v == nil {
@@ -970,6 +1033,7 @@ func (o CartDiscountValuePtrOutput) Monies() CartDiscountValueMoneyArrayOutput {
 	}).(CartDiscountValueMoneyArrayOutput)
 }
 
+// Relative discount specific fields
 func (o CartDiscountValuePtrOutput) Permyriad() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CartDiscountValue) *int {
 		if v == nil {
@@ -979,6 +1043,7 @@ func (o CartDiscountValuePtrOutput) Permyriad() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// ResourceIdentifier of a Product. Required when value type is giftLineItem
 func (o CartDiscountValuePtrOutput) ProductId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CartDiscountValue) *string {
 		if v == nil {
@@ -988,6 +1053,7 @@ func (o CartDiscountValuePtrOutput) ProductId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Channel must have the role InventorySupply. Optional when value type is giftLineItem
 func (o CartDiscountValuePtrOutput) SupplyChannelId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CartDiscountValue) *string {
 		if v == nil {
@@ -997,6 +1063,7 @@ func (o CartDiscountValuePtrOutput) SupplyChannelId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Currently supports absolute/relative/giftLineItem
 func (o CartDiscountValuePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CartDiscountValue) *string {
 		if v == nil {
@@ -1006,6 +1073,7 @@ func (o CartDiscountValuePtrOutput) Type() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// ProductVariant of the Product. Required when value type is giftLineItem
 func (o CartDiscountValuePtrOutput) VariantId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CartDiscountValue) *int {
 		if v == nil {
@@ -1016,7 +1084,9 @@ func (o CartDiscountValuePtrOutput) VariantId() pulumi.IntPtrOutput {
 }
 
 type CartDiscountValueMoney struct {
-	CentAmount   int    `pulumi:"centAmount"`
+	// The amount in cents (the smallest indivisible unit of the currency)
+	CentAmount int `pulumi:"centAmount"`
+	// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 	CurrencyCode string `pulumi:"currencyCode"`
 }
 
@@ -1032,7 +1102,9 @@ type CartDiscountValueMoneyInput interface {
 }
 
 type CartDiscountValueMoneyArgs struct {
-	CentAmount   pulumi.IntInput    `pulumi:"centAmount"`
+	// The amount in cents (the smallest indivisible unit of the currency)
+	CentAmount pulumi.IntInput `pulumi:"centAmount"`
+	// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 	CurrencyCode pulumi.StringInput `pulumi:"currencyCode"`
 }
 
@@ -1087,10 +1159,12 @@ func (o CartDiscountValueMoneyOutput) ToCartDiscountValueMoneyOutputWithContext(
 	return o
 }
 
+// The amount in cents (the smallest indivisible unit of the currency)
 func (o CartDiscountValueMoneyOutput) CentAmount() pulumi.IntOutput {
 	return o.ApplyT(func(v CartDiscountValueMoney) int { return v.CentAmount }).(pulumi.IntOutput)
 }
 
+// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 func (o CartDiscountValueMoneyOutput) CurrencyCode() pulumi.StringOutput {
 	return o.ApplyT(func(v CartDiscountValueMoney) string { return v.CurrencyCode }).(pulumi.StringOutput)
 }
@@ -1118,10 +1192,12 @@ func (o CartDiscountValueMoneyArrayOutput) Index(i pulumi.IntInput) CartDiscount
 type CategoryAsset struct {
 	Description map[string]interface{} `pulumi:"description"`
 	Id          *string                `pulumi:"id"`
-	Key         *string                `pulumi:"key"`
-	Name        map[string]interface{} `pulumi:"name"`
-	Sources     []CategoryAssetSource  `pulumi:"sources"`
-	Tags        []string               `pulumi:"tags"`
+	// Optional User-defined identifier for the asset. Asset keys are unique inside their container (in this case the category)
+	Key  *string                `pulumi:"key"`
+	Name map[string]interface{} `pulumi:"name"`
+	// Array of AssetSource, Has at least one entry
+	Sources []CategoryAssetSource `pulumi:"sources"`
+	Tags    []string              `pulumi:"tags"`
 }
 
 // CategoryAssetInput is an input type that accepts CategoryAssetArgs and CategoryAssetOutput values.
@@ -1136,12 +1212,14 @@ type CategoryAssetInput interface {
 }
 
 type CategoryAssetArgs struct {
-	Description pulumi.MapInput               `pulumi:"description"`
-	Id          pulumi.StringPtrInput         `pulumi:"id"`
-	Key         pulumi.StringPtrInput         `pulumi:"key"`
-	Name        pulumi.MapInput               `pulumi:"name"`
-	Sources     CategoryAssetSourceArrayInput `pulumi:"sources"`
-	Tags        pulumi.StringArrayInput       `pulumi:"tags"`
+	Description pulumi.MapInput       `pulumi:"description"`
+	Id          pulumi.StringPtrInput `pulumi:"id"`
+	// Optional User-defined identifier for the asset. Asset keys are unique inside their container (in this case the category)
+	Key  pulumi.StringPtrInput `pulumi:"key"`
+	Name pulumi.MapInput       `pulumi:"name"`
+	// Array of AssetSource, Has at least one entry
+	Sources CategoryAssetSourceArrayInput `pulumi:"sources"`
+	Tags    pulumi.StringArrayInput       `pulumi:"tags"`
 }
 
 func (CategoryAssetArgs) ElementType() reflect.Type {
@@ -1203,6 +1281,7 @@ func (o CategoryAssetOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CategoryAsset) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Optional User-defined identifier for the asset. Asset keys are unique inside their container (in this case the category)
 func (o CategoryAssetOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CategoryAsset) *string { return v.Key }).(pulumi.StringPtrOutput)
 }
@@ -1211,6 +1290,7 @@ func (o CategoryAssetOutput) Name() pulumi.MapOutput {
 	return o.ApplyT(func(v CategoryAsset) map[string]interface{} { return v.Name }).(pulumi.MapOutput)
 }
 
+// Array of AssetSource, Has at least one entry
 func (o CategoryAssetOutput) Sources() CategoryAssetSourceArrayOutput {
 	return o.ApplyT(func(v CategoryAsset) []CategoryAssetSource { return v.Sources }).(CategoryAssetSourceArrayOutput)
 }
@@ -1242,8 +1322,9 @@ func (o CategoryAssetArrayOutput) Index(i pulumi.IntInput) CategoryAssetOutput {
 type CategoryAssetSource struct {
 	ContentType *string                        `pulumi:"contentType"`
 	Dimensions  *CategoryAssetSourceDimensions `pulumi:"dimensions"`
-	Key         *string                        `pulumi:"key"`
-	Uri         string                         `pulumi:"uri"`
+	// Unique identifier, must be unique within the Asset
+	Key *string `pulumi:"key"`
+	Uri string  `pulumi:"uri"`
 }
 
 // CategoryAssetSourceInput is an input type that accepts CategoryAssetSourceArgs and CategoryAssetSourceOutput values.
@@ -1260,8 +1341,9 @@ type CategoryAssetSourceInput interface {
 type CategoryAssetSourceArgs struct {
 	ContentType pulumi.StringPtrInput                 `pulumi:"contentType"`
 	Dimensions  CategoryAssetSourceDimensionsPtrInput `pulumi:"dimensions"`
-	Key         pulumi.StringPtrInput                 `pulumi:"key"`
-	Uri         pulumi.StringInput                    `pulumi:"uri"`
+	// Unique identifier, must be unique within the Asset
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	Uri pulumi.StringInput    `pulumi:"uri"`
 }
 
 func (CategoryAssetSourceArgs) ElementType() reflect.Type {
@@ -1323,6 +1405,7 @@ func (o CategoryAssetSourceOutput) Dimensions() CategoryAssetSourceDimensionsPtr
 	return o.ApplyT(func(v CategoryAssetSource) *CategoryAssetSourceDimensions { return v.Dimensions }).(CategoryAssetSourceDimensionsPtrOutput)
 }
 
+// Unique identifier, must be unique within the Asset
 func (o CategoryAssetSourceOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CategoryAssetSource) *string { return v.Key }).(pulumi.StringPtrOutput)
 }
@@ -1352,7 +1435,9 @@ func (o CategoryAssetSourceArrayOutput) Index(i pulumi.IntInput) CategoryAssetSo
 }
 
 type CategoryAssetSourceDimensions struct {
+	// The height of the asset source
 	H int `pulumi:"h"`
+	// The width of the asset source
 	W int `pulumi:"w"`
 }
 
@@ -1368,7 +1453,9 @@ type CategoryAssetSourceDimensionsInput interface {
 }
 
 type CategoryAssetSourceDimensionsArgs struct {
+	// The height of the asset source
 	H pulumi.IntInput `pulumi:"h"`
+	// The width of the asset source
 	W pulumi.IntInput `pulumi:"w"`
 }
 
@@ -1449,10 +1536,12 @@ func (o CategoryAssetSourceDimensionsOutput) ToCategoryAssetSourceDimensionsPtrO
 	}).(CategoryAssetSourceDimensionsPtrOutput)
 }
 
+// The height of the asset source
 func (o CategoryAssetSourceDimensionsOutput) H() pulumi.IntOutput {
 	return o.ApplyT(func(v CategoryAssetSourceDimensions) int { return v.H }).(pulumi.IntOutput)
 }
 
+// The width of the asset source
 func (o CategoryAssetSourceDimensionsOutput) W() pulumi.IntOutput {
 	return o.ApplyT(func(v CategoryAssetSourceDimensions) int { return v.W }).(pulumi.IntOutput)
 }
@@ -1481,6 +1570,7 @@ func (o CategoryAssetSourceDimensionsPtrOutput) Elem() CategoryAssetSourceDimens
 	}).(CategoryAssetSourceDimensionsOutput)
 }
 
+// The height of the asset source
 func (o CategoryAssetSourceDimensionsPtrOutput) H() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CategoryAssetSourceDimensions) *int {
 		if v == nil {
@@ -1490,6 +1580,7 @@ func (o CategoryAssetSourceDimensionsPtrOutput) H() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// The width of the asset source
 func (o CategoryAssetSourceDimensionsPtrOutput) W() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CategoryAssetSourceDimensions) *int {
 		if v == nil {
@@ -1500,6 +1591,7 @@ func (o CategoryAssetSourceDimensionsPtrOutput) W() pulumi.IntPtrOutput {
 }
 
 type CategoryCustom struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields map[string]interface{} `pulumi:"fields"`
 	TypeId string                 `pulumi:"typeId"`
 }
@@ -1516,6 +1608,7 @@ type CategoryCustomInput interface {
 }
 
 type CategoryCustomArgs struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields pulumi.MapInput    `pulumi:"fields"`
 	TypeId pulumi.StringInput `pulumi:"typeId"`
 }
@@ -1597,6 +1690,7 @@ func (o CategoryCustomOutput) ToCategoryCustomPtrOutputWithContext(ctx context.C
 	}).(CategoryCustomPtrOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o CategoryCustomOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v CategoryCustom) map[string]interface{} { return v.Fields }).(pulumi.MapOutput)
 }
@@ -1629,6 +1723,7 @@ func (o CategoryCustomPtrOutput) Elem() CategoryCustomOutput {
 	}).(CategoryCustomOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o CategoryCustomPtrOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v *CategoryCustom) map[string]interface{} {
 		if v == nil {
@@ -2141,6 +2236,7 @@ func (o ChannelAddressPtrOutput) Title() pulumi.StringPtrOutput {
 }
 
 type ChannelCustom struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields map[string]interface{} `pulumi:"fields"`
 	TypeId string                 `pulumi:"typeId"`
 }
@@ -2157,6 +2253,7 @@ type ChannelCustomInput interface {
 }
 
 type ChannelCustomArgs struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields pulumi.MapInput    `pulumi:"fields"`
 	TypeId pulumi.StringInput `pulumi:"typeId"`
 }
@@ -2238,6 +2335,7 @@ func (o ChannelCustomOutput) ToChannelCustomPtrOutputWithContext(ctx context.Con
 	}).(ChannelCustomPtrOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o ChannelCustomOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v ChannelCustom) map[string]interface{} { return v.Fields }).(pulumi.MapOutput)
 }
@@ -2270,6 +2368,7 @@ func (o ChannelCustomPtrOutput) Elem() ChannelCustomOutput {
 	}).(ChannelCustomOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o ChannelCustomPtrOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v *ChannelCustom) map[string]interface{} {
 		if v == nil {
@@ -2422,6 +2521,7 @@ func (o ChannelGeolocationPtrOutput) Coordinates() pulumi.Float64ArrayOutput {
 }
 
 type CustomerGroupCustom struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields map[string]interface{} `pulumi:"fields"`
 	TypeId string                 `pulumi:"typeId"`
 }
@@ -2438,6 +2538,7 @@ type CustomerGroupCustomInput interface {
 }
 
 type CustomerGroupCustomArgs struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields pulumi.MapInput    `pulumi:"fields"`
 	TypeId pulumi.StringInput `pulumi:"typeId"`
 }
@@ -2519,6 +2620,7 @@ func (o CustomerGroupCustomOutput) ToCustomerGroupCustomPtrOutputWithContext(ctx
 	}).(CustomerGroupCustomPtrOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o CustomerGroupCustomOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v CustomerGroupCustom) map[string]interface{} { return v.Fields }).(pulumi.MapOutput)
 }
@@ -2551,6 +2653,7 @@ func (o CustomerGroupCustomPtrOutput) Elem() CustomerGroupCustomOutput {
 	}).(CustomerGroupCustomOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o CustomerGroupCustomPtrOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v *CustomerGroupCustom) map[string]interface{} {
 		if v == nil {
@@ -2570,6 +2673,7 @@ func (o CustomerGroupCustomPtrOutput) TypeId() pulumi.StringPtrOutput {
 }
 
 type DiscountCodeCustom struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields map[string]interface{} `pulumi:"fields"`
 	TypeId string                 `pulumi:"typeId"`
 }
@@ -2586,6 +2690,7 @@ type DiscountCodeCustomInput interface {
 }
 
 type DiscountCodeCustomArgs struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields pulumi.MapInput    `pulumi:"fields"`
 	TypeId pulumi.StringInput `pulumi:"typeId"`
 }
@@ -2667,6 +2772,7 @@ func (o DiscountCodeCustomOutput) ToDiscountCodeCustomPtrOutputWithContext(ctx c
 	}).(DiscountCodeCustomPtrOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o DiscountCodeCustomOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v DiscountCodeCustom) map[string]interface{} { return v.Fields }).(pulumi.MapOutput)
 }
@@ -2699,6 +2805,7 @@ func (o DiscountCodeCustomPtrOutput) Elem() DiscountCodeCustomOutput {
 	}).(DiscountCodeCustomOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o DiscountCodeCustomPtrOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v *DiscountCodeCustom) map[string]interface{} {
 		if v == nil {
@@ -2718,9 +2825,12 @@ func (o DiscountCodeCustomPtrOutput) TypeId() pulumi.StringPtrOutput {
 }
 
 type ProductDiscountValue struct {
-	Monies    []ProductDiscountValueMoney `pulumi:"monies"`
-	Permyriad *int                        `pulumi:"permyriad"`
-	Type      string                      `pulumi:"type"`
+	// Absolute discount specific fields
+	Monies []ProductDiscountValueMoney `pulumi:"monies"`
+	// Relative discount specific fields
+	Permyriad *int `pulumi:"permyriad"`
+	// Currently supports absolute/relative/external
+	Type string `pulumi:"type"`
 }
 
 // ProductDiscountValueInput is an input type that accepts ProductDiscountValueArgs and ProductDiscountValueOutput values.
@@ -2735,9 +2845,12 @@ type ProductDiscountValueInput interface {
 }
 
 type ProductDiscountValueArgs struct {
-	Monies    ProductDiscountValueMoneyArrayInput `pulumi:"monies"`
-	Permyriad pulumi.IntPtrInput                  `pulumi:"permyriad"`
-	Type      pulumi.StringInput                  `pulumi:"type"`
+	// Absolute discount specific fields
+	Monies ProductDiscountValueMoneyArrayInput `pulumi:"monies"`
+	// Relative discount specific fields
+	Permyriad pulumi.IntPtrInput `pulumi:"permyriad"`
+	// Currently supports absolute/relative/external
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (ProductDiscountValueArgs) ElementType() reflect.Type {
@@ -2817,14 +2930,17 @@ func (o ProductDiscountValueOutput) ToProductDiscountValuePtrOutputWithContext(c
 	}).(ProductDiscountValuePtrOutput)
 }
 
+// Absolute discount specific fields
 func (o ProductDiscountValueOutput) Monies() ProductDiscountValueMoneyArrayOutput {
 	return o.ApplyT(func(v ProductDiscountValue) []ProductDiscountValueMoney { return v.Monies }).(ProductDiscountValueMoneyArrayOutput)
 }
 
+// Relative discount specific fields
 func (o ProductDiscountValueOutput) Permyriad() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProductDiscountValue) *int { return v.Permyriad }).(pulumi.IntPtrOutput)
 }
 
+// Currently supports absolute/relative/external
 func (o ProductDiscountValueOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ProductDiscountValue) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -2853,6 +2969,7 @@ func (o ProductDiscountValuePtrOutput) Elem() ProductDiscountValueOutput {
 	}).(ProductDiscountValueOutput)
 }
 
+// Absolute discount specific fields
 func (o ProductDiscountValuePtrOutput) Monies() ProductDiscountValueMoneyArrayOutput {
 	return o.ApplyT(func(v *ProductDiscountValue) []ProductDiscountValueMoney {
 		if v == nil {
@@ -2862,6 +2979,7 @@ func (o ProductDiscountValuePtrOutput) Monies() ProductDiscountValueMoneyArrayOu
 	}).(ProductDiscountValueMoneyArrayOutput)
 }
 
+// Relative discount specific fields
 func (o ProductDiscountValuePtrOutput) Permyriad() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProductDiscountValue) *int {
 		if v == nil {
@@ -2871,6 +2989,7 @@ func (o ProductDiscountValuePtrOutput) Permyriad() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Currently supports absolute/relative/external
 func (o ProductDiscountValuePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProductDiscountValue) *string {
 		if v == nil {
@@ -2881,9 +3000,12 @@ func (o ProductDiscountValuePtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 type ProductDiscountValueMoney struct {
-	CentAmount     int    `pulumi:"centAmount"`
-	CurrencyCode   string `pulumi:"currencyCode"`
-	FractionDigits *int   `pulumi:"fractionDigits"`
+	// The amount in cents (the smallest indivisible unit of the currency)
+	CentAmount int `pulumi:"centAmount"`
+	// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+	CurrencyCode string `pulumi:"currencyCode"`
+	// The number of default fraction digits for the given currency, like 2 for EUR or 0 for JPY
+	FractionDigits *int `pulumi:"fractionDigits"`
 }
 
 // ProductDiscountValueMoneyInput is an input type that accepts ProductDiscountValueMoneyArgs and ProductDiscountValueMoneyOutput values.
@@ -2898,8 +3020,11 @@ type ProductDiscountValueMoneyInput interface {
 }
 
 type ProductDiscountValueMoneyArgs struct {
-	CentAmount     pulumi.IntInput    `pulumi:"centAmount"`
-	CurrencyCode   pulumi.StringInput `pulumi:"currencyCode"`
+	// The amount in cents (the smallest indivisible unit of the currency)
+	CentAmount pulumi.IntInput `pulumi:"centAmount"`
+	// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+	CurrencyCode pulumi.StringInput `pulumi:"currencyCode"`
+	// The number of default fraction digits for the given currency, like 2 for EUR or 0 for JPY
 	FractionDigits pulumi.IntPtrInput `pulumi:"fractionDigits"`
 }
 
@@ -2954,14 +3079,17 @@ func (o ProductDiscountValueMoneyOutput) ToProductDiscountValueMoneyOutputWithCo
 	return o
 }
 
+// The amount in cents (the smallest indivisible unit of the currency)
 func (o ProductDiscountValueMoneyOutput) CentAmount() pulumi.IntOutput {
 	return o.ApplyT(func(v ProductDiscountValueMoney) int { return v.CentAmount }).(pulumi.IntOutput)
 }
 
+// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 func (o ProductDiscountValueMoneyOutput) CurrencyCode() pulumi.StringOutput {
 	return o.ApplyT(func(v ProductDiscountValueMoney) string { return v.CurrencyCode }).(pulumi.StringOutput)
 }
 
+// The number of default fraction digits for the given currency, like 2 for EUR or 0 for JPY
 func (o ProductDiscountValueMoneyOutput) FractionDigits() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProductDiscountValueMoney) *int { return v.FractionDigits }).(pulumi.IntPtrOutput)
 }
@@ -2987,14 +3115,23 @@ func (o ProductDiscountValueMoneyArrayOutput) Index(i pulumi.IntInput) ProductDi
 }
 
 type ProductTypeAttribute struct {
-	Constraint *string                  `pulumi:"constraint"`
-	InputHint  *string                  `pulumi:"inputHint"`
-	InputTip   map[string]interface{}   `pulumi:"inputTip"`
-	Label      map[string]interface{}   `pulumi:"label"`
-	Name       string                   `pulumi:"name"`
-	Required   *bool                    `pulumi:"required"`
-	Searchable *bool                    `pulumi:"searchable"`
-	Type       ProductTypeAttributeType `pulumi:"type"`
+	// Describes how an attribute or a set of attributes should be validated across all variants of a product. See also [Attribute Constraint](https://docs.commercetools.com/api/projects/productTypes#attributeconstraint-enum)
+	Constraint *string `pulumi:"constraint"`
+	// Provides a visual representation type for this attribute. only relevant for text-based attribute types like TextType and LocalizableTextType
+	InputHint *string `pulumi:"inputHint"`
+	// Additional information about the attribute that aids content managers when setting product details
+	InputTip map[string]interface{} `pulumi:"inputTip"`
+	// A human-readable label for the attribute
+	Label map[string]interface{} `pulumi:"label"`
+	// The unique name of the attribute used in the API. The name must be between two and 256 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+	// When using the same name for an attribute in two or more product types all fields of the AttributeDefinition of this attribute need to be the same across the product types, otherwise an AttributeDefinitionAlreadyExists error code will be returned. An exception to this are the values of an enum or lenum type and sets thereof
+	Name string `pulumi:"name"`
+	// Whether the attribute is required to have a value
+	Required *bool `pulumi:"required"`
+	// Whether the attribute's values should generally be activated in product search
+	Searchable *bool `pulumi:"searchable"`
+	// [AttributeType](https://docs.commercetools.com/api/projects/productTypes#attributetype)
+	Type ProductTypeAttributeType `pulumi:"type"`
 }
 
 // ProductTypeAttributeInput is an input type that accepts ProductTypeAttributeArgs and ProductTypeAttributeOutput values.
@@ -3009,14 +3146,23 @@ type ProductTypeAttributeInput interface {
 }
 
 type ProductTypeAttributeArgs struct {
-	Constraint pulumi.StringPtrInput         `pulumi:"constraint"`
-	InputHint  pulumi.StringPtrInput         `pulumi:"inputHint"`
-	InputTip   pulumi.MapInput               `pulumi:"inputTip"`
-	Label      pulumi.MapInput               `pulumi:"label"`
-	Name       pulumi.StringInput            `pulumi:"name"`
-	Required   pulumi.BoolPtrInput           `pulumi:"required"`
-	Searchable pulumi.BoolPtrInput           `pulumi:"searchable"`
-	Type       ProductTypeAttributeTypeInput `pulumi:"type"`
+	// Describes how an attribute or a set of attributes should be validated across all variants of a product. See also [Attribute Constraint](https://docs.commercetools.com/api/projects/productTypes#attributeconstraint-enum)
+	Constraint pulumi.StringPtrInput `pulumi:"constraint"`
+	// Provides a visual representation type for this attribute. only relevant for text-based attribute types like TextType and LocalizableTextType
+	InputHint pulumi.StringPtrInput `pulumi:"inputHint"`
+	// Additional information about the attribute that aids content managers when setting product details
+	InputTip pulumi.MapInput `pulumi:"inputTip"`
+	// A human-readable label for the attribute
+	Label pulumi.MapInput `pulumi:"label"`
+	// The unique name of the attribute used in the API. The name must be between two and 256 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+	// When using the same name for an attribute in two or more product types all fields of the AttributeDefinition of this attribute need to be the same across the product types, otherwise an AttributeDefinitionAlreadyExists error code will be returned. An exception to this are the values of an enum or lenum type and sets thereof
+	Name pulumi.StringInput `pulumi:"name"`
+	// Whether the attribute is required to have a value
+	Required pulumi.BoolPtrInput `pulumi:"required"`
+	// Whether the attribute's values should generally be activated in product search
+	Searchable pulumi.BoolPtrInput `pulumi:"searchable"`
+	// [AttributeType](https://docs.commercetools.com/api/projects/productTypes#attributetype)
+	Type ProductTypeAttributeTypeInput `pulumi:"type"`
 }
 
 func (ProductTypeAttributeArgs) ElementType() reflect.Type {
@@ -3070,34 +3216,43 @@ func (o ProductTypeAttributeOutput) ToProductTypeAttributeOutputWithContext(ctx 
 	return o
 }
 
+// Describes how an attribute or a set of attributes should be validated across all variants of a product. See also [Attribute Constraint](https://docs.commercetools.com/api/projects/productTypes#attributeconstraint-enum)
 func (o ProductTypeAttributeOutput) Constraint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProductTypeAttribute) *string { return v.Constraint }).(pulumi.StringPtrOutput)
 }
 
+// Provides a visual representation type for this attribute. only relevant for text-based attribute types like TextType and LocalizableTextType
 func (o ProductTypeAttributeOutput) InputHint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProductTypeAttribute) *string { return v.InputHint }).(pulumi.StringPtrOutput)
 }
 
+// Additional information about the attribute that aids content managers when setting product details
 func (o ProductTypeAttributeOutput) InputTip() pulumi.MapOutput {
 	return o.ApplyT(func(v ProductTypeAttribute) map[string]interface{} { return v.InputTip }).(pulumi.MapOutput)
 }
 
+// A human-readable label for the attribute
 func (o ProductTypeAttributeOutput) Label() pulumi.MapOutput {
 	return o.ApplyT(func(v ProductTypeAttribute) map[string]interface{} { return v.Label }).(pulumi.MapOutput)
 }
 
+// The unique name of the attribute used in the API. The name must be between two and 256 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+// When using the same name for an attribute in two or more product types all fields of the AttributeDefinition of this attribute need to be the same across the product types, otherwise an AttributeDefinitionAlreadyExists error code will be returned. An exception to this are the values of an enum or lenum type and sets thereof
 func (o ProductTypeAttributeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ProductTypeAttribute) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Whether the attribute is required to have a value
 func (o ProductTypeAttributeOutput) Required() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ProductTypeAttribute) *bool { return v.Required }).(pulumi.BoolPtrOutput)
 }
 
+// Whether the attribute's values should generally be activated in product search
 func (o ProductTypeAttributeOutput) Searchable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ProductTypeAttribute) *bool { return v.Searchable }).(pulumi.BoolPtrOutput)
 }
 
+// [AttributeType](https://docs.commercetools.com/api/projects/productTypes#attributetype)
 func (o ProductTypeAttributeOutput) Type() ProductTypeAttributeTypeOutput {
 	return o.ApplyT(func(v ProductTypeAttribute) ProductTypeAttributeType { return v.Type }).(ProductTypeAttributeTypeOutput)
 }
@@ -3123,12 +3278,17 @@ func (o ProductTypeAttributeArrayOutput) Index(i pulumi.IntInput) ProductTypeAtt
 }
 
 type ProductTypeAttributeType struct {
-	ElementType2    *ProductTypeAttributeTypeElementType2    `pulumi:"ElementType2"`
+	ElementType2 *ProductTypeAttributeTypeElementType2 `pulumi:"ElementType2"`
+	// Localized values for the `lenum` type.
 	LocalizedValues []ProductTypeAttributeTypeLocalizedValue `pulumi:"localizedValues"`
-	Name            string                                   `pulumi:"name"`
-	ReferenceTypeId *string                                  `pulumi:"referenceTypeId"`
-	TypeReference   *string                                  `pulumi:"typeReference"`
-	Values          []ProductTypeAttributeTypeValue          `pulumi:"values"`
+	// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+	Name string `pulumi:"name"`
+	// Resource type the Custom Field can reference. Required when type is `reference`
+	ReferenceTypeId *string `pulumi:"referenceTypeId"`
+	// Reference to another product type. Required when type is `nested`.
+	TypeReference *string `pulumi:"typeReference"`
+	// Values for the `enum` type.
+	Values []ProductTypeAttributeTypeValue `pulumi:"values"`
 }
 
 // ProductTypeAttributeTypeInput is an input type that accepts ProductTypeAttributeTypeArgs and ProductTypeAttributeTypeOutput values.
@@ -3143,12 +3303,17 @@ type ProductTypeAttributeTypeInput interface {
 }
 
 type ProductTypeAttributeTypeArgs struct {
-	ElementType2    ProductTypeAttributeTypeElementType2PtrInput     `pulumi:"ElementType2"`
+	ElementType2 ProductTypeAttributeTypeElementType2PtrInput `pulumi:"ElementType2"`
+	// Localized values for the `lenum` type.
 	LocalizedValues ProductTypeAttributeTypeLocalizedValueArrayInput `pulumi:"localizedValues"`
-	Name            pulumi.StringInput                               `pulumi:"name"`
-	ReferenceTypeId pulumi.StringPtrInput                            `pulumi:"referenceTypeId"`
-	TypeReference   pulumi.StringPtrInput                            `pulumi:"typeReference"`
-	Values          ProductTypeAttributeTypeValueArrayInput          `pulumi:"values"`
+	// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+	Name pulumi.StringInput `pulumi:"name"`
+	// Resource type the Custom Field can reference. Required when type is `reference`
+	ReferenceTypeId pulumi.StringPtrInput `pulumi:"referenceTypeId"`
+	// Reference to another product type. Required when type is `nested`.
+	TypeReference pulumi.StringPtrInput `pulumi:"typeReference"`
+	// Values for the `enum` type.
+	Values ProductTypeAttributeTypeValueArrayInput `pulumi:"values"`
 }
 
 func (ProductTypeAttributeTypeArgs) ElementType() reflect.Type {
@@ -3181,32 +3346,42 @@ func (o ProductTypeAttributeTypeOutput) ElementType2() ProductTypeAttributeTypeE
 	return o.ApplyT(func(v ProductTypeAttributeType) *ProductTypeAttributeTypeElementType2 { return v.ElementType2 }).(ProductTypeAttributeTypeElementType2PtrOutput)
 }
 
+// Localized values for the `lenum` type.
 func (o ProductTypeAttributeTypeOutput) LocalizedValues() ProductTypeAttributeTypeLocalizedValueArrayOutput {
 	return o.ApplyT(func(v ProductTypeAttributeType) []ProductTypeAttributeTypeLocalizedValue { return v.LocalizedValues }).(ProductTypeAttributeTypeLocalizedValueArrayOutput)
 }
 
+// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
 func (o ProductTypeAttributeTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ProductTypeAttributeType) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Resource type the Custom Field can reference. Required when type is `reference`
 func (o ProductTypeAttributeTypeOutput) ReferenceTypeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProductTypeAttributeType) *string { return v.ReferenceTypeId }).(pulumi.StringPtrOutput)
 }
 
+// Reference to another product type. Required when type is `nested`.
 func (o ProductTypeAttributeTypeOutput) TypeReference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProductTypeAttributeType) *string { return v.TypeReference }).(pulumi.StringPtrOutput)
 }
 
+// Values for the `enum` type.
 func (o ProductTypeAttributeTypeOutput) Values() ProductTypeAttributeTypeValueArrayOutput {
 	return o.ApplyT(func(v ProductTypeAttributeType) []ProductTypeAttributeTypeValue { return v.Values }).(ProductTypeAttributeTypeValueArrayOutput)
 }
 
 type ProductTypeAttributeTypeElementType2 struct {
+	// Localized values for the `lenum` type.
 	LocalizedValues []ProductTypeAttributeTypeElementType2LocalizedValue `pulumi:"localizedValues"`
-	Name            string                                               `pulumi:"name"`
-	ReferenceTypeId *string                                              `pulumi:"referenceTypeId"`
-	TypeReference   *string                                              `pulumi:"typeReference"`
-	Values          []ProductTypeAttributeTypeElementType2Value          `pulumi:"values"`
+	// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+	Name string `pulumi:"name"`
+	// Resource type the Custom Field can reference. Required when type is `reference`
+	ReferenceTypeId *string `pulumi:"referenceTypeId"`
+	// Reference to another product type. Required when type is `nested`.
+	TypeReference *string `pulumi:"typeReference"`
+	// Values for the `enum` type.
+	Values []ProductTypeAttributeTypeElementType2Value `pulumi:"values"`
 }
 
 // ProductTypeAttributeTypeElementType2Input is an input type that accepts ProductTypeAttributeTypeElementType2Args and ProductTypeAttributeTypeElementType2Output values.
@@ -3221,11 +3396,16 @@ type ProductTypeAttributeTypeElementType2Input interface {
 }
 
 type ProductTypeAttributeTypeElementType2Args struct {
+	// Localized values for the `lenum` type.
 	LocalizedValues ProductTypeAttributeTypeElementType2LocalizedValueArrayInput `pulumi:"localizedValues"`
-	Name            pulumi.StringInput                                           `pulumi:"name"`
-	ReferenceTypeId pulumi.StringPtrInput                                        `pulumi:"referenceTypeId"`
-	TypeReference   pulumi.StringPtrInput                                        `pulumi:"typeReference"`
-	Values          ProductTypeAttributeTypeElementType2ValueArrayInput          `pulumi:"values"`
+	// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+	Name pulumi.StringInput `pulumi:"name"`
+	// Resource type the Custom Field can reference. Required when type is `reference`
+	ReferenceTypeId pulumi.StringPtrInput `pulumi:"referenceTypeId"`
+	// Reference to another product type. Required when type is `nested`.
+	TypeReference pulumi.StringPtrInput `pulumi:"typeReference"`
+	// Values for the `enum` type.
+	Values ProductTypeAttributeTypeElementType2ValueArrayInput `pulumi:"values"`
 }
 
 func (ProductTypeAttributeTypeElementType2Args) ElementType() reflect.Type {
@@ -3305,24 +3485,29 @@ func (o ProductTypeAttributeTypeElementType2Output) ToProductTypeAttributeTypeEl
 	}).(ProductTypeAttributeTypeElementType2PtrOutput)
 }
 
+// Localized values for the `lenum` type.
 func (o ProductTypeAttributeTypeElementType2Output) LocalizedValues() ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput {
 	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) []ProductTypeAttributeTypeElementType2LocalizedValue {
 		return v.LocalizedValues
 	}).(ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput)
 }
 
+// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
 func (o ProductTypeAttributeTypeElementType2Output) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Resource type the Custom Field can reference. Required when type is `reference`
 func (o ProductTypeAttributeTypeElementType2Output) ReferenceTypeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) *string { return v.ReferenceTypeId }).(pulumi.StringPtrOutput)
 }
 
+// Reference to another product type. Required when type is `nested`.
 func (o ProductTypeAttributeTypeElementType2Output) TypeReference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) *string { return v.TypeReference }).(pulumi.StringPtrOutput)
 }
 
+// Values for the `enum` type.
 func (o ProductTypeAttributeTypeElementType2Output) Values() ProductTypeAttributeTypeElementType2ValueArrayOutput {
 	return o.ApplyT(func(v ProductTypeAttributeTypeElementType2) []ProductTypeAttributeTypeElementType2Value {
 		return v.Values
@@ -3353,6 +3538,7 @@ func (o ProductTypeAttributeTypeElementType2PtrOutput) Elem() ProductTypeAttribu
 	}).(ProductTypeAttributeTypeElementType2Output)
 }
 
+// Localized values for the `lenum` type.
 func (o ProductTypeAttributeTypeElementType2PtrOutput) LocalizedValues() ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput {
 	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) []ProductTypeAttributeTypeElementType2LocalizedValue {
 		if v == nil {
@@ -3362,6 +3548,7 @@ func (o ProductTypeAttributeTypeElementType2PtrOutput) LocalizedValues() Product
 	}).(ProductTypeAttributeTypeElementType2LocalizedValueArrayOutput)
 }
 
+// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
 func (o ProductTypeAttributeTypeElementType2PtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) *string {
 		if v == nil {
@@ -3371,6 +3558,7 @@ func (o ProductTypeAttributeTypeElementType2PtrOutput) Name() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Resource type the Custom Field can reference. Required when type is `reference`
 func (o ProductTypeAttributeTypeElementType2PtrOutput) ReferenceTypeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) *string {
 		if v == nil {
@@ -3380,6 +3568,7 @@ func (o ProductTypeAttributeTypeElementType2PtrOutput) ReferenceTypeId() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
+// Reference to another product type. Required when type is `nested`.
 func (o ProductTypeAttributeTypeElementType2PtrOutput) TypeReference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) *string {
 		if v == nil {
@@ -3389,6 +3578,7 @@ func (o ProductTypeAttributeTypeElementType2PtrOutput) TypeReference() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+// Values for the `enum` type.
 func (o ProductTypeAttributeTypeElementType2PtrOutput) Values() ProductTypeAttributeTypeElementType2ValueArrayOutput {
 	return o.ApplyT(func(v *ProductTypeAttributeTypeElementType2) []ProductTypeAttributeTypeElementType2Value {
 		if v == nil {
@@ -3799,8 +3989,10 @@ func (o ProductTypeAttributeTypeValueArrayOutput) Index(i pulumi.IntInput) Produ
 }
 
 type ProjectSettingsCarts struct {
-	CountryTaxRateFallbackEnabled   *bool `pulumi:"countryTaxRateFallbackEnabled"`
-	DeleteDaysAfterLastModification *int  `pulumi:"deleteDaysAfterLastModification"`
+	// Indicates if country - no state tax rate fallback should be used when a shipping address state is not explicitly covered in the rates lists of all tax categories of a cart line items
+	CountryTaxRateFallbackEnabled *bool `pulumi:"countryTaxRateFallbackEnabled"`
+	// Number - Optional The default value for the deleteDaysAfterLastModification parameter of the CartDraft. Initially set to 90 for projects created after December 2019.
+	DeleteDaysAfterLastModification *int `pulumi:"deleteDaysAfterLastModification"`
 }
 
 // ProjectSettingsCartsInput is an input type that accepts ProjectSettingsCartsArgs and ProjectSettingsCartsOutput values.
@@ -3815,8 +4007,10 @@ type ProjectSettingsCartsInput interface {
 }
 
 type ProjectSettingsCartsArgs struct {
-	CountryTaxRateFallbackEnabled   pulumi.BoolPtrInput `pulumi:"countryTaxRateFallbackEnabled"`
-	DeleteDaysAfterLastModification pulumi.IntPtrInput  `pulumi:"deleteDaysAfterLastModification"`
+	// Indicates if country - no state tax rate fallback should be used when a shipping address state is not explicitly covered in the rates lists of all tax categories of a cart line items
+	CountryTaxRateFallbackEnabled pulumi.BoolPtrInput `pulumi:"countryTaxRateFallbackEnabled"`
+	// Number - Optional The default value for the deleteDaysAfterLastModification parameter of the CartDraft. Initially set to 90 for projects created after December 2019.
+	DeleteDaysAfterLastModification pulumi.IntPtrInput `pulumi:"deleteDaysAfterLastModification"`
 }
 
 func (ProjectSettingsCartsArgs) ElementType() reflect.Type {
@@ -3896,10 +4090,12 @@ func (o ProjectSettingsCartsOutput) ToProjectSettingsCartsPtrOutputWithContext(c
 	}).(ProjectSettingsCartsPtrOutput)
 }
 
+// Indicates if country - no state tax rate fallback should be used when a shipping address state is not explicitly covered in the rates lists of all tax categories of a cart line items
 func (o ProjectSettingsCartsOutput) CountryTaxRateFallbackEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ProjectSettingsCarts) *bool { return v.CountryTaxRateFallbackEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// Number - Optional The default value for the deleteDaysAfterLastModification parameter of the CartDraft. Initially set to 90 for projects created after December 2019.
 func (o ProjectSettingsCartsOutput) DeleteDaysAfterLastModification() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProjectSettingsCarts) *int { return v.DeleteDaysAfterLastModification }).(pulumi.IntPtrOutput)
 }
@@ -3928,6 +4124,7 @@ func (o ProjectSettingsCartsPtrOutput) Elem() ProjectSettingsCartsOutput {
 	}).(ProjectSettingsCartsOutput)
 }
 
+// Indicates if country - no state tax rate fallback should be used when a shipping address state is not explicitly covered in the rates lists of all tax categories of a cart line items
 func (o ProjectSettingsCartsPtrOutput) CountryTaxRateFallbackEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ProjectSettingsCarts) *bool {
 		if v == nil {
@@ -3937,6 +4134,7 @@ func (o ProjectSettingsCartsPtrOutput) CountryTaxRateFallbackEnabled() pulumi.Bo
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Number - Optional The default value for the deleteDaysAfterLastModification parameter of the CartDraft. Initially set to 90 for projects created after December 2019.
 func (o ProjectSettingsCartsPtrOutput) DeleteDaysAfterLastModification() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProjectSettingsCarts) *int {
 		if v == nil {
@@ -3947,6 +4145,7 @@ func (o ProjectSettingsCartsPtrOutput) DeleteDaysAfterLastModification() pulumi.
 }
 
 type ProjectSettingsExternalOauth struct {
+	// Partially hidden on retrieval
 	AuthorizationHeader *string `pulumi:"authorizationHeader"`
 	Url                 *string `pulumi:"url"`
 }
@@ -3963,6 +4162,7 @@ type ProjectSettingsExternalOauthInput interface {
 }
 
 type ProjectSettingsExternalOauthArgs struct {
+	// Partially hidden on retrieval
 	AuthorizationHeader pulumi.StringPtrInput `pulumi:"authorizationHeader"`
 	Url                 pulumi.StringPtrInput `pulumi:"url"`
 }
@@ -4044,6 +4244,7 @@ func (o ProjectSettingsExternalOauthOutput) ToProjectSettingsExternalOauthPtrOut
 	}).(ProjectSettingsExternalOauthPtrOutput)
 }
 
+// Partially hidden on retrieval
 func (o ProjectSettingsExternalOauthOutput) AuthorizationHeader() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProjectSettingsExternalOauth) *string { return v.AuthorizationHeader }).(pulumi.StringPtrOutput)
 }
@@ -4076,6 +4277,7 @@ func (o ProjectSettingsExternalOauthPtrOutput) Elem() ProjectSettingsExternalOau
 	}).(ProjectSettingsExternalOauthOutput)
 }
 
+// Partially hidden on retrieval
 func (o ProjectSettingsExternalOauthPtrOutput) AuthorizationHeader() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProjectSettingsExternalOauth) *string {
 		if v == nil {
@@ -4095,8 +4297,10 @@ func (o ProjectSettingsExternalOauthPtrOutput) Url() pulumi.StringPtrOutput {
 }
 
 type ProjectSettingsMessages struct {
-	DeleteDaysAfterCreation *int  `pulumi:"deleteDaysAfterCreation"`
-	Enabled                 *bool `pulumi:"enabled"`
+	// Specifies the number of days each Message should be available via the Messages Query API
+	DeleteDaysAfterCreation *int `pulumi:"deleteDaysAfterCreation"`
+	// When true the creation of messages on the Messages Query HTTP API is enabled
+	Enabled *bool `pulumi:"enabled"`
 }
 
 // ProjectSettingsMessagesInput is an input type that accepts ProjectSettingsMessagesArgs and ProjectSettingsMessagesOutput values.
@@ -4111,8 +4315,10 @@ type ProjectSettingsMessagesInput interface {
 }
 
 type ProjectSettingsMessagesArgs struct {
-	DeleteDaysAfterCreation pulumi.IntPtrInput  `pulumi:"deleteDaysAfterCreation"`
-	Enabled                 pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Specifies the number of days each Message should be available via the Messages Query API
+	DeleteDaysAfterCreation pulumi.IntPtrInput `pulumi:"deleteDaysAfterCreation"`
+	// When true the creation of messages on the Messages Query HTTP API is enabled
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 }
 
 func (ProjectSettingsMessagesArgs) ElementType() reflect.Type {
@@ -4192,10 +4398,12 @@ func (o ProjectSettingsMessagesOutput) ToProjectSettingsMessagesPtrOutputWithCon
 	}).(ProjectSettingsMessagesPtrOutput)
 }
 
+// Specifies the number of days each Message should be available via the Messages Query API
 func (o ProjectSettingsMessagesOutput) DeleteDaysAfterCreation() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProjectSettingsMessages) *int { return v.DeleteDaysAfterCreation }).(pulumi.IntPtrOutput)
 }
 
+// When true the creation of messages on the Messages Query HTTP API is enabled
 func (o ProjectSettingsMessagesOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ProjectSettingsMessages) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -4224,6 +4432,7 @@ func (o ProjectSettingsMessagesPtrOutput) Elem() ProjectSettingsMessagesOutput {
 	}).(ProjectSettingsMessagesOutput)
 }
 
+// Specifies the number of days each Message should be available via the Messages Query API
 func (o ProjectSettingsMessagesPtrOutput) DeleteDaysAfterCreation() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProjectSettingsMessages) *int {
 		if v == nil {
@@ -4233,6 +4442,7 @@ func (o ProjectSettingsMessagesPtrOutput) DeleteDaysAfterCreation() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
+// When true the creation of messages on the Messages Query HTTP API is enabled
 func (o ProjectSettingsMessagesPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ProjectSettingsMessages) *bool {
 		if v == nil {
@@ -4243,6 +4453,7 @@ func (o ProjectSettingsMessagesPtrOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 type ProjectSettingsShippingRateCartClassificationValue struct {
+	// [Resource Type ID](https://docs.commercetools.com/api/projects/Projects#changeProject)
 	Key   string            `pulumi:"key"`
 	Label map[string]string `pulumi:"label"`
 }
@@ -4259,6 +4470,7 @@ type ProjectSettingsShippingRateCartClassificationValueInput interface {
 }
 
 type ProjectSettingsShippingRateCartClassificationValueArgs struct {
+	// [Resource Type ID](https://docs.commercetools.com/api/projects/Projects#changeProject)
 	Key   pulumi.StringInput    `pulumi:"key"`
 	Label pulumi.StringMapInput `pulumi:"label"`
 }
@@ -4314,6 +4526,7 @@ func (o ProjectSettingsShippingRateCartClassificationValueOutput) ToProjectSetti
 	return o
 }
 
+// [Resource Type ID](https://docs.commercetools.com/api/projects/Projects#changeProject)
 func (o ProjectSettingsShippingRateCartClassificationValueOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v ProjectSettingsShippingRateCartClassificationValue) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -4343,6 +4556,7 @@ func (o ProjectSettingsShippingRateCartClassificationValueArrayOutput) Index(i p
 }
 
 type ShippingMethodCustom struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields map[string]interface{} `pulumi:"fields"`
 	TypeId string                 `pulumi:"typeId"`
 }
@@ -4359,6 +4573,7 @@ type ShippingMethodCustomInput interface {
 }
 
 type ShippingMethodCustomArgs struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields pulumi.MapInput    `pulumi:"fields"`
 	TypeId pulumi.StringInput `pulumi:"typeId"`
 }
@@ -4440,6 +4655,7 @@ func (o ShippingMethodCustomOutput) ToShippingMethodCustomPtrOutputWithContext(c
 	}).(ShippingMethodCustomPtrOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o ShippingMethodCustomOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v ShippingMethodCustom) map[string]interface{} { return v.Fields }).(pulumi.MapOutput)
 }
@@ -4472,6 +4688,7 @@ func (o ShippingMethodCustomPtrOutput) Elem() ShippingMethodCustomOutput {
 	}).(ShippingMethodCustomOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o ShippingMethodCustomPtrOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v *ShippingMethodCustom) map[string]interface{} {
 		if v == nil {
@@ -4491,6 +4708,7 @@ func (o ShippingMethodCustomPtrOutput) TypeId() pulumi.StringPtrOutput {
 }
 
 type ShippingZoneLocation struct {
+	// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
 	Country string  `pulumi:"country"`
 	State   *string `pulumi:"state"`
 }
@@ -4507,6 +4725,7 @@ type ShippingZoneLocationInput interface {
 }
 
 type ShippingZoneLocationArgs struct {
+	// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
 	Country pulumi.StringInput    `pulumi:"country"`
 	State   pulumi.StringPtrInput `pulumi:"state"`
 }
@@ -4562,6 +4781,7 @@ func (o ShippingZoneLocationOutput) ToShippingZoneLocationOutputWithContext(ctx 
 	return o
 }
 
+// A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
 func (o ShippingZoneLocationOutput) Country() pulumi.StringOutput {
 	return o.ApplyT(func(v ShippingZoneLocation) string { return v.Country }).(pulumi.StringOutput)
 }
@@ -4591,7 +4811,9 @@ func (o ShippingZoneLocationArrayOutput) Index(i pulumi.IntInput) ShippingZoneLo
 }
 
 type ShippingZoneRateFreeAbove struct {
-	CentAmount   int    `pulumi:"centAmount"`
+	// The amount in cents (the smallest indivisible unit of the currency)
+	CentAmount int `pulumi:"centAmount"`
+	// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 	CurrencyCode string `pulumi:"currencyCode"`
 }
 
@@ -4607,7 +4829,9 @@ type ShippingZoneRateFreeAboveInput interface {
 }
 
 type ShippingZoneRateFreeAboveArgs struct {
-	CentAmount   pulumi.IntInput    `pulumi:"centAmount"`
+	// The amount in cents (the smallest indivisible unit of the currency)
+	CentAmount pulumi.IntInput `pulumi:"centAmount"`
+	// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 	CurrencyCode pulumi.StringInput `pulumi:"currencyCode"`
 }
 
@@ -4688,10 +4912,12 @@ func (o ShippingZoneRateFreeAboveOutput) ToShippingZoneRateFreeAbovePtrOutputWit
 	}).(ShippingZoneRateFreeAbovePtrOutput)
 }
 
+// The amount in cents (the smallest indivisible unit of the currency)
 func (o ShippingZoneRateFreeAboveOutput) CentAmount() pulumi.IntOutput {
 	return o.ApplyT(func(v ShippingZoneRateFreeAbove) int { return v.CentAmount }).(pulumi.IntOutput)
 }
 
+// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 func (o ShippingZoneRateFreeAboveOutput) CurrencyCode() pulumi.StringOutput {
 	return o.ApplyT(func(v ShippingZoneRateFreeAbove) string { return v.CurrencyCode }).(pulumi.StringOutput)
 }
@@ -4720,6 +4946,7 @@ func (o ShippingZoneRateFreeAbovePtrOutput) Elem() ShippingZoneRateFreeAboveOutp
 	}).(ShippingZoneRateFreeAboveOutput)
 }
 
+// The amount in cents (the smallest indivisible unit of the currency)
 func (o ShippingZoneRateFreeAbovePtrOutput) CentAmount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ShippingZoneRateFreeAbove) *int {
 		if v == nil {
@@ -4729,6 +4956,7 @@ func (o ShippingZoneRateFreeAbovePtrOutput) CentAmount() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 func (o ShippingZoneRateFreeAbovePtrOutput) CurrencyCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShippingZoneRateFreeAbove) *string {
 		if v == nil {
@@ -4887,12 +5115,18 @@ func (o ShippingZoneRatePricePtrOutput) CurrencyCode() pulumi.StringPtrOutput {
 }
 
 type ShippingZoneRateShippingRatePriceTier struct {
-	MinimumCentAmount *int                                                `pulumi:"minimumCentAmount"`
-	Price             *ShippingZoneRateShippingRatePriceTierPrice         `pulumi:"price"`
-	PriceFunction     *ShippingZoneRateShippingRatePriceTierPriceFunction `pulumi:"priceFunction"`
-	Score             *int                                                `pulumi:"score"`
-	Type              string                                              `pulumi:"type"`
-	Value             *string                                             `pulumi:"value"`
+	// If type is CartValue this represents the cent amount of the tier
+	MinimumCentAmount *int `pulumi:"minimumCentAmount"`
+	// The price of the score, value or minimumCentAmount tier
+	Price *ShippingZoneRateShippingRatePriceTierPrice `pulumi:"price"`
+	// If type is CartScore. Allows to calculate a price dynamically for the score.
+	PriceFunction *ShippingZoneRateShippingRatePriceTierPriceFunction `pulumi:"priceFunction"`
+	// If type is CartScore. Sets a fixed price for this score value
+	Score *int `pulumi:"score"`
+	// CartValue, CartScore or CartClassification
+	Type string `pulumi:"type"`
+	// If type is CartClassification, must be a valid key of the CartClassification
+	Value *string `pulumi:"value"`
 }
 
 // ShippingZoneRateShippingRatePriceTierInput is an input type that accepts ShippingZoneRateShippingRatePriceTierArgs and ShippingZoneRateShippingRatePriceTierOutput values.
@@ -4907,12 +5141,18 @@ type ShippingZoneRateShippingRatePriceTierInput interface {
 }
 
 type ShippingZoneRateShippingRatePriceTierArgs struct {
-	MinimumCentAmount pulumi.IntPtrInput                                         `pulumi:"minimumCentAmount"`
-	Price             ShippingZoneRateShippingRatePriceTierPricePtrInput         `pulumi:"price"`
-	PriceFunction     ShippingZoneRateShippingRatePriceTierPriceFunctionPtrInput `pulumi:"priceFunction"`
-	Score             pulumi.IntPtrInput                                         `pulumi:"score"`
-	Type              pulumi.StringInput                                         `pulumi:"type"`
-	Value             pulumi.StringPtrInput                                      `pulumi:"value"`
+	// If type is CartValue this represents the cent amount of the tier
+	MinimumCentAmount pulumi.IntPtrInput `pulumi:"minimumCentAmount"`
+	// The price of the score, value or minimumCentAmount tier
+	Price ShippingZoneRateShippingRatePriceTierPricePtrInput `pulumi:"price"`
+	// If type is CartScore. Allows to calculate a price dynamically for the score.
+	PriceFunction ShippingZoneRateShippingRatePriceTierPriceFunctionPtrInput `pulumi:"priceFunction"`
+	// If type is CartScore. Sets a fixed price for this score value
+	Score pulumi.IntPtrInput `pulumi:"score"`
+	// CartValue, CartScore or CartClassification
+	Type pulumi.StringInput `pulumi:"type"`
+	// If type is CartClassification, must be a valid key of the CartClassification
+	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
 func (ShippingZoneRateShippingRatePriceTierArgs) ElementType() reflect.Type {
@@ -4966,30 +5206,36 @@ func (o ShippingZoneRateShippingRatePriceTierOutput) ToShippingZoneRateShippingR
 	return o
 }
 
+// If type is CartValue this represents the cent amount of the tier
 func (o ShippingZoneRateShippingRatePriceTierOutput) MinimumCentAmount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) *int { return v.MinimumCentAmount }).(pulumi.IntPtrOutput)
 }
 
+// The price of the score, value or minimumCentAmount tier
 func (o ShippingZoneRateShippingRatePriceTierOutput) Price() ShippingZoneRateShippingRatePriceTierPricePtrOutput {
 	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) *ShippingZoneRateShippingRatePriceTierPrice {
 		return v.Price
 	}).(ShippingZoneRateShippingRatePriceTierPricePtrOutput)
 }
 
+// If type is CartScore. Allows to calculate a price dynamically for the score.
 func (o ShippingZoneRateShippingRatePriceTierOutput) PriceFunction() ShippingZoneRateShippingRatePriceTierPriceFunctionPtrOutput {
 	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) *ShippingZoneRateShippingRatePriceTierPriceFunction {
 		return v.PriceFunction
 	}).(ShippingZoneRateShippingRatePriceTierPriceFunctionPtrOutput)
 }
 
+// If type is CartScore. Sets a fixed price for this score value
 func (o ShippingZoneRateShippingRatePriceTierOutput) Score() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) *int { return v.Score }).(pulumi.IntPtrOutput)
 }
 
+// CartValue, CartScore or CartClassification
 func (o ShippingZoneRateShippingRatePriceTierOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// If type is CartClassification, must be a valid key of the CartClassification
 func (o ShippingZoneRateShippingRatePriceTierOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShippingZoneRateShippingRatePriceTier) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -5311,6 +5557,7 @@ func (o ShippingZoneRateShippingRatePriceTierPriceFunctionPtrOutput) Function() 
 }
 
 type StoreCustom struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields map[string]interface{} `pulumi:"fields"`
 	TypeId string                 `pulumi:"typeId"`
 }
@@ -5327,6 +5574,7 @@ type StoreCustomInput interface {
 }
 
 type StoreCustomArgs struct {
+	// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 	Fields pulumi.MapInput    `pulumi:"fields"`
 	TypeId pulumi.StringInput `pulumi:"typeId"`
 }
@@ -5408,6 +5656,7 @@ func (o StoreCustomOutput) ToStoreCustomPtrOutputWithContext(ctx context.Context
 	}).(StoreCustomPtrOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o StoreCustomOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v StoreCustom) map[string]interface{} { return v.Fields }).(pulumi.MapOutput)
 }
@@ -5440,6 +5689,7 @@ func (o StoreCustomPtrOutput) Elem() StoreCustomOutput {
 	}).(StoreCustomOutput)
 }
 
+// Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
 func (o StoreCustomPtrOutput) Fields() pulumi.MapOutput {
 	return o.ApplyT(func(v *StoreCustom) map[string]interface{} {
 		if v == nil {
@@ -5459,7 +5709,9 @@ func (o StoreCustomPtrOutput) TypeId() pulumi.StringPtrOutput {
 }
 
 type StoreProductSelection struct {
-	Active             bool   `pulumi:"active"`
+	// If true, all Products assigned to this Product Selection are part of the Store's assortment
+	Active bool `pulumi:"active"`
+	// Resource Identifier of a ProductSelection
 	ProductSelectionId string `pulumi:"productSelectionId"`
 }
 
@@ -5475,7 +5727,9 @@ type StoreProductSelectionInput interface {
 }
 
 type StoreProductSelectionArgs struct {
-	Active             pulumi.BoolInput   `pulumi:"active"`
+	// If true, all Products assigned to this Product Selection are part of the Store's assortment
+	Active pulumi.BoolInput `pulumi:"active"`
+	// Resource Identifier of a ProductSelection
 	ProductSelectionId pulumi.StringInput `pulumi:"productSelectionId"`
 }
 
@@ -5530,10 +5784,12 @@ func (o StoreProductSelectionOutput) ToStoreProductSelectionOutputWithContext(ct
 	return o
 }
 
+// If true, all Products assigned to this Product Selection are part of the Store's assortment
 func (o StoreProductSelectionOutput) Active() pulumi.BoolOutput {
 	return o.ApplyT(func(v StoreProductSelection) bool { return v.Active }).(pulumi.BoolOutput)
 }
 
+// Resource Identifier of a ProductSelection
 func (o StoreProductSelectionOutput) ProductSelectionId() pulumi.StringOutput {
 	return o.ApplyT(func(v StoreProductSelection) string { return v.ProductSelectionId }).(pulumi.StringOutput)
 }
@@ -5559,6 +5815,7 @@ func (o StoreProductSelectionArrayOutput) Index(i pulumi.IntInput) StoreProductS
 }
 
 type SubscriptionChange struct {
+	// [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
 	ResourceTypeIds []string `pulumi:"resourceTypeIds"`
 }
 
@@ -5574,6 +5831,7 @@ type SubscriptionChangeInput interface {
 }
 
 type SubscriptionChangeArgs struct {
+	// [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
 	ResourceTypeIds pulumi.StringArrayInput `pulumi:"resourceTypeIds"`
 }
 
@@ -5628,6 +5886,7 @@ func (o SubscriptionChangeOutput) ToSubscriptionChangeOutputWithContext(ctx cont
 	return o
 }
 
+// [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
 func (o SubscriptionChangeOutput) ResourceTypeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SubscriptionChange) []string { return v.ResourceTypeIds }).(pulumi.StringArrayOutput)
 }
@@ -5653,17 +5912,38 @@ func (o SubscriptionChangeArrayOutput) Index(i pulumi.IntInput) SubscriptionChan
 }
 
 type SubscriptionDestination struct {
-	AccessKey        *string `pulumi:"accessKey"`
-	AccessSecret     *string `pulumi:"accessSecret"`
-	AccountId        *string `pulumi:"accountId"`
+	// The access key of the SQS queue, SNS topic or EventBridge topic
+	AccessKey *string `pulumi:"accessKey"`
+	// The access secret of the SQS queue, SNS topic or EventBridge topic
+	AccessSecret *string `pulumi:"accessSecret"`
+	// The AWS account ID of the SNS topic or EventBridge topic
+	AccountId *string `pulumi:"accountId"`
+	// The acks value of the Confluent Cloud topic
+	Acks *string `pulumi:"acks"`
+	// The API key of the Confluent Cloud topic
+	ApiKey *string `pulumi:"apiKey"`
+	// The API secret of the Confluent Cloud topic
+	ApiSecret *string `pulumi:"apiSecret"`
+	// The bootstrap server of the Confluent Cloud topic
+	BootstrapServer *string `pulumi:"bootstrapServer"`
+	// The connection string of the Azure Service Bus
 	ConnectionString *string `pulumi:"connectionString"`
-	ProjectId        *string `pulumi:"projectId"`
-	QueueUrl         *string `pulumi:"queueUrl"`
-	Region           *string `pulumi:"region"`
-	Topic            *string `pulumi:"topic"`
-	TopicArn         *string `pulumi:"topicArn"`
-	Type             string  `pulumi:"type"`
-	Uri              *string `pulumi:"uri"`
+	// The key of the Confluent Cloud topic
+	Key *string `pulumi:"key"`
+	// The project ID of the Google Cloud Pub/Sub
+	ProjectId *string `pulumi:"projectId"`
+	// The URL of the SQS queue
+	QueueUrl *string `pulumi:"queueUrl"`
+	// The region of the SQS queue, SNS topic or EventBridge topic
+	Region *string `pulumi:"region"`
+	// The topic of the Google Cloud Pub/Sub or Confluent Cloud topic
+	Topic *string `pulumi:"topic"`
+	// The ARN of the SNS topic
+	TopicArn *string `pulumi:"topicArn"`
+	// The type of the destination. See [Destination](https://docs.commercetools.com/api/projects/subscriptions#destination) for more information
+	Type string `pulumi:"type"`
+	// The URI of the EventGrid topic
+	Uri *string `pulumi:"uri"`
 }
 
 // SubscriptionDestinationInput is an input type that accepts SubscriptionDestinationArgs and SubscriptionDestinationOutput values.
@@ -5678,17 +5958,38 @@ type SubscriptionDestinationInput interface {
 }
 
 type SubscriptionDestinationArgs struct {
-	AccessKey        pulumi.StringPtrInput `pulumi:"accessKey"`
-	AccessSecret     pulumi.StringPtrInput `pulumi:"accessSecret"`
-	AccountId        pulumi.StringPtrInput `pulumi:"accountId"`
+	// The access key of the SQS queue, SNS topic or EventBridge topic
+	AccessKey pulumi.StringPtrInput `pulumi:"accessKey"`
+	// The access secret of the SQS queue, SNS topic or EventBridge topic
+	AccessSecret pulumi.StringPtrInput `pulumi:"accessSecret"`
+	// The AWS account ID of the SNS topic or EventBridge topic
+	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
+	// The acks value of the Confluent Cloud topic
+	Acks pulumi.StringPtrInput `pulumi:"acks"`
+	// The API key of the Confluent Cloud topic
+	ApiKey pulumi.StringPtrInput `pulumi:"apiKey"`
+	// The API secret of the Confluent Cloud topic
+	ApiSecret pulumi.StringPtrInput `pulumi:"apiSecret"`
+	// The bootstrap server of the Confluent Cloud topic
+	BootstrapServer pulumi.StringPtrInput `pulumi:"bootstrapServer"`
+	// The connection string of the Azure Service Bus
 	ConnectionString pulumi.StringPtrInput `pulumi:"connectionString"`
-	ProjectId        pulumi.StringPtrInput `pulumi:"projectId"`
-	QueueUrl         pulumi.StringPtrInput `pulumi:"queueUrl"`
-	Region           pulumi.StringPtrInput `pulumi:"region"`
-	Topic            pulumi.StringPtrInput `pulumi:"topic"`
-	TopicArn         pulumi.StringPtrInput `pulumi:"topicArn"`
-	Type             pulumi.StringInput    `pulumi:"type"`
-	Uri              pulumi.StringPtrInput `pulumi:"uri"`
+	// The key of the Confluent Cloud topic
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The project ID of the Google Cloud Pub/Sub
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// The URL of the SQS queue
+	QueueUrl pulumi.StringPtrInput `pulumi:"queueUrl"`
+	// The region of the SQS queue, SNS topic or EventBridge topic
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The topic of the Google Cloud Pub/Sub or Confluent Cloud topic
+	Topic pulumi.StringPtrInput `pulumi:"topic"`
+	// The ARN of the SNS topic
+	TopicArn pulumi.StringPtrInput `pulumi:"topicArn"`
+	// The type of the destination. See [Destination](https://docs.commercetools.com/api/projects/subscriptions#destination) for more information
+	Type pulumi.StringInput `pulumi:"type"`
+	// The URI of the EventGrid topic
+	Uri pulumi.StringPtrInput `pulumi:"uri"`
 }
 
 func (SubscriptionDestinationArgs) ElementType() reflect.Type {
@@ -5768,46 +6069,82 @@ func (o SubscriptionDestinationOutput) ToSubscriptionDestinationPtrOutputWithCon
 	}).(SubscriptionDestinationPtrOutput)
 }
 
+// The access key of the SQS queue, SNS topic or EventBridge topic
 func (o SubscriptionDestinationOutput) AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDestination) *string { return v.AccessKey }).(pulumi.StringPtrOutput)
 }
 
+// The access secret of the SQS queue, SNS topic or EventBridge topic
 func (o SubscriptionDestinationOutput) AccessSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDestination) *string { return v.AccessSecret }).(pulumi.StringPtrOutput)
 }
 
+// The AWS account ID of the SNS topic or EventBridge topic
 func (o SubscriptionDestinationOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDestination) *string { return v.AccountId }).(pulumi.StringPtrOutput)
 }
 
+// The acks value of the Confluent Cloud topic
+func (o SubscriptionDestinationOutput) Acks() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SubscriptionDestination) *string { return v.Acks }).(pulumi.StringPtrOutput)
+}
+
+// The API key of the Confluent Cloud topic
+func (o SubscriptionDestinationOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SubscriptionDestination) *string { return v.ApiKey }).(pulumi.StringPtrOutput)
+}
+
+// The API secret of the Confluent Cloud topic
+func (o SubscriptionDestinationOutput) ApiSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SubscriptionDestination) *string { return v.ApiSecret }).(pulumi.StringPtrOutput)
+}
+
+// The bootstrap server of the Confluent Cloud topic
+func (o SubscriptionDestinationOutput) BootstrapServer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SubscriptionDestination) *string { return v.BootstrapServer }).(pulumi.StringPtrOutput)
+}
+
+// The connection string of the Azure Service Bus
 func (o SubscriptionDestinationOutput) ConnectionString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDestination) *string { return v.ConnectionString }).(pulumi.StringPtrOutput)
 }
 
+// The key of the Confluent Cloud topic
+func (o SubscriptionDestinationOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SubscriptionDestination) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The project ID of the Google Cloud Pub/Sub
 func (o SubscriptionDestinationOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDestination) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
+// The URL of the SQS queue
 func (o SubscriptionDestinationOutput) QueueUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDestination) *string { return v.QueueUrl }).(pulumi.StringPtrOutput)
 }
 
+// The region of the SQS queue, SNS topic or EventBridge topic
 func (o SubscriptionDestinationOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDestination) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+// The topic of the Google Cloud Pub/Sub or Confluent Cloud topic
 func (o SubscriptionDestinationOutput) Topic() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDestination) *string { return v.Topic }).(pulumi.StringPtrOutput)
 }
 
+// The ARN of the SNS topic
 func (o SubscriptionDestinationOutput) TopicArn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDestination) *string { return v.TopicArn }).(pulumi.StringPtrOutput)
 }
 
+// The type of the destination. See [Destination](https://docs.commercetools.com/api/projects/subscriptions#destination) for more information
 func (o SubscriptionDestinationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v SubscriptionDestination) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// The URI of the EventGrid topic
 func (o SubscriptionDestinationOutput) Uri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDestination) *string { return v.Uri }).(pulumi.StringPtrOutput)
 }
@@ -5836,6 +6173,7 @@ func (o SubscriptionDestinationPtrOutput) Elem() SubscriptionDestinationOutput {
 	}).(SubscriptionDestinationOutput)
 }
 
+// The access key of the SQS queue, SNS topic or EventBridge topic
 func (o SubscriptionDestinationPtrOutput) AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5845,6 +6183,7 @@ func (o SubscriptionDestinationPtrOutput) AccessKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The access secret of the SQS queue, SNS topic or EventBridge topic
 func (o SubscriptionDestinationPtrOutput) AccessSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5854,6 +6193,7 @@ func (o SubscriptionDestinationPtrOutput) AccessSecret() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+// The AWS account ID of the SNS topic or EventBridge topic
 func (o SubscriptionDestinationPtrOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5863,6 +6203,47 @@ func (o SubscriptionDestinationPtrOutput) AccountId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The acks value of the Confluent Cloud topic
+func (o SubscriptionDestinationPtrOutput) Acks() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Acks
+	}).(pulumi.StringPtrOutput)
+}
+
+// The API key of the Confluent Cloud topic
+func (o SubscriptionDestinationPtrOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The API secret of the Confluent Cloud topic
+func (o SubscriptionDestinationPtrOutput) ApiSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// The bootstrap server of the Confluent Cloud topic
+func (o SubscriptionDestinationPtrOutput) BootstrapServer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BootstrapServer
+	}).(pulumi.StringPtrOutput)
+}
+
+// The connection string of the Azure Service Bus
 func (o SubscriptionDestinationPtrOutput) ConnectionString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5872,6 +6253,17 @@ func (o SubscriptionDestinationPtrOutput) ConnectionString() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// The key of the Confluent Cloud topic
+func (o SubscriptionDestinationPtrOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Key
+	}).(pulumi.StringPtrOutput)
+}
+
+// The project ID of the Google Cloud Pub/Sub
 func (o SubscriptionDestinationPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5881,6 +6273,7 @@ func (o SubscriptionDestinationPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The URL of the SQS queue
 func (o SubscriptionDestinationPtrOutput) QueueUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5890,6 +6283,7 @@ func (o SubscriptionDestinationPtrOutput) QueueUrl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The region of the SQS queue, SNS topic or EventBridge topic
 func (o SubscriptionDestinationPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5899,6 +6293,7 @@ func (o SubscriptionDestinationPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The topic of the Google Cloud Pub/Sub or Confluent Cloud topic
 func (o SubscriptionDestinationPtrOutput) Topic() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5908,6 +6303,7 @@ func (o SubscriptionDestinationPtrOutput) Topic() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The ARN of the SNS topic
 func (o SubscriptionDestinationPtrOutput) TopicArn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5917,6 +6313,7 @@ func (o SubscriptionDestinationPtrOutput) TopicArn() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The type of the destination. See [Destination](https://docs.commercetools.com/api/projects/subscriptions#destination) for more information
 func (o SubscriptionDestinationPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5926,6 +6323,7 @@ func (o SubscriptionDestinationPtrOutput) Type() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The URI of the EventGrid topic
 func (o SubscriptionDestinationPtrOutput) Uri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionDestination) *string {
 		if v == nil {
@@ -5936,6 +6334,7 @@ func (o SubscriptionDestinationPtrOutput) Uri() pulumi.StringPtrOutput {
 }
 
 type SubscriptionFormat struct {
+	// For CloudEvents
 	CloudEventsVersion *string `pulumi:"cloudEventsVersion"`
 	Type               *string `pulumi:"type"`
 }
@@ -5952,6 +6351,7 @@ type SubscriptionFormatInput interface {
 }
 
 type SubscriptionFormatArgs struct {
+	// For CloudEvents
 	CloudEventsVersion pulumi.StringPtrInput `pulumi:"cloudEventsVersion"`
 	Type               pulumi.StringPtrInput `pulumi:"type"`
 }
@@ -6033,6 +6433,7 @@ func (o SubscriptionFormatOutput) ToSubscriptionFormatPtrOutputWithContext(ctx c
 	}).(SubscriptionFormatPtrOutput)
 }
 
+// For CloudEvents
 func (o SubscriptionFormatOutput) CloudEventsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionFormat) *string { return v.CloudEventsVersion }).(pulumi.StringPtrOutput)
 }
@@ -6065,6 +6466,7 @@ func (o SubscriptionFormatPtrOutput) Elem() SubscriptionFormatOutput {
 	}).(SubscriptionFormatOutput)
 }
 
+// For CloudEvents
 func (o SubscriptionFormatPtrOutput) CloudEventsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionFormat) *string {
 		if v == nil {
@@ -6084,8 +6486,10 @@ func (o SubscriptionFormatPtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 type SubscriptionMessage struct {
-	ResourceTypeId string   `pulumi:"resourceTypeId"`
-	Types          []string `pulumi:"types"`
+	// [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+	ResourceTypeId string `pulumi:"resourceTypeId"`
+	// types must contain valid message types for this resource, for example for resource type product the message type ProductPublished is valid. If no types of messages are given, the subscription is valid for all messages of this resource
+	Types []string `pulumi:"types"`
 }
 
 // SubscriptionMessageInput is an input type that accepts SubscriptionMessageArgs and SubscriptionMessageOutput values.
@@ -6100,8 +6504,10 @@ type SubscriptionMessageInput interface {
 }
 
 type SubscriptionMessageArgs struct {
-	ResourceTypeId pulumi.StringInput      `pulumi:"resourceTypeId"`
-	Types          pulumi.StringArrayInput `pulumi:"types"`
+	// [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+	ResourceTypeId pulumi.StringInput `pulumi:"resourceTypeId"`
+	// types must contain valid message types for this resource, for example for resource type product the message type ProductPublished is valid. If no types of messages are given, the subscription is valid for all messages of this resource
+	Types pulumi.StringArrayInput `pulumi:"types"`
 }
 
 func (SubscriptionMessageArgs) ElementType() reflect.Type {
@@ -6155,10 +6561,12 @@ func (o SubscriptionMessageOutput) ToSubscriptionMessageOutputWithContext(ctx co
 	return o
 }
 
+// [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
 func (o SubscriptionMessageOutput) ResourceTypeId() pulumi.StringOutput {
 	return o.ApplyT(func(v SubscriptionMessage) string { return v.ResourceTypeId }).(pulumi.StringOutput)
 }
 
+// types must contain valid message types for this resource, for example for resource type product the message type ProductPublished is valid. If no types of messages are given, the subscription is valid for all messages of this resource
 func (o SubscriptionMessageOutput) Types() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SubscriptionMessage) []string { return v.Types }).(pulumi.StringArrayOutput)
 }
@@ -6184,6 +6592,7 @@ func (o SubscriptionMessageArrayOutput) Index(i pulumi.IntInput) SubscriptionMes
 }
 
 type TaxCategoryRateSubRate struct {
+	// Number Percentage in the range of [0..1]
 	Amount float64 `pulumi:"amount"`
 	Name   string  `pulumi:"name"`
 }
@@ -6200,6 +6609,7 @@ type TaxCategoryRateSubRateInput interface {
 }
 
 type TaxCategoryRateSubRateArgs struct {
+	// Number Percentage in the range of [0..1]
 	Amount pulumi.Float64Input `pulumi:"amount"`
 	Name   pulumi.StringInput  `pulumi:"name"`
 }
@@ -6255,6 +6665,7 @@ func (o TaxCategoryRateSubRateOutput) ToTaxCategoryRateSubRateOutputWithContext(
 	return o
 }
 
+// Number Percentage in the range of [0..1]
 func (o TaxCategoryRateSubRateOutput) Amount() pulumi.Float64Output {
 	return o.ApplyT(func(v TaxCategoryRateSubRate) float64 { return v.Amount }).(pulumi.Float64Output)
 }
@@ -6284,11 +6695,18 @@ func (o TaxCategoryRateSubRateArrayOutput) Index(i pulumi.IntInput) TaxCategoryR
 }
 
 type TypeField struct {
-	InputHint *string                `pulumi:"inputHint"`
-	Label     map[string]interface{} `pulumi:"label"`
-	Name      string                 `pulumi:"name"`
-	Required  *bool                  `pulumi:"required"`
-	Type      TypeFieldType          `pulumi:"type"`
+	// [TextInputHint](https://docs.commercetools.com/api/projects/types#textinputhint) Provides a visual representation type for this field. It is only relevant for string-based field types like StringType and LocalizedStringType
+	InputHint *string `pulumi:"inputHint"`
+	// A human-readable label for the field
+	Label map[string]interface{} `pulumi:"label"`
+	// The name of the field.
+	// The name must be between two and 36 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+	// The name must be unique for a given resource type ID. In case there is a field with the same name in another type it has to have the same FieldType also
+	Name string `pulumi:"name"`
+	// Whether the field is required to have a value
+	Required *bool `pulumi:"required"`
+	// Describes the [type](https://docs.commercetools.com/api/projects/types#fieldtype) of the field
+	Type TypeFieldType `pulumi:"type"`
 }
 
 // TypeFieldInput is an input type that accepts TypeFieldArgs and TypeFieldOutput values.
@@ -6303,11 +6721,18 @@ type TypeFieldInput interface {
 }
 
 type TypeFieldArgs struct {
+	// [TextInputHint](https://docs.commercetools.com/api/projects/types#textinputhint) Provides a visual representation type for this field. It is only relevant for string-based field types like StringType and LocalizedStringType
 	InputHint pulumi.StringPtrInput `pulumi:"inputHint"`
-	Label     pulumi.MapInput       `pulumi:"label"`
-	Name      pulumi.StringInput    `pulumi:"name"`
-	Required  pulumi.BoolPtrInput   `pulumi:"required"`
-	Type      TypeFieldTypeInput    `pulumi:"type"`
+	// A human-readable label for the field
+	Label pulumi.MapInput `pulumi:"label"`
+	// The name of the field.
+	// The name must be between two and 36 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+	// The name must be unique for a given resource type ID. In case there is a field with the same name in another type it has to have the same FieldType also
+	Name pulumi.StringInput `pulumi:"name"`
+	// Whether the field is required to have a value
+	Required pulumi.BoolPtrInput `pulumi:"required"`
+	// Describes the [type](https://docs.commercetools.com/api/projects/types#fieldtype) of the field
+	Type TypeFieldTypeInput `pulumi:"type"`
 }
 
 func (TypeFieldArgs) ElementType() reflect.Type {
@@ -6361,22 +6786,29 @@ func (o TypeFieldOutput) ToTypeFieldOutputWithContext(ctx context.Context) TypeF
 	return o
 }
 
+// [TextInputHint](https://docs.commercetools.com/api/projects/types#textinputhint) Provides a visual representation type for this field. It is only relevant for string-based field types like StringType and LocalizedStringType
 func (o TypeFieldOutput) InputHint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TypeField) *string { return v.InputHint }).(pulumi.StringPtrOutput)
 }
 
+// A human-readable label for the field
 func (o TypeFieldOutput) Label() pulumi.MapOutput {
 	return o.ApplyT(func(v TypeField) map[string]interface{} { return v.Label }).(pulumi.MapOutput)
 }
 
+// The name of the field.
+// The name must be between two and 36 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+// The name must be unique for a given resource type ID. In case there is a field with the same name in another type it has to have the same FieldType also
 func (o TypeFieldOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v TypeField) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Whether the field is required to have a value
 func (o TypeFieldOutput) Required() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v TypeField) *bool { return v.Required }).(pulumi.BoolPtrOutput)
 }
 
+// Describes the [type](https://docs.commercetools.com/api/projects/types#fieldtype) of the field
 func (o TypeFieldOutput) Type() TypeFieldTypeOutput {
 	return o.ApplyT(func(v TypeField) TypeFieldType { return v.Type }).(TypeFieldTypeOutput)
 }
@@ -6402,11 +6834,15 @@ func (o TypeFieldArrayOutput) Index(i pulumi.IntInput) TypeFieldOutput {
 }
 
 type TypeFieldType struct {
-	ElementType2    *TypeFieldTypeElementType2    `pulumi:"ElementType2"`
+	ElementType2 *TypeFieldTypeElementType2 `pulumi:"ElementType2"`
+	// Localized values for the `lenum` type.
 	LocalizedValues []TypeFieldTypeLocalizedValue `pulumi:"localizedValues"`
-	Name            string                        `pulumi:"name"`
-	ReferenceTypeId *string                       `pulumi:"referenceTypeId"`
-	Values          []TypeFieldTypeValue          `pulumi:"values"`
+	// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+	Name string `pulumi:"name"`
+	// Resource type the Custom Field can reference. Required when type is `Reference`
+	ReferenceTypeId *string `pulumi:"referenceTypeId"`
+	// Values for the `enum` type.
+	Values []TypeFieldTypeValue `pulumi:"values"`
 }
 
 // TypeFieldTypeInput is an input type that accepts TypeFieldTypeArgs and TypeFieldTypeOutput values.
@@ -6421,11 +6857,15 @@ type TypeFieldTypeInput interface {
 }
 
 type TypeFieldTypeArgs struct {
-	ElementType2    TypeFieldTypeElementType2PtrInput     `pulumi:"ElementType2"`
+	ElementType2 TypeFieldTypeElementType2PtrInput `pulumi:"ElementType2"`
+	// Localized values for the `lenum` type.
 	LocalizedValues TypeFieldTypeLocalizedValueArrayInput `pulumi:"localizedValues"`
-	Name            pulumi.StringInput                    `pulumi:"name"`
-	ReferenceTypeId pulumi.StringPtrInput                 `pulumi:"referenceTypeId"`
-	Values          TypeFieldTypeValueArrayInput          `pulumi:"values"`
+	// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Resource type the Custom Field can reference. Required when type is `Reference`
+	ReferenceTypeId pulumi.StringPtrInput `pulumi:"referenceTypeId"`
+	// Values for the `enum` type.
+	Values TypeFieldTypeValueArrayInput `pulumi:"values"`
 }
 
 func (TypeFieldTypeArgs) ElementType() reflect.Type {
@@ -6458,27 +6898,35 @@ func (o TypeFieldTypeOutput) ElementType2() TypeFieldTypeElementType2PtrOutput {
 	return o.ApplyT(func(v TypeFieldType) *TypeFieldTypeElementType2 { return v.ElementType2 }).(TypeFieldTypeElementType2PtrOutput)
 }
 
+// Localized values for the `lenum` type.
 func (o TypeFieldTypeOutput) LocalizedValues() TypeFieldTypeLocalizedValueArrayOutput {
 	return o.ApplyT(func(v TypeFieldType) []TypeFieldTypeLocalizedValue { return v.LocalizedValues }).(TypeFieldTypeLocalizedValueArrayOutput)
 }
 
+// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
 func (o TypeFieldTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v TypeFieldType) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Resource type the Custom Field can reference. Required when type is `Reference`
 func (o TypeFieldTypeOutput) ReferenceTypeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TypeFieldType) *string { return v.ReferenceTypeId }).(pulumi.StringPtrOutput)
 }
 
+// Values for the `enum` type.
 func (o TypeFieldTypeOutput) Values() TypeFieldTypeValueArrayOutput {
 	return o.ApplyT(func(v TypeFieldType) []TypeFieldTypeValue { return v.Values }).(TypeFieldTypeValueArrayOutput)
 }
 
 type TypeFieldTypeElementType2 struct {
+	// Localized values for the `lenum` type.
 	LocalizedValues []TypeFieldTypeElementType2LocalizedValue `pulumi:"localizedValues"`
-	Name            string                                    `pulumi:"name"`
-	ReferenceTypeId *string                                   `pulumi:"referenceTypeId"`
-	Values          []TypeFieldTypeElementType2Value          `pulumi:"values"`
+	// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+	Name string `pulumi:"name"`
+	// Resource type the Custom Field can reference. Required when type is `Reference`
+	ReferenceTypeId *string `pulumi:"referenceTypeId"`
+	// Values for the `enum` type.
+	Values []TypeFieldTypeElementType2Value `pulumi:"values"`
 }
 
 // TypeFieldTypeElementType2Input is an input type that accepts TypeFieldTypeElementType2Args and TypeFieldTypeElementType2Output values.
@@ -6493,10 +6941,14 @@ type TypeFieldTypeElementType2Input interface {
 }
 
 type TypeFieldTypeElementType2Args struct {
+	// Localized values for the `lenum` type.
 	LocalizedValues TypeFieldTypeElementType2LocalizedValueArrayInput `pulumi:"localizedValues"`
-	Name            pulumi.StringInput                                `pulumi:"name"`
-	ReferenceTypeId pulumi.StringPtrInput                             `pulumi:"referenceTypeId"`
-	Values          TypeFieldTypeElementType2ValueArrayInput          `pulumi:"values"`
+	// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Resource type the Custom Field can reference. Required when type is `Reference`
+	ReferenceTypeId pulumi.StringPtrInput `pulumi:"referenceTypeId"`
+	// Values for the `enum` type.
+	Values TypeFieldTypeElementType2ValueArrayInput `pulumi:"values"`
 }
 
 func (TypeFieldTypeElementType2Args) ElementType() reflect.Type {
@@ -6576,18 +7028,22 @@ func (o TypeFieldTypeElementType2Output) ToTypeFieldTypeElementType2PtrOutputWit
 	}).(TypeFieldTypeElementType2PtrOutput)
 }
 
+// Localized values for the `lenum` type.
 func (o TypeFieldTypeElementType2Output) LocalizedValues() TypeFieldTypeElementType2LocalizedValueArrayOutput {
 	return o.ApplyT(func(v TypeFieldTypeElementType2) []TypeFieldTypeElementType2LocalizedValue { return v.LocalizedValues }).(TypeFieldTypeElementType2LocalizedValueArrayOutput)
 }
 
+// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
 func (o TypeFieldTypeElementType2Output) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v TypeFieldTypeElementType2) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Resource type the Custom Field can reference. Required when type is `Reference`
 func (o TypeFieldTypeElementType2Output) ReferenceTypeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TypeFieldTypeElementType2) *string { return v.ReferenceTypeId }).(pulumi.StringPtrOutput)
 }
 
+// Values for the `enum` type.
 func (o TypeFieldTypeElementType2Output) Values() TypeFieldTypeElementType2ValueArrayOutput {
 	return o.ApplyT(func(v TypeFieldTypeElementType2) []TypeFieldTypeElementType2Value { return v.Values }).(TypeFieldTypeElementType2ValueArrayOutput)
 }
@@ -6616,6 +7072,7 @@ func (o TypeFieldTypeElementType2PtrOutput) Elem() TypeFieldTypeElementType2Outp
 	}).(TypeFieldTypeElementType2Output)
 }
 
+// Localized values for the `lenum` type.
 func (o TypeFieldTypeElementType2PtrOutput) LocalizedValues() TypeFieldTypeElementType2LocalizedValueArrayOutput {
 	return o.ApplyT(func(v *TypeFieldTypeElementType2) []TypeFieldTypeElementType2LocalizedValue {
 		if v == nil {
@@ -6625,6 +7082,7 @@ func (o TypeFieldTypeElementType2PtrOutput) LocalizedValues() TypeFieldTypeEleme
 	}).(TypeFieldTypeElementType2LocalizedValueArrayOutput)
 }
 
+// Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
 func (o TypeFieldTypeElementType2PtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TypeFieldTypeElementType2) *string {
 		if v == nil {
@@ -6634,6 +7092,7 @@ func (o TypeFieldTypeElementType2PtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Resource type the Custom Field can reference. Required when type is `Reference`
 func (o TypeFieldTypeElementType2PtrOutput) ReferenceTypeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TypeFieldTypeElementType2) *string {
 		if v == nil {
@@ -6643,6 +7102,7 @@ func (o TypeFieldTypeElementType2PtrOutput) ReferenceTypeId() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Values for the `enum` type.
 func (o TypeFieldTypeElementType2PtrOutput) Values() TypeFieldTypeElementType2ValueArrayOutput {
 	return o.ApplyT(func(v *TypeFieldTypeElementType2) []TypeFieldTypeElementType2Value {
 		if v == nil {

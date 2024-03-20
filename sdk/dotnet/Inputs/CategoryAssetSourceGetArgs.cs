@@ -18,6 +18,9 @@ namespace Pulumi.Commercetools.Inputs
         [Input("dimensions")]
         public Input<Inputs.CategoryAssetSourceDimensionsGetArgs>? Dimensions { get; set; }
 
+        /// <summary>
+        /// Unique identifier, must be unique within the Asset
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 

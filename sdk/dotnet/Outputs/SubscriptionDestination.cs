@@ -13,16 +13,69 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class SubscriptionDestination
     {
+        /// <summary>
+        /// The access key of the SQS queue, SNS topic or EventBridge topic
+        /// </summary>
         public readonly string? AccessKey;
+        /// <summary>
+        /// The access secret of the SQS queue, SNS topic or EventBridge topic
+        /// </summary>
         public readonly string? AccessSecret;
+        /// <summary>
+        /// The AWS account ID of the SNS topic or EventBridge topic
+        /// </summary>
         public readonly string? AccountId;
+        /// <summary>
+        /// The acks value of the Confluent Cloud topic
+        /// </summary>
+        public readonly string? Acks;
+        /// <summary>
+        /// The API key of the Confluent Cloud topic
+        /// </summary>
+        public readonly string? ApiKey;
+        /// <summary>
+        /// The API secret of the Confluent Cloud topic
+        /// </summary>
+        public readonly string? ApiSecret;
+        /// <summary>
+        /// The bootstrap server of the Confluent Cloud topic
+        /// </summary>
+        public readonly string? BootstrapServer;
+        /// <summary>
+        /// The connection string of the Azure Service Bus
+        /// </summary>
         public readonly string? ConnectionString;
+        /// <summary>
+        /// The key of the Confluent Cloud topic
+        /// </summary>
+        public readonly string? Key;
+        /// <summary>
+        /// The project ID of the Google Cloud Pub/Sub
+        /// </summary>
         public readonly string? ProjectId;
+        /// <summary>
+        /// The URL of the SQS queue
+        /// </summary>
         public readonly string? QueueUrl;
+        /// <summary>
+        /// The region of the SQS queue, SNS topic or EventBridge topic
+        /// </summary>
         public readonly string? Region;
+        /// <summary>
+        /// The topic of the Google Cloud Pub/Sub or Confluent Cloud topic
+        /// </summary>
         public readonly string? Topic;
+        /// <summary>
+        /// The ARN of the SNS topic
+        /// </summary>
         public readonly string? TopicArn;
+        /// <summary>
+        /// The type of the destination. See [Destination](https://docs.commercetools.com/api/projects/subscriptions#destination) for more information
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// The URI of the EventGrid topic
+        /// </summary>
         public readonly string? Uri;
 
         [OutputConstructor]
@@ -33,7 +86,17 @@ namespace Pulumi.Commercetools.Outputs
 
             string? accountId,
 
+            string? acks,
+
+            string? apiKey,
+
+            string? apiSecret,
+
+            string? bootstrapServer,
+
             string? connectionString,
+
+            string? key,
 
             string? projectId,
 
@@ -52,7 +115,12 @@ namespace Pulumi.Commercetools.Outputs
             AccessKey = accessKey;
             AccessSecret = accessSecret;
             AccountId = accountId;
+            Acks = acks;
+            ApiKey = apiKey;
+            ApiSecret = apiSecret;
+            BootstrapServer = bootstrapServer;
             ConnectionString = connectionString;
+            Key = key;
             ProjectId = projectId;
             QueueUrl = queueUrl;
             Region = region;

@@ -12,6 +12,9 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class AttributeGroupAttributeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The Attribute's name as given in its AttributeDefinition.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 

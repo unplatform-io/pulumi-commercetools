@@ -13,6 +13,9 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class SubscriptionChange
     {
+        /// <summary>
+        /// [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+        /// </summary>
         public readonly ImmutableArray<string> ResourceTypeIds;
 
         [OutputConstructor]

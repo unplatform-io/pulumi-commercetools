@@ -156,6 +156,11 @@ class ApiExtensionTriggerArgs:
                  actions: pulumi.Input[Sequence[pulumi.Input[str]]],
                  resource_type_id: pulumi.Input[str],
                  condition: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] actions: Currently, Create and Update are supported
+        :param pulumi.Input[str] resource_type_id: Currently, cart, order, payment, and customer are supported
+        :param pulumi.Input[str] condition: Valid predicate that controls the conditions under which the API Extension is called.
+        """
         pulumi.set(__self__, "actions", actions)
         pulumi.set(__self__, "resource_type_id", resource_type_id)
         if condition is not None:
@@ -164,6 +169,9 @@ class ApiExtensionTriggerArgs:
     @property
     @pulumi.getter
     def actions(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Currently, Create and Update are supported
+        """
         return pulumi.get(self, "actions")
 
     @actions.setter
@@ -173,6 +181,9 @@ class ApiExtensionTriggerArgs:
     @property
     @pulumi.getter(name="resourceTypeId")
     def resource_type_id(self) -> pulumi.Input[str]:
+        """
+        Currently, cart, order, payment, and customer are supported
+        """
         return pulumi.get(self, "resource_type_id")
 
     @resource_type_id.setter
@@ -182,6 +193,9 @@ class ApiExtensionTriggerArgs:
     @property
     @pulumi.getter
     def condition(self) -> Optional[pulumi.Input[str]]:
+        """
+        Valid predicate that controls the conditions under which the API Extension is called.
+        """
         return pulumi.get(self, "condition")
 
     @condition.setter
@@ -193,11 +207,17 @@ class ApiExtensionTriggerArgs:
 class AttributeGroupAttributeArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Attribute's name as given in its AttributeDefinition.
+        """
         pulumi.set(__self__, "key", key)
 
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        The Attribute's name as given in its AttributeDefinition.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -210,6 +230,9 @@ class CartDiscountCustomArgs:
     def __init__(__self__, *,
                  type_id: pulumi.Input[str],
                  fields: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, Any]] fields: Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         pulumi.set(__self__, "type_id", type_id)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
@@ -226,6 +249,9 @@ class CartDiscountCustomArgs:
     @property
     @pulumi.getter
     def fields(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         return pulumi.get(self, "fields")
 
     @fields.setter
@@ -242,6 +268,14 @@ class CartDiscountTargetArgs:
                  predicate: Optional[pulumi.Input[str]] = None,
                  selection_mode: Optional[pulumi.Input[str]] = None,
                  trigger_quantity: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice
+        :param pulumi.Input[int] discounted_quantity: MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        :param pulumi.Input[int] max_occurrence: MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        :param pulumi.Input[str] predicate: LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        :param pulumi.Input[str] selection_mode: MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored
+        :param pulumi.Input[int] trigger_quantity: MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        """
         pulumi.set(__self__, "type", type)
         if discounted_quantity is not None:
             pulumi.set(__self__, "discounted_quantity", discounted_quantity)
@@ -257,6 +291,9 @@ class CartDiscountTargetArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Supports lineItems, customLineItems, multiBuyLineItems, multiBuyCustomLineItems, shipping or totalPrice
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -266,6 +303,9 @@ class CartDiscountTargetArgs:
     @property
     @pulumi.getter(name="discountedQuantity")
     def discounted_quantity(self) -> Optional[pulumi.Input[int]]:
+        """
+        MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        """
         return pulumi.get(self, "discounted_quantity")
 
     @discounted_quantity.setter
@@ -275,6 +315,9 @@ class CartDiscountTargetArgs:
     @property
     @pulumi.getter(name="maxOccurrence")
     def max_occurrence(self) -> Optional[pulumi.Input[int]]:
+        """
+        MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        """
         return pulumi.get(self, "max_occurrence")
 
     @max_occurrence.setter
@@ -284,6 +327,9 @@ class CartDiscountTargetArgs:
     @property
     @pulumi.getter
     def predicate(self) -> Optional[pulumi.Input[str]]:
+        """
+        LineItems, CustomLineItems, MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        """
         return pulumi.get(self, "predicate")
 
     @predicate.setter
@@ -293,6 +339,9 @@ class CartDiscountTargetArgs:
     @property
     @pulumi.getter(name="selectionMode")
     def selection_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. Can be either Cheapest or MostExpensive. If set for another target the value will be ignored
+        """
         return pulumi.get(self, "selection_mode")
 
     @selection_mode.setter
@@ -302,6 +351,9 @@ class CartDiscountTargetArgs:
     @property
     @pulumi.getter(name="triggerQuantity")
     def trigger_quantity(self) -> Optional[pulumi.Input[int]]:
+        """
+        MultiBuyLineItems or MultiBuyCustomLineItems target specific fields. If set for another target the value will be ignored
+        """
         return pulumi.get(self, "trigger_quantity")
 
     @trigger_quantity.setter
@@ -319,6 +371,15 @@ class CartDiscountValueArgs:
                  product_id: Optional[pulumi.Input[str]] = None,
                  supply_channel_id: Optional[pulumi.Input[str]] = None,
                  variant_id: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Currently supports absolute/relative/giftLineItem
+        :param pulumi.Input[str] distribution_channel_id: Channel must have the role ProductDistribution. Optional when value type is giftLineItem
+        :param pulumi.Input[Sequence[pulumi.Input['CartDiscountValueMoneyArgs']]] monies: Absolute discount specific fields
+        :param pulumi.Input[int] permyriad: Relative discount specific fields
+        :param pulumi.Input[str] product_id: ResourceIdentifier of a Product. Required when value type is giftLineItem
+        :param pulumi.Input[str] supply_channel_id: Channel must have the role InventorySupply. Optional when value type is giftLineItem
+        :param pulumi.Input[int] variant_id: ProductVariant of the Product. Required when value type is giftLineItem
+        """
         pulumi.set(__self__, "type", type)
         if distribution_channel_id is not None:
             pulumi.set(__self__, "distribution_channel_id", distribution_channel_id)
@@ -336,6 +397,9 @@ class CartDiscountValueArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Currently supports absolute/relative/giftLineItem
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -345,6 +409,9 @@ class CartDiscountValueArgs:
     @property
     @pulumi.getter(name="distributionChannelId")
     def distribution_channel_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Channel must have the role ProductDistribution. Optional when value type is giftLineItem
+        """
         return pulumi.get(self, "distribution_channel_id")
 
     @distribution_channel_id.setter
@@ -354,6 +421,9 @@ class CartDiscountValueArgs:
     @property
     @pulumi.getter
     def monies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CartDiscountValueMoneyArgs']]]]:
+        """
+        Absolute discount specific fields
+        """
         return pulumi.get(self, "monies")
 
     @monies.setter
@@ -363,6 +433,9 @@ class CartDiscountValueArgs:
     @property
     @pulumi.getter
     def permyriad(self) -> Optional[pulumi.Input[int]]:
+        """
+        Relative discount specific fields
+        """
         return pulumi.get(self, "permyriad")
 
     @permyriad.setter
@@ -372,6 +445,9 @@ class CartDiscountValueArgs:
     @property
     @pulumi.getter(name="productId")
     def product_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ResourceIdentifier of a Product. Required when value type is giftLineItem
+        """
         return pulumi.get(self, "product_id")
 
     @product_id.setter
@@ -381,6 +457,9 @@ class CartDiscountValueArgs:
     @property
     @pulumi.getter(name="supplyChannelId")
     def supply_channel_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Channel must have the role InventorySupply. Optional when value type is giftLineItem
+        """
         return pulumi.get(self, "supply_channel_id")
 
     @supply_channel_id.setter
@@ -390,6 +469,9 @@ class CartDiscountValueArgs:
     @property
     @pulumi.getter(name="variantId")
     def variant_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        ProductVariant of the Product. Required when value type is giftLineItem
+        """
         return pulumi.get(self, "variant_id")
 
     @variant_id.setter
@@ -402,12 +484,19 @@ class CartDiscountValueMoneyArgs:
     def __init__(__self__, *,
                  cent_amount: pulumi.Input[int],
                  currency_code: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] cent_amount: The amount in cents (the smallest indivisible unit of the currency)
+        :param pulumi.Input[str] currency_code: The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        """
         pulumi.set(__self__, "cent_amount", cent_amount)
         pulumi.set(__self__, "currency_code", currency_code)
 
     @property
     @pulumi.getter(name="centAmount")
     def cent_amount(self) -> pulumi.Input[int]:
+        """
+        The amount in cents (the smallest indivisible unit of the currency)
+        """
         return pulumi.get(self, "cent_amount")
 
     @cent_amount.setter
@@ -417,6 +506,9 @@ class CartDiscountValueMoneyArgs:
     @property
     @pulumi.getter(name="currencyCode")
     def currency_code(self) -> pulumi.Input[str]:
+        """
+        The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        """
         return pulumi.get(self, "currency_code")
 
     @currency_code.setter
@@ -433,6 +525,10 @@ class CategoryAssetArgs:
                  key: Optional[pulumi.Input[str]] = None,
                  sources: Optional[pulumi.Input[Sequence[pulumi.Input['CategoryAssetSourceArgs']]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] key: Optional User-defined identifier for the asset. Asset keys are unique inside their container (in this case the category)
+        :param pulumi.Input[Sequence[pulumi.Input['CategoryAssetSourceArgs']]] sources: Array of AssetSource, Has at least one entry
+        """
         pulumi.set(__self__, "name", name)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -475,6 +571,9 @@ class CategoryAssetArgs:
     @property
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional User-defined identifier for the asset. Asset keys are unique inside their container (in this case the category)
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -484,6 +583,9 @@ class CategoryAssetArgs:
     @property
     @pulumi.getter
     def sources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CategoryAssetSourceArgs']]]]:
+        """
+        Array of AssetSource, Has at least one entry
+        """
         return pulumi.get(self, "sources")
 
     @sources.setter
@@ -507,6 +609,9 @@ class CategoryAssetSourceArgs:
                  content_type: Optional[pulumi.Input[str]] = None,
                  dimensions: Optional[pulumi.Input['CategoryAssetSourceDimensionsArgs']] = None,
                  key: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: Unique identifier, must be unique within the Asset
+        """
         pulumi.set(__self__, "uri", uri)
         if content_type is not None:
             pulumi.set(__self__, "content_type", content_type)
@@ -545,6 +650,9 @@ class CategoryAssetSourceArgs:
     @property
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier, must be unique within the Asset
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -557,12 +665,19 @@ class CategoryAssetSourceDimensionsArgs:
     def __init__(__self__, *,
                  h: pulumi.Input[int],
                  w: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] h: The height of the asset source
+        :param pulumi.Input[int] w: The width of the asset source
+        """
         pulumi.set(__self__, "h", h)
         pulumi.set(__self__, "w", w)
 
     @property
     @pulumi.getter
     def h(self) -> pulumi.Input[int]:
+        """
+        The height of the asset source
+        """
         return pulumi.get(self, "h")
 
     @h.setter
@@ -572,6 +687,9 @@ class CategoryAssetSourceDimensionsArgs:
     @property
     @pulumi.getter
     def w(self) -> pulumi.Input[int]:
+        """
+        The width of the asset source
+        """
         return pulumi.get(self, "w")
 
     @w.setter
@@ -584,6 +702,9 @@ class CategoryCustomArgs:
     def __init__(__self__, *,
                  type_id: pulumi.Input[str],
                  fields: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, Any]] fields: Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         pulumi.set(__self__, "type_id", type_id)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
@@ -600,6 +721,9 @@ class CategoryCustomArgs:
     @property
     @pulumi.getter
     def fields(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         return pulumi.get(self, "fields")
 
     @fields.setter
@@ -916,6 +1040,9 @@ class ChannelCustomArgs:
     def __init__(__self__, *,
                  type_id: pulumi.Input[str],
                  fields: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, Any]] fields: Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         pulumi.set(__self__, "type_id", type_id)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
@@ -932,6 +1059,9 @@ class ChannelCustomArgs:
     @property
     @pulumi.getter
     def fields(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         return pulumi.get(self, "fields")
 
     @fields.setter
@@ -960,6 +1090,9 @@ class CustomerGroupCustomArgs:
     def __init__(__self__, *,
                  type_id: pulumi.Input[str],
                  fields: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, Any]] fields: Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         pulumi.set(__self__, "type_id", type_id)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
@@ -976,6 +1109,9 @@ class CustomerGroupCustomArgs:
     @property
     @pulumi.getter
     def fields(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         return pulumi.get(self, "fields")
 
     @fields.setter
@@ -988,6 +1124,9 @@ class DiscountCodeCustomArgs:
     def __init__(__self__, *,
                  type_id: pulumi.Input[str],
                  fields: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, Any]] fields: Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         pulumi.set(__self__, "type_id", type_id)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
@@ -1004,6 +1143,9 @@ class DiscountCodeCustomArgs:
     @property
     @pulumi.getter
     def fields(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         return pulumi.get(self, "fields")
 
     @fields.setter
@@ -1017,6 +1159,11 @@ class ProductDiscountValueArgs:
                  type: pulumi.Input[str],
                  monies: Optional[pulumi.Input[Sequence[pulumi.Input['ProductDiscountValueMoneyArgs']]]] = None,
                  permyriad: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Currently supports absolute/relative/external
+        :param pulumi.Input[Sequence[pulumi.Input['ProductDiscountValueMoneyArgs']]] monies: Absolute discount specific fields
+        :param pulumi.Input[int] permyriad: Relative discount specific fields
+        """
         pulumi.set(__self__, "type", type)
         if monies is not None:
             pulumi.set(__self__, "monies", monies)
@@ -1026,6 +1173,9 @@ class ProductDiscountValueArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Currently supports absolute/relative/external
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -1035,6 +1185,9 @@ class ProductDiscountValueArgs:
     @property
     @pulumi.getter
     def monies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProductDiscountValueMoneyArgs']]]]:
+        """
+        Absolute discount specific fields
+        """
         return pulumi.get(self, "monies")
 
     @monies.setter
@@ -1044,6 +1197,9 @@ class ProductDiscountValueArgs:
     @property
     @pulumi.getter
     def permyriad(self) -> Optional[pulumi.Input[int]]:
+        """
+        Relative discount specific fields
+        """
         return pulumi.get(self, "permyriad")
 
     @permyriad.setter
@@ -1057,6 +1213,11 @@ class ProductDiscountValueMoneyArgs:
                  cent_amount: pulumi.Input[int],
                  currency_code: pulumi.Input[str],
                  fraction_digits: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] cent_amount: The amount in cents (the smallest indivisible unit of the currency)
+        :param pulumi.Input[str] currency_code: The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        :param pulumi.Input[int] fraction_digits: The number of default fraction digits for the given currency, like 2 for EUR or 0 for JPY
+        """
         pulumi.set(__self__, "cent_amount", cent_amount)
         pulumi.set(__self__, "currency_code", currency_code)
         if fraction_digits is not None:
@@ -1065,6 +1226,9 @@ class ProductDiscountValueMoneyArgs:
     @property
     @pulumi.getter(name="centAmount")
     def cent_amount(self) -> pulumi.Input[int]:
+        """
+        The amount in cents (the smallest indivisible unit of the currency)
+        """
         return pulumi.get(self, "cent_amount")
 
     @cent_amount.setter
@@ -1074,6 +1238,9 @@ class ProductDiscountValueMoneyArgs:
     @property
     @pulumi.getter(name="currencyCode")
     def currency_code(self) -> pulumi.Input[str]:
+        """
+        The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        """
         return pulumi.get(self, "currency_code")
 
     @currency_code.setter
@@ -1083,6 +1250,9 @@ class ProductDiscountValueMoneyArgs:
     @property
     @pulumi.getter(name="fractionDigits")
     def fraction_digits(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of default fraction digits for the given currency, like 2 for EUR or 0 for JPY
+        """
         return pulumi.get(self, "fraction_digits")
 
     @fraction_digits.setter
@@ -1101,6 +1271,17 @@ class ProductTypeAttributeArgs:
                  input_tip: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  required: Optional[pulumi.Input[bool]] = None,
                  searchable: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[Mapping[str, Any]] label: A human-readable label for the attribute
+        :param pulumi.Input[str] name: The unique name of the attribute used in the API. The name must be between two and 256 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+               When using the same name for an attribute in two or more product types all fields of the AttributeDefinition of this attribute need to be the same across the product types, otherwise an AttributeDefinitionAlreadyExists error code will be returned. An exception to this are the values of an enum or lenum type and sets thereof
+        :param pulumi.Input['ProductTypeAttributeTypeArgs'] type: [AttributeType](https://docs.commercetools.com/api/projects/productTypes#attributetype)
+        :param pulumi.Input[str] constraint: Describes how an attribute or a set of attributes should be validated across all variants of a product. See also [Attribute Constraint](https://docs.commercetools.com/api/projects/productTypes#attributeconstraint-enum)
+        :param pulumi.Input[str] input_hint: Provides a visual representation type for this attribute. only relevant for text-based attribute types like TextType and LocalizableTextType
+        :param pulumi.Input[Mapping[str, Any]] input_tip: Additional information about the attribute that aids content managers when setting product details
+        :param pulumi.Input[bool] required: Whether the attribute is required to have a value
+        :param pulumi.Input[bool] searchable: Whether the attribute's values should generally be activated in product search
+        """
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
@@ -1118,6 +1299,9 @@ class ProductTypeAttributeArgs:
     @property
     @pulumi.getter
     def label(self) -> pulumi.Input[Mapping[str, Any]]:
+        """
+        A human-readable label for the attribute
+        """
         return pulumi.get(self, "label")
 
     @label.setter
@@ -1127,6 +1311,10 @@ class ProductTypeAttributeArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        The unique name of the attribute used in the API. The name must be between two and 256 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+        When using the same name for an attribute in two or more product types all fields of the AttributeDefinition of this attribute need to be the same across the product types, otherwise an AttributeDefinitionAlreadyExists error code will be returned. An exception to this are the values of an enum or lenum type and sets thereof
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -1136,6 +1324,9 @@ class ProductTypeAttributeArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input['ProductTypeAttributeTypeArgs']:
+        """
+        [AttributeType](https://docs.commercetools.com/api/projects/productTypes#attributetype)
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -1145,6 +1336,9 @@ class ProductTypeAttributeArgs:
     @property
     @pulumi.getter
     def constraint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Describes how an attribute or a set of attributes should be validated across all variants of a product. See also [Attribute Constraint](https://docs.commercetools.com/api/projects/productTypes#attributeconstraint-enum)
+        """
         return pulumi.get(self, "constraint")
 
     @constraint.setter
@@ -1154,6 +1348,9 @@ class ProductTypeAttributeArgs:
     @property
     @pulumi.getter(name="inputHint")
     def input_hint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Provides a visual representation type for this attribute. only relevant for text-based attribute types like TextType and LocalizableTextType
+        """
         return pulumi.get(self, "input_hint")
 
     @input_hint.setter
@@ -1163,6 +1360,9 @@ class ProductTypeAttributeArgs:
     @property
     @pulumi.getter(name="inputTip")
     def input_tip(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Additional information about the attribute that aids content managers when setting product details
+        """
         return pulumi.get(self, "input_tip")
 
     @input_tip.setter
@@ -1172,6 +1372,9 @@ class ProductTypeAttributeArgs:
     @property
     @pulumi.getter
     def required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the attribute is required to have a value
+        """
         return pulumi.get(self, "required")
 
     @required.setter
@@ -1181,6 +1384,9 @@ class ProductTypeAttributeArgs:
     @property
     @pulumi.getter
     def searchable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the attribute's values should generally be activated in product search
+        """
         return pulumi.get(self, "searchable")
 
     @searchable.setter
@@ -1197,6 +1403,13 @@ class ProductTypeAttributeTypeArgs:
                  reference_type_id: Optional[pulumi.Input[str]] = None,
                  type_reference: Optional[pulumi.Input[str]] = None,
                  values: Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeValueArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+        :param pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeLocalizedValueArgs']]] localized_values: Localized values for the `lenum` type.
+        :param pulumi.Input[str] reference_type_id: Resource type the Custom Field can reference. Required when type is `reference`
+        :param pulumi.Input[str] type_reference: Reference to another product type. Required when type is `nested`.
+        :param pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeValueArgs']]] values: Values for the `enum` type.
+        """
         pulumi.set(__self__, "name", name)
         if element_type2 is not None:
             pulumi.set(__self__, "element_type2", element_type2)
@@ -1212,6 +1425,9 @@ class ProductTypeAttributeTypeArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -1230,6 +1446,9 @@ class ProductTypeAttributeTypeArgs:
     @property
     @pulumi.getter(name="localizedValues")
     def localized_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeLocalizedValueArgs']]]]:
+        """
+        Localized values for the `lenum` type.
+        """
         return pulumi.get(self, "localized_values")
 
     @localized_values.setter
@@ -1239,6 +1458,9 @@ class ProductTypeAttributeTypeArgs:
     @property
     @pulumi.getter(name="referenceTypeId")
     def reference_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Resource type the Custom Field can reference. Required when type is `reference`
+        """
         return pulumi.get(self, "reference_type_id")
 
     @reference_type_id.setter
@@ -1248,6 +1470,9 @@ class ProductTypeAttributeTypeArgs:
     @property
     @pulumi.getter(name="typeReference")
     def type_reference(self) -> Optional[pulumi.Input[str]]:
+        """
+        Reference to another product type. Required when type is `nested`.
+        """
         return pulumi.get(self, "type_reference")
 
     @type_reference.setter
@@ -1257,6 +1482,9 @@ class ProductTypeAttributeTypeArgs:
     @property
     @pulumi.getter
     def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeValueArgs']]]]:
+        """
+        Values for the `enum` type.
+        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -1272,6 +1500,13 @@ class ProductTypeAttributeTypeElementType2Args:
                  reference_type_id: Optional[pulumi.Input[str]] = None,
                  type_reference: Optional[pulumi.Input[str]] = None,
                  values: Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementType2ValueArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+        :param pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementType2LocalizedValueArgs']]] localized_values: Localized values for the `lenum` type.
+        :param pulumi.Input[str] reference_type_id: Resource type the Custom Field can reference. Required when type is `reference`
+        :param pulumi.Input[str] type_reference: Reference to another product type. Required when type is `nested`.
+        :param pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementType2ValueArgs']]] values: Values for the `enum` type.
+        """
         pulumi.set(__self__, "name", name)
         if localized_values is not None:
             pulumi.set(__self__, "localized_values", localized_values)
@@ -1285,6 +1520,9 @@ class ProductTypeAttributeTypeElementType2Args:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -1294,6 +1532,9 @@ class ProductTypeAttributeTypeElementType2Args:
     @property
     @pulumi.getter(name="localizedValues")
     def localized_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementType2LocalizedValueArgs']]]]:
+        """
+        Localized values for the `lenum` type.
+        """
         return pulumi.get(self, "localized_values")
 
     @localized_values.setter
@@ -1303,6 +1544,9 @@ class ProductTypeAttributeTypeElementType2Args:
     @property
     @pulumi.getter(name="referenceTypeId")
     def reference_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Resource type the Custom Field can reference. Required when type is `reference`
+        """
         return pulumi.get(self, "reference_type_id")
 
     @reference_type_id.setter
@@ -1312,6 +1556,9 @@ class ProductTypeAttributeTypeElementType2Args:
     @property
     @pulumi.getter(name="typeReference")
     def type_reference(self) -> Optional[pulumi.Input[str]]:
+        """
+        Reference to another product type. Required when type is `nested`.
+        """
         return pulumi.get(self, "type_reference")
 
     @type_reference.setter
@@ -1321,6 +1568,9 @@ class ProductTypeAttributeTypeElementType2Args:
     @property
     @pulumi.getter
     def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProductTypeAttributeTypeElementType2ValueArgs']]]]:
+        """
+        Values for the `enum` type.
+        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -1441,6 +1691,10 @@ class ProjectSettingsCartsArgs:
     def __init__(__self__, *,
                  country_tax_rate_fallback_enabled: Optional[pulumi.Input[bool]] = None,
                  delete_days_after_last_modification: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] country_tax_rate_fallback_enabled: Indicates if country - no state tax rate fallback should be used when a shipping address state is not explicitly covered in the rates lists of all tax categories of a cart line items
+        :param pulumi.Input[int] delete_days_after_last_modification: Number - Optional The default value for the deleteDaysAfterLastModification parameter of the CartDraft. Initially set to 90 for projects created after December 2019.
+        """
         if country_tax_rate_fallback_enabled is not None:
             pulumi.set(__self__, "country_tax_rate_fallback_enabled", country_tax_rate_fallback_enabled)
         if delete_days_after_last_modification is not None:
@@ -1449,6 +1703,9 @@ class ProjectSettingsCartsArgs:
     @property
     @pulumi.getter(name="countryTaxRateFallbackEnabled")
     def country_tax_rate_fallback_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if country - no state tax rate fallback should be used when a shipping address state is not explicitly covered in the rates lists of all tax categories of a cart line items
+        """
         return pulumi.get(self, "country_tax_rate_fallback_enabled")
 
     @country_tax_rate_fallback_enabled.setter
@@ -1458,6 +1715,9 @@ class ProjectSettingsCartsArgs:
     @property
     @pulumi.getter(name="deleteDaysAfterLastModification")
     def delete_days_after_last_modification(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number - Optional The default value for the deleteDaysAfterLastModification parameter of the CartDraft. Initially set to 90 for projects created after December 2019.
+        """
         return pulumi.get(self, "delete_days_after_last_modification")
 
     @delete_days_after_last_modification.setter
@@ -1470,6 +1730,9 @@ class ProjectSettingsExternalOauthArgs:
     def __init__(__self__, *,
                  authorization_header: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] authorization_header: Partially hidden on retrieval
+        """
         if authorization_header is not None:
             pulumi.set(__self__, "authorization_header", authorization_header)
         if url is not None:
@@ -1478,6 +1741,9 @@ class ProjectSettingsExternalOauthArgs:
     @property
     @pulumi.getter(name="authorizationHeader")
     def authorization_header(self) -> Optional[pulumi.Input[str]]:
+        """
+        Partially hidden on retrieval
+        """
         return pulumi.get(self, "authorization_header")
 
     @authorization_header.setter
@@ -1499,6 +1765,10 @@ class ProjectSettingsMessagesArgs:
     def __init__(__self__, *,
                  delete_days_after_creation: Optional[pulumi.Input[int]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[int] delete_days_after_creation: Specifies the number of days each Message should be available via the Messages Query API
+        :param pulumi.Input[bool] enabled: When true the creation of messages on the Messages Query HTTP API is enabled
+        """
         if delete_days_after_creation is not None:
             pulumi.set(__self__, "delete_days_after_creation", delete_days_after_creation)
         if enabled is not None:
@@ -1507,6 +1777,9 @@ class ProjectSettingsMessagesArgs:
     @property
     @pulumi.getter(name="deleteDaysAfterCreation")
     def delete_days_after_creation(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the number of days each Message should be available via the Messages Query API
+        """
         return pulumi.get(self, "delete_days_after_creation")
 
     @delete_days_after_creation.setter
@@ -1516,6 +1789,9 @@ class ProjectSettingsMessagesArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When true the creation of messages on the Messages Query HTTP API is enabled
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -1528,6 +1804,9 @@ class ProjectSettingsShippingRateCartClassificationValueArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  label: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] key: [Resource Type ID](https://docs.commercetools.com/api/projects/Projects#changeProject)
+        """
         pulumi.set(__self__, "key", key)
         if label is not None:
             pulumi.set(__self__, "label", label)
@@ -1535,6 +1814,9 @@ class ProjectSettingsShippingRateCartClassificationValueArgs:
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        [Resource Type ID](https://docs.commercetools.com/api/projects/Projects#changeProject)
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -1556,6 +1838,9 @@ class ShippingMethodCustomArgs:
     def __init__(__self__, *,
                  type_id: pulumi.Input[str],
                  fields: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, Any]] fields: Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         pulumi.set(__self__, "type_id", type_id)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
@@ -1572,6 +1857,9 @@ class ShippingMethodCustomArgs:
     @property
     @pulumi.getter
     def fields(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         return pulumi.get(self, "fields")
 
     @fields.setter
@@ -1584,6 +1872,9 @@ class ShippingZoneLocationArgs:
     def __init__(__self__, *,
                  country: pulumi.Input[str],
                  state: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] country: A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
         pulumi.set(__self__, "country", country)
         if state is not None:
             pulumi.set(__self__, "state", state)
@@ -1591,6 +1882,9 @@ class ShippingZoneLocationArgs:
     @property
     @pulumi.getter
     def country(self) -> pulumi.Input[str]:
+        """
+        A two-digit country code as per [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+        """
         return pulumi.get(self, "country")
 
     @country.setter
@@ -1612,12 +1906,19 @@ class ShippingZoneRateFreeAboveArgs:
     def __init__(__self__, *,
                  cent_amount: pulumi.Input[int],
                  currency_code: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] cent_amount: The amount in cents (the smallest indivisible unit of the currency)
+        :param pulumi.Input[str] currency_code: The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        """
         pulumi.set(__self__, "cent_amount", cent_amount)
         pulumi.set(__self__, "currency_code", currency_code)
 
     @property
     @pulumi.getter(name="centAmount")
     def cent_amount(self) -> pulumi.Input[int]:
+        """
+        The amount in cents (the smallest indivisible unit of the currency)
+        """
         return pulumi.get(self, "cent_amount")
 
     @cent_amount.setter
@@ -1627,6 +1928,9 @@ class ShippingZoneRateFreeAboveArgs:
     @property
     @pulumi.getter(name="currencyCode")
     def currency_code(self) -> pulumi.Input[str]:
+        """
+        The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        """
         return pulumi.get(self, "currency_code")
 
     @currency_code.setter
@@ -1670,6 +1974,14 @@ class ShippingZoneRateShippingRatePriceTierArgs:
                  price_function: Optional[pulumi.Input['ShippingZoneRateShippingRatePriceTierPriceFunctionArgs']] = None,
                  score: Optional[pulumi.Input[int]] = None,
                  value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: CartValue, CartScore or CartClassification
+        :param pulumi.Input[int] minimum_cent_amount: If type is CartValue this represents the cent amount of the tier
+        :param pulumi.Input['ShippingZoneRateShippingRatePriceTierPriceArgs'] price: The price of the score, value or minimum_cent_amount tier
+        :param pulumi.Input['ShippingZoneRateShippingRatePriceTierPriceFunctionArgs'] price_function: If type is CartScore. Allows to calculate a price dynamically for the score.
+        :param pulumi.Input[int] score: If type is CartScore. Sets a fixed price for this score value
+        :param pulumi.Input[str] value: If type is CartClassification, must be a valid key of the CartClassification
+        """
         pulumi.set(__self__, "type", type)
         if minimum_cent_amount is not None:
             pulumi.set(__self__, "minimum_cent_amount", minimum_cent_amount)
@@ -1685,6 +1997,9 @@ class ShippingZoneRateShippingRatePriceTierArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        CartValue, CartScore or CartClassification
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -1694,6 +2009,9 @@ class ShippingZoneRateShippingRatePriceTierArgs:
     @property
     @pulumi.getter(name="minimumCentAmount")
     def minimum_cent_amount(self) -> Optional[pulumi.Input[int]]:
+        """
+        If type is CartValue this represents the cent amount of the tier
+        """
         return pulumi.get(self, "minimum_cent_amount")
 
     @minimum_cent_amount.setter
@@ -1703,6 +2021,9 @@ class ShippingZoneRateShippingRatePriceTierArgs:
     @property
     @pulumi.getter
     def price(self) -> Optional[pulumi.Input['ShippingZoneRateShippingRatePriceTierPriceArgs']]:
+        """
+        The price of the score, value or minimum_cent_amount tier
+        """
         return pulumi.get(self, "price")
 
     @price.setter
@@ -1712,6 +2033,9 @@ class ShippingZoneRateShippingRatePriceTierArgs:
     @property
     @pulumi.getter(name="priceFunction")
     def price_function(self) -> Optional[pulumi.Input['ShippingZoneRateShippingRatePriceTierPriceFunctionArgs']]:
+        """
+        If type is CartScore. Allows to calculate a price dynamically for the score.
+        """
         return pulumi.get(self, "price_function")
 
     @price_function.setter
@@ -1721,6 +2045,9 @@ class ShippingZoneRateShippingRatePriceTierArgs:
     @property
     @pulumi.getter
     def score(self) -> Optional[pulumi.Input[int]]:
+        """
+        If type is CartScore. Sets a fixed price for this score value
+        """
         return pulumi.get(self, "score")
 
     @score.setter
@@ -1730,6 +2057,9 @@ class ShippingZoneRateShippingRatePriceTierArgs:
     @property
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        If type is CartClassification, must be a valid key of the CartClassification
+        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -1796,6 +2126,9 @@ class StoreCustomArgs:
     def __init__(__self__, *,
                  type_id: pulumi.Input[str],
                  fields: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, Any]] fields: Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         pulumi.set(__self__, "type_id", type_id)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
@@ -1812,6 +2145,9 @@ class StoreCustomArgs:
     @property
     @pulumi.getter
     def fields(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Custom fields for this resource. Note that the values need to be provided as JSON encoded strings: `my-value = jsonencode({"key": "value"})`
+        """
         return pulumi.get(self, "fields")
 
     @fields.setter
@@ -1824,12 +2160,19 @@ class StoreProductSelectionArgs:
     def __init__(__self__, *,
                  active: pulumi.Input[bool],
                  product_selection_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[bool] active: If true, all Products assigned to this Product Selection are part of the Store's assortment
+        :param pulumi.Input[str] product_selection_id: Resource Identifier of a ProductSelection
+        """
         pulumi.set(__self__, "active", active)
         pulumi.set(__self__, "product_selection_id", product_selection_id)
 
     @property
     @pulumi.getter
     def active(self) -> pulumi.Input[bool]:
+        """
+        If true, all Products assigned to this Product Selection are part of the Store's assortment
+        """
         return pulumi.get(self, "active")
 
     @active.setter
@@ -1839,6 +2182,9 @@ class StoreProductSelectionArgs:
     @property
     @pulumi.getter(name="productSelectionId")
     def product_selection_id(self) -> pulumi.Input[str]:
+        """
+        Resource Identifier of a ProductSelection
+        """
         return pulumi.get(self, "product_selection_id")
 
     @product_selection_id.setter
@@ -1850,11 +2196,17 @@ class StoreProductSelectionArgs:
 class SubscriptionChangeArgs:
     def __init__(__self__, *,
                  resource_type_ids: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_type_ids: [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+        """
         pulumi.set(__self__, "resource_type_ids", resource_type_ids)
 
     @property
     @pulumi.getter(name="resourceTypeIds")
     def resource_type_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+        """
         return pulumi.get(self, "resource_type_ids")
 
     @resource_type_ids.setter
@@ -1869,13 +2221,36 @@ class SubscriptionDestinationArgs:
                  access_key: Optional[pulumi.Input[str]] = None,
                  access_secret: Optional[pulumi.Input[str]] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
+                 acks: Optional[pulumi.Input[str]] = None,
+                 api_key: Optional[pulumi.Input[str]] = None,
+                 api_secret: Optional[pulumi.Input[str]] = None,
+                 bootstrap_server: Optional[pulumi.Input[str]] = None,
                  connection_string: Optional[pulumi.Input[str]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  queue_url: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  topic: Optional[pulumi.Input[str]] = None,
                  topic_arn: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: The type of the destination. See [Destination](https://docs.commercetools.com/api/projects/subscriptions#destination) for more information
+        :param pulumi.Input[str] access_key: The access key of the SQS queue, SNS topic or EventBridge topic
+        :param pulumi.Input[str] access_secret: The access secret of the SQS queue, SNS topic or EventBridge topic
+        :param pulumi.Input[str] account_id: The AWS account ID of the SNS topic or EventBridge topic
+        :param pulumi.Input[str] acks: The acks value of the Confluent Cloud topic
+        :param pulumi.Input[str] api_key: The API key of the Confluent Cloud topic
+        :param pulumi.Input[str] api_secret: The API secret of the Confluent Cloud topic
+        :param pulumi.Input[str] bootstrap_server: The bootstrap server of the Confluent Cloud topic
+        :param pulumi.Input[str] connection_string: The connection string of the Azure Service Bus
+        :param pulumi.Input[str] key: The key of the Confluent Cloud topic
+        :param pulumi.Input[str] project_id: The project ID of the Google Cloud Pub/Sub
+        :param pulumi.Input[str] queue_url: The URL of the SQS queue
+        :param pulumi.Input[str] region: The region of the SQS queue, SNS topic or EventBridge topic
+        :param pulumi.Input[str] topic: The topic of the Google Cloud Pub/Sub or Confluent Cloud topic
+        :param pulumi.Input[str] topic_arn: The ARN of the SNS topic
+        :param pulumi.Input[str] uri: The URI of the EventGrid topic
+        """
         pulumi.set(__self__, "type", type)
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
@@ -1883,8 +2258,18 @@ class SubscriptionDestinationArgs:
             pulumi.set(__self__, "access_secret", access_secret)
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
+        if acks is not None:
+            pulumi.set(__self__, "acks", acks)
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if api_secret is not None:
+            pulumi.set(__self__, "api_secret", api_secret)
+        if bootstrap_server is not None:
+            pulumi.set(__self__, "bootstrap_server", bootstrap_server)
         if connection_string is not None:
             pulumi.set(__self__, "connection_string", connection_string)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if queue_url is not None:
@@ -1901,6 +2286,9 @@ class SubscriptionDestinationArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        The type of the destination. See [Destination](https://docs.commercetools.com/api/projects/subscriptions#destination) for more information
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -1910,6 +2298,9 @@ class SubscriptionDestinationArgs:
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The access key of the SQS queue, SNS topic or EventBridge topic
+        """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
@@ -1919,6 +2310,9 @@ class SubscriptionDestinationArgs:
     @property
     @pulumi.getter(name="accessSecret")
     def access_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        The access secret of the SQS queue, SNS topic or EventBridge topic
+        """
         return pulumi.get(self, "access_secret")
 
     @access_secret.setter
@@ -1928,6 +2322,9 @@ class SubscriptionDestinationArgs:
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS account ID of the SNS topic or EventBridge topic
+        """
         return pulumi.get(self, "account_id")
 
     @account_id.setter
@@ -1935,8 +2332,59 @@ class SubscriptionDestinationArgs:
         pulumi.set(self, "account_id", value)
 
     @property
+    @pulumi.getter
+    def acks(self) -> Optional[pulumi.Input[str]]:
+        """
+        The acks value of the Confluent Cloud topic
+        """
+        return pulumi.get(self, "acks")
+
+    @acks.setter
+    def acks(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acks", value)
+
+    @property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The API key of the Confluent Cloud topic
+        """
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_key", value)
+
+    @property
+    @pulumi.getter(name="apiSecret")
+    def api_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        The API secret of the Confluent Cloud topic
+        """
+        return pulumi.get(self, "api_secret")
+
+    @api_secret.setter
+    def api_secret(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_secret", value)
+
+    @property
+    @pulumi.getter(name="bootstrapServer")
+    def bootstrap_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        The bootstrap server of the Confluent Cloud topic
+        """
+        return pulumi.get(self, "bootstrap_server")
+
+    @bootstrap_server.setter
+    def bootstrap_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bootstrap_server", value)
+
+    @property
     @pulumi.getter(name="connectionString")
     def connection_string(self) -> Optional[pulumi.Input[str]]:
+        """
+        The connection string of the Azure Service Bus
+        """
         return pulumi.get(self, "connection_string")
 
     @connection_string.setter
@@ -1944,8 +2392,23 @@ class SubscriptionDestinationArgs:
         pulumi.set(self, "connection_string", value)
 
     @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key of the Confluent Cloud topic
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project ID of the Google Cloud Pub/Sub
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -1955,6 +2418,9 @@ class SubscriptionDestinationArgs:
     @property
     @pulumi.getter(name="queueUrl")
     def queue_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL of the SQS queue
+        """
         return pulumi.get(self, "queue_url")
 
     @queue_url.setter
@@ -1964,6 +2430,9 @@ class SubscriptionDestinationArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region of the SQS queue, SNS topic or EventBridge topic
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -1973,6 +2442,9 @@ class SubscriptionDestinationArgs:
     @property
     @pulumi.getter
     def topic(self) -> Optional[pulumi.Input[str]]:
+        """
+        The topic of the Google Cloud Pub/Sub or Confluent Cloud topic
+        """
         return pulumi.get(self, "topic")
 
     @topic.setter
@@ -1982,6 +2454,9 @@ class SubscriptionDestinationArgs:
     @property
     @pulumi.getter(name="topicArn")
     def topic_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ARN of the SNS topic
+        """
         return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
@@ -1991,6 +2466,9 @@ class SubscriptionDestinationArgs:
     @property
     @pulumi.getter
     def uri(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URI of the EventGrid topic
+        """
         return pulumi.get(self, "uri")
 
     @uri.setter
@@ -2003,6 +2481,9 @@ class SubscriptionFormatArgs:
     def __init__(__self__, *,
                  cloud_events_version: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] cloud_events_version: For CloudEvents
+        """
         if cloud_events_version is not None:
             pulumi.set(__self__, "cloud_events_version", cloud_events_version)
         if type is not None:
@@ -2011,6 +2492,9 @@ class SubscriptionFormatArgs:
     @property
     @pulumi.getter(name="cloudEventsVersion")
     def cloud_events_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        For CloudEvents
+        """
         return pulumi.get(self, "cloud_events_version")
 
     @cloud_events_version.setter
@@ -2032,12 +2516,19 @@ class SubscriptionMessageArgs:
     def __init__(__self__, *,
                  resource_type_id: pulumi.Input[str],
                  types: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[str] resource_type_id: [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] types: types must contain valid message types for this resource, for example for resource type product the message type ProductPublished is valid. If no types of messages are given, the subscription is valid for all messages of this resource
+        """
         pulumi.set(__self__, "resource_type_id", resource_type_id)
         pulumi.set(__self__, "types", types)
 
     @property
     @pulumi.getter(name="resourceTypeId")
     def resource_type_id(self) -> pulumi.Input[str]:
+        """
+        [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+        """
         return pulumi.get(self, "resource_type_id")
 
     @resource_type_id.setter
@@ -2047,6 +2538,9 @@ class SubscriptionMessageArgs:
     @property
     @pulumi.getter
     def types(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        types must contain valid message types for this resource, for example for resource type product the message type ProductPublished is valid. If no types of messages are given, the subscription is valid for all messages of this resource
+        """
         return pulumi.get(self, "types")
 
     @types.setter
@@ -2059,12 +2553,18 @@ class TaxCategoryRateSubRateArgs:
     def __init__(__self__, *,
                  amount: pulumi.Input[float],
                  name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[float] amount: Number Percentage in the range of [0..1]
+        """
         pulumi.set(__self__, "amount", amount)
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def amount(self) -> pulumi.Input[float]:
+        """
+        Number Percentage in the range of [0..1]
+        """
         return pulumi.get(self, "amount")
 
     @amount.setter
@@ -2089,6 +2589,15 @@ class TypeFieldArgs:
                  type: pulumi.Input['TypeFieldTypeArgs'],
                  input_hint: Optional[pulumi.Input[str]] = None,
                  required: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[Mapping[str, Any]] label: A human-readable label for the field
+        :param pulumi.Input[str] name: The name of the field.
+               The name must be between two and 36 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+               The name must be unique for a given resource type ID. In case there is a field with the same name in another type it has to have the same FieldType also
+        :param pulumi.Input['TypeFieldTypeArgs'] type: Describes the [type](https://docs.commercetools.com/api/projects/types#fieldtype) of the field
+        :param pulumi.Input[str] input_hint: [TextInputHint](https://docs.commercetools.com/api/projects/types#textinputhint) Provides a visual representation type for this field. It is only relevant for string-based field types like StringType and LocalizedStringType
+        :param pulumi.Input[bool] required: Whether the field is required to have a value
+        """
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
@@ -2100,6 +2609,9 @@ class TypeFieldArgs:
     @property
     @pulumi.getter
     def label(self) -> pulumi.Input[Mapping[str, Any]]:
+        """
+        A human-readable label for the field
+        """
         return pulumi.get(self, "label")
 
     @label.setter
@@ -2109,6 +2621,11 @@ class TypeFieldArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        The name of the field.
+        The name must be between two and 36 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+        The name must be unique for a given resource type ID. In case there is a field with the same name in another type it has to have the same FieldType also
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2118,6 +2635,9 @@ class TypeFieldArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input['TypeFieldTypeArgs']:
+        """
+        Describes the [type](https://docs.commercetools.com/api/projects/types#fieldtype) of the field
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -2127,6 +2647,9 @@ class TypeFieldArgs:
     @property
     @pulumi.getter(name="inputHint")
     def input_hint(self) -> Optional[pulumi.Input[str]]:
+        """
+        [TextInputHint](https://docs.commercetools.com/api/projects/types#textinputhint) Provides a visual representation type for this field. It is only relevant for string-based field types like StringType and LocalizedStringType
+        """
         return pulumi.get(self, "input_hint")
 
     @input_hint.setter
@@ -2136,6 +2659,9 @@ class TypeFieldArgs:
     @property
     @pulumi.getter
     def required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the field is required to have a value
+        """
         return pulumi.get(self, "required")
 
     @required.setter
@@ -2151,6 +2677,12 @@ class TypeFieldTypeArgs:
                  localized_values: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeLocalizedValueArgs']]]] = None,
                  reference_type_id: Optional[pulumi.Input[str]] = None,
                  values: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeValueArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+        :param pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeLocalizedValueArgs']]] localized_values: Localized values for the `lenum` type.
+        :param pulumi.Input[str] reference_type_id: Resource type the Custom Field can reference. Required when type is `Reference`
+        :param pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeValueArgs']]] values: Values for the `enum` type.
+        """
         pulumi.set(__self__, "name", name)
         if element_type2 is not None:
             pulumi.set(__self__, "element_type2", element_type2)
@@ -2164,6 +2696,9 @@ class TypeFieldTypeArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2182,6 +2717,9 @@ class TypeFieldTypeArgs:
     @property
     @pulumi.getter(name="localizedValues")
     def localized_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeLocalizedValueArgs']]]]:
+        """
+        Localized values for the `lenum` type.
+        """
         return pulumi.get(self, "localized_values")
 
     @localized_values.setter
@@ -2191,6 +2729,9 @@ class TypeFieldTypeArgs:
     @property
     @pulumi.getter(name="referenceTypeId")
     def reference_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Resource type the Custom Field can reference. Required when type is `Reference`
+        """
         return pulumi.get(self, "reference_type_id")
 
     @reference_type_id.setter
@@ -2200,6 +2741,9 @@ class TypeFieldTypeArgs:
     @property
     @pulumi.getter
     def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeValueArgs']]]]:
+        """
+        Values for the `enum` type.
+        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -2214,6 +2758,12 @@ class TypeFieldTypeElementType2Args:
                  localized_values: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementType2LocalizedValueArgs']]]] = None,
                  reference_type_id: Optional[pulumi.Input[str]] = None,
                  values: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementType2ValueArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+        :param pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementType2LocalizedValueArgs']]] localized_values: Localized values for the `lenum` type.
+        :param pulumi.Input[str] reference_type_id: Resource type the Custom Field can reference. Required when type is `Reference`
+        :param pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementType2ValueArgs']]] values: Values for the `enum` type.
+        """
         pulumi.set(__self__, "name", name)
         if localized_values is not None:
             pulumi.set(__self__, "localized_values", localized_values)
@@ -2225,6 +2775,9 @@ class TypeFieldTypeElementType2Args:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the field type. Some types require extra fields to be set. Note that changing the type after creating is not supported. You need to delete the attribute and re-add it.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2234,6 +2787,9 @@ class TypeFieldTypeElementType2Args:
     @property
     @pulumi.getter(name="localizedValues")
     def localized_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementType2LocalizedValueArgs']]]]:
+        """
+        Localized values for the `lenum` type.
+        """
         return pulumi.get(self, "localized_values")
 
     @localized_values.setter
@@ -2243,6 +2799,9 @@ class TypeFieldTypeElementType2Args:
     @property
     @pulumi.getter(name="referenceTypeId")
     def reference_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Resource type the Custom Field can reference. Required when type is `Reference`
+        """
         return pulumi.get(self, "reference_type_id")
 
     @reference_type_id.setter
@@ -2252,6 +2811,9 @@ class TypeFieldTypeElementType2Args:
     @property
     @pulumi.getter
     def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldTypeElementType2ValueArgs']]]]:
+        """
+        Values for the `enum` type.
+        """
         return pulumi.get(self, "values")
 
     @values.setter

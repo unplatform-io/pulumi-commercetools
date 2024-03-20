@@ -13,7 +13,13 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class SubscriptionMessage
     {
+        /// <summary>
+        /// [Resource Type ID](https://docs.commercetools.com/api/projects/subscriptions#changesubscription)
+        /// </summary>
         public readonly string ResourceTypeId;
+        /// <summary>
+        /// types must contain valid message types for this resource, for example for resource type product the message type ProductPublished is valid. If no types of messages are given, the subscription is valid for all messages of this resource
+        /// </summary>
         public readonly ImmutableArray<string> Types;
 
         [OutputConstructor]

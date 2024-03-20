@@ -12,12 +12,21 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class ProductDiscountValueMoneyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The amount in cents (the smallest indivisible unit of the currency)
+        /// </summary>
         [Input("centAmount", required: true)]
         public Input<int> CentAmount { get; set; } = null!;
 
+        /// <summary>
+        /// The currency code compliant to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+        /// </summary>
         [Input("currencyCode", required: true)]
         public Input<string> CurrencyCode { get; set; } = null!;
 
+        /// <summary>
+        /// The number of default fraction digits for the given currency, like 2 for EUR or 0 for JPY
+        /// </summary>
         [Input("fractionDigits")]
         public Input<int>? FractionDigits { get; set; }
 

@@ -13,6 +13,9 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class TaxCategoryRateSubRate
     {
+        /// <summary>
+        /// Number Percentage in the range of [0..1]
+        /// </summary>
         public readonly double Amount;
         public readonly string Name;
 

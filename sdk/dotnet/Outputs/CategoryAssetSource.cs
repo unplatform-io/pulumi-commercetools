@@ -15,6 +15,9 @@ namespace Pulumi.Commercetools.Outputs
     {
         public readonly string? ContentType;
         public readonly Outputs.CategoryAssetSourceDimensions? Dimensions;
+        /// <summary>
+        /// Unique identifier, must be unique within the Asset
+        /// </summary>
         public readonly string? Key;
         public readonly string Uri;
 

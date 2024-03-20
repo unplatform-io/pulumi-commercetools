@@ -12,21 +12,39 @@ namespace Pulumi.Commercetools.Inputs
 
     public sealed class ShippingZoneRateShippingRatePriceTierArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If type is CartValue this represents the cent amount of the tier
+        /// </summary>
         [Input("minimumCentAmount")]
         public Input<int>? MinimumCentAmount { get; set; }
 
+        /// <summary>
+        /// The price of the score, value or minimum_cent_amount tier
+        /// </summary>
         [Input("price")]
         public Input<Inputs.ShippingZoneRateShippingRatePriceTierPriceArgs>? Price { get; set; }
 
+        /// <summary>
+        /// If type is CartScore. Allows to calculate a price dynamically for the score.
+        /// </summary>
         [Input("priceFunction")]
         public Input<Inputs.ShippingZoneRateShippingRatePriceTierPriceFunctionArgs>? PriceFunction { get; set; }
 
+        /// <summary>
+        /// If type is CartScore. Sets a fixed price for this score value
+        /// </summary>
         [Input("score")]
         public Input<int>? Score { get; set; }
 
+        /// <summary>
+        /// CartValue, CartScore or CartClassification
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// If type is CartClassification, must be a valid key of the CartClassification
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 

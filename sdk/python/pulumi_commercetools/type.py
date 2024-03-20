@@ -17,27 +17,26 @@ __all__ = ['TypeArgs', 'Type']
 class TypeArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
+                 name: pulumi.Input[Mapping[str, Any]],
                  resource_type_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
                  description: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 fields: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]]] = None,
-                 name: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+                 fields: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]]] = None):
         """
         The set of arguments for constructing a Type resource.
         :param pulumi.Input[str] key: Identifier for the type (max. 256 characters)
+        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] resource_type_ids: Defines for which [resources](https://docs.commercetools.com/api/projects/custom-fields#customizable-resources) the type
                is valid
         :param pulumi.Input[Mapping[str, Any]] description: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         :param pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]] fields: [Field definition](https://docs.commercetools.com/api/projects/types#fielddefinition)
-        :param pulumi.Input[Mapping[str, Any]] name: [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
         """
         pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "resource_type_ids", resource_type_ids)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -50,6 +49,18 @@ class TypeArgs:
     @key.setter
     def key(self, value: pulumi.Input[str]):
         pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Mapping[str, Any]]:
+        """
+        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Mapping[str, Any]]):
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="resourceTypeIds")
@@ -87,18 +98,6 @@ class TypeArgs:
     @fields.setter
     def fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TypeFieldArgs']]]]):
         pulumi.set(self, "fields", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        """
-        [LocalizedString](https://docs.commercetools.com/api/types#localizedstring)
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
-        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -267,6 +266,8 @@ class Type(pulumi.CustomResource):
             if key is None and not opts.urn:
                 raise TypeError("Missing required property 'key'")
             __props__.__dict__["key"] = key
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             if resource_type_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_type_ids'")

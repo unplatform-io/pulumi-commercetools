@@ -13,13 +13,38 @@ namespace Pulumi.Commercetools.Outputs
     [OutputType]
     public sealed class ProductTypeAttribute
     {
+        /// <summary>
+        /// Describes how an attribute or a set of attributes should be validated across all variants of a product. See also [Attribute Constraint](https://docs.commercetools.com/api/projects/productTypes#attributeconstraint-enum)
+        /// </summary>
         public readonly string? Constraint;
+        /// <summary>
+        /// Provides a visual representation type for this attribute. only relevant for text-based attribute types like TextType and LocalizableTextType
+        /// </summary>
         public readonly string? InputHint;
+        /// <summary>
+        /// Additional information about the attribute that aids content managers when setting product details
+        /// </summary>
         public readonly ImmutableDictionary<string, object>? InputTip;
+        /// <summary>
+        /// A human-readable label for the attribute
+        /// </summary>
         public readonly ImmutableDictionary<string, object> Label;
+        /// <summary>
+        /// The unique name of the attribute used in the API. The name must be between two and 256 characters long and can contain the ASCII letters A to Z in lowercase or uppercase, digits, underscores (_) and the hyphen-minus (-).
+        /// When using the same name for an attribute in two or more product types all fields of the AttributeDefinition of this attribute need to be the same across the product types, otherwise an AttributeDefinitionAlreadyExists error code will be returned. An exception to this are the values of an enum or lenum type and sets thereof
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Whether the attribute is required to have a value
+        /// </summary>
         public readonly bool? Required;
+        /// <summary>
+        /// Whether the attribute's values should generally be activated in product search
+        /// </summary>
         public readonly bool? Searchable;
+        /// <summary>
+        /// [AttributeType](https://docs.commercetools.com/api/projects/productTypes#attributetype)
+        /// </summary>
         public readonly Outputs.ProductTypeAttributeType Type;
 
         [OutputConstructor]
